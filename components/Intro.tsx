@@ -1,27 +1,25 @@
+'use client'
+
+import { useLanguage } from '@/contexts/LanguageContext'
+import { T } from '@/lib/translations'
+
 export default function Intro() {
+  const { lang } = useLanguage()
+  const t = T.intro
   return (
-    <section className="intro-section">
+    <section className="intro-section" id="meist">
       <div className="reveal">
-        <p className="intro-number">01 - Meist</p>
+        <p className="intro-number">{t.label[lang]}</p>
         <h2 className="intro-heading">
-          Koht, kus<br />
-          loodus <em>teeb</em><br />
-          kogu töö.
+          {t.h1[lang]}<br />
+          {t.h2[lang]}<em>{t.h2em[lang]}</em><br />
+          {t.h3[lang]}
         </h2>
       </div>
-
       <div className="reveal reveal-delay-1">
         <div className="intro-text">
-          <p>
-            Oanduaia on peidus Lahemaa rahvuspargi metsade vahel - koht, kus
-            traditsioonilise saunakultuuri ja ökoloogiliste kehahoolduste vahel
-            ei ole piiri.
-          </p>
-          <p>
-            Siin algab Eesti pikim matkarada. Siin lõpeb kiire elu.
-            Metsaspaa, tiigikümblus, ürgoru matkad ja vaikuse kuulamine
-            - kõik ühes kohas.
-          </p>
+          <p>{t.p1[lang]}</p>
+          <p>{t.p2[lang]}</p>
         </div>
       </div>
     </section>

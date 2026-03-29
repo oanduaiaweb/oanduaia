@@ -1,12 +1,18 @@
+'use client'
+
+import { useLanguage } from '@/contexts/LanguageContext'
+import { T } from '@/lib/translations'
+
 export default function Testimonial() {
+  const { lang } = useLanguage()
+  const t = T.testimonial
   return (
     <section className="testimonial-section">
-      <p className="testimonial-rating">Booking.com · 9.6 / 10</p>
+      <p className="testimonial-rating">{t.rating[lang]}</p>
       <blockquote className="testimonial-quote reveal">
-        &ldquo;Kogu koht on kaunistatud kuni väikseima detailini -
-        väike paradiis maa peal.&rdquo;
+        &ldquo;{t.quote[lang]}&rdquo;
       </blockquote>
-      <p className="testimonial-author">- Külalisarvustus, 2024</p>
+      <p className="testimonial-author">{t.author[lang]}</p>
     </section>
   )
 }

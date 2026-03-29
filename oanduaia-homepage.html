@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oanduaia — Metsaspaa Lahemaal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --moss:    #3a4a35;
+    --fern:    #5a6e50;
+    --sage:    #8a9e7a;
+    --mist:    #c8d4b8;
+    --linen:   #f0ebe0;
+    --parch:   #e8e0cc;
+    --bark:    #2a3020;
+    --cream:   #faf7f0;
+    --gold:    #b8a870;
+    --white:   #ffffff;
+
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-mono:    'DM Mono', monospace;
+
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-expo:   cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: var(--font-display);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CURSOR ── */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--moss);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s var(--ease-smooth), opacity 0.3s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid var(--fern);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.4s var(--ease-smooth), width 0.3s, height 0.3s, opacity 0.3s;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+  }
+  body:has(a:hover) .cursor-ring,
+  body:has(button:hover) .cursor-ring {
+    width: 56px; height: 56px;
+    opacity: 0.3;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    mix-blend-mode: normal;
+    pointer-events: none;
+  }
+  nav * { pointer-events: all; }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--linen);
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeUp 1.2s var(--ease-expo) 0.3s forwards;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    opacity: 0;
+    animation: fadeUp 1.2s var(--ease-expo) 0.5s forwards;
+  }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--linen);
+    text-decoration: none;
+    opacity: 0.75;
+    transition: opacity 0.3s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 4rem 3rem;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(
+        160deg,
+        rgba(26,32,20,0.55) 0%,
+        rgba(42,48,32,0.35) 40%,
+        rgba(58,74,53,0.55) 100%
+      ),
+      url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1800&q=85&auto=format&fit=crop') center/cover no-repeat;
+    transform: scale(1.06);
+    animation: heroScale 8s var(--ease-expo) forwards;
+  }
+
+  .hero-grain {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mist);
+    opacity: 0;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 1s var(--ease-expo) 0.8s forwards;
+  }
+
+  .hero-title {
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 300;
+    line-height: 0.92;
+    color: var(--linen);
+    letter-spacing: -0.01em;
+  }
+  .hero-title .line {
+    display: block;
+    overflow: hidden;
+  }
+  .hero-title .line span {
+    display: block;
+    transform: translateY(100%);
+    animation: slideUp 1.2s var(--ease-expo) forwards;
+  }
+  .hero-title .line:nth-child(1) span { animation-delay: 0.9s; }
+  .hero-title .line:nth-child(2) span { animation-delay: 1.05s; }
+  .hero-title .line:nth-child(3) span { animation-delay: 1.2s; font-style: italic; color: var(--mist); }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s var(--ease-expo) 1.6s forwards;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.7;
+    max-width: 320px;
+    letter-spacing: 0.01em;
+  }
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+  .btn-primary {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bark);
+    background: var(--linen);
+    border: none;
+    padding: 1.1rem 2.2rem;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s, color 0.3s, transform 0.3s var(--ease-smooth);
+  }
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+  }
+  .scroll-hint {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mist);
+    opacity: 0.5;
+  }
+
+  .hero-scroll-line {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--mist));
+    opacity: 0;
+    animation: fadeIn 1s var(--ease-expo) 2.2s forwards;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-section {
+    background: var(--moss);
+    padding: 1.2rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    gap: 0;
+    animation: marquee 22s linear infinite;
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mist);
+    opacity: 0.7;
+    padding: 0 3rem;
+  }
+  .marquee-dot {
+    color: var(--sage);
+    opacity: 0.5;
+  }
+
+  /* ── INTRO ── */
+  .intro-section {
+    padding: 10rem 3rem 8rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .intro-number {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--sage);
+    margin-bottom: 2rem;
+  }
+  .intro-heading {
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--moss);
+  }
+  .intro-heading em {
+    font-style: italic;
+    color: var(--fern);
+  }
+  .intro-text {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--fern);
+    letter-spacing: 0.01em;
+  }
+  .intro-text p + p { margin-top: 1.4rem; }
+
+  /* ── SERVICES GRID ── */
+  .services-section {
+    padding: 0 3rem 10rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--mist);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--mist);
+  }
+  .service-card {
+    background: var(--cream);
+    padding: 3rem 2.5rem;
+    transition: background 0.4s;
+    cursor: none;
+  }
+  .service-card:hover { background: var(--linen); }
+  .service-num {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--sage);
+    margin-bottom: 1.5rem;
+  }
+  .service-title {
+    font-size: 1.65rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--moss);
+    margin-bottom: 1rem;
+  }
+  .service-title em { font-style: italic; color: var(--fern); }
+  .service-desc {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--sage);
+    letter-spacing: 0.02em;
+  }
+  .service-arrow {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--fern);
+    text-decoration: none;
+    transition: letter-spacing 0.3s;
+  }
+  .service-card:hover .service-arrow { letter-spacing: 0.25em; }
+
+  /* ── PHOTO FEATURE ── */
+  .feature-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 85vh;
+  }
+  .feature-image {
+    background:
+      linear-gradient(180deg, rgba(42,48,32,0.2) 0%, rgba(42,48,32,0.5) 100%),
+      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=85&auto=format&fit=crop') center/cover no-repeat;
+    position: relative;
+  }
+  .feature-image-label {
+    position: absolute;
+    bottom: 2.5rem; left: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mist);
+    opacity: 0.7;
+  }
+  .feature-content {
+    background: var(--moss);
+    padding: 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .feature-content .section-label { color: var(--sage); }
+  .feature-content .section-label::after { background: var(--fern); }
+  .feature-heading {
+    font-size: clamp(2.8rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--linen);
+    margin-bottom: 2.5rem;
+  }
+  .feature-heading em { font-style: italic; color: var(--mist); }
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .feature-list li {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--mist);
+    opacity: 0.7;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(200,212,184,0.15);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: opacity 0.3s;
+  }
+  .feature-list li:hover { opacity: 1; }
+  .feature-list li::before {
+    content: '↗';
+    color: var(--sage);
+    font-size: 0.7rem;
+  }
+  .feature-cta {
+    margin-top: 3.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--moss);
+    background: var(--linen);
+    border: none;
+    padding: 1.1rem 2.2rem;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    align-self: flex-start;
+    transition: background 0.3s, transform 0.3s var(--ease-smooth);
+  }
+  .feature-cta:hover { background: var(--gold); transform: translateY(-2px); }
+
+  /* ── TRAILS ── */
+  .trails-section {
+    padding: 10rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .trails-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 5rem;
+  }
+  .trails-heading {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--moss);
+  }
+  .trails-heading em { font-style: italic; }
+  .trails-intro {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--fern);
+    padding-top: 1rem;
+  }
+  .trails-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .trail-item {
+    border-top: 1px solid var(--mist);
+    padding-top: 2rem;
+  }
+  .trail-distance {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .trail-name {
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--moss);
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+  }
+  .trail-desc {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--sage);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial-section {
+    background: var(--bark);
+    padding: 10rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonial-section::before {
+    content: '"';
+    position: absolute;
+    top: -2rem; left: 50%;
+    transform: translateX(-50%);
+    font-size: 30rem;
+    font-family: var(--font-display);
+    font-weight: 300;
+    color: var(--moss);
+    opacity: 0.15;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .testimonial-quote {
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--linen);
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    position: relative;
+    z-index: 1;
+  }
+  .testimonial-author {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage);
+    opacity: 0.7;
+  }
+  .testimonial-rating {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 3rem;
+    opacity: 0.8;
+  }
+
+  /* ── BOOKING CTA ── */
+  .booking-section {
+    padding: 10rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--linen);
+  }
+  .booking-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 2.5rem;
+  }
+  .booking-heading {
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--moss);
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+  .booking-heading em { font-style: italic; color: var(--fern); }
+  .booking-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--fern);
+    margin-bottom: 4rem;
+    max-width: 440px;
+    line-height: 1.8;
+  }
+  .booking-buttons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .btn-ghost {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--moss);
+    background: transparent;
+    border: 1px solid var(--mist);
+    padding: 1.1rem 2.2rem;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--fern); color: var(--fern); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bark);
+    padding: 4rem 3rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--linen);
+    margin-bottom: 1rem;
+  }
+  .footer-tagline {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--sage);
+    opacity: 0.6;
+    line-height: 1.8;
+  }
+  .footer-heading {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage);
+    opacity: 0.5;
+    margin-bottom: 1.5rem;
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .footer-links a {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--mist);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .footer-links a:hover { opacity: 1; }
+  .footer-bottom {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(200,212,184,0.1);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--sage);
+    opacity: 0.4;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes heroScale {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1.0); }
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s var(--ease-expo), transform 0.9s var(--ease-expo);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.22s; }
+  .reveal-delay-3 { transition-delay: 0.34s; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Oanduaia</a>
+  <ul class="nav-links">
+    <li><a href="#teenused">Teenused</a></li>
+    <li><a href="#matkad">Matkad</a></li>
+    <li><a href="#majutus">Majutus</a></li>
+    <li><a href="#broneeri">Broneeri</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Lahemaa rahvuspark · Oandu · Est</p>
+    <h1 class="hero-title">
+      <span class="line"><span>Mets</span></span>
+      <span class="line"><span>hingab</span></span>
+      <span class="line"><span>siin.</span></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Metsaspaa ja majutus Lahemaa südames.<br />
+        Oandu-Ikla matkatee alguspunktis.
+      </p>
+      <div class="hero-cta">
+        <a href="#broneeri" class="btn-primary">Küsi pakkumist</a>
+        <span class="scroll-hint">Keri alla</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-line"></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Metsaspaa <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Saun &amp; Tiigikümblus <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Öko kehahooldused <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Matkarajad <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Majutus <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Lahemaa rahvuspark <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Metsaspaa <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Saun &amp; Tiigikümblus <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Öko kehahooldused <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Matkarajad <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Majutus <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Lahemaa rahvuspark <span class="marquee-dot">·</span></span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="intro-section">
+  <div class="reveal">
+    <p class="intro-number">01 — Meist</p>
+    <h2 class="intro-heading">
+      Koht, kus<br />
+      loodus <em>teeb</em><br />
+      kogu töö.
+    </h2>
+  </div>
+  <div class="reveal reveal-delay-1">
+    <div class="intro-text">
+      <p>
+        Oanduaia on peidus Lahemaa rahvuspargi metsade vahel — koht, kus
+        traditsioonilise saunakultuuri ja ökoloogiliste kehahoolduste vahel
+        ei ole piiri.
+      </p>
+      <p>
+        Siin algab Eesti pikim matkarada. Siin lõpeb kiire elu.
+        Metsaspaa, tiigikümblus, ürgoru matkad ja vaikuse kuulamine
+        — kõik ühes kohas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="teenused">
+  <p class="section-label">02 — Teenused</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <p class="service-num">01</p>
+      <h3 class="service-title">Metsaspaa <em>&amp; Saun</em></h3>
+      <p class="service-desc">
+        Puuküttega saun, erinevad saunaprotseduurid,
+        leilirituaalid ja hingamisharjutused metsa keskel.
+      </p>
+      <a href="#" class="service-arrow">Loe lähemalt →</a>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <p class="service-num">02</p>
+      <h3 class="service-title">Tiigikümblus <em>&amp; Teraapiad</em></h3>
+      <p class="service-desc">
+        Looduslik tiigikümblus aastaringselt. Öko kehahooldused
+        metsataimede ja turba baasil. Sügav taastumine.
+      </p>
+      <a href="#" class="service-arrow">Loe lähemalt →</a>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <p class="service-num">03</p>
+      <h3 class="service-title">Majutus <em>&amp; Hommikusöök</em></h3>
+      <p class="service-desc">
+        Kuni 6-kohaline puhkemaja panoraamakende ja
+        privaatse aiaga. Kontinentaalne hommikusöök hinna sees.
+      </p>
+      <a href="#" class="service-arrow">Loe lähemalt →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE SPLIT -->
+<section class="feature-section" id="majutus">
+  <div class="feature-image">
+    <span class="feature-image-label">Oandu · Lahemaa · 59°26'N</span>
+  </div>
+  <div class="feature-content">
+    <p class="section-label">03 — Majutus</p>
+    <h2 class="feature-heading">
+      Kodu<br />
+      metsas,<br />
+      <em>mitte metsa</em><br />
+      külge.
+    </h2>
+    <ul class="feature-list">
+      <li>Kuni 6 külalist, 2 magamistuba</li>
+      <li>Panoraamaknad metsavaatega</li>
+      <li>Täisvarustatud köök & elutuba</li>
+      <li>Privaatne privaatne sisse/väljachecking</li>
+      <li>Hommikusöök, rätikud, hommikumantlid</li>
+      <li>Sagadi mõis 2,8 km · Koprarada 1,3 km</li>
+    </ul>
+    <a href="#broneeri" class="feature-cta">Vaata saadavust</a>
+  </div>
+</section>
+
+<!-- TRAILS -->
+<section class="trails-section" id="matkad">
+  <div class="trails-header">
+    <div class="reveal">
+      <p class="section-label">04 — Matkarajad</p>
+      <h2 class="trails-heading">
+        Kuus rada<br />
+        algab <em>siit.</em>
+      </h2>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <p class="trails-intro">
+        Oanduaia asub Eesti pikima matkatee alguspunktis.
+        Ümbritsevad rajad sobivad nii tunnisel jalutuseks
+        kui ka mitmepäevaseks matkaks.
+      </p>
+    </div>
+  </div>
+  <div class="trails-grid">
+    <div class="trail-item reveal">
+      <p class="trail-distance">822 km · pikkajaline</p>
+      <h3 class="trail-name">Oandu-Ikla matkatee</h3>
+      <p class="trail-desc">Eesti pikim märgistatud matkarada. Algab siin.</p>
+    </div>
+    <div class="trail-item reveal reveal-delay-1">
+      <p class="trail-distance">~4 km · kerge</p>
+      <h3 class="trail-name">Oandu loodusmetsarada</h3>
+      <p class="trail-desc">Looduslik ringrada läbi muistse metsa ja ürgoru.</p>
+    </div>
+    <div class="trail-item reveal reveal-delay-2">
+      <p class="trail-distance">~14 km · keskmine</p>
+      <h3 class="trail-name">Võsu-Oandu matkarada</h3>
+      <p class="trail-desc">Meri kuni mets — rannikult läbi rahvuspargi.</p>
+    </div>
+    <div class="trail-item reveal">
+      <p class="trail-distance">~1.3 km · kerge</p>
+      <h3 class="trail-name">Koprarada</h3>
+      <p class="trail-desc">Lühike rada koprapaisude ja järvepindade vaatluspunktideni.</p>
+    </div>
+    <div class="trail-item reveal reveal-delay-1">
+      <p class="trail-distance">~8 km · kerge</p>
+      <h3 class="trail-name">Pärimusrada</h3>
+      <p class="trail-desc">Lahemaa külade pärimusloo jälgedel.</p>
+    </div>
+    <div class="trail-item reveal reveal-delay-2">
+      <p class="trail-distance">~11 km · keskmine</p>
+      <h3 class="trail-name">Altja matkarada</h3>
+      <p class="trail-desc">Altja kaluriküla kaudu rannikule. Ajalugu ja loodus.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <p class="testimonial-rating">Booking.com · 9.6 / 10</p>
+  <blockquote class="testimonial-quote reveal">
+    "Kogu koht on kaunistatud kuni väikseima detailini —
+    väike paradiis maa peal."
+  </blockquote>
+  <p class="testimonial-author">— Külalisarvustus, 2024</p>
+</section>
+
+<!-- BOOKING CTA -->
+<section class="booking-section" id="broneeri">
+  <p class="booking-eyebrow">Reserveerimine</p>
+  <h2 class="booking-heading reveal">
+    Millal sa<br />
+    <em>tuled?</em>
+  </h2>
+  <p class="booking-sub reveal reveal-delay-1">
+    Oanduaia töötab päringupõhiselt —
+    kirjuta meile ja me leiame sinu jaoks sobiva aja.
+  </p>
+  <div class="booking-buttons reveal reveal-delay-2">
+    <a href="mailto:info@oanduaia.ee" class="btn-primary">Küsi pakkumist</a>
+    <a href="tel:+372XXXXXXXX" class="btn-ghost">Helista</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-brand">Oanduaia</p>
+    <p class="footer-tagline">
+      Metsaspaa ja majutus<br />
+      Lahemaa rahvuspargis,<br />
+      Oandu küla, Lääne-Virumaa
+    </p>
+  </div>
+  <div>
+    <p class="footer-heading">Navigatsioon</p>
+    <ul class="footer-links">
+      <li><a href="#teenused">Teenused</a></li>
+      <li><a href="#majutus">Majutus</a></li>
+      <li><a href="#matkad">Matkarajad</a></li>
+      <li><a href="#broneeri">Broneeri</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-heading">Kontakt</p>
+    <ul class="footer-links">
+      <li><a href="mailto:info@oanduaia.ee">info@oanduaia.ee</a></li>
+      <li><a href="https://www.booking.com/hotel/ee/oanduaia-saunamaja.html" target="_blank">Booking.com</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Oanduaia. Kõik õigused kaitstud.</p>
+    <p class="footer-copy">Lahemaa rahvuspark · Estonia</p>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

@@ -1,37 +1,41 @@
-import Image from 'next/image'
+'use client'
 
-interface Props {
-  imageSrc?: string
-  imageAlt?: string
+import Image from 'next/image'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { T } from '@/lib/translations'
+
+function scrollTo(id: string) {
+  return (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 
-export default function Feature({
-  imageSrc = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=85&auto=format&fit=crop',
-  imageAlt = 'Oandu maastik',
-}: Props) {
+const SRC = 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1200&q=85&auto=format&fit=crop'
+
+export default function Feature() {
+  const { lang } = useLanguage()
+  const t = T.feature
+  const items = [t.i1, t.i2, t.i3, t.i4, t.i5, t.i6]
   return (
     <section className="feature-section" id="majutus">
       <div className="feature-image">
-        <Image src={imageSrc} alt={imageAlt} fill style={{ objectFit: 'cover', objectPosition: 'center' }} />
+        <Image src={SRC} alt="Oandu mets" fill style={{ objectFit: 'cover', objectPosition: 'center' }} />
         <div className="feature-image-overlay" aria-hidden="true" />
-        <span className="feature-image-label">Oandu · Lahemaa · 59°26′N</span>
+        <span className="feature-image-label">{t.imgLabel[lang]}</span>
       </div>
-
       <div className="feature-content">
-        <p className="section-label">03 - Majutus</p>
+        <p className="section-label">{t.label[lang]}</p>
         <h2 className="feature-heading">
-          Kaugel kõigest.<br />
-          <em>Puhka päriselt.</em>
+          {t.h1[lang]}<br />
+          <em>{t.h2[lang]}</em>
         </h2>
         <ul className="feature-list">
-          <li>Kuni 6 külalist, 2 magamistuba</li>
-          <li>Panoraamaknad metsavaatega</li>
-          <li>Täisvarustatud köök &amp; elutuba</li>
-          <li>Privaatne sisse/väljachecking</li>
-          <li>Hommikusöök, rätikud, hommikumantlid</li>
-          <li>Sagadi mõis 2,8 km · Koprarada 1,3 km</li>
+          {items.map(item => (
+            <li key={item.et}>{item[lang]}</li>
+          ))}
         </ul>
-        <a href="#broneeri" className="feature-cta">Vaata saadavust</a>
+        <a href="#broneeri" className="feature-cta" onClick={scrollTo('broneeri')}>{t.cta[lang]}</a>
       </div>
     </section>
   )

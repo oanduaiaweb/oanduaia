@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, DM_Mono } from 'next/font/google'
 import './globals.css'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -18,9 +19,8 @@ const dmMono = DM_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Oanduaia — Metsaspaa Lahemaal',
-  description:
-    'Metsaspaa ja majutus Lahemaa südames. Oandu-Ikla matkatee alguspunktis.',
+  title: 'Oanduaia - Metsaspaa Lahemaal',
+  description: 'Metsaspaa ja majutus Lahemaa südames.',
 }
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="et" className={`${cormorant.variable} ${dmMono.variable}`}>
-      <body>{children}</body>
+      <body><LanguageProvider>{children}</LanguageProvider></body>
     </html>
   )
 }

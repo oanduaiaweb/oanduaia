@@ -4,6 +4,7 @@ import Intro from '@/components/Intro'
 import Services from '@/components/Services'
 import Feature from '@/components/Feature'
 import Trails from '@/components/Trails'
+import Stats from '@/components/Stats'
 import Testimonial from '@/components/Testimonial'
 import Booking from '@/components/Booking'
 import Footer from '@/components/Footer'
@@ -16,9 +17,10 @@ export default function Page() {
       <Nav />
       <Hero />
       <Intro />
-      <Services />
       <Feature />
+      <Services />
       <Trails />
+      <Stats />
       <Testimonial />
       <Booking />
       <Footer />

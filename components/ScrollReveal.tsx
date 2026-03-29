@@ -9,6 +9,8 @@ import { useEffect } from 'react'
  */
 export default function ScrollRevealInit() {
   useEffect(() => {
+    history.scrollRestoration = 'manual'
+    window.scrollTo(0, 0)
     const reveals = document.querySelectorAll<HTMLElement>('.reveal')
     const observer = new IntersectionObserver(
       (entries) => {
