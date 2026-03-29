@@ -12,7 +12,7 @@ const trails = [
   {
     distance: '~14 km · keskmine',
     name: 'Võsu-Oandu matkarada',
-    desc: 'Meri kuni mets — rannikult läbi rahvuspargi.',
+    desc: 'Meri kuni mets - rannikult läbi rahvuspargi.',
   },
   {
     distance: '~1.3 km · kerge',
@@ -36,21 +36,12 @@ const delays = ['', ' reveal-delay-1', ' reveal-delay-2']
 export default function Trails() {
   return (
     <section className="trails-section" id="matkad">
-      <div className="trails-header">
-        <div className="reveal">
-          <p className="section-label">04 — Matkarajad</p>
-          <h2 className="trails-heading">
-            Kuus rada<br />
-            algab <em>siit.</em>
-          </h2>
-        </div>
-        <div className="reveal reveal-delay-1">
-          <p className="trails-intro">
-            Oanduaia asub Eesti pikima matkatee alguspunktis.
-            Ümbritsevad rajad sobivad nii tunnisel jalutuseks
-            kui ka mitmepäevaseks matkaks.
-          </p>
-        </div>
+      <div className="trails-header reveal">
+        <p className="section-label">04 - Matkarajad</p>
+        <h2 className="trails-heading">
+          Kuus rada<br />
+          algab <em>siit.</em>
+        </h2>
       </div>
 
       <div className="trails-grid">

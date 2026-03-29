@@ -18,11 +18,10 @@ export default function Feature({
       </div>
 
       <div className="feature-content">
-        <p className="section-label">03 — Majutus</p>
+        <p className="section-label">03 - Majutus</p>
         <h2 className="feature-heading">
-          Kodu metsas,<br />
-          <em>mitte metsa</em><br />
-          külge.
+          Kaugel kõigest.<br />
+          <em>Puhka päriselt.</em>
         </h2>
         <ul className="feature-list">
           <li>Kuni 6 külalist, 2 magamistuba</li>

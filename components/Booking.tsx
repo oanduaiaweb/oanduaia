@@ -11,7 +11,7 @@ export default function Booking() {
 
   const submit = (e: FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent('Pakkumise päring — Oanduaia')
+    const subject = encodeURIComponent('Pakkumise päring - Oanduaia')
     const body = encodeURIComponent(
       `Nimi: ${form.nimi}\nE-post: ${form.email}\nKuupäevad: ${form.kuupaevad}\n\n${form.sonum}`
     )
@@ -23,8 +23,7 @@ export default function Booking() {
     <section className="booking-section" id="broneeri">
       <p className="booking-eyebrow">Reserveerimine</p>
       <h2 className="booking-heading reveal">
-        Millal sa<br />
-        <em>tuled?</em>
+        Millal sa <em>tuled?</em>
       </h2>
       <p className="booking-sub reveal reveal-delay-1">
         Kirjuta meile, ootame Sind.
@@ -32,7 +31,7 @@ export default function Booking() {
 
       {sent ? (
         <p className="booking-success reveal">
-          Aitäh — avame sinu e-postirakenduse kohe.
+          Aitäh - avame sinu e-postirakenduse kohe.
         </p>
       ) : (
         <form className="booking-form reveal reveal-delay-2" onSubmit={submit} noValidate>
@@ -61,7 +60,7 @@ export default function Booking() {
             <input
               className="form-input"
               id="kuupaevad" name="kuupaevad" type="text"
-              placeholder="Saabun — lahkun (nt 15. juuli — 17. juuli)"
+              placeholder="Saabun - lahkun"
               value={form.kuupaevad} onChange={handle}
             />
           </div>

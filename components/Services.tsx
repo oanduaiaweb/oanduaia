@@ -1,7 +1,7 @@
 export default function Services() {
   return (
     <section className="services-section" id="teenused">
-      <p className="section-label">02 — Teenused</p>
+      <p className="section-label">02 - Teenused</p>
       <div className="services-grid">
 
         <div className="service-card reveal">
