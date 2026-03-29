@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
 interface Props {
-  /** Swap for your own landscape image */
   imageSrc?: string
   imageAlt?: string
 }
@@ -21,8 +20,7 @@ export default function Feature({
       <div className="feature-content">
         <p className="section-label">03 — Majutus</p>
         <h2 className="feature-heading">
-          Kodu<br />
-          metsas,<br />
+          Kodu metsas,<br />
           <em>mitte metsa</em><br />
           külge.
         </h2>
