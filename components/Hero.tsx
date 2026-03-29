@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
 interface Props {
-  /** Swap for your own forest image */
   imageSrc?: string
   imageAlt?: string
 }
@@ -26,27 +25,22 @@ export default function Hero({
       <div className="hero-grain" aria-hidden="true" />
 
       <div className="hero-content">
-        <p className="hero-eyebrow">Lahemaa rahvuspark · Oandu · Est</p>
-
         <h1 className="hero-title">
           <span className="line"><span>Mets</span></span>
           <span className="line"><span>hingab</span></span>
           <span className="line"><span>siin.</span></span>
         </h1>
 
+        <p className="hero-eyebrow">Lahemaa rahvuspark · Oandu · Est</p>
+
         <div className="hero-bottom">
           <p className="hero-desc">
             Metsaspaa ja majutus Lahemaa südames.<br />
             Oandu-Ikla matkatee alguspunktis.
           </p>
-          <div className="hero-cta">
-            <a href="#broneeri" className="btn-primary">Küsi pakkumist</a>
-            <span className="scroll-hint">Keri alla</span>
-          </div>
+          <a href="#broneeri" className="btn-primary">Küsi pakkumist</a>
         </div>
       </div>
-
-      <div className="hero-scroll-line" aria-hidden="true" />
     </section>
   )
 }

@@ -1,6 +1,5 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import Marquee from '@/components/Marquee'
 import Intro from '@/components/Intro'
 import Services from '@/components/Services'
 import Feature from '@/components/Feature'
@@ -16,7 +15,6 @@ export default function Page() {
       <ScrollRevealInit />
       <Nav />
       <Hero />
-      <Marquee />
       <Intro />
       <Services />
       <Feature />
