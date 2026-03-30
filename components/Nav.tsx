@@ -11,10 +11,10 @@ const LANGS: { code: Lang; flag: string; label: string }[] = [
 ]
 
 const links = [
-  { key: 'meist',    id: 'meist' },
-  { key: 'majutus',  id: 'majutus' },
-  { key: 'teenused', id: 'teenused' },
-  { key: 'matkad',   id: 'matkad' },
+  { key: 'meist',    id: 'lugu' },
+  { key: 'majutus',  id: 'majad' },
+  { key: 'teenused', id: 'toit' },
+  { key: 'matkad',   id: 'loodus' },
   { key: 'broneeri', id: 'broneeri' },
 ] as const
 

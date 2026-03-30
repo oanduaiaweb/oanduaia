@@ -9,7 +9,7 @@ export default function Trails() {
   const { lang } = useLanguage()
   const t = T.trails
   return (
-    <section className="trails-section" id="matkad">
+    <section className="trails-section" id="loodus">
       <div className="trails-inner">
         <div className="trails-header reveal">
           <p className="section-label">{t.label[lang]}</p>

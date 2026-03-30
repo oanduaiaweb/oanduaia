@@ -18,7 +18,7 @@ export default function Feature() {
   const t = T.feature
   const items = [t.i1, t.i2, t.i3, t.i4, t.i5, t.i6]
   return (
-    <section className="feature-section" id="majutus">
+    <section className="feature-section" id="majad">
       <div className="feature-image">
         <Image src={SRC} alt="Oandu mets" fill sizes="(max-width: 900px) 100vw, 50vw" quality={75} style={{ objectFit: 'cover', objectPosition: 'center' }} />
         <div className="feature-image-overlay" aria-hidden="true" />

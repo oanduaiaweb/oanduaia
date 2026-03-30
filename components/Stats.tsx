@@ -3,7 +3,7 @@
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 
-const nums = ['9.6', '822', '6', '4']
+const nums = ['9.6', '3', '822', '100']
 
 export default function Stats() {
   const { lang } = useLanguage()

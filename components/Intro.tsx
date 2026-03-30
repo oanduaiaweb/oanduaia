@@ -7,7 +7,7 @@ export default function Intro() {
   const { lang } = useLanguage()
   const t = T.intro
   return (
-    <section className="intro-section" id="meist">
+    <section className="intro-section" id="lugu">
       <div className="reveal">
         <p className="intro-number">{t.label[lang]}</p>
         <h2 className="intro-heading">

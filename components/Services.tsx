@@ -8,7 +8,7 @@ export default function Services() {
   const t = T.services
   const cards = [t.s1, t.s2, t.s3]
   return (
-    <section className="services-section" id="teenused">
+    <section className="services-section" id="toit">
       <p className="section-label">{t.label[lang]}</p>
       <div className="services-grid">
         {cards.map((s, i) => (
