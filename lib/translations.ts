@@ -12,7 +12,7 @@ export const T = {
   hero: {
     line1:  { et: 'Kaugel',            en: 'Far',              ru: 'Вдали' },
     line2:  { et: 'kõigest.',          en: 'from all.',        ru: 'от всего.' },
-    line3:  { et: 'Puhka päriselt.',   en: 'Rest for real.',   ru: 'Отдохни по\u2011настоящему.' },
+    line3:  { et: 'Puhka päriselt.',   en: 'Rest for real.',   ru: 'По\u2011настоящему.' },
     eyebrow:{ et: 'Lahemaa rahvuspark · Oandu · Est', en: 'Lahemaa National Park · Oandu · Est', ru: 'Нац. парк Лахемаа · Оанду · Est' },
     desc:   { et: 'Kolme mõisa vahel, mere lähedal, metsas – Lahemaa südames.', en: 'Between three manors, near the sea, in the forest – in the heart of Lahemaa.', ru: 'Между тремя поместьями, у моря, в лесу – в сердце Лахемаа.' },
     cta:    { et: 'Küsi pakkumist', en: 'Request an offer', ru: 'Запросить предложение' },
@@ -51,8 +51,8 @@ export const T = {
       t1: { et: 'Pidulik pikk laud', en: 'Festive long table', ru: 'Праздничный стол' },
       t2: { et: '', en: '', ru: '' },
       desc: {
-        et: 'Ette tellides kahele kuni kümnele. Suvel väliköögis kuni kahekümne inimesele.',
-        en: 'Pre-ordered for two to ten people. In summer, up to twenty in the outdoor kitchen.',
+        et: 'Ette tellides kahele kuni kümnele. Suvel väliköögis kuni kahekümnele.',
+        en: 'Pre-ordered for two to ten. In summer, up to twenty in the outdoor kitchen.',
         ru: 'По предварительному заказу для двух–десяти человек. Летом – до двадцати на открытой кухне.',
       },
     },
@@ -94,16 +94,16 @@ export const T = {
     label: { et: '04 – Loodus', en: '04 – Nature', ru: '04 – Природа' },
     h1:   { et: 'Spaa on õues.', en: 'The spa is outside.', ru: 'Спа – на улице.' },
     h2:   { et: 'Alati ', en: 'Always ', ru: 'Всегда ' },
-    h2em: { et: 'olnud.', en: 'has been.', ru: 'было.' },
+    h2em: { et: 'loodud.', en: 'made.', ru: 'создано.' },
     desc1: {
-      et: 'Puuküttega saun, tiigikümblus, allikavesi, linnulaul. Ei protseduuride nimekirja ega broneerimisportaali – ainult mets, vesi ja vaikus.',
+      et: 'Puuküttega saun, tiigikümblus, allikavesi, linnulaul. Pole protseduuride nimekirja ega broneerimisportaali – ainult mets, vesi ja vaikus.',
       en: 'Wood-fired sauna, pond bathing, spring water, birdsong. No list of treatments, no booking portal – just forest, water and silence.',
       ru: 'Дровяная сауна, купание в пруду, родниковая вода, пение птиц. Никаких списков процедур и порталов – только лес, вода и тишина.',
     },
     desc2: {
-      et: 'Kolme mõisa vahel: Palmse, Sagadi ja Vihula – kõik kivikese kaugusel. Kuus matkarada algab siit, sh Eesti pikim – Oandu-Ikla, 822 km.',
+      et: 'Kolme mõisa vahel: Palmse, Sagadi ja Vihula – kõik kivikese kaugusel. Siit algab kuus matkarada, sh Eesti pikim – Oandu-Ikla, 822 km.',
       en: 'Between three manors: Palmse, Sagadi and Vihula – all a stone\'s throw away. Six hiking trails begin here, including Estonia\'s longest – Oandu-Ikla, 822 km.',
-      ru: 'Между тремя поместьями: Палмсе, Сагади и Вихула – все в двух шагах. Шесть маршрутов начинаются здесь, в т.ч. самый длинный в Эстонии – Оанду-Икла, 822 км.',
+      ru: 'Между тремя поместьями: Палмсе, Сагади и Вихула – все в двух шагах. Отсюда начинаются шесть маршрутов, в т.ч. самый длинный в Эстонии – Оанду-Икла, 822 км.',
     },
     items: [
       {

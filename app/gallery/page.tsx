@@ -18,19 +18,28 @@ export default function Gallery() {
   return (
     <>
       <Nav />
-      <main className="gallery-page">
-        <div className="gallery-header">
+      <section className="gallery-hero">
+        <div className="gallery-hero-inner">
           <Link href="/" className="gallery-back">{t.back[lang]}</Link>
           <h1 className="gallery-title">{t.title[lang]}</h1>
         </div>
+      </section>
+      <section className="gallery-photos">
         <div className="gallery-grid">
           {photos.map((p, i) => (
             <div key={i} className="gallery-item">
-              <Image src={p.src} alt={p.alt} fill sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" quality={80} style={{ objectFit: 'cover' }} />
+              <Image
+                src={p.src}
+                alt={p.alt}
+                fill
+                sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                quality={80}
+                style={{ objectFit: 'cover' }}
+              />
             </div>
           ))}
         </div>
-      </main>
+      </section>
     </>
   )
 }
