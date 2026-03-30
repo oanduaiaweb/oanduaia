@@ -19,8 +19,9 @@ export default function Footer() {
       <div>
         <p className="footer-heading">{t.navH[lang]}</p>
         <ul className="footer-links">
-          <li><a href="#toit">{t.teenused[lang]}</a></li>
+          <li><a href="#lugu">{t.lugu[lang]}</a></li>
           <li><a href="#majad">{t.majutus[lang]}</a></li>
+          <li><a href="#toit">{t.teenused[lang]}</a></li>
           <li><a href="#loodus">{t.matkad[lang]}</a></li>
           <li><a href="#broneeri">{t.broneeri[lang]}</a></li>
         </ul>

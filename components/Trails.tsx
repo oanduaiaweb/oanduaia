@@ -17,6 +17,10 @@ export default function Trails() {
             {t.h1[lang]}<br />
             {t.h2[lang]}<em>{t.h2em[lang]}</em>
           </h2>
+          <div className="trails-desc">
+            <p>{t.desc1[lang]}</p>
+            <p>{t.desc2[lang]}</p>
+          </div>
         </div>
         <div className="trails-grid">
           {t.items.map((trail, i) => (

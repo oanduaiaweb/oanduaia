@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T, type Lang } from '@/lib/translations'
@@ -18,7 +19,7 @@ const links = [
   { key: 'broneeri', id: 'broneeri' },
 ] as const
 
-/** Smooth-scrolls to section without changing the URL (so refresh always goes to top) */
+/** Smooth-scrolls to section without changing the URL */
 function smoothScroll(id: string, then?: () => void) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -80,6 +81,10 @@ export default function Nav() {
             ))}
           </ul>
 
+          <Link href="/gallery" className="nav-gallery-btn">
+            {T.nav.galerii[lang]}
+          </Link>
+
           <div className="nav-lang" ref={langRef}>
             <button
               className="nav-lang-trigger"
@@ -128,6 +133,11 @@ export default function Nav() {
               </a>
             </li>
           ))}
+          <li style={{ '--i': links.length } as React.CSSProperties}>
+            <Link href="/gallery" onClick={close}>
+              {T.nav.galerii[lang]}
+            </Link>
+          </li>
         </ul>
         <div className="nav-overlay-langs">
           {LANGS.map(l => (
