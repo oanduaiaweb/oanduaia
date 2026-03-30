@@ -326,7 +326,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 .hero-title .line span {
   display: block;
-  transform: translateY(110%);
+  transform: translateY(40px);
   opacity: 0;
   animation: slideUp 1.25s var(--ease-expo) forwards;
 }
@@ -957,7 +957,7 @@ footer {
   to   { transform: scale(1.0); }
 }
 @keyframes slideUp {
-  0%   { transform: translateY(110%); opacity: 0; }
+  0%   { transform: translateY(40px); opacity: 0; }
   18%  { opacity: 1; }
   100% { transform: translateY(0);    opacity: 1; }
 }

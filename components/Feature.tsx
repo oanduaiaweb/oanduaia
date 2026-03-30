@@ -11,7 +11,7 @@ function scrollTo(id: string) {
   }
 }
 
-const SRC = 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1200&q=85&auto=format&fit=crop'
+const SRC = 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop'
 
 export default function Feature() {
   const { lang } = useLanguage()
@@ -20,7 +20,7 @@ export default function Feature() {
   return (
     <section className="feature-section" id="majutus">
       <div className="feature-image">
-        <Image src={SRC} alt="Oandu mets" fill style={{ objectFit: 'cover', objectPosition: 'center' }} />
+        <Image src={SRC} alt="Oandu mets" fill sizes="(max-width: 768px) 100vw, 50vw" quality={75} style={{ objectFit: 'cover', objectPosition: 'center' }} />
         <div className="feature-image-overlay" aria-hidden="true" />
         <span className="feature-image-label">{t.imgLabel[lang]}</span>
       </div>

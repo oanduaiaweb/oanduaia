@@ -11,7 +11,7 @@ function scrollTo(id: string) {
   }
 }
 
-const SRC = 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1800&q=85&auto=format&fit=crop'
+const SRC = 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop'
 
 export default function Hero() {
   const { lang } = useLanguage()
@@ -19,7 +19,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg">
-        <Image src={SRC} alt={h.alt[lang]} fill priority className="hero-bg-img" />
+        <Image src={SRC} alt={h.alt[lang]} fill priority sizes="100vw" quality={75} className="hero-bg-img" />
         <div className="hero-bg-overlay" />
       </div>
       <div className="hero-grain" aria-hidden="true" />
