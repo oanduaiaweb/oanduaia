@@ -20,7 +20,7 @@ export default function Feature() {
   return (
     <section className="feature-section" id="majutus">
       <div className="feature-image">
-        <Image src={SRC} alt="Oandu mets" fill sizes="(max-width: 768px) 100vw, 50vw" quality={75} style={{ objectFit: 'cover', objectPosition: 'center' }} />
+        <Image src={SRC} alt="Oandu mets" fill sizes="(max-width: 900px) 100vw, 50vw" quality={75} style={{ objectFit: 'cover', objectPosition: 'center' }} />
         <div className="feature-image-overlay" aria-hidden="true" />
         <span className="feature-image-label">{t.imgLabel[lang]}</span>
       </div>
