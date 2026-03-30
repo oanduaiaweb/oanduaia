@@ -284,11 +284,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 
 .hero-bg {
   position: absolute; inset: 0;
-  overflow: hidden;
+}
+.hero-bg-img {
+  object-fit: cover; object-position: center;
   transform: scale(1.06);
   animation: heroScale 8s var(--ease-expo) forwards;
 }
-.hero-bg-img { object-fit: cover; object-position: center; }
 .hero-bg-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(
@@ -327,7 +328,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .hero-title .line span {
   display: block;
   transform: translateY(40px);
-  opacity: 0;
+  opacity: 0.001;
   animation: slideUp 1.25s var(--ease-expo) forwards;
 }
 .hero-title .line:nth-child(1) span { animation-delay: 0.7s; }
@@ -957,7 +958,7 @@ footer {
   to   { transform: scale(1.0); }
 }
 @keyframes slideUp {
-  0%   { transform: translateY(40px); opacity: 0; }
+  0%   { transform: translateY(40px); opacity: 0.001; }
   18%  { opacity: 1; }
   100% { transform: translateY(0);    opacity: 1; }
 }
