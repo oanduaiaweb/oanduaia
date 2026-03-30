@@ -11,7 +11,7 @@ function scrollTo(id: string) {
   }
 }
 
-const SRC = 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop'
+const SRC = '/images/feature.jpg'
 
 export default function Feature() {
   const { lang } = useLanguage()

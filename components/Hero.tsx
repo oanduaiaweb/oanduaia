@@ -11,7 +11,7 @@ function scrollTo(id: string) {
   }
 }
 
-const SRC = 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop'
+const SRC = '/images/hero.jpg'
 
 export default function Hero() {
   const { lang } = useLanguage()
