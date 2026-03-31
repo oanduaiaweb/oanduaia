@@ -1193,6 +1193,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   .nav-links { display: none; }
   .nav-gallery-btn { display: none; }
   .nav-lang { display: none; }
+  .nav-socials { display: none; }
   .nav-burger { display: flex; }
   .nav-right { margin-right: 0; }
 }
