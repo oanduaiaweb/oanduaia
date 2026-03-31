@@ -36,7 +36,7 @@ export default function Feature() {
               </div>
               <ul className="feature-list">
                 {house.items.map(item => (
-                  <li key={item.et}>{item[lang]}</li>
+                  <li key={item.et}>{item[lang].replace(/ · /g, ', ')}</li>
                 ))}
               </ul>
             </div>

@@ -85,6 +85,23 @@ export default function Nav() {
             {T.nav.galerii[lang]}
           </Link>
 
+          <div className="nav-socials">
+            <a href="#" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Booking.com">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 3v18"/>
+                <path d="M6 7h7a4 4 0 0 1 0 8H6"/>
+                <circle cx="19" cy="19" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          </div>
+
           <div className="nav-lang" ref={langRef}>
             <button
               className="nav-lang-trigger"
@@ -149,6 +166,24 @@ export default function Nav() {
               {l.flag} {l.label}
             </button>
           ))}
+        </div>
+        <div className="nav-overlay-socials">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            Instagram
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Booking.com">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 3v18"/>
+              <path d="M6 7h7a4 4 0 0 1 0 8H6"/>
+              <circle cx="19" cy="19" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+            Booking.com
+          </a>
         </div>
       </div>
     </>

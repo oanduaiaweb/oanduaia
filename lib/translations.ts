@@ -20,14 +20,14 @@ export const T = {
   },
   intro: {
     label: { et: '01 – Lugu', en: '01 – Story', ru: '01 – История' },
-    h1:    { et: 'Mets ei', en: 'The forest', ru: 'Лес не' },
+    h1:    { et: 'Metsas', en: 'In the forest,', ru: 'В лесу' },
     h2:    { et: '', en: '', ru: '' },
-    h2em:  { et: 'küsinud', en: 'asked no', ru: 'спрашивал' },
-    h3:    { et: 'luba.', en: 'permission.', ru: 'разрешения.' },
+    h2em:  { et: 'ärkas', en: 'beauty', ru: 'проснулась' },
+    h3:    { et: 'ilu.', en: 'awoke.', ru: 'красота.' },
     p1: {
-      et: 'Peremees leidis kunagi metsatuka, kus keskel voolas oja. Vana talukoht – roheluse alla mattunud, aeg seisma jäänud. Ta hakkas võsa niitma. Mida rohkem niitis, seda rohkem avanes – nagu mets oleks oodanud, et keegi lõpuks tuleb.',
-      en: 'The owner once found a forest grove with a stream running through the middle. An old farmstead – buried under greenery, time standing still. He started clearing the scrub. The more he cleared, the more opened up – as if the forest had been waiting for someone to finally come.',
-      ru: 'Хозяин однажды нашёл лесную поляну с ручьём посередине. Старый хутор – утонувший в зелени, время остановилось. Он начал расчищать кустарник. Чем больше расчищал, тем больше открывалось – словно лес ждал, что кто-то наконец придёт.',
+      et: 'Peremees leidis kunagi metsatuka, kus keskel voolas oja. Vana talukoht – roheluse alla mattunud, aeg seisma jäänud. Ta hakkas võsa niitma. Mida rohkem niitis, seda rohkem ilu avanes – nagu mets oleks oodanud, et keegi lõpuks tuleb.',
+      en: 'The owner once found a forest grove with a stream running through the middle. An old farmstead – buried under greenery, time standing still. He started clearing the scrub. The more he cleared, the more beauty opened up – as if the forest had been waiting for someone to finally come.',
+      ru: 'Хозяин однажды нашёл лесную поляну с ручьём посередине. Старый хутор – утонувший в зелени, время остановилось. Он начал расчищать кустарник. Чем больше расчищал, тем больше красоты открывалось – словно лес ждал, что кто-то наконец придёт.',
     },
     p2: {
       et: 'Kõigepealt kerkis saunamaja. Siis peamaja. Esimesed külalised olid sõbrad. Sõbrad rääkisid edasi. Nii see läks. Nii kasvab Oanduaia siiani – mitte reklaamist, vaid soovitustest. Mitte plaanist, vaid armastusest koha vastu.',
@@ -93,8 +93,8 @@ export const T = {
   trails: {
     label: { et: '04 – Loodus', en: '04 – Nature', ru: '04 – Природа' },
     h1:   { et: 'Spaa on õues.', en: 'The spa is outside.', ru: 'Спа – на улице.' },
-    h2:   { et: 'Alati ', en: 'Always ', ru: 'Всегда ' },
-    h2em: { et: 'loodud.', en: 'made.', ru: 'создано.' },
+    h2:   { et: 'Tervis ', en: 'Health ', ru: 'Здоровье ' },
+    h2em: { et: 'tuleb.', en: 'comes.', ru: 'приходит.' },
     desc1: {
       et: 'Puuküttega saun, tiigikümblus, allikavesi, linnulaul. Pole protseduuride nimekirja ega broneerimisportaali – ainult mets, vesi ja vaikus.',
       en: 'Wood-fired sauna, pond bathing, spring water, birdsong. No list of treatments, no booking portal – just forest, water and silence.',
