@@ -94,9 +94,12 @@ export default function Nav() {
               </svg>
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Booking.com">
-              {/* Booking.com official logo mark */}
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.362 13.515c0 2.973-2.423 5.388-5.388 5.388H4.5V5.097h7.474c2.965 0 5.388 2.415 5.388 5.388 0 1.18-.384 2.27-1.032 3.153.643.715 1.032 1.666 1.032 2.877zM8.091 9.044v2.748h3.883c.757 0 1.374-.617 1.374-1.374s-.617-1.374-1.374-1.374H8.091zm4.257 5.826H8.091v2.998h4.257c.828 0 1.499-.671 1.499-1.499s-.671-1.499-1.499-1.499z"/>
+              {/* Booking.com "B." mark */}
+              <svg width="22" height="22" viewBox="0 0 20 22" fill="currentColor">
+                <rect x="0" y="0" width="3.5" height="22" rx="1.5"/>
+                <path d="M3.5 1h5a4 4 0 0 1 0 8h-5z"/>
+                <path d="M3.5 11h5.5a5 5 0 0 1 0 10h-5.5z"/>
+                <circle cx="17.5" cy="20" r="2.5"/>
               </svg>
             </a>
           </div>
@@ -176,8 +179,11 @@ export default function Nav() {
             Instagram
           </a>
           <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Booking.com">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.362 13.515c0 2.973-2.423 5.388-5.388 5.388H4.5V5.097h7.474c2.965 0 5.388 2.415 5.388 5.388 0 1.18-.384 2.27-1.032 3.153.643.715 1.032 1.666 1.032 2.877zM8.091 9.044v2.748h3.883c.757 0 1.374-.617 1.374-1.374s-.617-1.374-1.374-1.374H8.091zm4.257 5.826H8.091v2.998h4.257c.828 0 1.499-.671 1.499-1.499s-.671-1.499-1.499-1.499z"/>
+            <svg width="20" height="20" viewBox="0 0 20 22" fill="currentColor">
+              <rect x="0" y="0" width="3.5" height="22" rx="1.5"/>
+              <path d="M3.5 1h5a4 4 0 0 1 0 8h-5z"/>
+              <path d="M3.5 11h5.5a5 5 0 0 1 0 10h-5.5z"/>
+              <circle cx="17.5" cy="20" r="2.5"/>
             </svg>
             Booking.com
           </a>
