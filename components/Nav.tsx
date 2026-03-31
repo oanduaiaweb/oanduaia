@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T, type Lang } from '@/lib/translations'
 
@@ -62,6 +63,9 @@ export default function Nav() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
   const close = () => setMenuOpen(false)
   const current = LANGS.find(l => l.code === lang)!
 
@@ -74,7 +78,10 @@ export default function Nav() {
           <ul className="nav-links">
             {links.map(l => (
               <li key={l.key}>
-                <a href={`#${l.id}`} onClick={smoothScroll(l.id)}>
+                <a
+                  href={isHome ? `#${l.id}` : `/#${l.id}`}
+                  onClick={isHome ? smoothScroll(l.id) : undefined}
+                >
                   {T.nav[l.key][lang]}
                 </a>
               </li>
@@ -147,7 +154,10 @@ export default function Nav() {
         <ul className="nav-overlay-links">
           {links.map((l, i) => (
             <li key={l.key} style={{ '--i': i } as React.CSSProperties}>
-              <a href={`#${l.id}`} onClick={smoothScroll(l.id, close)}>
+              <a
+                href={isHome ? `#${l.id}` : `/#${l.id}`}
+                onClick={isHome ? smoothScroll(l.id, close) : close}
+              >
                 {T.nav[l.key][lang]}
               </a>
             </li>
