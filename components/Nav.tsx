@@ -101,12 +101,9 @@ export default function Nav() {
               </svg>
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Booking.com">
-              {/* Booking.com "B." mark */}
-              <svg width="22" height="22" viewBox="0 0 20 22" fill="currentColor">
-                <rect x="0" y="0" width="3.5" height="22" rx="1.5"/>
-                <path d="M3.5 1h5a4 4 0 0 1 0 8h-5z"/>
-                <path d="M3.5 11h5.5a5 5 0 0 1 0 10h-5.5z"/>
-                <circle cx="17.5" cy="20" r="2.5"/>
+              <svg width="22" height="22" viewBox="0 0 3.036 3.037" fill="currentColor">
+                <path d="M1.113 2.524h-.51v-.61c0-.13.05-.2.162-.214h.35a.38.38 0 0 1 .41.411c0 .26-.157.415-.41.415zM.602.875v-.16c0-.14.06-.208.19-.216h.262c.224 0 .36.134.36.36 0 .17-.092.37-.35.37h-.46zm1.164.61l-.092-.052.08-.07c.094-.08.25-.262.25-.575 0-.48-.372-.79-.947-.79h-.73a.32.32 0 0 0-.309.317v2.72H1.07c.64 0 1.052-.348 1.052-.888 0-.29-.133-.54-.358-.665"/>
+                <path d="M2.288 2.67c0-.203.163-.367.365-.367s.367.164.367.367-.164.367-.367.367-.365-.164-.365-.367"/>
               </svg>
             </a>
           </div>
@@ -189,11 +186,9 @@ export default function Nav() {
             Instagram
           </a>
           <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Booking.com">
-            <svg width="20" height="20" viewBox="0 0 20 22" fill="currentColor">
-              <rect x="0" y="0" width="3.5" height="22" rx="1.5"/>
-              <path d="M3.5 1h5a4 4 0 0 1 0 8h-5z"/>
-              <path d="M3.5 11h5.5a5 5 0 0 1 0 10h-5.5z"/>
-              <circle cx="17.5" cy="20" r="2.5"/>
+            <svg width="20" height="20" viewBox="0 0 3.036 3.037" fill="currentColor">
+              <path d="M1.113 2.524h-.51v-.61c0-.13.05-.2.162-.214h.35a.38.38 0 0 1 .41.411c0 .26-.157.415-.41.415zM.602.875v-.16c0-.14.06-.208.19-.216h.262c.224 0 .36.134.36.36 0 .17-.092.37-.35.37h-.46zm1.164.61l-.092-.052.08-.07c.094-.08.25-.262.25-.575 0-.48-.372-.79-.947-.79h-.73a.32.32 0 0 0-.309.317v2.72H1.07c.64 0 1.052-.348 1.052-.888 0-.29-.133-.54-.358-.665"/>
+              <path d="M2.288 2.67c0-.203.163-.367.365-.367s.367.164.367.367-.164.367-.367.367-.365-.164-.365-.367"/>
             </svg>
             Booking.com
           </a>
