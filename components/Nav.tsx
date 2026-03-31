@@ -94,10 +94,8 @@ export default function Nav() {
               </svg>
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Booking.com">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M6 3v18"/>
-                <path d="M6 7h7a4 4 0 0 1 0 8H6"/>
-                <circle cx="19" cy="19" r="1.5" fill="currentColor" stroke="none"/>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.003 0C5.376 0 0 5.373 0 12c0 6.625 5.376 12 12.003 12C18.625 24 24 18.625 24 12c0-6.627-5.375-12-11.997-12zm2.14 17.025H8.078V6.975h6.064c1.549 0 2.795 1.218 2.795 2.717 0 .81-.365 1.54-.95 2.041.892.498 1.492 1.44 1.492 2.52 0 1.81-1.498 2.772-3.335 2.772zm-.609-7.436H9.97v2.123h3.563c.574 0 1.04-.476 1.04-1.063 0-.586-.466-1.06-1.04-1.06zm.3 3.873H9.97v2.189h3.864c.66 0 1.196-.533 1.196-1.092 0-.56-.536-1.097-1.196-1.097z"/>
               </svg>
             </a>
           </div>
@@ -177,10 +175,8 @@ export default function Nav() {
             Instagram
           </a>
           <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Booking.com">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M6 3v18"/>
-              <path d="M6 7h7a4 4 0 0 1 0 8H6"/>
-              <circle cx="19" cy="19" r="1.5" fill="currentColor" stroke="none"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.003 0C5.376 0 0 5.373 0 12c0 6.625 5.376 12 12.003 12C18.625 24 24 18.625 24 12c0-6.627-5.375-12-11.997-12zm2.14 17.025H8.078V6.975h6.064c1.549 0 2.795 1.218 2.795 2.717 0 .81-.365 1.54-.95 2.041.892.498 1.492 1.44 1.492 2.52 0 1.81-1.498 2.772-3.335 2.772zm-.609-7.436H9.97v2.123h3.563c.574 0 1.04-.476 1.04-1.063 0-.586-.466-1.06-1.04-1.06zm.3 3.873H9.97v2.189h3.864c.66 0 1.196-.533 1.196-1.092 0-.56-.536-1.097-1.196-1.097z"/>
             </svg>
             Booking.com
           </a>
