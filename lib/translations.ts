@@ -67,15 +67,15 @@ export const T = {
         tag:  { et: 'Saun, köök, seltskond – kõik olemas.', en: 'Sauna, kitchen, company – all there.', ru: 'Сауна, кухня, компания – всё есть.' },
         items: [
           { et: 'Kuni 5 ööbijat · 3 kahekohalist voodit · 2 korrust', en: 'Up to 5 guests · 3 double beds · 2 floors', ru: 'До 5 гостей · 3 двухместные кровати · 2 этажа' },
-          { et: 'Avatud toad, puuküttega saun, täisvarustatud köök', en: 'Open rooms, wood-fired sauna, fully equipped kitchen', ru: 'Открытые комнаты, дровяная сауна, оборудованная кухня' },
+          { et: 'Avatud toad, puuküttega saun, täisvarustatud köök, kamin', en: 'Open rooms, wood-fired sauna, fully equipped kitchen, fireplace', ru: 'Открытые комнаты, дровяная сауна, оборудованная кухня, камин' },
         ],
       },
       {
         name: { et: 'Tiigimaja', en: 'Pond House', ru: 'Прудовой дом' },
         tag:  { et: 'Tule kaheks päevaks. Jää kaheks nädalaks.', en: 'Come for two days. Stay for two weeks.', ru: 'Приедь на два дня. Останься на две недели.' },
         items: [
-          { et: 'Kahele (+lisavoodi) · suur terrass · kamin', en: 'For two (+extra bed) · large terrace · fireplace', ru: 'На двоих (+доп. кровать) · большая терраса · камин' },
-          { et: 'Eraldi magamistuba teisel korrusel, kööginurk, vannituba', en: 'Separate bedroom on second floor, kitchenette, bathroom', ru: 'Отдельная спальня на втором этаже, кухонный угол, ванная' },
+          { et: 'Kahele · suur terrass · kamin', en: 'For two · large terrace · fireplace', ru: 'На двоих · большая терраса · камин' },
+          { et: 'Kööginurk, vannituba', en: 'Kitchenette, bathroom', ru: 'Кухонный угол, ванная' },
         ],
       },
       {
