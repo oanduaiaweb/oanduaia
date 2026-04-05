@@ -49,7 +49,7 @@ export default function Booking() {
       <p className="booking-sub reveal reveal-delay-1">{t.sub[lang]}</p>
 
       {sent ? (
-        <div className="booking-success reveal">
+        <div className="booking-success">
           <h3 className="booking-success-title">{t.success[lang]}</h3>
           <p className="booking-success-sub">{t.successSub[lang]}</p>
         </div>
