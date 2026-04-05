@@ -49,7 +49,10 @@ export default function Booking() {
       <p className="booking-sub reveal reveal-delay-1">{t.sub[lang]}</p>
 
       {sent ? (
-        <p className="booking-success reveal">{t.success[lang]}</p>
+        <div className="booking-success reveal">
+          <h3 className="booking-success-title">{t.success[lang]}</h3>
+          <p className="booking-success-sub">{t.successSub[lang]}</p>
+        </div>
       ) : (
         <form className="booking-form reveal reveal-delay-2" onSubmit={submit} noValidate>
           <div className="form-field">

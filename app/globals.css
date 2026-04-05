@@ -914,12 +914,24 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   line-height: 1.85;
 }
 .booking-success {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  color: var(--fern);
-  padding: 2rem;
   text-align: center;
+  padding: 3rem 1rem;
+}
+.booking-success-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--fern);
+  margin-bottom: 0.75rem;
+}
+.booking-success-sub {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  color: var(--fern);
+  opacity: 0.8;
+  max-width: 360px;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 
 /* Contact form — open, no card */
