@@ -9,18 +9,35 @@ export default function Booking() {
   const t = T.booking
   const [form, setForm] = useState({ nimi: '', email: '', kuupaevad: '', sonum: '' })
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(false)
 
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(t.eSubj[lang])
-    const body = encodeURIComponent(
-      `${t.eName[lang]}: ${form.nimi}\n${t.eEmail[lang]}: ${form.email}\n${t.eDates[lang]}: ${form.kuupaevad}\n\n${form.sonum}`
-    )
-    window.location.href = `mailto:info@oanduaia.ee?subject=${subject}&body=${body}`
-    setSent(true)
+    setSending(true)
+    setError(false)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.nimi,
+          email: form.email,
+          dates: form.kuupaevad,
+          message: form.sonum,
+          subject: t.eSubj[lang],
+        }),
+      })
+      if (!res.ok) throw new Error()
+      setSent(true)
+    } catch {
+      setError(true)
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -55,8 +72,11 @@ export default function Booking() {
             <textarea className="form-textarea" id="sonum" name="sonum"
               placeholder={t.pSonum[lang]} value={form.sonum} onChange={handle} rows={4} />
           </div>
+          {error && <p className="booking-error">{t.error[lang]}</p>}
           <div className="form-field form-field--full form-submit">
-            <button type="submit" className="btn-dark">{t.submit[lang]}</button>
+            <button type="submit" className="btn-dark" disabled={sending}>
+              {sending ? t.sending[lang] : t.submit[lang]}
+            </button>
           </div>
         </form>
       )}
