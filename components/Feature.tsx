@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 
@@ -39,6 +40,9 @@ export default function Feature() {
                   <li key={item.et}>{item[lang].replace(/ · /g, ', ')}</li>
                 ))}
               </ul>
+              <Link href={`/gallery#${house.slug}`} className="feature-gallery-link">
+                {t.galleryLink[lang]} →
+              </Link>
             </div>
           ))}
         </div>

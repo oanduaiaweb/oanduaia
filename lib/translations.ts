@@ -63,6 +63,7 @@ export const T = {
     h2:   { et: 'Üks koht.', en: 'One place.', ru: 'Одно место.' },
     houses: [
       {
+        slug: 'saunamaja',
         name: { et: 'Saunamaja', en: 'Sauna House', ru: 'Банный дом' },
         tag:  { et: 'Saun, köök, seltskond – kõik olemas.', en: 'Sauna, kitchen, company – all there.', ru: 'Сауна, кухня, компания – всё есть.' },
         items: [
@@ -71,6 +72,7 @@ export const T = {
         ],
       },
       {
+        slug: 'tiigimaja',
         name: { et: 'Tiigimaja', en: 'Pond House', ru: 'Прудовой дом' },
         tag:  { et: 'Tule kaheks päevaks. Jää kaheks nädalaks.', en: 'Come for two days. Stay for two weeks.', ru: 'Приедь на два дня. Останься на две недели.' },
         items: [
@@ -79,6 +81,7 @@ export const T = {
         ],
       },
       {
+        slug: 'metsamaja',
         name: { et: 'Metsamaja', en: 'Forest House', ru: 'Лесной дом' },
         tag:  { et: 'Neli inimest. Kaks tuba. Üks mets.', en: 'Four people. Two rooms. One forest.', ru: 'Четыре человека. Две комнаты. Один лес.' },
         items: [
@@ -87,8 +90,9 @@ export const T = {
         ],
       },
     ],
-    cta:      { et: 'Vaata saadavust', en: 'Check availability', ru: 'Проверить наличие' },
-    imgLabel: { et: 'Oandu · Lahemaa · 59°26′N', en: 'Oandu · Lahemaa · 59°26′N', ru: 'Оанду · Лахемаа · 59°26′N' },
+    cta:         { et: 'Vaata saadavust', en: 'Check availability', ru: 'Проверить наличие' },
+    galleryLink: { et: 'Vaata pilte', en: 'View photos', ru: 'Смотреть фото' },
+    imgLabel:    { et: 'Oandu · Lahemaa · 59°26′N', en: 'Oandu · Lahemaa · 59°26′N', ru: 'Оанду · Лахемаа · 59°26′N' },
   },
   trails: {
     label: { et: '04 – Loodus', en: '04 – Nature', ru: '04 – Природа' },

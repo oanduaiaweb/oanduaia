@@ -8,11 +8,9 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 
 const photos = [
-  { src: '/images/saunamaja.jpg', alt: 'Saunamaja' },
-  { src: '/images/tiigimaja.jpg', alt: 'Tiigimaja' },
-  { src: '/images/metsamaja.jpg', alt: 'Metsamaja' },
-  { src: '/images/tiik.jpg',      alt: 'Oandu tiik' },
-  { src: '/images/feature.jpg',   alt: 'Oanduaia' },
+  { src: '/images/saunamaja.jpg', alt: 'Saunamaja', id: 'saunamaja', label: { et: 'Saunamaja', en: 'Sauna House', ru: 'Банный дом' } },
+  { src: '/images/tiigimaja.jpg', alt: 'Tiigimaja', id: 'tiigimaja', label: { et: 'Tiigimaja', en: 'Pond House', ru: 'Прудовой дом' } },
+  { src: '/images/metsamaja.jpg', alt: 'Metsamaja', id: 'metsamaja', label: { et: 'Metsamaja', en: 'Forest House', ru: 'Лесной дом' } },
 ]
 
 export default function Gallery() {
@@ -33,8 +31,8 @@ export default function Gallery() {
           <h1 className="gallery-title">{t.title[lang]}</h1>
         </div>
         <div className="gallery-grid">
-          {photos.map((p, i) => (
-            <div key={i} className="gallery-item">
+          {photos.map((p) => (
+            <div key={p.id} id={p.id} className="gallery-item">
               <Image
                 src={p.src}
                 alt={p.alt}
@@ -43,6 +41,7 @@ export default function Gallery() {
                 quality={80}
                 style={{ objectFit: 'cover' }}
               />
+              <span className="gallery-item-label">{p.label[lang]}</span>
             </div>
           ))}
         </div>
