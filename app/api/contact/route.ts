@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     }
 
     await resend.emails.send({
-      from: 'Oanduaia <info@oanduaia.ee>',
+      from: 'Kontaktivorm <info@oanduaia.ee>',
       to: 'info@oanduaia.ee',
       replyTo: email,
       subject: subject || `Inquiry – Oanduaia`,
