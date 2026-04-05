@@ -993,6 +993,14 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   -webkit-appearance: none;
   border-radius: 0;
 }
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--linen) inset;
+  -webkit-text-fill-color: var(--bark);
+  transition: background-color 5000s ease-in-out 0s;
+}
 .form-input::placeholder,
 .form-textarea::placeholder {
   color: rgba(58,74,53,0.28);
