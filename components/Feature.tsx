@@ -40,9 +40,7 @@ export default function Feature() {
                   <li key={item.et}>{item[lang].replace(/ · /g, ', ')}</li>
                 ))}
               </ul>
-              <Link href={`/gallery#${house.slug}`} className="feature-gallery-link">
-                {t.galleryLink[lang]} →
-              </Link>
+              <Link href={`/gallery#${house.slug}`} className="feature-gallery-link">{t.galleryLink[lang]}</Link>
             </div>
           ))}
         </div>
