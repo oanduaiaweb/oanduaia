@@ -16,14 +16,6 @@ const housePhotos: Photo[] = [
 ]
 
 const galleryPhotos: Photo[] = [
-  '/galerii/01.JPG', '/galerii/02.JPG', '/galerii/03.JPG', '/galerii/04.JPG',
-  '/galerii/05.JPG', '/galerii/06.JPG', '/galerii/07.JPG', '/galerii/08.JPG',
-  '/galerii/09.JPG', '/galerii/010.JPG', '/galerii/011.JPG', '/galerii/012.JPG',
-  '/galerii/013.JPG', '/galerii/014.JPG', '/galerii/015.JPG', '/galerii/016.JPG',
-  '/galerii/017.JPG', '/galerii/018.JPG', '/galerii/019.JPG', '/galerii/020.JPG',
-  '/galerii/021.JPG', '/galerii/022.JPG', '/galerii/023.JPG', '/galerii/024.JPG',
-  '/galerii/025.JPG', '/galerii/026.JPG', '/galerii/027.JPG', '/galerii/028.JPG',
-  '/galerii/029.JPG', '/galerii/030.JPG', '/galerii/031.JPG', '/galerii/032.JPG',
   '/galerii/033.jpeg', '/galerii/034.jpeg', '/galerii/035.jpeg', '/galerii/036.jpeg',
   '/galerii/037.jpeg', '/galerii/038.jpeg', '/galerii/039.jpeg', '/galerii/040.jpeg',
   '/galerii/041.jpeg', '/galerii/042.jpeg', '/galerii/043.jpeg', '/galerii/044.jpeg',
@@ -39,7 +31,7 @@ const galleryPhotos: Photo[] = [
   '/galerii/081.jpeg', '/galerii/082.jpeg', '/galerii/083.jpeg', '/galerii/084.jpeg',
   '/galerii/086.jpeg', '/galerii/087.jpeg', '/galerii/088.jpeg', '/galerii/089.jpeg',
   '/galerii/090.jpeg', '/galerii/091.jpeg', '/galerii/092.jpeg', '/galerii/093.jpeg',
-  '/galerii/094.jpeg',
+  '/galerii/094.jpeg'
 ].map((src, i) => ({ src, alt: `Oanduaia ${i + 1}` }))
 
 const photos = [...housePhotos, ...galleryPhotos]
