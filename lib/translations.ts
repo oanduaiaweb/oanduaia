@@ -190,6 +190,7 @@ export const T = {
     majutus: { et: 'Majad', en: 'Houses', ru: 'Дома' },
     matkad:  { et: 'Loodus', en: 'Nature', ru: 'Природа' },
     broneeri:{ et: 'Broneeri', en: 'Book', ru: 'Бронь' },
+    maps:    { et: 'Google Maps', en: 'Google Maps', ru: 'Google Карты' },
     contH:   { et: 'Kontakt', en: 'Contact', ru: 'Контакт' },
     copy:    { et: '© 2026 Oanduaia. Kõik õigused kaitstud.', en: '© 2026 Oanduaia. All rights reserved.', ru: '© 2026 Oanduaia. Все права защищены.' },
     loc:     { et: 'Lahemaa rahvuspark · Estonia', en: 'Lahemaa National Park · Estonia', ru: 'Нац. парк Лахемаа · Эстония' },
