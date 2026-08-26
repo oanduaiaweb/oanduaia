@@ -64,7 +64,8 @@ export default function Nav() {
   }, [menuOpen])
 
   const pathname = usePathname()
-  const isHome = pathname === '/'
+  const isHome = pathname === `/${lang}`
+  const home = `/${lang}`
 
   const close = () => setMenuOpen(false)
   const current = LANGS.find(l => l.code === lang)!
@@ -72,14 +73,14 @@ export default function Nav() {
   return (
     <>
       <nav className={scrolled ? 'nav-scrolled' : ''}>
-        <a href="/" className="nav-logo">Oanduaia</a>
+        <a href={home} className="nav-logo">Oanduaia</a>
 
         <div className="nav-right">
           <ul className="nav-links">
             {links.map(l => (
               <li key={l.key}>
                 <a
-                  href={isHome ? `#${l.id}` : `/#${l.id}`}
+                  href={isHome ? `#${l.id}` : `${home}#${l.id}`}
                   onClick={isHome ? smoothScroll(l.id) : undefined}
                 >
                   {T.nav[l.key][lang]}
@@ -88,7 +89,7 @@ export default function Nav() {
             ))}
           </ul>
 
-          <Link href="/gallery" className="nav-gallery-btn">
+          <Link href={`${home}/gallery`} className="nav-gallery-btn">
             {T.nav.galerii[lang]}
           </Link>
 
@@ -152,7 +153,7 @@ export default function Nav() {
           {links.map((l, i) => (
             <li key={l.key} style={{ '--i': i } as React.CSSProperties}>
               <a
-                href={isHome ? `#${l.id}` : `/#${l.id}`}
+                href={isHome ? `#${l.id}` : `${home}#${l.id}`}
                 onClick={isHome ? smoothScroll(l.id, close) : close}
               >
                 {T.nav[l.key][lang]}
@@ -160,7 +161,7 @@ export default function Nav() {
             </li>
           ))}
           <li style={{ '--i': links.length } as React.CSSProperties}>
-            <Link href="/gallery" onClick={close}>
+            <Link href={`${home}/gallery`} onClick={close}>
               {T.nav.galerii[lang]}
             </Link>
           </li>

@@ -72,7 +72,7 @@ export default function Gallery() {
       <Nav />
       <section className="gallery-photos">
         <div className="gallery-header">
-          <Link href="/" className="gallery-back">{t.back[lang]}</Link>
+          <Link href={`/${lang}`} className="gallery-back">{t.back[lang]}</Link>
           <h1 className="gallery-title">{t.title[lang]}</h1>
         </div>
         <div className="gallery-grid">

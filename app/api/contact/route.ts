@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Instantiated per request, not at module scope — module-scope construction runs
+// during the build's page-data collection and fails wherever the key isn't set.
+function getResend() {
+  const key = process.env.RESEND_API_KEY
+  if (!key) throw new Error('RESEND_API_KEY is not configured')
+  return new Resend(key)
+}
 
 export async function POST(req: Request) {
   try {
@@ -11,7 +17,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: 'Kontaktivorm <noreply@oanduaia.ee>',
       to: 'info@oanduaia.ee',
       replyTo: email,
