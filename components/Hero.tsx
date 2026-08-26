@@ -1,8 +1,10 @@
 'use client'
 
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
+import { HERO_SLIDES, HERO_HOLD, HERO_FADE } from '@/lib/hero'
 
 function scrollTo(id: string) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -11,15 +13,57 @@ function scrollTo(id: string) {
   }
 }
 
-const SRC = '/images/hero.jpg'
-
 export default function Hero() {
   const { lang } = useLanguage()
   const h = T.hero
+
+  const [index, setIndex] = useState(0)
+  // The non-LCP slides are held back until after first paint so they do not
+  // compete with the hero image for bandwidth.
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (reduced.matches || HERO_SLIDES.length < 2) return
+
+    const id = setInterval(
+      () => setIndex(i => (i + 1) % HERO_SLIDES.length),
+      HERO_HOLD + HERO_FADE
+    )
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <section className="hero">
-      <div className="hero-bg">
-        <Image src={SRC} alt={h.alt[lang]} fill priority sizes="100vw" quality={75} className="hero-bg-img" />
+      <div
+        className="hero-bg"
+        style={{
+          ['--hero-fade' as string]: `${HERO_FADE}ms`,
+          ['--hero-ken' as string]: `${HERO_HOLD + HERO_FADE * 2}ms`,
+        }}
+      >
+        {HERO_SLIDES.map((slide, i) => {
+          if (i > 0 && !mounted) return null
+          return (
+            <div
+              key={slide.src}
+              className={`hero-slide${i === index ? ' is-active' : ''}`}
+              aria-hidden={i === index ? undefined : true}
+            >
+              <Image
+                src={slide.src}
+                alt={i === index ? slide.alt[lang] : ''}
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                quality={75}
+                className="hero-bg-img"
+              />
+            </div>
+          )
+        })}
         <div className="hero-bg-overlay" />
       </div>
       <div className="hero-grain" aria-hidden="true" />
