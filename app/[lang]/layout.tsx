@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Cormorant_Garamond, DM_Mono } from 'next/font/google'
+import { Cormorant_Garamond, Jost } from 'next/font/google'
 import Script from 'next/script'
 import '../globals.css'
 import { LanguageProvider } from '@/contexts/LanguageContext'
@@ -14,10 +14,10 @@ const cormorant = Cormorant_Garamond({
   display: 'swap',
 })
 
-const dmMono = DM_Mono({
+const jost = Jost({
   subsets: ['latin'],
-  weight: ['300', '400'],
-  variable: '--font-dm-mono',
+  weight: ['300', '400', '500'],
+  variable: '--font-jost',
   display: 'swap',
 })
 
@@ -69,7 +69,7 @@ export default async function LocaleLayout({
   if (!isLocale(lang)) notFound()
 
   return (
-    <html lang={lang} className={`${cormorant.variable} ${dmMono.variable}`}>
+    <html lang={lang} className={`${cormorant.variable} ${jost.variable}`}>
       <head>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-B58Z9QKYLS" strategy="afterInteractive" />
         <Script id="ga" strategy="afterInteractive">{`
