@@ -19,9 +19,9 @@ Inside Lahemaa National Park, near the Baltic coast.
 
 ## Languages
 The site is published in Estonian, English and Russian:
-- https://oanduaia.ee/et
-- https://oanduaia.ee/en
-- https://oanduaia.ee/ru
+- https://www.oanduaia.ee/et
+- https://www.oanduaia.ee/en
+- https://www.oanduaia.ee/ru
 
 ## Contact
 Email: info@oanduaia.ee
@@ -29,4 +29,4 @@ Instagram: https://www.instagram.com/oanduaia/
 Booking.com: https://www.booking.com/hotel/ee/oanduaia-saunamaja.html
 
 ## Sitemap
-https://oanduaia.ee/sitemap.xml
+https://www.oanduaia.ee/sitemap.xml

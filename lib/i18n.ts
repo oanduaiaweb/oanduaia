@@ -3,7 +3,7 @@ import type { Lang } from './translations'
 export const LOCALES: Lang[] = ['et', 'en', 'ru']
 export const DEFAULT_LOCALE: Lang = 'et'
 
-export const SITE = 'https://oanduaia.ee'
+export const SITE = 'https://www.oanduaia.ee'
 
 /** BCP-47 tags used for hreflang. */
 export const HREFLANG: Record<Lang, string> = {
