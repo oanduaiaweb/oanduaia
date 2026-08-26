@@ -54,4 +54,44 @@ export const HERO_SLIDES: HeroSlide[] = [
       ru: 'Дом с камышовой крышей у пруда ранней весной',
     },
   },
+  {
+    src: '/galerii/kolm-hoonet.jpeg',
+    alt: {
+      et: 'Kolm hoonet peegeldumas vaikses tiigis',
+      en: 'Three buildings mirrored in the still pond',
+      ru: 'Три строения отражаются в спокойном пруду',
+    },
+  },
+  {
+    src: '/galerii/peamajast-ulevalt.jpeg',
+    alt: {
+      et: 'Avar muru peamaja ees kõrgete pilvede all',
+      en: 'Open lawn before the main house under high cloud',
+      ru: 'Открытый газон перед главным домом под облаками',
+    },
+  },
+  {
+    src: '/galerii/kiigud.jpeg',
+    alt: {
+      et: 'Kaks puidust võrkkiike kaskede vahel maja ees',
+      en: 'Two timber hammocks slung between birches before the house',
+      ru: 'Два деревянных гамака между берёзами перед домом',
+    },
+  },
+  {
+    src: '/galerii/saunamaja-veepealt.jpeg',
+    alt: {
+      et: 'Saunamaja üle vee, mets peegeldumas tiigis',
+      en: 'The sauna house across the water, forest mirrored in the pond',
+      ru: 'Банный дом через воду, лес отражается в пруду',
+    },
+  },
+  {
+    src: '/galerii/oja.jpeg',
+    alt: {
+      et: 'Õhtupäike läbi puude tiigi kohal',
+      en: 'Evening sun through the trees above the pond',
+      ru: 'Вечернее солнце сквозь деревья над прудом',
+    },
+  },
 ]

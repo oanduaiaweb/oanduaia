@@ -113,7 +113,42 @@ const RAW: A[] = [
   ['094', 'Roogkatusega hoone ja paadisild tiigi kaldal', 'A thatched building and jetty at the pond’s edge', 'Строение с камышовой крышей и мостик у пруда'],
 ]
 
-export const GALLERY_PHOTOS: GalleryPhoto[] = RAW.map(([n, et, en, ru]) => ({
+
+/** Added 26 Aug 2026 — descriptive filenames, same [file, et, en, ru] shape. */
+const RAW_2026: [string, string, string, string][] = [
+  ['kolm-hoonet', 'Kolm hoonet peegeldumas vaikses tiigis', 'Three buildings mirrored in the still pond', 'Три строения отражаются в спокойном пруду'],
+  ['peamajast-ulevalt', 'Avar muru peamaja ees kõrgete pilvede all', 'Open lawn before the main house under high cloud', 'Открытый газон перед главным домом под облаками'],
+  ['kiigud', 'Kaks puidust võrkkiike kaskede vahel maja ees', 'Two timber hammocks slung between birches before the house', 'Два деревянных гамака между берёзами перед домом'],
+  ['saunamaja-veepealt', 'Saunamaja üle vee, mets peegeldumas tiigis', 'The sauna house across the water, forest mirrored in the pond', 'Банный дом через воду, лес отражается в пруду'],
+  ['oja', 'Õhtupäike läbi puude tiigi kohal', 'Evening sun through the trees above the pond', 'Вечернее солнце сквозь деревья над прудом'],
+  ['peamaja-eeshoov', 'Peamaja esine muru palkhoonete vahel', 'The forecourt lawn between the log buildings', 'Газон перед главным домом между строениями'],
+  ['paadiaer', 'Tiik peegeldab metsa ja suvist taevast', 'The pond mirroring forest and summer sky', 'Пруд отражает лес и летнее небо'],
+  ['tiigimaja-veepealt', 'Tiigimaja vaadatuna üle vee', 'The Pond House seen from across the water', 'Прудовой дом со стороны воды'],
+  ['metsarada', 'Vaade üles läbi kõrgete männitüvede', 'Looking up through tall pine trunks', 'Вид вверх сквозь высокие стволы сосен'],
+  ['ilus-tiik', 'Vaikne tiik vesiroosidega suvel', 'The still pond with water lilies in summer', 'Тихий пруд с кувшинками летом'],
+  ['puu-ja-majad', 'Vana puu murul, majad taga', 'An old tree on the lawn with the houses behind', 'Старое дерево на газоне, дома позади'],
+  ['kivid-ja-tiik', 'Rändrahnud tiigi kaldal', 'Boulders along the edge of the pond', 'Валуны на берегу пруда'],
+  ['tiik-selge-vesi', 'Selge vesi tiigi madalas servas', 'Clear water at the shallow edge of the pond', 'Прозрачная вода у мелкого края пруда'],
+  ['ait-ja-saun', 'Vana ait ja saun muru serval', 'The old granary and sauna at the lawn’s edge', 'Старый амбар и сауна на краю газона'],
+  ['metsamaja-kaugelt', 'Metsamaja üle muru metsa taustal', 'The Forest House across the lawn against the forest', 'Лесной дом через газон на фоне леса'],
+  ['metsamaja-tagant', 'Metsamaja tagantvaade puude vahelt', 'The Forest House from behind, seen through the trees', 'Лесной дом сзади, сквозь деревья'],
+  ['saun-ja-tiigimaja', 'Saun ja tiigimaja tiigi ääres', 'The sauna and the Pond House at the water', 'Сауна и Прудовой дом у воды'],
+  ['saunamaja-ja-peamaja', 'Saunamaja ja peamaja üle muru', 'The sauna house and main house across the lawn', 'Банный дом и главный дом через газон'],
+  ['peamaja', 'Peamaja roogkatuse ja palkseintega', 'The main house with its thatched roof and log walls', 'Главный дом с камышовой крышей и бревенчатыми стенами'],
+  ['muru-ja-majad', 'Niidetud muru majade vahel suvepäeval', 'Mown lawn between the houses on a summer day', 'Подстриженный газон между домами летним днём'],
+  ['kasvuhoone-valikook', 'Kasvuhoone ja väliköök aias', 'The greenhouse and outdoor kitchen in the garden', 'Теплица и летняя кухня в саду'],
+  ['valikook-istumine', 'Kaetud välisöögikoht pika puidust lauaga', 'The covered outdoor dining area with its long timber table', 'Крытая летняя столовая с длинным деревянным столом'],
+  ['valikook', 'Väliköögi istumisala rippuvate lillede all', 'The outdoor kitchen seating beneath hanging flowers', 'Зона отдыха летней кухни под подвесными цветами'],
+  ['kokteil', 'Kokteiliklaas tiigi kohal õhtupäikeses', 'A cocktail glass held above the pond in evening light', 'Бокал коктейля над прудом в вечернем свете'],
+  ['lilled', 'Punased lilled kiviktaimlas', 'Red flowers in the rockery', 'Красные цветы в каменистом саду'],
+  ['istumine-taevas', 'Välisistumisala avara sinise taeva all', 'The outdoor seating area under a wide blue sky', 'Зона отдыха под широким синим небом'],
+  ['tiigimaja-siseruum', 'Tiigimaja elutuba diivani ja suurte akendega', 'The Pond House living room with sofa and wide windows', 'Гостиная Прудового дома с диваном и большими окнами'],
+  ['tiigimaja-magamistuba', 'Tiigimaja magamistuba, aknad metsa poole', 'The Pond House bedroom with windows to the forest', 'Спальня Прудового дома с окнами в лес'],
+  ['tiigimaja-vannituba', 'Tiigimaja vannituba puidu ja kiviga', 'The Pond House bathroom in timber and stone', 'Ванная Прудового дома из дерева и камня'],
+  ['tiigimaja-kooginurk', 'Tiigimaja kööginurk gaasipliidi ja külmikuga', 'The Pond House kitchenette with hob and fridge', 'Кухонный уголок Прудового дома с плитой и холодильником'],
+]
+
+export const GALLERY_PHOTOS: GalleryPhoto[] = [...RAW_2026, ...RAW].map(([n, et, en, ru]) => ({
   src: `/galerii/${n}.jpeg`,
   alt: { et, en, ru },
 }))
