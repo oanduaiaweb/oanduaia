@@ -24,6 +24,7 @@
   --ls-wide:    0.14em;  /* small-caps labels           */
   --ls-wider:   0.22em;  /* nav, buttons                */
   --ls-widest:  0.28em;  /* eyebrow                     */
+  --ls-display: 0.10em;  /* large caps headlines        */
 
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-expo:   cubic-bezier(0.19, 1, 0.22, 1);
@@ -399,12 +400,13 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 
 .hero-title {
-  font-size: clamp(4.2rem, 10.5vw, 9.5rem);
-  font-weight: 300;
-  line-height: 0.93;
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  font-weight: 400;
+  line-height: 1.14;
   color: var(--linen);
-  letter-spacing: -0.01em;
-  margin-bottom: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-display);
+  margin-bottom: 2.2rem;
 }
 /* No overflow:hidden on lines — opacity:0 handles pre-animation invisibility.
    This eliminates all glyph-clipping artifacts (the "g" dots). */
@@ -419,7 +421,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .hero-title .line:nth-child(2) span { animation-delay: 0.85s; }
 .hero-title .line:nth-child(3) span {
   animation-delay: 1.0s;
-  font-style: italic;
+  font-weight: 300;
   color: var(--mist);
 }
 
@@ -1298,7 +1300,7 @@ body.gallery-page .nav-social { text-shadow: none; }
     padding: 4rem var(--section-h) 2.5rem;
     min-height: 100svh;
   }
-  .hero-title { font-size: clamp(3rem, 9.5vw, 9.5rem); margin-bottom: 1.4rem; }
+  .hero-title { font-size: clamp(1.9rem, 7.2vw, 3.2rem); margin-bottom: 1.6rem; }
   .hero-eyebrow { margin-bottom: 2.4rem; white-space: normal; overflow-wrap: break-word; font-size: var(--fs-2xs); letter-spacing: var(--ls-wide); }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
   .hero-desc { white-space: normal; }
