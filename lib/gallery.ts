@@ -13,6 +13,11 @@ export type GalleryPhoto = {
  *
  * To add a photo: drop the file in /public/galerii and append one entry below.
  * Describe what is actually visible; do not keyword-stuff.
+ *
+ * Before adding a batch, check for near-duplicates BY LOOKING. Perceptual hashing
+ * does not catch them: 037 and 038 were the same shot seconds apart and scored 138
+ * of 256 bits apart on dHash, because foliage and bokeh defeat the hash. 037 was
+ * removed; md5 will only ever catch byte-identical copies.
  */
 export const HOUSE_PHOTOS: GalleryPhoto[] = [
   {
@@ -54,8 +59,7 @@ const RAW: A[] = [
   ['034', 'Vaade üles läbi männilatvade päikese poole', 'Looking up through pine crowns towards the sun', 'Вид вверх сквозь кроны сосен на солнце'],
   ['035', 'Roogkatusega maja üle niidetud muru, lillepeenar ees', 'Thatched house across a mown lawn with a flower border', 'Дом с камышовой крышей за подстриженным газоном'],
   ['036', 'Puidust paadisild tiigil vesirooside vahel', 'A wooden jetty reaching into the lily-covered pond', 'Деревянный мостик на пруду среди кувшинок'],
-  ['037', 'Tammelehed esiplaanil, maja hägusalt taga', 'Oak leaves in the foreground, the house soft behind', 'Дубовые листья на переднем плане, дом позади'],
-  ['038', 'Tammeoks üle muru, maja taustal', 'An oak branch over the lawn, house in the distance', 'Дубовая ветка над газоном, дом вдали'],
+  ['038', 'Tammelehed esiplaanil, roogkatusega maja hägusalt taga', 'Oak leaves in the foreground, the thatched house soft behind', 'Дубовые листья на переднем плане, дом с камышовой крышей позади'],
   ['039', 'Pikk roogkatusega palkmaja katuseakendega', 'The long thatched log house with dormer windows', 'Длинный дом из бруса с мансардными окнами'],
   ['040', 'Palkmaja veranda puitsammaste ja laudpõrandaga', 'Log house veranda with timber posts and a plank floor', 'Веранда дома из бруса с деревянными столбами'],
   ['041', 'Maja tiigi ääres lopsaka aiaga', 'The house beside the pond with a lush garden', 'Дом у пруда с пышным садом'],
