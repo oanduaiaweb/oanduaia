@@ -1,0 +1,121 @@
+import type { Lang } from './translations'
+
+export type GalleryPhoto = {
+  src: string
+  alt: Record<Lang, string>
+  id?: string
+  label?: Record<Lang, string>
+}
+
+/**
+ * Alt text is written per photo, in each language — it is read by screen readers and
+ * indexed by image search, so "Oanduaia 37" is worth nothing to either.
+ *
+ * To add a photo: drop the file in /public/galerii and append one entry below.
+ * Describe what is actually visible; do not keyword-stuff.
+ */
+export const HOUSE_PHOTOS: GalleryPhoto[] = [
+  {
+    src: '/images/saunamaja.jpg',
+    id: 'saunamaja',
+    label: { et: 'Saunamaja', en: 'Sauna House', ru: 'Банный дом' },
+    alt: {
+      et: 'Oanduaia saunamaja palkseintega metsa serval',
+      en: 'The Oanduaia sauna house, log-built at the forest edge',
+      ru: 'Банный дом Oanduaia из бруса на опушке леса',
+    },
+  },
+  {
+    src: '/images/tiigimaja.jpg',
+    id: 'tiigimaja',
+    label: { et: 'Tiigimaja', en: 'Pond House', ru: 'Прудовой дом' },
+    alt: {
+      et: 'Tiigimaja tiigi kaldal Lahemaal',
+      en: 'The Pond House on the water’s edge in Lahemaa',
+      ru: 'Прудовой дом на берегу пруда в Лахемаа',
+    },
+  },
+  {
+    src: '/images/metsamaja.jpg',
+    id: 'metsamaja',
+    label: { et: 'Metsamaja', en: 'Forest House', ru: 'Лесной дом' },
+    alt: {
+      et: 'Metsamaja kõrgete kuuskede vahel',
+      en: 'The Forest House among tall spruce',
+      ru: 'Лесной дом среди высоких елей',
+    },
+  },
+]
+
+type A = [string, string, string, string] // [file, et, en, ru]
+
+const RAW: A[] = [
+  ['033', 'Roogkatusega palkmaja kivisel terrassil, taga mets', 'Thatched log house above a stone terrace, forest behind', 'Дом из бруса с камышовой крышей над каменной террасой'],
+  ['034', 'Vaade üles läbi männilatvade päikese poole', 'Looking up through pine crowns towards the sun', 'Вид вверх сквозь кроны сосен на солнце'],
+  ['035', 'Roogkatusega maja üle niidetud muru, lillepeenar ees', 'Thatched house across a mown lawn with a flower border', 'Дом с камышовой крышей за подстриженным газоном'],
+  ['036', 'Puidust paadisild tiigil vesirooside vahel', 'A wooden jetty reaching into the lily-covered pond', 'Деревянный мостик на пруду среди кувшинок'],
+  ['037', 'Tammelehed esiplaanil, maja hägusalt taga', 'Oak leaves in the foreground, the house soft behind', 'Дубовые листья на переднем плане, дом позади'],
+  ['038', 'Tammeoks üle muru, maja taustal', 'An oak branch over the lawn, house in the distance', 'Дубовая ветка над газоном, дом вдали'],
+  ['039', 'Pikk roogkatusega palkmaja katuseakendega', 'The long thatched log house with dormer windows', 'Длинный дом из бруса с мансардными окнами'],
+  ['040', 'Palkmaja veranda puitsammaste ja laudpõrandaga', 'Log house veranda with timber posts and a plank floor', 'Веранда дома из бруса с деревянными столбами'],
+  ['041', 'Maja tiigi ääres lopsaka aiaga', 'The house beside the pond with a lush garden', 'Дом у пруда с пышным садом'],
+  ['042', 'Sõudepaat tiigi kaldal, taga mets', 'A rowing boat moored at the pond, forest beyond', 'Лодка у берега пруда, за ним лес'],
+  ['043', 'Paadisild tiigil, puud peegelduvad vees', 'The jetty on the pond with trees mirrored in the water', 'Мостик на пруду, деревья отражаются в воде'],
+  ['044', 'Avatud puidust paviljon lillede ja välikööginurgaga', 'An open timber pavilion with flowers and an outdoor kitchen', 'Открытый деревянный павильон с цветами и летней кухней'],
+  ['045', 'Roosad lilled esiplaanil, roogkatusega majad taga', 'Pink flowers in front of the thatched houses', 'Розовые цветы перед домами с камышовой крышей'],
+  ['046', 'Langenud puud sammaldunud ürgmetsas', 'Fallen trees in mossy old-growth forest', 'Поваленные деревья во мшистом старом лесу'],
+  ['047', 'Laps hoiab kaussi värskete maasikatega', 'A child holding a bowl of freshly picked strawberries', 'Ребёнок держит миску со свежей клубникой'],
+  ['048', 'Tiik kaskede vahel, maja vasakul kaldal', 'The pond among birches, a house on the left bank', 'Пруд среди берёз, дом на левом берегу'],
+  ['049', 'Avatud uks palkmaja magamistuppa, lambanahad voodil', 'An open door into the log bedroom, sheepskins on the bed', 'Открытая дверь в спальню, овчины на кровати'],
+  ['050', 'Elutuba lõõmava kaminaga ja tohust korviga', 'The living room with a lit fireplace and a birch-bark basket', 'Гостиная с горящим камином и берестяной корзиной'],
+  ['051', 'Roogkatusega maja tiigi ääres varakevadel', 'The thatched house by the pond in early spring', 'Дом с камышовой крышей у пруда ранней весной'],
+  ['052', 'Palkmaja koridor, nahad laetalade peal, trepp taga', 'Log house hallway with hides over the beams and a staircase', 'Коридор дома из бруса со шкурами на балках'],
+  ['053', 'Pikk puidust välilaud pinkidega maja ees', 'A long timber outdoor table and benches before the house', 'Длинный деревянный стол со скамьями перед домом'],
+  ['054', 'Tiik varakevadel, raagus puud ja pilvine taevas', 'The pond in early spring under bare trees and cloud', 'Пруд ранней весной, голые деревья и облака'],
+  ['055', 'Õitsvad pojengid aias, majad ja sinine taevas taga', 'Peonies in bloom with the houses and blue sky behind', 'Цветущие пионы в саду, дома и синее небо'],
+  ['056', 'Roogkatusega varjualune jäätunud tiigi ääres talvel', 'A thatched shelter beside the frozen pond in winter', 'Навес с камышовой крышей у замёрзшего пруда зимой'],
+  ['057', 'Lahtine raamat, milles on Oanduaia lugu ja fotod', 'An open book showing photographs of Oanduaia', 'Открытая книга с фотографиями Oanduaia'],
+  ['058', 'Maja poolenisti jäätunud tiigi taga kevadel', 'The house behind the half-frozen pond in spring', 'Дом за наполовину замёрзшим прудом весной'],
+  ['059', 'Jää ja peegeldused tiigil, kuused kaldal', 'Ice and reflections on the pond, spruce along the bank', 'Лёд и отражения на пруду, ели по берегу'],
+  ['060', 'Tiik jää all sinise taeva ja kuuskede vahel', 'The pond under ice between blue sky and spruce', 'Пруд подо льдом между синим небом и елями'],
+  ['061', 'Kevadine tiik, maja vasakul, raagus puud', 'The spring pond with the house at left among bare trees', 'Весенний пруд, дом слева среди голых деревьев'],
+  ['062', 'Valgustatud majake õhtuhämaruses metsa serval', 'A lit cabin glowing at dusk on the forest edge', 'Освещённый домик в сумерках на опушке леса'],
+  ['063', 'Küünlavalgel kaetud õhtusöögilaud tulpide ja klaasidega', 'A candlelit dinner table set with tulips and glassware', 'Накрытый при свечах стол с тюльпанами и бокалами'],
+  ['064', 'Lumine rada palkmaja valgustatud akende poole', 'A snowy path towards the lit windows of the log house', 'Заснеженная тропа к освещённым окнам дома'],
+  ['065', 'Kaetud laud taldrikute, klaaside ja mustade salvrätikutega', 'A laid table with plates, glasses and black napkins', 'Накрытый стол с тарелками, бокалами и салфетками'],
+  ['066', 'Pidulik söögilaud lillede ja küünaldega akende ees', 'A festive dining table with flowers and candles by the windows', 'Праздничный стол с цветами и свечами у окон'],
+  ['067', 'Kaetud söögilaud sügislillede ja kristallklaasidega', 'The dining table set with autumn flowers and crystal', 'Стол, сервированный осенними цветами и хрусталём'],
+  ['068', 'Tume viilkatusega saunahoone kõrgete puude vahel', 'A dark gabled sauna building among tall trees', 'Тёмное строение сауны с двускатной крышей среди деревьев'],
+  ['069', 'Perenaine valmistab kööginurgas akna all sööki', 'Cooking at the kitchen counter beside the window', 'Приготовление еды на кухне у окна'],
+  ['070', 'Tuba puitseintega, aken metsa poole, kummut ja lamp', 'A timber-walled room with a forest window, chest and lamp', 'Комната с деревянными стенами, окном в лес и комодом'],
+  ['071', 'Punane malmpott gaasipliidil, värsked ürdid aknalaual', 'A red pot on the gas hob with fresh herbs on the sill', 'Красная кастрюля на плите, свежие травы на подоконнике'],
+  ['072', 'Sauna leiliruum puidust lavade ja sooja valgusega', 'The sauna room with timber benches and warm light', 'Парная с деревянными полками и тёплым светом'],
+  ['073', 'Tiik sõnajalgade taga, maja puude vahel', 'The pond behind ferns, the house among the trees', 'Пруд за папоротниками, дом среди деревьев'],
+  ['074', 'Kruusatee kiviäärise ja dekoratiivsete kõrrelistega', 'A gravel path with stone edging and ornamental grasses', 'Гравийная дорожка с каменным бордюром и злаками'],
+  ['075', 'Vannituba puitseinte, peegli ja kivist valamulauaga', 'A bathroom with timber walls, mirror and stone counter', 'Ванная с деревянными стенами, зеркалом и каменной столешницей'],
+  ['076', 'Puidust viilkatus taeva ja puulatvade taustal', 'A timber gable roof against sky and treetops', 'Деревянный фронтон на фоне неба и крон деревьев'],
+  ['077', 'Avar elutuba diivani ja suurte metsavaatega akendega', 'An open living room with a sofa and wide forest windows', 'Просторная гостиная с диваном и окнами в лес'],
+  ['078', 'Elutuba kamina, tugitooli ja puidust lauaga', 'The living room with fireplace, lounge chair and timber table', 'Гостиная с камином, креслом и деревянным столом'],
+  ['079', 'Vannituba kahe peegli ja kivist valamulauaga', 'A bathroom with twin mirrors and a stone vanity', 'Ванная с двумя зеркалами и каменной столешницей'],
+  ['080', 'Muru tiigini, sügisvärvides puud ja maja kaugemal', 'Lawn down to the pond, autumn trees and the house beyond', 'Газон к пруду, осенние деревья и дом вдали'],
+  ['081', 'Roogkatusega maja murul dramaatilise pilvise taeva all', 'The thatched house on the lawn under a dramatic sky', 'Дом с камышовой крышей на газоне под драматичным небом'],
+  ['082', 'Palkmaja sisevaade diivani, kööginurga ja kaminaga', 'Cabin interior with sofa, kitchenette and fireplace', 'Интерьер дома с диваном, кухней и камином'],
+  ['083', 'Veekogu läbi suvise niidu ja lehtpuude', 'Water winding through summer meadow and broadleaf trees', 'Вода среди летнего луга и лиственных деревьев'],
+  ['084', 'Marjadesserdid klaasides jääl, lilled taustal', 'Berry desserts in glasses on ice, flowers behind', 'Ягодные десерты в бокалах на льду, цветы позади'],
+  ['086', 'Mesilane härjasilma õiel niidul', 'A bee on an ox-eye daisy in the meadow', 'Пчела на цветке нивяника на лугу'],
+  ['087', 'Ümar roogkatusega hoone suvise tiigi ääres', 'A round thatched building beside the summer pond', 'Круглое строение с камышовой крышей у летнего пруда'],
+  ['088', 'Kaks matkajat metsarajal päikesekiirte all', 'Two walkers on a forest trail in shafts of sunlight', 'Двое на лесной тропе в лучах солнца'],
+  ['089', 'Kaetud laud taldrikute, klaaside ja lilledega', 'A place setting with plates, glasses and flowers', 'Сервировка стола с тарелками, бокалами и цветами'],
+  ['090', 'Kevadine tiik peegeldab metsa ja pilvi', 'The spring pond mirroring forest and cloud', 'Весенний пруд отражает лес и облака'],
+  ['091', 'Roogkatusega hoone peegeldub vaikses tiigis', 'A thatched building reflected in the still pond', 'Строение с камышовой крышей отражается в пруду'],
+  ['092', 'Paadisild üle tumeda tiigi, mets peegeldub', 'The jetty over the dark pond with forest reflected', 'Мостик над тёмным прудом, лес в отражении'],
+  ['093', 'Sõudepaat ja varjualune tiigi ääres kevadel', 'A rowing boat and shelter at the pond in spring', 'Лодка и навес у пруда весной'],
+  ['094', 'Roogkatusega hoone ja paadisild tiigi kaldal', 'A thatched building and jetty at the pond’s edge', 'Строение с камышовой крышей и мостик у пруда'],
+]
+
+export const GALLERY_PHOTOS: GalleryPhoto[] = RAW.map(([n, et, en, ru]) => ({
+  src: `/galerii/${n}.jpeg`,
+  alt: { et, en, ru },
+}))
+
+export const ALL_PHOTOS: GalleryPhoto[] = [...HOUSE_PHOTOS, ...GALLERY_PHOTOS]
