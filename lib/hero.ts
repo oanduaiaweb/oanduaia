@@ -3,8 +3,8 @@ import type { Lang } from './translations'
 export type HeroSlide = { src: string; alt: Record<Lang, string> }
 
 /** Crossfade timing, in ms. HOLD is how long a slide sits still; FADE is the dissolve. */
-export const HERO_HOLD = 5200
-export const HERO_FADE = 1400
+export const HERO_HOLD = 3600
+export const HERO_FADE = 1100
 
 /**
  * Hero slideshow. Use **landscape** images only — the hero is a wide crop and a portrait
