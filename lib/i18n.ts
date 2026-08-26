@@ -63,3 +63,56 @@ export function alternates(lang: Lang, suffix = '') {
   languages['x-default'] = `${SITE}/${DEFAULT_LOCALE}${suffix}`
   return { canonical: `${SITE}/${lang}${suffix}`, languages }
 }
+
+/**
+ * LodgingBusiness structured data. Only facts verifiable from the site itself are
+ * included — no invented phone number, price band or rating. Third-party review
+ * scores are deliberately not marked up as aggregateRating.
+ */
+export function jsonLd(lang: Lang) {
+  const houses: Record<Lang, string[]> = {
+    et: ['Saunamaja', 'Tiigimaja', 'Metsamaja'],
+    en: ['Sauna House', 'Pond House', 'Forest House'],
+    ru: ['Банный дом', 'Прудовой дом', 'Лесной дом'],
+  }
+  const amenities: Record<Lang, string[]> = {
+    et: ['Saun', 'Tiik', 'Mets', 'Matkarajad'],
+    en: ['Sauna', 'Pond', 'Forest', 'Hiking trails'],
+    ru: ['Сауна', 'Пруд', 'Лес', 'Туристические тропы'],
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LodgingBusiness',
+    '@id': `${SITE}/#lodging`,
+    name: 'Oanduaia',
+    url: `${SITE}/${lang}`,
+    description: META[lang].description,
+    email: 'info@oanduaia.ee',
+    image: [`${SITE}/images/tiik.jpg`, `${SITE}/images/saunamaja.jpg`, `${SITE}/images/metsamaja.jpg`],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Oandu',
+      addressRegion: 'Lääne-Virumaa',
+      addressCountry: 'EE',
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: 59.5601919, longitude: 26.1067858 },
+    containedInPlace: {
+      '@type': 'Place',
+      name: lang === 'ru' ? 'Национальный парк Лахемаа' : lang === 'en' ? 'Lahemaa National Park' : 'Lahemaa rahvuspark',
+    },
+    numberOfRooms: 3,
+    petsAllowed: false,
+    amenityFeature: amenities[lang].map(name => ({
+      '@type': 'LocationFeatureSpecification',
+      name,
+      value: true,
+    })),
+    containsPlace: houses[lang].map(name => ({ '@type': 'Accommodation', name })),
+    sameAs: [
+      'https://www.instagram.com/oanduaia/',
+      'https://www.booking.com/hotel/ee/oanduaia-saunamaja.html',
+    ],
+    inLanguage: LOCALES.map(l => HREFLANG[l]),
+  }
+}

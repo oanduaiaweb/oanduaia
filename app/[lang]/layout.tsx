@@ -4,7 +4,7 @@ import { Cormorant_Garamond, DM_Mono } from 'next/font/google'
 import Script from 'next/script'
 import '../globals.css'
 import { LanguageProvider } from '@/contexts/LanguageContext'
-import { LOCALES, META, SITE, alternates, isLocale } from '@/lib/i18n'
+import { LOCALES, META, SITE, alternates, isLocale, jsonLd } from '@/lib/i18n'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -80,6 +80,10 @@ export default async function LocaleLayout({
         `}</Script>
       </head>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(lang)) }}
+        />
         <LanguageProvider lang={lang}>{children}</LanguageProvider>
       </body>
     </html>

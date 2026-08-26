@@ -1,0 +1,32 @@
+# Oanduaia
+
+> Forest spa and lodging in the heart of Lahemaa National Park, Estonia.
+> Three houses — Sauna House, Pond House and Forest House — in Oandu village,
+> Lääne-Virumaa, between forest and sea.
+
+Oanduaia is a small family-run property offering sauna, accommodation and direct
+access to Lahemaa National Park hiking trails, including the start of Estonia's
+longest marked trail.
+
+## Location
+Oandu village, Lääne-Virumaa, Estonia. Coordinates 59.5602, 26.1068.
+Inside Lahemaa National Park, near the Baltic coast.
+
+## Accommodation
+- Sauna House (Saunamaja) — sauna and lodging
+- Pond House (Tiigimaja) — beside the pond
+- Forest House (Metsamaja) — in the forest
+
+## Languages
+The site is published in Estonian, English and Russian:
+- https://oanduaia.ee/et
+- https://oanduaia.ee/en
+- https://oanduaia.ee/ru
+
+## Contact
+Email: info@oanduaia.ee
+Instagram: https://www.instagram.com/oanduaia/
+Booking.com: https://www.booking.com/hotel/ee/oanduaia-saunamaja.html
+
+## Sitemap
+https://oanduaia.ee/sitemap.xml
