@@ -51,6 +51,10 @@ export default function Hero() {
               key={slide.src}
               className={`hero-slide${i === index ? ' is-active' : ''}`}
               aria-hidden={i === index ? undefined : true}
+              style={{
+                ['--focus-d' as string]: slide.focus?.desktop ?? 'center',
+                ['--focus-m' as string]: slide.focus?.mobile ?? 'center',
+              }}
             >
               <Image
                 src={slide.src}
