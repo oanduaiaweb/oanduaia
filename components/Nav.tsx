@@ -6,6 +6,9 @@ import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T, type Lang } from '@/lib/translations'
 
+const MAPS_URL =
+  'https://www.google.com/maps/place/Oanduaia/@59.5602003,26.1040144,17.51z/data=!4m9!3m8!1s0x4693a5e9eb2501f1:0x882b2ee86711e7c4!5m2!4m1!1i2!8m2!3d59.5601919!4d26.1067858!16s%2Fg%2F11c1p2zn4s?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D'
+
 const LANGS: { code: Lang; flag: string; label: string }[] = [
   { code: 'et', flag: '🇪🇪', label: 'ET' },
   { code: 'en', flag: '🇬🇧', label: 'EN' },
@@ -101,10 +104,21 @@ export default function Nav() {
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
               </svg>
             </a>
+            <a href="https://www.facebook.com/Oanduaia/" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Facebook">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14 8.5V6.9c0-.7.2-1.1 1.2-1.1H16.6V3.1A17 17 0 0 0 14.7 3C12.6 3 11.1 4.3 11.1 6.6V8.5H8.8V11.3h2.3V21h2.9V11.3h2.3l.4-2.8H14z"/>
+              </svg>
+            </a>
             <a href="https://www.booking.com/hotel/ee/oanduaia-saunamaja.en-gb.html" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Booking.com">
               <svg width="22" height="22" viewBox="0 0 3.036 3.037" fill="currentColor">
                 <path d="M1.113 2.524h-.51v-.61c0-.13.05-.2.162-.214h.35a.38.38 0 0 1 .41.411c0 .26-.157.415-.41.415zM.602.875v-.16c0-.14.06-.208.19-.216h.262c.224 0 .36.134.36.36 0 .17-.092.37-.35.37h-.46zm1.164.61l-.092-.052.08-.07c.094-.08.25-.262.25-.575 0-.48-.372-.79-.947-.79h-.73a.32.32 0 0 0-.309.317v2.72H1.07c.64 0 1.052-.348 1.052-.888 0-.29-.133-.54-.358-.665"/>
                 <path d="M2.288 2.67c0-.203.163-.367.365-.367s.367.164.367.367-.164.367-.367.367-.365-.164-.365-.367"/>
+              </svg>
+            </a>
+            <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Google Maps">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/>
+                <circle cx="12" cy="10" r="3"/>
               </svg>
             </a>
           </div>
@@ -186,12 +200,25 @@ export default function Nav() {
             </svg>
             Instagram
           </a>
+          <a href="https://www.facebook.com/Oanduaia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 8.5V6.9c0-.7.2-1.1 1.2-1.1H16.6V3.1A17 17 0 0 0 14.7 3C12.6 3 11.1 4.3 11.1 6.6V8.5H8.8V11.3h2.3V21h2.9V11.3h2.3l.4-2.8H14z"/>
+              </svg>
+            Facebook
+          </a>
           <a href="https://www.booking.com/hotel/ee/oanduaia-saunamaja.en-gb.html" target="_blank" rel="noopener noreferrer" aria-label="Booking.com">
             <svg width="20" height="20" viewBox="0 0 3.036 3.037" fill="currentColor">
               <path d="M1.113 2.524h-.51v-.61c0-.13.05-.2.162-.214h.35a.38.38 0 0 1 .41.411c0 .26-.157.415-.41.415zM.602.875v-.16c0-.14.06-.208.19-.216h.262c.224 0 .36.134.36.36 0 .17-.092.37-.35.37h-.46zm1.164.61l-.092-.052.08-.07c.094-.08.25-.262.25-.575 0-.48-.372-.79-.947-.79h-.73a.32.32 0 0 0-.309.317v2.72H1.07c.64 0 1.052-.348 1.052-.888 0-.29-.133-.54-.358-.665"/>
               <path d="M2.288 2.67c0-.203.163-.367.365-.367s.367.164.367.367-.164.367-.367.367-.365-.164-.365-.367"/>
             </svg>
             Booking.com
+          </a>
+          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" aria-label="Google Maps">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+              </svg>
+            Google Maps
           </a>
         </div>
       </div>
