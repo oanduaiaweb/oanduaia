@@ -246,9 +246,15 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* Overlay social links */
 .nav-overlay-socials {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;              /* four labelled links do not fit one phone row */
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 1.6rem;
   margin-top: 2rem;
+  max-width: 100%;
+  padding: 0 1.5rem;
 }
+.nav-overlay-socials a { white-space: nowrap; }
 .nav-overlay-socials a {
   display: flex;
   align-items: center;
