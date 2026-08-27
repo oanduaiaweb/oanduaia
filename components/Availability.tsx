@@ -284,6 +284,12 @@ export default function Availability() {
                 <span><i className="avail-swatch avail-swatch--taken" />{t.legendTaken[lang]}</span>
                 <span><i className="avail-swatch avail-swatch--picked" />{t.legendPicked[lang]}</span>
               </div>
+              {/*
+                Why a booked night can sit next to a free arrival: departure is 12.00 and
+                arrival 14.00, so one day carries two different parties. Saying it here, at
+                the grid, is what makes the turnover read as deliberate rather than as a bug.
+              */}
+              <p className="avail-turnover">{T.booking.times[lang]}</p>
             </div>
 
             {warn && <p className="avail-status avail-status--warn">{t.crosses[lang]}</p>}

@@ -1452,6 +1452,16 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-swatch--taken  { background: var(--sage); opacity: 0.45; }
 .avail-swatch--picked { background: var(--moss); }
 
+.avail-turnover {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+  opacity: 0.62;
+  margin-top: 0.7rem;
+}
+
 .avail-status {
   font-family: var(--font-sans);
   font-size: var(--fs-2xs);
