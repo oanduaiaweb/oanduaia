@@ -35,9 +35,9 @@ export const T = {
       ru: 'Сначала построили банный домик. Потом главный дом. Первые гости были друзьями. Друзья рассказывали дальше. Так и пошло. Oanduaia растёт и сейчас – не через рекламу, а через рекомендации. Не по плану, а из любви к этому месту.',
     },
     p3: {
-      et: 'Oanduaia on pereettevõte. Sama pere, kes võsa niitis, peab seda ka täna.',
-      en: 'Oanduaia is a family business. The same family that cleared the scrub runs it today.',
-      ru: 'Oanduaia — семейное дело. Та же семья, что расчищала кустарник, ведёт его и сегодня.',
+      et: 'Oanduaia on pereettevõte.',
+      en: 'Oanduaia is a family business.',
+      ru: 'Oanduaia — семейное дело.',
     },
   },
   services: {
