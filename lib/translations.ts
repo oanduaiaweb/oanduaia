@@ -51,6 +51,11 @@ export const T = {
         en: 'Breakfast, lunch, a festive long table or a homier soup lunch – all from fresh ingredients, all made by the host herself.',
         ru: 'Завтрак, обед, торжественный стол или домашний суп – всё из свежих продуктов, всё приготовлено хозяйкой лично.',
       },
+      price: {
+        line:   { et: 'Hommikusöök 20 € inimese kohta', en: 'Breakfast 20 € per person', ru: 'Завтрак 20 € с человека' },
+        detail: { et: 'Munad, peekon, puder, kohv', en: 'Eggs, bacon, porridge, coffee', ru: 'Яйца, бекон, каша, кофе' },
+        note:   { et: 'Lõuna- ja õhtusöögi valikute jaoks võta meiega ühendust.', en: 'Contact us for lunch and dinner options.', ru: 'Свяжитесь с нами, чтобы узнать варианты обеда и ужина.' },
+      },
     },
     s2: {
       t1: { et: 'Pidulik pikk laud', en: 'Festive long table', ru: 'Праздничный стол' },
@@ -60,6 +65,7 @@ export const T = {
         en: 'Pre-ordered for two to ten. In summer, up to twenty in the outdoor kitchen.',
         ru: 'По предварительному заказу для двух–десяти человек. Летом – до двадцати на открытой кухне.',
       },
+      price: null,
     },
   },
   feature: {

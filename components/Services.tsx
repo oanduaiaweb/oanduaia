@@ -31,6 +31,13 @@ export default function Services() {
               {s.t1[lang]}{s.t2[lang] ? <> <em>&amp; {s.t2[lang]}</em></> : null}
             </h3>
             <p className="service-desc">{s.desc[lang]}</p>
+            {s.price && (
+              <p className="service-price">
+                <span className="service-price-line">{s.price.line[lang]}</span>
+                <span className="service-price-detail">{s.price.detail[lang]}</span>
+                <span className="service-price-note">{s.price.note[lang]}</span>
+              </p>
+            )}
             <a href="mailto:info@oanduaia.ee" className="service-arrow">{t.arrow[lang]}</a>
           </div>
         ))}
