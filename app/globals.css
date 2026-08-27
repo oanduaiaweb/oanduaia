@@ -401,7 +401,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 
 .hero-title {
-  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  font-size: clamp(2rem, 4.6vw, 4.1rem);
   font-weight: 400;
   line-height: 1.14;
   color: var(--linen);
@@ -1301,7 +1301,7 @@ body.gallery-page .nav-social { text-shadow: none; }
     padding: 4rem var(--section-h) 2.5rem;
     min-height: 100svh;
   }
-  .hero-title { font-size: clamp(1.9rem, 7.2vw, 3.2rem); margin-bottom: 1.6rem; }
+  .hero-title { font-size: clamp(1.5rem, 5.8vw, 2.5rem); margin-bottom: 1.5rem; }
   .hero-eyebrow { margin-bottom: 2.4rem; white-space: normal; overflow-wrap: break-word; font-size: var(--fs-2xs); letter-spacing: var(--ls-wide); }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
   .hero-desc { white-space: normal; }
