@@ -22,8 +22,8 @@ export default function Feature() {
       <div className="feature-intro">
         <p className="section-label">{t.label[lang]}</p>
         <h2 className="feature-heading">
-          {t.h1[lang]}<br />
-          <em>{t.h2[lang]}</em>
+          {t.h1[lang]}
+          {t.h2[lang] && <><br /><em>{t.h2[lang]}</em></>}
         </h2>
       </div>
 

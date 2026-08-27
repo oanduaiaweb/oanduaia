@@ -70,8 +70,10 @@ export const T = {
   },
   feature: {
     label: { et: 'Majad', en: 'Houses', ru: 'Дома' },
-    h1:   { et: 'Kolm maja.', en: 'Three houses.', ru: 'Три дома.' },
-    h2:   { et: 'Üks koht.', en: 'One place.', ru: 'Одно место.' },
+    // Eyebrow stays "Majad"; the headline is the accommodation offer.
+    // Estonian is one compound word, so it takes no second line.
+    h1:   { et: 'Majutusvõimalused', en: 'Accommodation', ru: 'Варианты' },
+    h2:   { et: '', en: 'options.', ru: 'размещения.' },
     houses: [
       {
         slug: 'saunamaja',
