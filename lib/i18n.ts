@@ -102,17 +102,48 @@ export function jsonLd(lang: Lang) {
       name: lang === 'ru' ? 'Национальный парк Лахемаа' : lang === 'en' ? 'Lahemaa National Park' : 'Lahemaa rahvuspark',
     },
     numberOfRooms: 3,
-    petsAllowed: false,
+    maximumAttendeeCapacity: 11,
     amenityFeature: amenities[lang].map(name => ({
       '@type': 'LocationFeatureSpecification',
       name,
       value: true,
     })),
-    containsPlace: houses[lang].map(name => ({ '@type': 'Accommodation', name })),
+    containsPlace: houses[lang].map((name, i) => ({
+      '@type': 'Accommodation',
+      name,
+      // Occupancy figures are the ones stated in the site copy, nothing inferred.
+      occupancy: { '@type': 'QuantitativeValue', value: [5, 2, 4][i], unitText: 'guests' },
+      numberOfBedrooms: [undefined, undefined, 2][i],
+      amenityFeature: amenities[lang].map(n => ({
+        '@type': 'LocationFeatureSpecification', name: n, value: true,
+      })),
+    })),
     sameAs: [
       'https://www.instagram.com/oanduaia/',
       'https://www.booking.com/hotel/ee/oanduaia-saunamaja.html',
     ],
     inLanguage: LOCALES.map(l => HREFLANG[l]),
+  }
+}
+
+/**
+ * WebSite + Organization block. Tells search and AI assistants that the three locale
+ * URLs are one site, and which social profiles are authoritative.
+ */
+export function siteJsonLd(lang: Lang) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE}/#website`,
+    name: 'Oanduaia',
+    url: `${SITE}/${lang}`,
+    description: META[lang].description,
+    inLanguage: HREFLANG[lang],
+    publisher: { '@id': `${SITE}/#lodging` },
+    sameAs: [
+      'https://www.instagram.com/oanduaia/',
+      'https://www.facebook.com/Oanduaia/',
+      'https://www.booking.com/hotel/ee/oanduaia-saunamaja.html',
+    ],
   }
 }

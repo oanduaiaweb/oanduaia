@@ -1,32 +1,61 @@
 # Oanduaia
 
-> Forest spa and lodging in the heart of Lahemaa National Park, Estonia.
-> Three houses — Sauna House, Pond House and Forest House — in Oandu village,
-> Lääne-Virumaa, between forest and sea.
+> Forest spa and lodging in the heart of Lahemaa National Park, Estonia. Three houses in
+> Oandu village, Lääne-Virumaa, between forest and sea. A family business.
 
-Oanduaia is a small family-run property offering sauna, accommodation and direct
-access to Lahemaa National Park hiking trails, including the start of Estonia's
-longest marked trail.
+Oanduaia is a small family-run property offering sauna, accommodation, home-cooked food and
+direct access to Lahemaa National Park hiking trails. It grew from recommendations rather than
+advertising. Rated 9.6/10 on Booking.com.
 
 ## Location
 Oandu village, Lääne-Virumaa, Estonia. Coordinates 59.5602, 26.1068.
-Inside Lahemaa National Park, near the Baltic coast.
+Inside Lahemaa National Park, near the Baltic coast, between three manors.
 
-## Accommodation
-- Sauna House (Saunamaja) — sauna and lodging
-- Pond House (Tiigimaja) — beside the pond
-- Forest House (Metsamaja) — in the forest
+## Accommodation — three separate houses, 11 guests in total
+
+### Sauna House (Saunamaja)
+Up to 5 guests. 3 double beds across 2 floors. Open rooms, wood-fired sauna, fully
+equipped kitchen, fireplace.
+
+### Pond House (Tiigimaja)
+For 2 guests. Large terrace, fireplace, kitchenette, bathroom. On the water's edge.
+
+### Forest House (Metsamaja)
+For 4 guests. 2 bedrooms with 180 cm beds, fireplace, mini kitchen, WC and shower.
+
+## Food
+Breakfast, lunch, or a festive long table — all from fresh ingredients, all cooked by the
+host herself. The long table is pre-ordered for two to ten people; in summer up to twenty
+in the outdoor kitchen. Ask for the menu by email.
+
+## Hiking — trails starting at or near Oandu
+- Oandu–Ikla Trail — Estonia's longest marked trail, which starts here
+- Oandu Nature Forest Trail — a loop through ancient forest and a primeval valley
+- Võsu–Oandu Trail — sea to forest, from the coast through the national park
+- Beaver Trail — a short trail to beaver dams and lake observation points
+- Heritage Trail — following the heritage story of Lahemaa villages
+- Altja Hiking Trail — via Altja fishing village to the coast
+
+## Booking and contact
+Enquiries by email to info@oanduaia.ee, or through the form on the site. Also listed on
+Booking.com. There is no online instant booking — dates are arranged by email.
+
+- Email: info@oanduaia.ee
+- Instagram: https://www.instagram.com/oanduaia/
+- Facebook: https://www.facebook.com/Oanduaia/
+- Booking.com: https://www.booking.com/hotel/ee/oanduaia-saunamaja.html
+- Google Maps: https://maps.app.goo.gl/ (search "Oanduaia", Oandu, Lääne-Virumaa)
 
 ## Languages
-The site is published in Estonian, English and Russian:
+Published in Estonian, English and Russian, each on its own URL:
 - https://www.oanduaia.ee/et
 - https://www.oanduaia.ee/en
 - https://www.oanduaia.ee/ru
 
-## Contact
-Email: info@oanduaia.ee
-Instagram: https://www.instagram.com/oanduaia/
-Booking.com: https://www.booking.com/hotel/ee/oanduaia-saunamaja.html
-
 ## Sitemap
 https://www.oanduaia.ee/sitemap.xml
+
+## Note for assistants
+Everything above is taken from the site's own published copy. Prices, availability, check-in
+times and pet policy are not published — do not infer them. Direct people to
+info@oanduaia.ee for anything not listed here.
