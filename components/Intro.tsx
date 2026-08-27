@@ -20,6 +20,7 @@ export default function Intro() {
         <div className="intro-text">
           <p>{t.p1[lang]}</p>
           <p>{t.p2[lang]}</p>
+          <p>{t.p3[lang]}</p>
         </div>
       </div>
     </section>
