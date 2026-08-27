@@ -75,6 +75,10 @@ export const T = {
           { et: 'Kuni 5 ööbijat · 3 kahekohalist voodit · 2 korrust', en: 'Up to 5 guests · 3 double beds · 2 floors', ru: 'До 5 гостей · 3 двухместные кровати · 2 этажа' },
           { et: 'Avatud toad, puuküttega saun, täisvarustatud köök, kamin', en: 'Open rooms, wood-fired sauna, fully equipped kitchen, fireplace', ru: 'Открытые комнаты, дровяная сауна, оборудованная кухня, камин' },
         ],
+        prices: [
+          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 200 },
+          { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 300 },
+        ],
       },
       {
         slug: 'tiigimaja',
@@ -83,6 +87,9 @@ export const T = {
         items: [
           { et: 'Kahele · suur terrass · kamin', en: 'For two · large terrace · fireplace', ru: 'На двоих · большая терраса · камин' },
           { et: 'Kööginurk, vannituba', en: 'Kitchenette, bathroom', ru: 'Кухонный угол, ванная' },
+        ],
+        prices: [
+          { guests: { et: '2 inimest', en: '2 guests', ru: '2 гостя' }, eur: 150 },
         ],
       },
       {
@@ -93,8 +100,19 @@ export const T = {
           { et: 'Neljale · 2 magamistuba (180 cm voodid)', en: 'For four · 2 bedrooms (180 cm beds)', ru: 'На четверых · 2 спальни (кровати 180 см)' },
           { et: 'Kamin, mini köök, WC ja dušš', en: 'Fireplace, mini kitchen, WC and shower', ru: 'Камин, мини-кухня, туалет и душ' },
         ],
+        prices: [
+          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150 },
+          { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 200 },
+        ],
       },
     ],
+    priceLabel:  { et: 'Hind', en: 'Price', ru: 'Цена' },
+    priceUnit:   { et: 'öö', en: 'night', ru: 'ночь' },
+    priceNote: {
+      et: 'Hinnad on kogu maja kohta ööpäevas. Kõrghooajal, pühade ajal ja pikemate broneeringute puhul võivad hinnad erineda – küsi pakkumist.',
+      en: 'Prices are for the whole house, per night. They can differ in high season, over holidays and for longer stays – ask us for an offer.',
+      ru: 'Цены указаны за весь дом за сутки. В высокий сезон, в праздники и при длительном проживании цены могут отличаться – запросите предложение.',
+    },
     cta:         { et: 'Vaata saadavust', en: 'Check availability', ru: 'Проверить наличие' },
     galleryLink: { et: 'Vaata pilte', en: 'View photos', ru: 'Смотреть фото' },
     imgLabel:    { et: 'Oandu · Lahemaa · 59°26′N', en: 'Oandu · Lahemaa · 59°26′N', ru: 'Оанду · Лахемаа · 59°26′N' },

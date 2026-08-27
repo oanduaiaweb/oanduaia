@@ -103,6 +103,10 @@ export function jsonLd(lang: Lang) {
     },
     numberOfRooms: 3,
     maximumAttendeeCapacity: 11,
+    // Published nightly rates for the whole house: 150 € (Tiigimaja, Metsamaja 1–2)
+    // to 300 € (Saunamaja 3–4). Nothing inferred beyond the numbers on the page.
+    priceRange: '€150–€300',
+    currenciesAccepted: 'EUR',
     amenityFeature: amenities[lang].map(name => ({
       '@type': 'LocationFeatureSpecification',
       name,

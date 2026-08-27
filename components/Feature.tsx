@@ -56,6 +56,18 @@ export default function Feature() {
                   <li key={item.et}>{item[lang].replace(/ · /g, ', ')}</li>
                 ))}
               </ul>
+              <dl className="house-price">
+                <dt className="house-price-label">{t.priceLabel[lang]}</dt>
+                {house.prices.map(p => (
+                  <dd className="house-price-row" key={p.guests.et}>
+                    <span className="house-price-guests">{p.guests[lang]}</span>
+                    <span className="house-price-amount">
+                      {`${p.eur} €`}
+                      <span className="house-price-unit">{` / ${t.priceUnit[lang]}`}</span>
+                    </span>
+                  </dd>
+                ))}
+              </dl>
               <Link href={`/${lang}/gallery#${house.slug}`} className="feature-gallery-link">
                 {t.galleryLink[lang]}
               </Link>
@@ -65,6 +77,7 @@ export default function Feature() {
       })}
 
       <div className="feature-outro">
+        <p className="feature-price-note">{t.priceNote[lang]}</p>
         <a href="#broneeri" className="feature-cta" onClick={scrollTo('broneeri')}>{t.cta[lang]}</a>
       </div>
     </section>
