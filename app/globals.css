@@ -1437,3 +1437,17 @@ body.gallery-page .nav-social { text-shadow: none; }
   .hero-slide { transition: none; }
   .hero-slide.is-active .hero-bg-img { animation: none; transform: scale(1); }
 }
+
+/* Footer social row — same four links as the header */
+.footer-socials {
+  display: flex;
+  gap: 1.4rem;
+  margin-top: 1.8rem;
+}
+.footer-social {
+  color: var(--mist);
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  display: inline-flex;
+}
+.footer-social:hover { opacity: 1; }
