@@ -52,7 +52,7 @@ export const T = {
         ru: 'Завтрак, обед, торжественный стол или домашний суп – всё из свежих продуктов, всё приготовлено хозяйкой лично.',
       },
       price: {
-        line:   { et: 'Hommikusöök 20 € inimese kohta', en: 'Breakfast 20 € per person', ru: 'Завтрак 20 € с человека' },
+        line:   { et: 'Hommikusöök 20 € inimese kohta hommikus', en: 'Breakfast 20 € per person, per morning', ru: 'Завтрак 20 € с человека в утро' },
         detail: { et: 'Munad, peekon, puder, kohv', en: 'Eggs, bacon, porridge, coffee', ru: 'Яйца, бекон, каша, кофе' },
         note:   { et: 'Lõuna- ja õhtusöögi valikute jaoks võta meiega ühendust.', en: 'Contact us for lunch and dinner options.', ru: 'Свяжитесь с нами, чтобы узнать варианты обеда и ужина.' },
       },
@@ -244,17 +244,11 @@ export const T = {
       ru: 'Приеду с питомцем · 20 € за проживание',
     },
     breakfastAdd: {
-      et: 'Soovin hommikusööki · 20 € inimese kohta',
-      en: 'I would like breakfast · 20 € per person',
-      ru: 'Хочу завтрак · 20 € с человека',
+      et: 'Soovin hommikusööki · 20 € inimese kohta hommikus',
+      en: 'I would like breakfast · 20 € per person, per morning',
+      ru: 'Хочу завтрак · 20 € с человека в утро',
     },
-    // Breakfast is quoted on request, never added to the sum — the page publishes a per-person
-    // figure without saying per morning or per stay, and we do not invent the missing half.
-    breakfastNote: {
-      et: 'Hommikusöögi lisame pakkumisele.',
-      en: 'We will add breakfast to the offer.',
-      ru: 'Завтрак добавим в предложение.',
-    },
+    breakfastLine: { et: 'Hommikusöök', en: 'Breakfast', ru: 'Завтрак' },
     petLine:  { et: 'Lemmikloom', en: 'Pet fee', ru: 'Питомец' },
     total:    { et: 'Kokku', en: 'Total', ru: 'Итого' },
     indicative: {

@@ -4,7 +4,7 @@ import type { HouseSlug } from './availability'
 
 /** Published on the page, so it can be quoted here: 20 € for the whole stay, not per night. */
 export const PET_FEE_EUR = 20
-/** Published as 20 € per person. Deliberately NOT multiplied into the total — see `quote()`. */
+/** 20 € per person, per morning. A stay of N nights has N mornings. */
 export const BREAKFAST_EUR = 20
 
 export type House = (typeof T.feature.houses)[number]
@@ -31,18 +31,18 @@ export type Quote = {
   rate: number
   accommodation: number
   petFee: number
+  breakfast: number
   total: number
 }
 
 /**
  * What the stay costs at the published rates.
  *
- * Breakfast is offered at 20 € per person but the site does not say per what — per morning
- * or per stay — so it is carried through as a request, never added to this total. Quoting a
- * number we have not published is how a guest ends up arguing about the bill on arrival.
+ * The pet fee is once per stay; breakfast is per person for every morning of it, and a stay
+ * of N nights has N mornings — arrival evening has none, departure morning does.
  *
- * The total is indicative for the same reason `feature.priceNote` already says out loud:
- * high season, holidays and long stays can be priced differently.
+ * The total is indicative for the reason `feature.priceNote` already says out loud: high
+ * season, holidays and long stays can be priced differently.
  */
 export function quote(
   slug: HouseSlug | string,
@@ -50,6 +50,7 @@ export function quote(
   checkIn: DateStr,
   checkOut: DateStr,
   pet: boolean,
+  breakfast: boolean,
 ): Quote | null {
   const nights = nightsBetween(checkIn, checkOut)
   const rate = nightlyRate(slug, guests)
@@ -57,7 +58,15 @@ export function quote(
 
   const accommodation = nights * rate
   const petFee = pet ? PET_FEE_EUR : 0
-  return { nights, rate, accommodation, petFee, total: accommodation + petFee }
+  const morningMeals = breakfast ? guests * nights * BREAKFAST_EUR : 0
+  return {
+    nights,
+    rate,
+    accommodation,
+    petFee,
+    breakfast: morningMeals,
+    total: accommodation + petFee + morningMeals,
+  }
 }
 
 /** `2026-09-01` → `1. september 2026` / `1 September 2026` / `1 сентября 2026`. */

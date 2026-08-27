@@ -114,7 +114,7 @@ export default function Availability() {
     setCheckIn(null); setCheckOut(null); setWarn(false)
   }
 
-  const q = checkIn && checkOut ? quote(slug, guests, checkIn, checkOut, pet) : null
+  const q = checkIn && checkOut ? quote(slug, guests, checkIn, checkOut, pet, breakfast) : null
   const rate = nightlyRate(slug, guests)
 
   const rangeEnd = checkOut ?? (checkIn && hovered && hovered > checkIn && canCheckOutOn(hovered) ? hovered : null)
@@ -243,7 +243,9 @@ export default function Availability() {
                           const isIn = date === checkIn
                           const isOut = date === checkOut
                           const inRange = !!checkIn && !!rangeEnd && date > checkIn && date < rangeEnd
-                          const asCheckout = taken && canCheckOutOn(date)
+                          // Only while a departure day is actually being chosen — once the range
+                          // is set, hinting at other possible checkouts is just noise.
+                          const asCheckout = taken && !checkOut && canCheckOutOn(date)
                           const disabled = past || (taken && !asCheckout)
 
                           const cls = [
@@ -310,6 +312,12 @@ export default function Availability() {
                     <dt>{`${nights(q.nights, lang)} × ${rate} €`}</dt>
                     <dd>{`${q.accommodation} €`}</dd>
                   </div>
+                  {q.breakfast > 0 && (
+                    <div className="avail-quote-row">
+                      <dt>{`${t.breakfastLine[lang]} · ${guests} × ${q.nights} × 20 €`}</dt>
+                      <dd>{`${q.breakfast} €`}</dd>
+                    </div>
+                  )}
                   {q.petFee > 0 && (
                     <div className="avail-quote-row">
                       <dt>{t.petLine[lang]}</dt>
@@ -320,7 +328,6 @@ export default function Availability() {
                     <dt>{t.total[lang]}</dt>
                     <dd>{`${q.total} €`}</dd>
                   </div>
-                  {breakfast && <p className="avail-quote-note">{t.breakfastNote[lang]}</p>}
                   <p className="avail-quote-note">{t.indicative[lang]}</p>
                 </dl>
               )}
