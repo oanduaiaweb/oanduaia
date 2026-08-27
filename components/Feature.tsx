@@ -67,6 +67,9 @@ export default function Feature() {
                     </span>
                   </dd>
                 ))}
+                {house.priceExtra && (
+                  <dd className="house-price-extra">{house.priceExtra[lang]}</dd>
+                )}
               </dl>
               <Link href={`/${lang}/gallery#${house.slug}`} className="feature-gallery-link">
                 {t.galleryLink[lang]}

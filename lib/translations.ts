@@ -79,6 +79,11 @@ export const T = {
           { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 200 },
           { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 300 },
         ],
+        priceExtra: {
+          et: 'Rohkem magamiskohti on võimalik – võta meiega otse ühendust.',
+          en: 'More sleeping options are available – please contact us directly.',
+          ru: 'Возможны дополнительные спальные места – свяжитесь с нами напрямую.',
+        },
       },
       {
         slug: 'tiigimaja',
@@ -91,6 +96,7 @@ export const T = {
         prices: [
           { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150 },
         ],
+        priceExtra: null,
       },
       {
         slug: 'metsamaja',
@@ -104,6 +110,7 @@ export const T = {
           { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150 },
           { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 200 },
         ],
+        priceExtra: null,
       },
     ],
     priceLabel:  { et: 'Hind', en: 'Price', ru: 'Цена' },

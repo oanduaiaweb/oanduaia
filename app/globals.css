@@ -737,6 +737,18 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   opacity: 0.6;
 }
 
+.house-price-extra {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: var(--ls-normal);
+  color: var(--sage);
+  opacity: 0.75;
+  margin-top: 0.9rem;
+  max-width: 40ch;
+}
+
 .feature-price-note {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
