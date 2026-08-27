@@ -50,6 +50,7 @@ export default function Booking() {
       <p className="booking-times reveal reveal-delay-1">
         {t.times[lang]}
         <span className="booking-terms">{t.terms[lang]}</span>
+        <span className="booking-pets">{t.pets[lang]}</span>
       </p>
 
       {sent ? (

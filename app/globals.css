@@ -1110,6 +1110,14 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   margin-bottom: 3.2rem;
 }
 .booking-terms { display: block; margin-top: 0.35rem; }
+.booking-pets {
+  display: block;
+  margin-top: 0.85rem;
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-normal);
+  line-height: 1.75;
+  opacity: 0.85;
+}
 .booking-success {
   text-align: center;
   padding: 3rem 1rem;

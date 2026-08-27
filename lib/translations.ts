@@ -209,6 +209,11 @@ export const T = {
       en: 'Minimum stay one night · pet fee 20 €',
       ru: 'Минимальное бронирование одна ночь · питомец 20 €',
     },
+    pets:    {
+      et: 'Kui majas on samal ajal ka teisi külalisi, palume koera hoida rihma otsas. Lemmiklooma eest vastutab tema omanik.',
+      en: 'If other guests are on the property at the same time, please keep your dog on a leash. Pets remain the responsibility of their owner.',
+      ru: 'Если на территории одновременно находятся другие гости, просим держать собаку на поводке. За питомца отвечает его владелец.',
+    },
     lNimi:   { et: 'Nimi', en: 'Name', ru: 'Имя' },
     pNimi:   { et: 'Sinu nimi', en: 'Your name', ru: 'Ваше имя' },
     lEmail:  { et: 'E-post', en: 'E-mail', ru: 'Эл. почта' },
