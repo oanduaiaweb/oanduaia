@@ -6,6 +6,7 @@ import Feature from '@/components/Feature'
 import Trails from '@/components/Trails'
 import Stats from '@/components/Stats'
 import Testimonial from '@/components/Testimonial'
+import Availability from '@/components/Availability'
 import Booking from '@/components/Booking'
 import Footer from '@/components/Footer'
 import ScrollRevealInit from '@/components/ScrollReveal'
@@ -22,6 +23,7 @@ export default function Page() {
       <Trails />
       <Stats />
       <Testimonial />
+      <Availability />
       <Booking />
       <Footer />
     </>

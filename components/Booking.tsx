@@ -1,16 +1,31 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useBookingDraft } from '@/contexts/BookingDraftContext'
 import { T } from '@/lib/translations'
 
 export default function Booking() {
   const { lang } = useLanguage()
   const t = T.booking
+  const { draft } = useBookingDraft()
   const [form, setForm] = useState({ nimi: '', email: '', kuupaevad: '', sonum: '' })
+  /**
+   * What the calendar picked, kept apart from whatever the guest types. Mixing the two into
+   * the textarea means a second trip through the calendar either duplicates the summary or
+   * eats the guest's own words.
+   */
+  const [summary, setSummary] = useState('')
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(false)
+
+  useEffect(() => {
+    if (!draft) return
+    setSummary(draft.message)
+    setForm(prev => ({ ...prev, kuupaevad: draft.dates }))
+    setSent(false)
+  }, [draft])
 
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -27,7 +42,7 @@ export default function Booking() {
           name: form.nimi,
           email: form.email,
           dates: form.kuupaevad,
-          message: form.sonum,
+          message: [summary, form.sonum].filter(Boolean).join('\n'),
           subject: t.eSubj[lang],
         }),
       })
@@ -75,6 +90,11 @@ export default function Booking() {
             <input className="form-input" id="kuupaevad" name="kuupaevad" type="text"
               placeholder={t.pKuup[lang]} value={form.kuupaevad} onChange={handle} />
           </div>
+          {summary && (
+            <div className="form-field form-field--full">
+              <p className="booking-summary">{summary.trim()}</p>
+            </div>
+          )}
           <div className="form-field form-field--full">
             <label className="form-label" htmlFor="sonum">{t.lSonum[lang]}</label>
             <textarea className="form-textarea" id="sonum" name="sonum"

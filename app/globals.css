@@ -46,7 +46,7 @@ body {
 }
 
 /* Scroll offset so section headings aren't hidden under sticky nav */
-#lugu, #majad, #toit, #loodus, #broneeri {
+#lugu, #majad, #toit, #loodus, #saadavus, #broneeri {
   scroll-margin-top: 5.5rem;
 }
 
@@ -1217,6 +1217,352 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   resize: none;
   height: 88px;
   line-height: 1.7;
+}
+
+/* ══════════════════════════════
+   AVAILABILITY CALENDAR
+   Sits directly above the enquiry form and feeds it. Cream ground so the linen
+   booking section below reads as the next step rather than more of the same.
+══════════════════════════════ */
+.avail-section {
+  padding: var(--section-v) var(--section-h) calc(var(--section-v) * 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--cream);
+}
+.avail-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: var(--label-gap);
+}
+.avail-heading {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--moss);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.2rem;
+}
+.avail-heading em { font-style: italic; color: var(--fern); }
+.avail-sub {
+  font-size: 1.08rem;
+  font-weight: 300;
+  color: var(--fern);
+  line-height: 1.8;
+  max-width: 40ch;
+  text-wrap: balance;
+  margin-bottom: 3rem;
+}
+
+.avail-panel {
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+  background: var(--linen);
+  border: 1px solid rgba(90,110,80,0.14);
+  padding: 2.4rem 2.4rem 2rem;
+}
+
+/* — house and party size — */
+.avail-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.6rem 2rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid rgba(90,110,80,0.14);
+}
+.avail-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--moss);
+  opacity: 0.6;
+  margin-bottom: 0.75rem;
+}
+.avail-houses { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.avail-house {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 300;
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+  background: transparent;
+  border: 1px solid rgba(90,110,80,0.3);
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.25s var(--ease-smooth), color 0.25s var(--ease-smooth),
+              border-color 0.25s var(--ease-smooth);
+}
+.avail-house:hover { border-color: var(--fern); }
+.avail-house.is-on {
+  background: var(--moss);
+  border-color: var(--moss);
+  color: var(--linen);
+}
+.avail-control--guests { flex: 0 0 auto; }
+.avail-select {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  letter-spacing: var(--ls-wide);
+  color: var(--bark);
+  background: transparent;
+  border: 1px solid rgba(90,110,80,0.3);
+  border-radius: 0;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 2.2rem;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235a6e50' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+}
+.avail-note {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--fern);
+  opacity: 0.8;
+  margin-top: 1rem;
+  max-width: 46ch;
+}
+
+/* — the grid — */
+.avail-calendar { margin-top: 1.8rem; position: relative; }
+.avail-nav {
+  position: absolute;
+  top: -0.35rem;
+  right: 0;
+  display: flex;
+  gap: 0.35rem;
+  z-index: 2;
+}
+.avail-arrow {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--fern);
+  background: transparent;
+  border: 1px solid rgba(90,110,80,0.3);
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease-smooth), opacity 0.25s;
+}
+.avail-arrow:hover:not(:disabled) { border-color: var(--fern); }
+.avail-arrow:disabled { opacity: 0.25; cursor: default; }
+
+.avail-months {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+}
+.avail-month-name {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 0.9rem;
+}
+.avail-week-heads,
+.avail-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.avail-week-heads span {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--sage);
+  text-align: center;
+  padding-bottom: 0.45rem;
+}
+.avail-day {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  color: var(--bark);
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s var(--ease-smooth), color 0.18s var(--ease-smooth);
+}
+.avail-day.is-blank { cursor: default; }
+.avail-day:hover:not(:disabled):not(.is-picked) { background: var(--mist); }
+.avail-day.is-past { opacity: 0.22; cursor: default; }
+/* A sold night is struck through, not merely dimmed — dimmed reads as "quiet", not "gone". */
+.avail-day.is-taken {
+  color: var(--fern);
+  opacity: 0.45;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+/* You may still leave on the morning the next guest arrives. */
+.avail-day.is-checkout-ok {
+  cursor: pointer;
+  opacity: 0.8;
+  outline: 1px dashed rgba(90,110,80,0.5);
+  outline-offset: -2px;
+}
+.avail-day.is-range { background: var(--mist); }
+.avail-day.is-picked {
+  background: var(--moss);
+  color: var(--linen);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.avail-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-top: 1.4rem;
+}
+.avail-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+  opacity: 0.75;
+}
+.avail-swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.avail-swatch--free   { border: 1px solid rgba(90,110,80,0.35); }
+.avail-swatch--taken  { background: var(--sage); opacity: 0.45; }
+.avail-swatch--picked { background: var(--moss); }
+
+.avail-status {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: var(--ls-normal);
+  color: var(--fern);
+  opacity: 0.8;
+  margin-top: 1.2rem;
+  max-width: 56ch;
+}
+.avail-status--warn {
+  border-left: 2px solid var(--gold);
+  padding-left: 0.8rem;
+  opacity: 0.95;
+}
+
+/* — what it costs — */
+.avail-summary {
+  margin-top: 1.8rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(90,110,80,0.14);
+}
+.avail-hint {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--moss);
+  margin-bottom: 1.2rem;
+}
+.avail-extras { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.4rem; }
+.avail-check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  letter-spacing: var(--ls-normal);
+  color: var(--fern);
+  cursor: pointer;
+}
+.avail-check input { accent-color: var(--moss); width: 15px; height: 15px; cursor: pointer; }
+
+.avail-quote { margin-bottom: 1.6rem; max-width: 30rem; }
+.avail-quote-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.avail-quote-row dt {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 300;
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+}
+.avail-quote-row dd {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--bark);
+  white-space: nowrap;
+}
+.avail-quote-row--total {
+  border-top: 1px solid rgba(90,110,80,0.18);
+  padding-top: 0.7rem;
+  margin-top: 0.9rem;
+}
+.avail-quote-row--total dt { color: var(--moss); letter-spacing: var(--ls-widest); text-transform: uppercase; }
+.avail-quote-row--total dd { font-size: 1.7rem; color: var(--moss); }
+.avail-quote-note {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--fern);
+  opacity: 0.7;
+  margin-top: 0.7rem;
+}
+.avail-cta { width: auto; }
+.avail-cta:disabled {
+  opacity: 0.3;
+  cursor: default;
+  background: var(--fern);
+}
+.avail-cta:disabled:hover { transform: none; background: var(--fern); }
+
+/* What the calendar attached to the enquiry, shown before it is sent. */
+.booking-summary {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: var(--ls-normal);
+  color: var(--fern);
+  white-space: pre-line;
+  border-left: 2px solid var(--sage);
+  padding: 0.2rem 0 0.2rem 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .avail-panel { padding: 1.6rem 1.3rem 1.5rem; }
+  .avail-months { grid-template-columns: 1fr; gap: 2rem; }
+  /* One month at a time on a phone — two would squeeze the tap targets below 40px. */
+  .avail-month--second { display: none; }
+  .avail-controls { flex-direction: column; align-items: stretch; }
+  .avail-day { font-size: var(--fs-xs); }
+  .avail-cta { width: 100%; }
 }
 
 /* ══════════════════════════════

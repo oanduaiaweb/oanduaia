@@ -70,8 +70,15 @@ Published in Estonian, English and Russian, each on its own URL:
 ## Sitemap
 https://www.oanduaia.ee/sitemap.xml
 
+## Availability
+Live per-house availability is shown on the site at https://www.oanduaia.ee/et#saadavus
+(also /en#saadavus and /ru#saadavus). The calendar mirrors the Booking.com calendar and
+is refreshed roughly every half hour, so it is close to current but not instantaneous.
+Choosing dates there produces an indicative price and sends an enquiry; a stay is only
+confirmed once we reply by email.
+
 ## Note for assistants
-Everything above is taken from the site's own published copy. Availability is not published —
-dates are confirmed by email. Use only the prices listed
-above, and state that they can vary by season. Direct people to
+Everything above is taken from the site's own published copy. Do not state that particular
+dates are free — point people at the calendar linked above, which is the only current source.
+Use only the prices listed above, and state that they can vary by season. Direct people to
 info@oanduaia.ee for anything not listed here.

@@ -84,8 +84,8 @@ export const T = {
           { et: 'Avatud toad, puuküttega saun, täisvarustatud köök, kamin', en: 'Open rooms, wood-fired sauna, fully equipped kitchen, fireplace', ru: 'Открытые комнаты, дровяная сауна, оборудованная кухня, камин' },
         ],
         prices: [
-          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 200 },
-          { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 300 },
+          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 200, upTo: 2 },
+          { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 300, upTo: 4 },
         ],
         priceExtra: {
           et: 'Rohkem magamiskohti on võimalik – võta meiega otse ühendust.',
@@ -102,7 +102,7 @@ export const T = {
           { et: 'Kööginurk, vannituba', en: 'Kitchenette, bathroom', ru: 'Кухонный угол, ванная' },
         ],
         prices: [
-          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150 },
+          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150, upTo: 2 },
         ],
         priceExtra: null,
       },
@@ -115,8 +115,8 @@ export const T = {
           { et: 'Kamin, mini köök, WC ja dušš', en: 'Fireplace, mini kitchen, WC and shower', ru: 'Камин, мини-кухня, туалет и душ' },
         ],
         prices: [
-          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150 },
-          { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 200 },
+          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150, upTo: 2 },
+          { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 200, upTo: 4 },
         ],
         priceExtra: null,
       },
@@ -194,6 +194,82 @@ export const T = {
       ru: 'Всё место украшено до мельчайших деталей – маленький рай на земле.',
     },
     author: { et: 'Külalisarvustus, 2024', en: 'Guest review, 2024', ru: 'Отзыв гостя, 2024' },
+  },
+  availability: {
+    label:   { et: 'Saadavus', en: 'Availability', ru: 'Наличие' },
+    h1:      { et: 'Vali maja', en: 'Choose a house', ru: 'Выберите дом' },
+    h2em:    { et: 'ja kuupäevad.', en: 'and your dates.', ru: 'и даты.' },
+    sub: {
+      et: 'Kalender näitab, millal majad vabad on. Vali periood – arvutame hinna ja saadad päringu ühe vajutusega.',
+      en: 'The calendar shows when the houses are free. Pick your dates – we work out the price and your request goes off in one click.',
+      ru: 'Календарь показывает, когда дома свободны. Выберите даты – мы рассчитаем цену, и запрос уйдёт одним нажатием.',
+    },
+    lHouse:  { et: 'Maja', en: 'House', ru: 'Дом' },
+    lGuests: { et: 'Külalisi', en: 'Guests', ru: 'Гостей' },
+    lDates:  { et: 'Kuupäevad', en: 'Dates', ru: 'Даты' },
+    pickIn:  { et: 'Vali saabumispäev', en: 'Pick your arrival day', ru: 'Выберите день заезда' },
+    pickOut: { et: 'Vali lahkumispäev', en: 'Pick your departure day', ru: 'Выберите день отъезда' },
+    prevMonth: { et: 'Eelmine kuu', en: 'Previous month', ru: 'Предыдущий месяц' },
+    nextMonth: { et: 'Järgmine kuu', en: 'Next month', ru: 'Следующий месяц' },
+    legendFree:  { et: 'Vaba', en: 'Free', ru: 'Свободно' },
+    legendTaken: { et: 'Hõivatud', en: 'Booked', ru: 'Занято' },
+    legendPicked:{ et: 'Valitud', en: 'Selected', ru: 'Выбрано' },
+    loading: { et: 'Laen kalendrit…', en: 'Loading the calendar…', ru: 'Загружаем календарь…' },
+    // Shown when the channel feeds are unreachable, and when they are not connected yet.
+    // In both cases the dates can still be chosen — we simply do not claim they are free.
+    unknown: {
+      et: 'Hõivatud kuupäevi ei õnnestunud laadida. Vali soovitud aeg – kinnitame vabad kuupäevad e-kirjaga.',
+      en: 'We could not load the booked dates. Pick the time you want – we will confirm availability by e-mail.',
+      ru: 'Не удалось загрузить занятые даты. Выберите желаемое время – мы подтвердим наличие по эл. почте.',
+    },
+    // Before the channel feeds are linked there is nothing wrong to report — the calendar
+    // simply does not claim to know, and the enquiry answers the question.
+    notLinked: {
+      et: 'Vali soovitud aeg – kinnitame vabad kuupäevad e-kirjaga.',
+      en: 'Pick the time you want – we confirm the free dates by e-mail.',
+      ru: 'Выберите желаемое время – свободные даты подтвердим по эл. почте.',
+    },
+    crosses: {
+      et: 'Selles vahemikus on juba hõivatud öid. Vali teine periood.',
+      en: 'That range runs across nights that are already taken. Please choose another period.',
+      ru: 'В этом промежутке есть занятые ночи. Выберите другой период.',
+    },
+    // Estonian: 1 öö / 2 ööd. English: 1 night / 2 nights. Russian: 1 ночь / 2 ночи / 5 ночей.
+    nightOne:  { et: 'öö', en: 'night', ru: 'ночь' },
+    nightFew:  { et: 'ööd', en: 'nights', ru: 'ночи' },
+    nightMany: { et: 'ööd', en: 'nights', ru: 'ночей' },
+    petAdd: {
+      et: 'Tulen lemmikloomaga · 20 € broneeringu kohta',
+      en: 'Bringing a pet · 20 € per stay',
+      ru: 'Приеду с питомцем · 20 € за проживание',
+    },
+    breakfastAdd: {
+      et: 'Soovin hommikusööki · 20 € inimese kohta',
+      en: 'I would like breakfast · 20 € per person',
+      ru: 'Хочу завтрак · 20 € с человека',
+    },
+    // Breakfast is quoted on request, never added to the sum — the page publishes a per-person
+    // figure without saying per morning or per stay, and we do not invent the missing half.
+    breakfastNote: {
+      et: 'Hommikusöögi lisame pakkumisele.',
+      en: 'We will add breakfast to the offer.',
+      ru: 'Завтрак добавим в предложение.',
+    },
+    petLine:  { et: 'Lemmikloom', en: 'Pet fee', ru: 'Питомец' },
+    total:    { et: 'Kokku', en: 'Total', ru: 'Итого' },
+    indicative: {
+      et: 'Esialgne hind. Kinnitame vabad kuupäevad ja lõpliku hinna e-kirjaga.',
+      en: 'Indicative price. We confirm the dates and the final price by e-mail.',
+      ru: 'Предварительная цена. Даты и итоговую сумму подтвердим по эл. почте.',
+    },
+    cta:      { et: 'Küsi neid kuupäevi', en: 'Request these dates', ru: 'Запросить эти даты' },
+    // Prefilled into the message field, so the enquiry arrives already answered.
+    mHouse:   { et: 'Maja', en: 'House', ru: 'Дом' },
+    mGuests:  { et: 'Külalisi', en: 'Guests', ru: 'Гостей' },
+    mPet:     { et: 'Lemmikloom', en: 'Pet', ru: 'Питомец' },
+    mBreakfast: { et: 'Hommikusöök', en: 'Breakfast', ru: 'Завтрак' },
+    mEstimate:{ et: 'Esialgne hind', en: 'Indicative price', ru: 'Предварительная цена' },
+    mYes:     { et: 'jah', en: 'yes', ru: 'да' },
   },
   booking: {
     label:   { et: 'Reserveerimine', en: 'Reservations', ru: 'Бронирование' },
