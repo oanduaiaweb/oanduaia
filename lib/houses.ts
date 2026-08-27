@@ -26,11 +26,12 @@ export const HOUSE_IMAGES: Record<string, HouseImage> = {
     },
   },
   tiigimaja: {
-    src: '/images/tiigimaja.jpg',
+    src: '/galerii/tiigimaja-veepealt.jpeg',
+    focus: '50% 45%',
     alt: {
-      et: 'Tiigimaja tiigi kaldal',
-      en: 'The Pond House on the water’s edge',
-      ru: 'Прудовой дом на берегу пруда',
+      et: 'Tiigimaja üle vee, mets ja maja peegeldumas tiigis',
+      en: 'The Pond House across the water, house and forest mirrored in the pond',
+      ru: 'Прудовой дом через воду, дом и лес отражаются в пруду',
     },
   },
   metsamaja: {
