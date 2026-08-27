@@ -205,9 +205,9 @@ export const T = {
       ru: 'Заезд с 14.00 · выезд до 12.00',
     },
     terms:   {
-      et: 'Lühim broneering üks öö · lemmikloom 20 €',
-      en: 'Minimum stay one night · pet fee 20 €',
-      ru: 'Минимальное бронирование одна ночь · питомец 20 €',
+      et: 'Lühim broneering üks öö · lemmikloom 20 € broneeringu kohta',
+      en: 'Minimum stay one night · pet fee 20 € per stay',
+      ru: 'Минимум одна ночь · питомец 20 € за проживание',
     },
     pets:    {
       et: 'Kui majas on samal ajal ka teisi külalisi, palume koera hoida rihma otsas. Lemmiklooma eest vastutab tema omanik.',
