@@ -19,7 +19,7 @@ export const T = {
     alt:    { et: 'Lahemaa mets', en: 'Lahemaa forest', ru: 'Лес Лахемаа' },
   },
   intro: {
-    label: { et: '01 – Lugu', en: '01 – Story', ru: '01 – История' },
+    label: { et: 'Lugu', en: 'Story', ru: 'История' },
     h1:    { et: 'Metsas', en: 'In the forest,', ru: 'В лесу' },
     h2:    { et: '', en: '', ru: '' },
     h2em:  { et: 'ärkas', en: 'beauty', ru: 'проснулась' },
@@ -36,7 +36,7 @@ export const T = {
     },
   },
   services: {
-    label: { et: '03 – Toit', en: '03 – Food', ru: '03 – Еда' },
+    label: { et: 'Toit', en: 'Food', ru: 'Еда' },
     arrow: { et: 'Küsi menüü →', en: 'Ask for menu →', ru: 'Запросить меню →' },
     s1: {
       t1: { et: 'Hommikusöök', en: 'Breakfast', ru: 'Завтрак' },
@@ -58,7 +58,7 @@ export const T = {
     },
   },
   feature: {
-    label: { et: '02 – Majad', en: '02 – Houses', ru: '02 – Дома' },
+    label: { et: 'Majad', en: 'Houses', ru: 'Дома' },
     h1:   { et: 'Kolm maja.', en: 'Three houses.', ru: 'Три дома.' },
     h2:   { et: 'Üks koht.', en: 'One place.', ru: 'Одно место.' },
     houses: [
@@ -95,7 +95,7 @@ export const T = {
     imgLabel:    { et: 'Oandu · Lahemaa · 59°26′N', en: 'Oandu · Lahemaa · 59°26′N', ru: 'Оанду · Лахемаа · 59°26′N' },
   },
   trails: {
-    label: { et: '04 – Loodus', en: '04 – Nature', ru: '04 – Природа' },
+    label: { et: 'Loodus', en: 'Nature', ru: 'Природа' },
     h1:   { et: 'Spaa on õues.', en: 'The spa is outside.', ru: 'Спа – на улице.' },
     h2:   { et: 'Tervis ', en: 'Health ', ru: 'Здоровье ' },
     h2em: { et: 'tuleb.', en: 'comes.', ru: 'приходит.' },
