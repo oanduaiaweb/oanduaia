@@ -1,7 +1,9 @@
 'use client'
 
 import { useLanguage } from '@/contexts/LanguageContext'
+import Image from 'next/image'
 import { T } from '@/lib/translations'
+import { SERVICE_IMAGES } from '@/lib/services'
 
 export default function Services() {
   const { lang } = useLanguage()
@@ -13,6 +15,18 @@ export default function Services() {
       <div className="services-grid services-grid--two">
         {cards.map((s, i) => (
           <div key={i} className={`service-card reveal${i > 0 ? ' reveal-delay-1' : ''}`}>
+            {SERVICE_IMAGES[i] && (
+              <div className="service-image">
+                <Image
+                  src={SERVICE_IMAGES[i].src}
+                  alt={SERVICE_IMAGES[i].alt[lang]}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  quality={75}
+                  style={{ objectFit: 'cover', objectPosition: SERVICE_IMAGES[i].focus ?? 'center' }}
+                />
+              </div>
+            )}
             <h3 className="service-title">
               {s.t1[lang]}{s.t2[lang] ? <> <em>&amp; {s.t2[lang]}</em></> : null}
             </h3>

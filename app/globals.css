@@ -583,11 +583,20 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 .service-card {
   background: var(--cream);
-  padding: 3.2rem 2.8rem;
+  padding: 0 0 3.2rem;
   display: flex;
   flex-direction: column;
   transition: background 0.4s;
 }
+/* Photograph sits full-bleed at the head of the card; the copy keeps its inset. */
+.service-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin-bottom: 2.6rem;
+}
+.service-card > :not(.service-image) { margin-left: 2.8rem; margin-right: 2.8rem; }
 .service-card:hover { background: var(--linen); }
 .service-num {
   font-family: var(--font-sans);
