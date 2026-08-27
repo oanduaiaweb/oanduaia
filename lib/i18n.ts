@@ -1,4 +1,5 @@
-import type { Lang } from './translations'
+import { T, type Lang } from './translations'
+import { HOUSE_IMAGES } from './houses'
 
 export const LOCALES: Lang[] = ['et', 'en', 'ru']
 export const DEFAULT_LOCALE: Lang = 'et'
@@ -62,6 +63,62 @@ export function alternates(lang: Lang, suffix = '') {
   for (const l of LOCALES) languages[HREFLANG[l]] = `${SITE}/${l}${suffix}`
   languages['x-default'] = `${SITE}/${DEFAULT_LOCALE}${suffix}`
   return { canonical: `${SITE}/${lang}${suffix}`, languages }
+}
+
+/**
+ * Per-house metadata and structured data for /{lang}/majad/{slug}.
+ *
+ * Everything is composed from copy already published on the site — the house name, its
+ * tagline, its first detail line and its lowest published rate. The three houses are the
+ * sellable product and until now had no page of their own to rank.
+ */
+export function houseMeta(lang: Lang, slug: string) {
+  const h = T.feature.houses.find(x => x.slug === slug)
+  if (!h) return null
+  const p = T.housePage
+  const from = Math.min(...h.prices.map(x => x.eur))
+  return {
+    title: `${h.name[lang]} — ${p.titleSuffix[lang]}`,
+    description: `${h.name[lang]} — ${h.tag[lang]} ${h.items[0][lang]}. ${p.descFrom[lang]} ${from} ${p.descUnit[lang]}`,
+  }
+}
+
+/** Accommodation markup for one house, tied back to the property by `containedInPlace`. */
+export function houseJsonLd(lang: Lang, slug: string) {
+  const h = T.feature.houses.find(x => x.slug === slug)
+  if (!h) return null
+  const img = HOUSE_IMAGES[slug]
+  const from = Math.min(...h.prices.map(x => x.eur))
+  const to = Math.max(...h.prices.map(x => x.eur))
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Accommodation',
+    '@id': `${SITE}/${lang}/majad/${slug}#accommodation`,
+    name: h.name[lang],
+    description: `${h.tag[lang]} ${h.items.map(i => i[lang]).join(' ')}`,
+    url: `${SITE}/${lang}/majad/${slug}`,
+    image: img ? `${SITE}${img.src}` : undefined,
+    // The priced tiers cap at 4; Saunamaja sleeps 5, which the page says in its own words.
+    occupancy: {
+      '@type': 'QuantitativeValue',
+      value: Math.max(...h.prices.map(x => x.upTo)),
+      unitText: 'guests',
+    },
+    numberOfBedrooms: slug === 'metsamaja' ? 2 : undefined,
+    containedInPlace: { '@id': `${SITE}/#lodging` },
+    amenityFeature: (lang === 'et'
+      ? ['Saun', 'Tiik', 'Mets', 'Matkarajad']
+      : lang === 'ru'
+        ? ['Сауна', 'Пруд', 'Лес', 'Туристические тропы']
+        : ['Sauna', 'Pond', 'Forest', 'Hiking trails']
+    ).map(n => ({ '@type': 'LocationFeatureSpecification', name: n, value: true })),
+    potentialAction: {
+      '@type': 'ReserveAction',
+      target: `${SITE}/${lang}/majad/${slug}#saadavus`,
+    },
+    priceRange: from === to ? `€${from}` : `€${from}–€${to}`,
+  }
 }
 
 /**

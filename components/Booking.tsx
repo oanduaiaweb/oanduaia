@@ -66,6 +66,7 @@ export default function Booking() {
         {t.times[lang]}
         <span className="booking-terms">{t.terms[lang]}</span>
         <span className="booking-pets">{t.pets[lang]}</span>
+        <span className="booking-pets booking-pets--channel">{t.petsDirect[lang]}</span>
       </p>
 
       {sent ? (

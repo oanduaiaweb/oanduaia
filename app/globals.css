@@ -53,7 +53,7 @@ body {
 /* ══════════════════════════════
    NAV
 ══════════════════════════════ */
-nav {
+nav.site-nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 2rem var(--section-h);
@@ -67,7 +67,7 @@ nav {
     padding         0.35s var(--ease-smooth),
     backdrop-filter 0.4s;
 }
-nav * { pointer-events: all; }
+nav.site-nav * { pointer-events: all; }
 
 nav.nav-scrolled {
   background: rgba(22, 28, 16, 0.96);
@@ -1118,6 +1118,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   line-height: 1.75;
   opacity: 0.85;
 }
+.booking-pets--channel { margin-top: 0.5rem; opacity: 0.7; }
+
 .booking-success {
   text-align: center;
   padding: 3rem 1rem;
@@ -1573,6 +1575,238 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   .avail-controls { flex-direction: column; align-items: stretch; }
   .avail-day { font-size: var(--fs-xs); }
   .avail-cta { width: 100%; }
+}
+
+/* ══════════════════════════════
+   HOUSE PAGE — /{lang}/majad/{slug}
+   One page per house. Same facts as the homepage band, given room to breathe
+   and somewhere of its own to rank.
+══════════════════════════════ */
+.house-page { background: var(--cream); }
+
+.house-hero {
+  position: relative;
+  height: min(72vh, 640px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.house-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(42,48,32,0.82) 0%, rgba(42,48,32,0.34) 45%, rgba(42,48,32,0.12) 100%);
+}
+.house-hero-text {
+  position: relative;
+  padding: 0 var(--section-h) 3.5rem;
+  max-width: var(--max-w);
+}
+.house-hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--mist);
+  opacity: 0.85;
+  margin-bottom: 0.9rem;
+}
+.house-hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+  color: var(--linen);
+  margin-bottom: 0.8rem;
+}
+.house-hero-tag {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 300;
+  color: var(--mist);
+  max-width: 34ch;
+}
+
+.house-body {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: calc(var(--section-v) * 0.62) var(--section-h);
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.house-facts-label,
+.hp-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--fern);
+  opacity: 0.6;
+  margin-bottom: 1.1rem;
+}
+.house-facts { list-style: none; }
+.house-facts li {
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--bark);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(90,110,80,0.14);
+}
+.house-facts li:last-child { border-bottom: none; }
+.house-gallery-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--fern);
+  text-decoration: none;
+  border: 1px solid rgba(90,110,80,0.3);
+  padding: 0.6rem 1.1rem;
+  margin-top: 1.4rem;
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+}
+.house-gallery-link:hover { background: var(--moss); border-color: var(--moss); color: var(--linen); }
+
+/* Rates, on linen rather than the dark band — the .house-price-* rules are for the
+   homepage bands and read as invisible on a light ground. */
+.house-rates {
+  background: var(--linen);
+  border: 1px solid rgba(90,110,80,0.14);
+  padding: 1.8rem;
+  position: sticky;
+  top: 6.5rem;
+}
+.hp-list { margin-bottom: 0.2rem; }
+.hp-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(90,110,80,0.12);
+}
+.hp-row:last-child { border-bottom: none; margin-bottom: 0; }
+.hp-row dt {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 300;
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+}
+.hp-row dd {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--moss);
+  white-space: nowrap;
+}
+.hp-unit {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+  opacity: 0.6;
+}
+.hp-extra,
+.hp-note {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--fern);
+  opacity: 0.78;
+  margin-top: 1rem;
+}
+.hp-note { opacity: 0.6; padding-top: 1rem; border-top: 1px solid rgba(90,110,80,0.12); }
+
+.house-others {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--section-h) calc(var(--section-v) * 0.5);
+}
+.house-others-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--fern);
+  opacity: 0.6;
+  margin-bottom: 1.2rem;
+}
+.house-others-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.house-others-link {
+  display: block;
+  text-decoration: none;
+  border: 1px solid rgba(90,110,80,0.18);
+  padding: 1.3rem 1.5rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.house-others-link:hover { border-color: var(--fern); background: var(--linen); }
+.house-others-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 300;
+  color: var(--moss);
+  margin-bottom: 0.35rem;
+}
+.house-others-tag {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  letter-spacing: var(--ls-normal);
+  color: var(--fern);
+  opacity: 0.75;
+  line-height: 1.6;
+}
+.house-back {
+  display: inline-block;
+  margin-top: 1.6rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--fern);
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+.house-back:hover { opacity: 1; }
+
+/* The homepage band's house name is now a link to that house's page. */
+a.feature-house-name { text-decoration: none; transition: color 0.3s; }
+a.feature-house-name:hover { color: var(--mist); }
+.house-band-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.6rem; }
+.house-band-content .house-band-links .feature-gallery-link { margin-top: 0; }
+.feature-house-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--bark);
+  background: var(--mist);
+  text-decoration: none;
+  border: 1px solid var(--mist);
+  padding: 0.45rem 0.9rem;
+  transition: opacity 0.3s, background 0.3s;
+}
+.feature-house-link:hover { background: var(--linen); border-color: var(--linen); }
+
+@media (max-width: 900px) {
+  .house-hero { height: min(60vh, 460px); }
+  .house-hero-text { padding: 0 var(--section-h) 2.2rem; }
+  .house-body { grid-template-columns: 1fr; gap: 2.5rem; }
+  .house-rates { position: static; }
+  .house-others-links { grid-template-columns: 1fr; }
 }
 
 /* ══════════════════════════════

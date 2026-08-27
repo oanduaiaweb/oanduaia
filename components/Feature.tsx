@@ -49,7 +49,9 @@ export default function Feature() {
             </div>
 
             <div className="house-band-content">
-              <span className="feature-house-name">{house.name[lang]}</span>
+              <Link href={`/${lang}/majad/${house.slug}`} className="feature-house-name">
+                {house.name[lang]}
+              </Link>
               <span className="feature-house-tag">{house.tag[lang]}</span>
               <ul className="feature-list">
                 {house.items.map(item => (
@@ -71,9 +73,14 @@ export default function Feature() {
                   <dd className="house-price-extra">{house.priceExtra[lang]}</dd>
                 )}
               </dl>
-              <Link href={`/${lang}/gallery#${house.slug}`} className="feature-gallery-link">
-                {t.galleryLink[lang]}
-              </Link>
+              <div className="house-band-links">
+                <Link href={`/${lang}/majad/${house.slug}`} className="feature-house-link">
+                  {T.housePage.more[lang]}
+                </Link>
+                <Link href={`/${lang}/gallery#${house.slug}`} className="feature-gallery-link">
+                  {t.galleryLink[lang]}
+                </Link>
+              </div>
             </div>
           </article>
         )

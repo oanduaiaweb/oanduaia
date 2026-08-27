@@ -46,14 +46,18 @@ function nights(n: number, lang: Lang) {
   return `${n} ${word}`
 }
 
-export default function Availability() {
+/**
+ * `initialHouse` lets a per-house page open its own calendar already selected — the guest
+ * arrived asking about that house, so making them pick it again is a step for nothing.
+ */
+export default function Availability({ initialHouse }: { initialHouse?: HouseSlug } = {}) {
   const { lang } = useLanguage()
   const { request } = useBookingDraft()
   const t = T.availability
 
   const [feed, setFeed] = useState<Feed | null>(null)
   const [failed, setFailed] = useState(false)
-  const [slug, setSlug] = useState<HouseSlug>('saunamaja')
+  const [slug, setSlug] = useState<HouseSlug>(initialHouse ?? 'saunamaja')
   const [guests, setGuests] = useState(2)
   const [checkIn, setCheckIn] = useState<DateStr | null>(null)
   const [checkOut, setCheckOut] = useState<DateStr | null>(null)

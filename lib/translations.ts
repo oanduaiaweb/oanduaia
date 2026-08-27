@@ -195,6 +195,26 @@ export const T = {
     },
     author: { et: 'Külalisarvustus, 2024', en: 'Guest review, 2024', ru: 'Отзыв гостя, 2024' },
   },
+  housePage: {
+    eyebrow:  { et: 'Majutus', en: 'Accommodation', ru: 'Размещение' },
+    facts:    { et: 'Majas on', en: 'In the house', ru: 'В доме' },
+    otherH:   { et: 'Teised majad', en: 'The other houses', ru: 'Другие дома' },
+    back:     { et: '← Kõik majad', en: '← All houses', ru: '← Все дома' },
+    more:     { et: 'Vaata maja', en: 'See the house', ru: 'Посмотреть дом' },
+    // Titles and descriptions are composed from published copy only — the house name, its
+    // own tagline, its first detail line and its lowest published rate. Nothing invented.
+    titleSuffix: {
+      et: 'majutus Lahemaal | Oanduaia',
+      en: 'lodging in Lahemaa, Estonia | Oanduaia',
+      ru: 'проживание в Лахемаа | Oanduaia',
+    },
+    descFrom: { et: 'Hind alates', en: 'From', ru: 'От' },
+    descUnit: {
+      et: '€ öö kogu maja eest. Oandu küla, Lahemaa rahvuspark.',
+      en: '€ per night for the whole house. Oandu village, Lahemaa National Park, Estonia.',
+      ru: '€ за ночь за весь дом. Деревня Оанду, национальный парк Лахемаа.',
+    },
+  },
   availability: {
     label:   { et: 'Saadavus', en: 'Availability', ru: 'Наличие' },
     h1:      { et: 'Vali maja', en: 'Choose a house', ru: 'Выберите дом' },
@@ -285,6 +305,15 @@ export const T = {
       et: 'Kui majas on samal ajal ka teisi külalisi, palume koera hoida rihma otsas. Lemmiklooma eest vastutab tema omanik.',
       en: 'If other guests are on the property at the same time, please keep your dog on a leash. Pets remain the responsibility of their owner.',
       ru: 'Если на территории одновременно находятся другие гости, просим держать собаку на поводке. За питомца отвечает его владелец.',
+    },
+    // Booking.com's own listing says pets are not allowed. Rather than quietly contradict
+    // it, the site states which channel the 20 € pet policy actually applies to — otherwise
+    // a guest reads this page, books through Booking.com and arrives with a dog against
+    // that listing's rules.
+    petsDirect: {
+      et: 'Lemmikloom on teretulnud otse meilt broneerides – Booking.com-i kaudu tehtud broneeringutele see ei laiene.',
+      en: 'Pets are welcome when you book with us directly – this does not apply to bookings made through Booking.com.',
+      ru: 'Питомцы приветствуются при прямом бронировании – на бронирования через Booking.com это не распространяется.',
     },
     lNimi:   { et: 'Nimi', en: 'Name', ru: 'Имя' },
     pNimi:   { et: 'Sinu nimi', en: 'Your name', ru: 'Ваше имя' },

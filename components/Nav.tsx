@@ -75,7 +75,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className={scrolled ? 'nav-scrolled' : ''}>
+      <nav className={`site-nav${scrolled ? ' nav-scrolled' : ''}`}>
         <a href={home} className="nav-logo">Oanduaia</a>
 
         <div className="nav-right">
