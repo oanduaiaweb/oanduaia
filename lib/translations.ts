@@ -89,7 +89,7 @@ export const T = {
           { et: 'Kööginurk, vannituba', en: 'Kitchenette, bathroom', ru: 'Кухонный угол, ванная' },
         ],
         prices: [
-          { guests: { et: '2 inimest', en: '2 guests', ru: '2 гостя' }, eur: 150 },
+          { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150 },
         ],
       },
       {
