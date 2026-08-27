@@ -107,6 +107,8 @@ export function jsonLd(lang: Lang) {
     // to 300 € (Saunamaja 3–4). Nothing inferred beyond the numbers on the page.
     priceRange: '€150–€300',
     currenciesAccepted: 'EUR',
+    checkinTime: '14:00',
+    checkoutTime: '12:00',
     amenityFeature: amenities[lang].map(name => ({
       '@type': 'LocationFeatureSpecification',
       name,

@@ -1092,9 +1092,22 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   font-size: 1.18rem;
   font-weight: 300;
   color: var(--fern);
-  margin-bottom: 3.5rem;
+  margin-bottom: 1.1rem;
   max-width: 360px;
   line-height: 1.85;
+}
+/* Check-in / check-out, directly under the booking intro. */
+.booking-times {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 300;
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+  opacity: 0.7;
+  line-height: 1.7;
+  max-width: 30rem;
+  text-wrap: balance;
+  margin-bottom: 3.2rem;
 }
 .booking-success {
   text-align: center;
