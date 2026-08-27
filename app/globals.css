@@ -1109,6 +1109,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-wrap: balance;
   margin-bottom: 3.2rem;
 }
+.booking-terms { display: block; margin-top: 0.35rem; }
 .booking-success {
   text-align: center;
   padding: 3rem 1rem;

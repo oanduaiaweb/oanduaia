@@ -47,7 +47,10 @@ export default function Booking() {
         {t.h1[lang]} <em>{t.h2em[lang]}</em>
       </h2>
       <p className="booking-sub reveal reveal-delay-1">{t.sub[lang]}</p>
-      <p className="booking-times reveal reveal-delay-1">{t.times[lang]}</p>
+      <p className="booking-times reveal reveal-delay-1">
+        {t.times[lang]}
+        <span className="booking-terms">{t.terms[lang]}</span>
+      </p>
 
       {sent ? (
         <div className="booking-success">

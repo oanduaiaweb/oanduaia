@@ -109,6 +109,9 @@ export function jsonLd(lang: Lang) {
     currenciesAccepted: 'EUR',
     checkinTime: '14:00',
     checkoutTime: '12:00',
+    // Published on the booking section: pets welcome, 20 € fee. Do not assert
+    // any policy here that is not stated on the page.
+    petsAllowed: true,
     amenityFeature: amenities[lang].map(name => ({
       '@type': 'LocationFeatureSpecification',
       name,

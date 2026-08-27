@@ -204,6 +204,11 @@ export const T = {
       en: 'Check-in from 2 pm · check-out 12 noon',
       ru: 'Заезд с 14.00 · выезд до 12.00',
     },
+    terms:   {
+      et: 'Lühim broneering üks öö · lemmikloom 20 €',
+      en: 'Minimum stay one night · pet fee 20 €',
+      ru: 'Минимальное бронирование одна ночь · питомец 20 €',
+    },
     lNimi:   { et: 'Nimi', en: 'Name', ru: 'Имя' },
     pNimi:   { et: 'Sinu nimi', en: 'Your name', ru: 'Ваше имя' },
     lEmail:  { et: 'E-post', en: 'E-mail', ru: 'Эл. почта' },
