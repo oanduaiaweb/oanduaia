@@ -191,8 +191,15 @@ export function jsonLd(lang: Lang) {
         '@type': 'LocationFeatureSpecification', name: n, value: true,
       })),
     })),
+    hasMap: 'https://maps.google.com/?cid=9811987788853274564',
+    /*
+     * Facebook belongs here, not only on the WebSite node. This is the entity a search
+     * engine ties a knowledge panel to, and sameAs is how it confirms that the profile
+     * and the business are the same organisation.
+     */
     sameAs: [
       'https://www.instagram.com/oanduaia/',
+      'https://www.facebook.com/Oanduaia/',
       'https://www.booking.com/hotel/ee/oanduaia-saunamaja.html',
     ],
     inLanguage: LOCALES.map(l => HREFLANG[l]),
@@ -217,6 +224,107 @@ export function siteJsonLd(lang: Lang) {
       'https://www.instagram.com/oanduaia/',
       'https://www.facebook.com/Oanduaia/',
       'https://www.booking.com/hotel/ee/oanduaia-saunamaja.html',
+    ],
+  }
+}
+
+/**
+ * The questions people actually ask before booking, answered from copy already published
+ * on this site — check-in times, the pet fee, the winter closures, the fact that there is
+ * no instant booking.
+ *
+ * This is aimed at assistants more than at Google. An AI answering "can I bring a dog to
+ * Oanduaia" has to find that sentence somewhere; a FAQPage node states it as a fact tied
+ * to this business rather than leaving it as a line of body copy to be inferred from.
+ *
+ * Every answer here must stay traceable to something on the page. Nothing about deposits,
+ * cancellation or cleaning fees — none of that is published, and inventing it in schema
+ * would be worse than silence.
+ */
+const FAQ: Record<Lang, [string, string][]> = {
+  et: [
+    ['Kus Oanduaia asub?',
+     'Oandu külas Lääne-Virumaal, Lahemaa rahvuspargis, metsa ja mere vahel — kolme mõisa, Palmse, Sagadi ja Vihula vahel.'],
+    ['Kui palju maju ja kohti on?',
+     'Kolm eraldi maja kokku 11 külalisele: Saunamaja kuni 5, Metsamaja 4 ja Tiigimaja 2 inimesele.'],
+    ['Kui palju öömaja maksab?',
+     'Hinnad on terve maja kohta öö kohta: Tiigimaja ja Metsamaja alates 150 €, Saunamaja alates 200 €. Kõrghooajal, pühade ajal ja pikemate broneeringute puhul võivad hinnad erineda — küsi pakkumist.'],
+    ['Mis kell on saabumine ja lahkumine?',
+     'Saabumine alates kell 14.00, lahkumine kell 12.00. Lühim broneering on üks öö.'],
+    ['Kas lemmikloomad on lubatud?',
+     'Jah. Lemmiklooma tasu on 20 € broneeringu kohta, mitte öö kohta. Kui majas on samal ajal ka teisi külalisi, palume koera hoida rihma otsas.'],
+    ['Kas hommikusööki saab?',
+     'Jah. Hommikusöök on 20 € inimese kohta hommikus — munad, peekon, puder, kohv. Lõuna, õhtusöök ja pidulik pikk laud tellitakse ette; küsi menüüd e-postiga.'],
+    ['Kas kõik majad on talvel avatud?',
+     'Saunamaja on avatud aasta läbi. Tiigimaja ja Metsamaja on talveks suletud 1. detsembrist 31. märtsini; hooaja esimene öö on 1. aprill.'],
+    ['Kuidas broneerida?',
+     'Kohest veebibroneeringut ei ole. Vaata saadavust kalendrist ja saada päring vormiga või kirjuta info@oanduaia.ee — vastame 24 tunni jooksul. Oleme ka Booking.comis.'],
+  ],
+  en: [
+    ['Where is Oanduaia?',
+     'In Oandu village, Lääne-Virumaa, inside Lahemaa National Park in Estonia — between forest and sea, among three manors: Palmse, Sagadi and Vihula.'],
+    ['How many houses are there, and for how many guests?',
+     'Three separate houses for 11 guests in total: the Sauna House sleeps up to 5, the Forest House 4 and the Pond House 2.'],
+    ['What does a night cost?',
+     'Prices are for the whole house, per night: the Pond House and Forest House from €150, the Sauna House from €200. Rates can differ in high season, over holidays and for longer stays — ask for an offer.'],
+    ['What are the check-in and check-out times?',
+     'Check-in is from 2 pm and check-out is at 12 noon. The minimum stay is one night.'],
+    ['Are pets allowed?',
+     'Yes. The pet fee is €20 per stay, not per night. If other guests are on the property at the same time, dogs must be kept on a leash.'],
+    ['Is breakfast available?',
+     'Yes. Breakfast is €20 per person per morning — eggs, bacon, porridge and coffee. Lunch, dinner and the festive long table are pre-ordered; ask for the menu by e-mail.'],
+    ['Are all the houses open in winter?',
+     'The Sauna House is open all year. The Pond House and the Forest House close for the winter, from 1 December to 31 March; their first night of the new season is 1 April.'],
+    ['How do I book?',
+     'There is no instant online booking. Check the availability calendar, send an enquiry through the form or write to info@oanduaia.ee — we reply within 24 hours. We are also listed on Booking.com.'],
+  ],
+  ru: [
+    ['Где находится Oanduaia?',
+     'В деревне Оанду, Ляэне-Вирумаа, в национальном парке Лахемаа в Эстонии — между лесом и морем, среди трёх мыз: Палмсе, Сагади и Вихула.'],
+    ['Сколько домов и на сколько гостей?',
+     'Три отдельных дома всего на 11 гостей: Банный дом — до 5, Лесной дом — 4, Прудовой дом — 2 человека.'],
+    ['Сколько стоит ночь?',
+     'Цены указаны за весь дом за ночь: Прудовой и Лесной дом от 150 €, Банный дом от 200 €. В высокий сезон, в праздники и при длительном проживании цены могут отличаться — запросите предложение.'],
+    ['Во сколько заезд и выезд?',
+     'Заезд с 14.00, выезд до 12.00. Минимальный срок — одна ночь.'],
+    ['Можно ли с питомцами?',
+     'Да. Плата за питомца — 20 € за проживание, а не за ночь. Если на территории одновременно находятся другие гости, собаку просим держать на поводке.'],
+    ['Есть ли завтрак?',
+     'Да. Завтрак — 20 € с человека за утро: яйца, бекон, каша, кофе. Обед, ужин и праздничный стол заказываются заранее — запросите меню по электронной почте.'],
+    ['Все ли дома открыты зимой?',
+     'Банный дом открыт круглый год. Прудовой и Лесной дом закрыты на зиму с 1 декабря по 31 марта; первая ночь нового сезона — 1 апреля.'],
+    ['Как забронировать?',
+     'Мгновенного онлайн-бронирования нет. Посмотрите календарь, отправьте запрос через форму или напишите на info@oanduaia.ee — отвечаем в течение 24 часов. Мы также есть на Booking.com.'],
+  ],
+}
+
+export function faqJsonLd(lang: Lang) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${SITE}/${lang}#faq`,
+    inLanguage: HREFLANG[lang],
+    about: { '@id': `${SITE}/#lodging` },
+    mainEntity: FAQ[lang].map(([q, a]) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
+}
+
+/** Home > Majad > this house. Gives search a path to show instead of a bare URL. */
+export function breadcrumbJsonLd(lang: Lang, slug: string) {
+  const h = T.feature.houses.find(x => x.slug === slug)
+  if (!h) return null
+  const majad: Record<Lang, string> = { et: 'Majad', en: 'Houses', ru: 'Дома' }
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Oanduaia', item: `${SITE}/${lang}` },
+      { '@type': 'ListItem', position: 2, name: majad[lang], item: `${SITE}/${lang}#majad` },
+      { '@type': 'ListItem', position: 3, name: h.name[lang], item: `${SITE}/${lang}/majad/${slug}` },
     ],
   }
 }

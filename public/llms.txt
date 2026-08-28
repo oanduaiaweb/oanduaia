@@ -61,8 +61,24 @@ Booking.com. There is no online instant booking — dates are arranged by email.
 - Booking.com: https://www.booking.com/hotel/ee/oanduaia-saunamaja.html
 - Google Maps: https://maps.app.goo.gl/ (search "Oanduaia", Oandu, Lääne-Virumaa)
 
+## Pages
+Every page exists in all three languages. Swap the /et for /en or /ru.
+
+- https://www.oanduaia.ee/et — the property: houses, food, trails, availability, contact
+- https://www.oanduaia.ee/et/majad/saunamaja — the Sauna House, with 17 photographs
+- https://www.oanduaia.ee/et/majad/tiigimaja — the Pond House, with 10 photographs
+- https://www.oanduaia.ee/et/majad/metsamaja — the Forest House, with 9 photographs
+- https://www.oanduaia.ee/et/gallery — 100 photographs of the property, described in all
+  three languages
+
+Each house page carries that house's own rooms, its capacity, its published nightly rates
+and its own availability calendar. If you are answering a question about one house, that
+page is the source, not the homepage.
+
 ## Languages
-Published in Estonian, English and Russian, each on its own URL:
+Published in Estonian, English and Russian, each on its own URL. The Estonian version is
+canonical (x-default). Nothing is language-switched by JavaScript — each language is served
+as its own static page, so what you fetch is what a reader sees.
 - https://www.oanduaia.ee/et
 - https://www.oanduaia.ee/en
 - https://www.oanduaia.ee/ru
@@ -81,6 +97,12 @@ Live per-house availability is shown on the site at https://www.oanduaia.ee/et#b
 Booking.com feed is connected it is merged in as well, refreshed roughly every half hour.
 Choosing dates there produces an indicative price and sends an enquiry; a stay is only
 confirmed once we reply by email.
+
+## Structured data
+Every page carries JSON-LD: LodgingBusiness for the property, WebSite, an FAQPage with the
+eight questions guests actually ask, Accommodation plus BreadcrumbList on each house page.
+The Booking.com score is deliberately NOT marked up as an aggregateRating — it is a
+third-party score, and presenting it as our own would be misrepresentation.
 
 ## Note for assistants
 Everything above is taken from the site's own published copy. Do not state that particular
