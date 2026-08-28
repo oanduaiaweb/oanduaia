@@ -197,6 +197,14 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
+      src: '/galerii/tiigimaja/kamin-eest.jpeg',
+      alt: {
+        et: 'Kamin eestvaates, uivpuust skulptuur korstna ees ja pink kolde all',
+        en: 'The fireplace head-on, a driftwood sculpture set above it and a bench across the hearth',
+        ru: 'Камин анфас, скульптура из коряги над ним и скамья перед очагом',
+      },
+    },
+    {
       src: '/galerii/tiigimaja/kook.jpeg',
       alt: {
         et: 'Köögitasapind gaasipliidi, avariiuli ja retrokülmikuga',
@@ -210,6 +218,14 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
         et: 'Magamistuba põrandast laeni akendega niidule ja pealuuga palkseinal',
         en: 'The bedroom with floor-to-ceiling windows onto the meadow and a skull on the log wall',
         ru: 'Спальня с окнами в пол на луг и черепом на бревенчатой стене',
+      },
+    },
+    {
+      src: '/galerii/tiigimaja/voodilamp.jpeg',
+      alt: {
+        et: 'Narmastega öölamp palgikettast öökapil voodi kõrval',
+        en: 'A fringed bedside lamp on a shelf cut from a single round of log',
+        ru: 'Ночник с бахромой на полке из спила бревна у кровати',
       },
     },
     {
