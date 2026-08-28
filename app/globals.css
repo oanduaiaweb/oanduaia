@@ -1791,6 +1791,53 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-panel .avail-nights { color: var(--ink); }
 .avail-panel .avail-arrow:disabled { opacity: 0.3; }
 
+/*
+ * Bigger, and heavier.
+ *
+ * The panel's type was sized for a flat linen card, where 300-weight at 0.76-0.95rem is
+ * elegant. Over a photograph a hairline stroke is the thing that fails first — before
+ * colour, before size — so this lifts weight as well as size. Weight is doing most of the
+ * work here; the extra tenth of a rem is what makes the weight look intentional.
+ */
+.avail-panel .avail-day {
+  font-size: 1.12rem;
+  font-weight: 400;
+}
+.avail-panel .avail-week-heads span {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+.avail-panel .avail-month-name {
+  font-size: 1.02rem;
+  font-weight: 500;
+}
+.avail-panel .avail-label {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+.avail-panel .avail-house {
+  font-size: var(--fs-sm);
+  font-weight: 400;
+}
+.avail-panel .avail-select { font-size: var(--fs-md); font-weight: 400; }
+.avail-panel .avail-note,
+.avail-panel .avail-status,
+.avail-panel .avail-turnover,
+.avail-panel .avail-quote-note {
+  font-size: var(--fs-sm);
+  font-weight: 400;
+}
+.avail-panel .avail-legend span {
+  font-size: var(--fs-xs);
+  font-weight: 400;
+}
+.avail-panel .avail-check { font-size: var(--fs-md); font-weight: 400; }
+.avail-panel .avail-hint { font-size: 1.4rem; }
+.avail-panel .avail-quote-row dt { font-size: var(--fs-sm); font-weight: 400; }
+.avail-panel .avail-quote-row dd { font-size: 1.25rem; }
+.avail-panel .avail-quote-row--total dd { font-size: 1.85rem; }
+.avail-panel .avail-arrow { font-size: 1.35rem; }
+
 /* A stronger halo to match. Darker ink over a photograph needs more separation, not less. */
 .avail-panel .avail-label,
 .avail-panel .avail-house:not(.is-on),
@@ -1830,7 +1877,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   /* One month at a time on a phone — two would squeeze the tap targets below 40px. */
   .avail-month--second { display: none; }
   .avail-controls { flex-direction: column; align-items: stretch; }
-  .avail-day { font-size: var(--fs-xs); }
+  .avail-panel .avail-day { font-size: 1.02rem; }
   .avail-cta { width: 100%; }
 }
 
