@@ -4,6 +4,7 @@ import { ALL_PHOTOS } from '@/lib/gallery'
 import { HERO_SLIDES } from '@/lib/hero'
 import { HOUSE_SLUGS } from '@/lib/availability'
 import { HOUSE_IMAGES } from '@/lib/houses'
+import { HOUSE_GALLERIES } from '@/lib/housePhotos'
 
 const PAGES = ['', '/gallery']
 
@@ -43,6 +44,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     languages['x-default'] = `${SITE}/${DEFAULT_LOCALE}${suffix}`
 
     const img = HOUSE_IMAGES[slug]
+    // The cover photo plus whatever hangs in that house's own gallery.
+    const shots = [
+      ...(img ? [`${SITE}${img.src}`] : []),
+      ...(HOUSE_GALLERIES[slug] ?? []).map(p => `${SITE}${p.src}`),
+    ]
     for (const lang of LOCALES) {
       entries.push({
         url: `${SITE}/${lang}${suffix}`,
@@ -50,7 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: 'monthly',
         priority: 0.9,
         alternates: { languages },
-        images: img ? [`${SITE}${img.src}`] : undefined,
+        images: shots.length ? shots : undefined,
       })
     }
   }

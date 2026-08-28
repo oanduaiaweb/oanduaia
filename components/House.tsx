@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import { HOUSE_IMAGES } from '@/lib/houses'
+import { HOUSE_GALLERIES } from '@/lib/housePhotos'
 
 /**
  * One house, on its own page. The three houses are what is actually sold, and until now
@@ -21,6 +22,7 @@ export default function House({ slug }: { slug: string }) {
   if (!house) return null
 
   const img = HOUSE_IMAGES[slug]
+  const photos = HOUSE_GALLERIES[slug as keyof typeof HOUSE_GALLERIES] ?? []
   const others = f.houses.filter(h => h.slug !== slug)
 
   return (
@@ -74,6 +76,32 @@ export default function House({ slug }: { slug: string }) {
           <p className="hp-note">{f.priceNote[lang]}</p>
         </aside>
       </div>
+
+      {/*
+        Laid out in columns rather than a grid of equal tiles: these are portraits and
+        landscapes mixed, and a fixed tile would crop the height out of the standing ones.
+        Every photograph is shown whole.
+      */}
+      {photos.length > 0 && (
+        <section className="house-photos" aria-label={t.photos[lang]}>
+          <p className="house-photos-label">{t.photos[lang]}</p>
+          <div className="house-photos-grid">
+            {photos.map(ph => (
+              <figure className="house-photo" key={ph.src}>
+                <Image
+                  src={ph.src}
+                  alt={ph.alt[lang]}
+                  width={800}
+                  height={1000}
+                  sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw"
+                  quality={82}
+                  style={{ width: '100%', height: 'auto' }}
+                />
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
 
       <nav className="house-others" aria-label={t.otherH[lang]}>
         <p className="house-others-label">{t.otherH[lang]}</p>

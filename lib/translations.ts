@@ -210,6 +210,7 @@ export const T = {
     otherH:   { et: 'Teised majad', en: 'The other houses', ru: 'Другие дома' },
     back:     { et: '← Kõik majad', en: '← All houses', ru: '← Все дома' },
     more:     { et: 'Vaata maja', en: 'See the house', ru: 'Посмотреть дом' },
+    photos:   { et: 'Pildid', en: 'Photographs', ru: 'Фотографии' },
     // Titles and descriptions are composed from published copy only — the house name, its
     // own tagline, its first detail line and its lowest published rate. Nothing invented.
     titleSuffix: {
