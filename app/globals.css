@@ -93,6 +93,9 @@ nav.nav-scrolled {
 }
 nav.nav-scrolled .nav-logo { text-shadow: none; }
 
+/* Estonia in the hero copy — phone only. See the media query at the foot of the file. */
+.hero-mark { display: none; }
+
 /* Estonia under the wordmark. Out of flow, so the header keeps its height. */
 .nav-brand { position: relative; }
 .nav-mark {
@@ -2653,6 +2656,27 @@ body.gallery-page .nav-social { text-shadow: none; }
   .hero-content > .hero-title { margin-bottom: 0.9rem; }
   .hero-title { font-size: clamp(1.5rem, 5.8vw, 2.5rem); line-height: 1.18; }
   .hero-eyebrow { margin-bottom: 1.15rem; white-space: normal; overflow-wrap: break-word; font-size: var(--fs-2xs); letter-spacing: var(--ls-wide); }
+  /*
+   * The brand mark comes down out of the header and joins the copy, directly above the
+   * place line. At the top of a phone frame it was stranded on its own; here it reads as
+   * the illustration of the line beneath it. Only one is ever shown — the header's own
+   * copy is hidden wherever a hero mark exists, which is the home page only; the house
+   * and gallery pages have no hero copy to move it into, so they keep theirs.
+   */
+  body:has(.hero-mark) .nav-mark { display: none; }
+  .hero-mark {
+    display: block;
+    color: var(--linen);
+    margin-bottom: 0.75rem;
+    opacity: 0;
+    animation: fadeUp 1.2s var(--ease-expo) 0.55s forwards;
+  }
+  .hero-content > .hero-mark { grid-area: auto; align-self: flex-start; }
+  .hero-mark svg {
+    display: block;
+    filter: drop-shadow(0 1px 16px rgba(0,0,0,0.7));
+    opacity: 0.94;
+  }
   .hero-desc { white-space: normal; line-height: 1.6; font-size: 1.02rem; margin-bottom: 1.15rem; }
   .btn-primary, .btn-dark, .btn-ghost, .feature-cta { letter-spacing: var(--ls-wide); padding: 0.9rem 1.6rem; }
 
