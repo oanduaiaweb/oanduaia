@@ -33,7 +33,8 @@
 
   /* Section rhythm — consistent across every section */
   --section-v: 9rem;
-  --strip-pass: 60s;   /* one full pass of either photograph strip */
+  --strip-pass: 60s;   /* one full pass of a photograph strip */
+  --ink:     #171c10;  /* near-black, for copy that has to be read over a photograph */
   --section-h: 4rem;
   --label-gap: 2rem;
   --max-w: 1160px;
@@ -847,6 +848,14 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .photo-strip--reverse .photo-strip-track { animation-direction: reverse; }
 
 /*
+ * Half speed for the light strip, because it is the one with three paragraphs on top
+ * of it. Behind a two-word heading, 60s is a drift; behind copy you are actually
+ * reading, the same motion in the corner of your eye keeps pulling you off the line.
+ * The token cascades to the track, so this is the whole change.
+ */
+.photo-strip--light { --strip-pass: 120s; }
+
+/*
  * The light section needs the opposite scrim: a linen veil dense enough that moss-green
  * body copy at 300 weight still reads over a photograph. 0.86 leaves the subjects as a
  * suggestion, which is all they are here.
@@ -888,6 +897,14 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* Full-bleed wrapper for the capped, centred intro section. */
 .intro-band { position: relative; overflow: hidden; }
 .intro-band > .intro-section { position: relative; z-index: 2; }
+/*
+ * Near-black for the copy only. Fern was chosen to sit on flat linen; with photographs
+ * moving underneath, a mid green at 300 weight and 1.25rem loses contrast exactly where
+ * a frame happens to be dark, and this is the one block on the page with paragraphs to
+ * actually read. The heading keeps moss — it is display size, it holds on its own, and
+ * it is the voice of the section.
+ */
+.intro-band .intro-text { color: var(--ink); }
 
 /* Standing still, it is a photograph behind a heading; moving, it is a distraction. */
 @media (prefers-reduced-motion: reduce) {
