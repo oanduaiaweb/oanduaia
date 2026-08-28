@@ -2534,7 +2534,7 @@ body.gallery-page .nav-social { text-shadow: none; }
    * The hero copy still clears the bottom with room to spare.
    */
   .hero {
-    padding: 3.2rem var(--section-h) 2.2rem;
+    padding: 3.2rem var(--section-h) 1.6rem;
     height: 76svh;
     min-height: 520px;
   }
@@ -2562,10 +2562,17 @@ body.gallery-page .nav-social { text-shadow: none; }
   .hero-title,
   .hero-eyebrow,
   .hero-desc { text-shadow: 0 1px 12px rgba(10,14,6,0.55), 0 1px 3px rgba(10,14,6,0.4); }
-  .hero-title { font-size: clamp(1.5rem, 5.8vw, 2.5rem); margin-bottom: 1.5rem; }
-  .hero-eyebrow { margin-bottom: 2.4rem; white-space: normal; overflow-wrap: break-word; font-size: var(--fs-2xs); letter-spacing: var(--ls-wide); }
-  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
-  .hero-desc { white-space: normal; }
+  /*
+   * Tighter than desktop, and sitting lower. On a phone the four pieces — headline,
+   * place line, strapline, button — were spread down half the screen with a gap between
+   * each, which reads as four separate things rather than one block. Closing the gaps
+   * groups them, and because the block is bottom-anchored, shortening it also drops the
+   * headline further down the frame.
+   */
+  .hero-title { font-size: clamp(1.5rem, 5.8vw, 2.5rem); margin-bottom: 0.9rem; line-height: 1.18; }
+  .hero-eyebrow { margin-bottom: 1.15rem; white-space: normal; overflow-wrap: break-word; font-size: var(--fs-2xs); letter-spacing: var(--ls-wide); }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.15rem; }
+  .hero-desc { white-space: normal; line-height: 1.6; font-size: 1.02rem; }
   .btn-primary, .btn-dark, .btn-ghost, .feature-cta { letter-spacing: var(--ls-wide); padding: 0.9rem 1.6rem; }
 
   .services-grid { grid-template-columns: 1fr; }
