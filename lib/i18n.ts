@@ -144,6 +144,17 @@ export function jsonLd(lang: Lang) {
     en: ['Sauna', 'Pond', 'Forest', 'Hiking trails'],
     ru: ['Сауна', 'Пруд', 'Лес', 'Туристические тропы'],
   }
+  /*
+   * Parking true and WiFi FALSE. Marking an absent amenity `false` is the point of the
+   * boolean — a filter that hides places without WiFi should hide this one, and a guest
+   * who needs to work should learn it here rather than on arrival. Leaving it out
+   * entirely says "unknown", which is the one answer that helps nobody.
+   */
+  const facilities: Record<Lang, [string, boolean][]> = {
+    et: [['Tasuta parkimine', true], ['WiFi', false], ['Mobiilne andmeside', true]],
+    en: [['Free parking', true], ['WiFi', false], ['Mobile data coverage', true]],
+    ru: [['Бесплатная парковка', true], ['Wi-Fi', false], ['Мобильная связь', true]],
+  }
 
   return {
     '@context': 'https://schema.org',
@@ -176,11 +187,18 @@ export function jsonLd(lang: Lang) {
     // Published on the booking section: pets welcome, 20 € fee. Do not assert
     // any policy here that is not stated on the page.
     petsAllowed: true,
-    amenityFeature: amenities[lang].map(name => ({
-      '@type': 'LocationFeatureSpecification',
-      name,
-      value: true,
-    })),
+    amenityFeature: [
+      ...amenities[lang].map(name => ({
+        '@type': 'LocationFeatureSpecification',
+        name,
+        value: true,
+      })),
+      ...facilities[lang].map(([name, value]) => ({
+        '@type': 'LocationFeatureSpecification',
+        name,
+        value,
+      })),
+    ],
     containsPlace: houses[lang].map((name, i) => ({
       '@type': 'Accommodation',
       name,
@@ -257,6 +275,8 @@ const FAQ: Record<Lang, [string, string][]> = {
      'Jah. Hommikusöök on 20 € inimese kohta hommikus — munad, peekon, puder, kohv. Lõuna, õhtusöök ja pidulik pikk laud tellitakse ette; küsi menüüd e-postiga.'],
     ['Kas kõik majad on talvel avatud?',
      'Saunamaja on avatud aasta läbi. Tiigimaja ja Metsamaja on talveks suletud 1. detsembrist 31. märtsini; hooaja esimene öö on 1. aprill.'],
+    ['Kas majades on WiFi?',
+     'Ei ole — üheski majas WiFi-t ei ole. Mobiillevi on hea, nii et telefoni andmeside töötab. Parkimine on tasuta.'],
     ['Kuidas broneerida?',
      'Kohest veebibroneeringut ei ole. Vaata saadavust kalendrist ja saada päring vormiga või kirjuta info@oanduaia.ee — vastame 24 tunni jooksul. Oleme ka Booking.comis.'],
   ],
@@ -275,6 +295,8 @@ const FAQ: Record<Lang, [string, string][]> = {
      'Yes. Breakfast is €20 per person per morning — eggs, bacon, porridge and coffee. Lunch, dinner and the festive long table are pre-ordered; ask for the menu by e-mail.'],
     ['Are all the houses open in winter?',
      'The Sauna House is open all year. The Pond House and the Forest House close for the winter, from 1 December to 31 March; their first night of the new season is 1 April.'],
+    ['Is there WiFi?',
+     'No — there is no WiFi in any of the houses. Mobile coverage is good, so a phone will work. Parking is free.'],
     ['How do I book?',
      'There is no instant online booking. Check the availability calendar, send an enquiry through the form or write to info@oanduaia.ee — we reply within 24 hours. We are also listed on Booking.com.'],
   ],
@@ -293,6 +315,8 @@ const FAQ: Record<Lang, [string, string][]> = {
      'Да. Завтрак — 20 € с человека за утро: яйца, бекон, каша, кофе. Обед, ужин и праздничный стол заказываются заранее — запросите меню по электронной почте.'],
     ['Все ли дома открыты зимой?',
      'Банный дом открыт круглый год. Прудовой и Лесной дом закрыты на зиму с 1 декабря по 31 марта; первая ночь нового сезона — 1 апреля.'],
+    ['Есть ли Wi-Fi?',
+     'Нет — Wi-Fi нет ни в одном из домов. Мобильная связь хорошая, так что телефон работает. Парковка бесплатная.'],
     ['Как забронировать?',
      'Мгновенного онлайн-бронирования нет. Посмотрите календарь, отправьте запрос через форму или напишите на info@oanduaia.ee — отвечаем в течение 24 часов. Мы также есть на Booking.com.'],
   ],

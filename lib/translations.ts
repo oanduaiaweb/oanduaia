@@ -311,6 +311,14 @@ export const T = {
       en: 'Minimum stay one night · pet fee 20 € per stay',
       ru: 'Минимум одна ночь · питомец 20 € за проживание',
     },
+    // Free parking, and no WiFi anywhere on the property. The second one is a booking
+    // decision for some people, so it is stated plainly rather than left to be discovered
+    // on arrival — and here it reads as what it is: the reason to come.
+    practical: {
+      et: 'Tasuta parkimine · WiFi-t majades ei ole, mobiillevi on hea',
+      en: 'Free parking · no WiFi in the houses, mobile coverage is good',
+      ru: 'Бесплатная парковка · Wi-Fi в домах нет, мобильная связь хорошая',
+    },
     pets:    {
       et: 'Kui majas on samal ajal ka teisi külalisi, palume koera hoida rihma otsas. Lemmiklooma eest vastutab tema omanik.',
       en: 'If other guests are on the property at the same time, please keep your dog on a leash. Pets remain the responsibility of their owner.',

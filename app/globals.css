@@ -41,7 +41,14 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+/*
+ * No `scroll-behavior: smooth` here. Chrome does not honour it on this page — every smooth
+ * scroll is a silent no-op (see lib/scrollToId) — and while it is declared, the browser's
+ * OWN jump for a `#hash` URL obeys it too and also does nothing. So arriving from outside
+ * on /et#broneeri left you at the top of the homepage, which is the link llms.txt hands to
+ * assistants. In-page clicks get their smooth scroll from scrollToId instead.
+ */
+html { font-size: 16px; overflow-x: hidden; }
 body {
   background: var(--cream);
   color: var(--bark);

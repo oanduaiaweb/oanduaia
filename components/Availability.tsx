@@ -181,6 +181,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
       <p className="booking-times reveal reveal-delay-1">
         {b.times[lang]}
         <span className="booking-terms">{b.terms[lang]}</span>
+        <span className="booking-terms">{b.practical[lang]}</span>
         <span className="booking-pets">{b.pets[lang]}</span>
       </p>
 
