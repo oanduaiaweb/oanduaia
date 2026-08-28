@@ -6,8 +6,6 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import { scrollToId } from '@/lib/scrollToId'
 import { HERO_SLIDES, HERO_HOLD, HERO_FADE, slideSizes } from '@/lib/hero'
-import { estoniaOutline } from '@/components/SocialRow'
-import { SOCIAL } from '@/lib/social'
 
 function scrollTo(id: string) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -95,21 +93,6 @@ export default function Hero() {
           <span className="line"><span>{h.line2[lang]}</span></span>
           <span className="line"><span>{h.line3[lang]}</span></span>
         </h1>
-        {/*
-          Estonia, on a phone only. In the header it sat under the wordmark at the top of
-          the frame, a long way from anything it relates to; here it leads the place line
-          it illustrates. `.nav-mark` is hidden at the same breakpoint so there is only
-          ever one of them.
-        */}
-        <a
-          href={SOCIAL.maps}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hero-mark"
-          aria-label="Google Maps"
-        >
-          {estoniaOutline(46)}
-        </a>
         <p className="hero-eyebrow">{h.eyebrow[lang]}</p>
         <p className="hero-desc">{h.desc[lang]}</p>
         <a href="#broneeri" className="btn-primary hero-cta" onClick={scrollTo('broneeri')}>
