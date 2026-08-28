@@ -29,9 +29,9 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
     {
       src: '/galerii/saunamaja/elutuba.jpeg',
       alt: {
-        et: 'Avar elutuba lambanahkadega diivanil, sarvedest lühter ja paeplaatidest põrand',
-        en: 'The open living room with sheepskins on the sofa, an antler chandelier and a flagstone floor',
-        ru: 'Просторная гостиная с овчинами на диване, люстрой из рогов и каменным полом',
+        et: 'Avar elutuba lambanahkadega diivanil, tammelehtedega lühter ja paeplaatidest põrand',
+        en: 'The open living room with sheepskins on the sofa, an oak-leaf chandelier and a flagstone floor',
+        ru: 'Просторная гостиная с овчинами на диване, люстрой из дубовых листьев и каменным полом',
       },
     },
     {
@@ -64,6 +64,46 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
         et: 'Köögisaar ja elutuba ühes ruumis hämaras, potiraam ja kruusid palgi all',
         en: 'The kitchen island and the living room in one space at dusk, pots and mugs hung from the beam',
         ru: 'Кухонный остров и гостиная в одном пространстве в сумерках, посуда на балке',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/sepisrinnatis.jpeg',
+      alt: {
+        et: 'Sepistatud tammeokstega rõdupiire lae all, elutuba allpool',
+        en: 'The forged oak-branch balustrade of the loft beneath the timber ceiling, the room below',
+        ru: 'Кованое ограждение антресоли в виде дубовых ветвей под потолком, комната внизу',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/vokk.jpeg',
+      alt: {
+        et: 'Vana vokk rõdu põrandal sepispiirde kõrval',
+        en: 'An old spinning wheel on the loft floor beside the forged railing',
+        ru: 'Старая прялка на полу антресоли рядом с кованым ограждением',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/koogisaar-ohtul.jpeg',
+      alt: {
+        et: 'Köögisaar õhtul, baaritoolid, merevaigukarva valgustid ja riidas küttepuud',
+        en: 'The kitchen island in the evening with bar stools, amber pendant lights and stacked firewood',
+        ru: 'Кухонный остров вечером — барные стулья, янтарные светильники и поленница',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/elutoast-kooki.jpeg',
+      alt: {
+        et: 'Vaade diivanilt üle paeplaatide köögisaareni, tammelehtedega lühter lae all',
+        en: 'The view from the sofa across the flagstones to the kitchen island, the oak-leaf chandelier overhead',
+        ru: 'Вид с дивана через каменный пол на кухонный остров, люстра из дубовых листьев наверху',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/elutuba-luhter.jpeg',
+      alt: {
+        et: 'Elutuba tammelehtedega lühtri all, aknad kolmel seinal muru poole',
+        en: 'The living room under the oak-leaf chandelier, windows on three sides onto the lawn',
+        ru: 'Гостиная под люстрой из дубовых листьев, окна с трёх сторон на газон',
       },
     },
   ],
