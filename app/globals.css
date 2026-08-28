@@ -776,8 +776,9 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  * toward 0 is what makes it travel rightward — the eye reads the page left to right
  * and the photographs arrive with it rather than against it.
  *
- * 88s for one pass is deliberately slower than it sounds. This sits behind type; at
- * anything brisker it competes with the words instead of settling under them.
+ * 40s for one pass. It started at 88s, which read as a creep rather than movement —
+ * on a phone, where a frame is most of the screen, you could not tell it was moving
+ * at all.
  */
 .house-strip {
   position: absolute;
@@ -789,7 +790,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   display: flex;
   width: max-content;
   height: 100%;
-  animation: houseStrip 88s linear infinite;
+  animation: houseStrip 40s linear infinite;
 }
 .house-strip-frame {
   position: relative;
