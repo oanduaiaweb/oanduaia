@@ -165,7 +165,52 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
   ],
+  /*
+   * Ordered as a walk through the house: the fire first, then the room read from four
+   * corners, then the sleeping box from outside, from the bed, and at night, and the
+   * washroom last.
+   */
   metsamaja: [
+    {
+      src: '/galerii/metsamaja/kamin.jpeg',
+      alt: {
+        et: 'Kamin vanast lauast seina ees, tohust korv puudega ja lambanahk põrandal',
+        en: 'The fireplace against its reclaimed-timber breast, a birch-bark basket of logs and a sheepskin on the floor',
+        ru: 'Камин у стены из состаренного дерева, берестяная корзина с дровами и овчина на полу',
+      },
+    },
+    {
+      src: '/galerii/metsamaja/elutuba-kamin.webp',
+      alt: {
+        et: 'Elutuba lõõmava kaminaga, türkiissinised tugitoolid akna all ja vein laual',
+        en: 'The living room with the fire lit, teal recliners at the window and wine on the table',
+        ru: 'Гостиная с горящим камином, бирюзовые кресла у окна и вино на столе',
+      },
+    },
+    {
+      src: '/galerii/metsamaja/elutuba-ulevalt.webp',
+      alt: {
+        et: 'Kogu elutuba ülalt: kööginurk, kamin ja ruuduline vaip',
+        en: 'The whole living room from above — the kitchen corner, the fire and the checked rug',
+        ru: 'Вся гостиная сверху — кухонный угол, камин и клетчатый ковёр',
+      },
+    },
+    {
+      src: '/galerii/metsamaja/elutuba-diivan.webp',
+      alt: {
+        et: 'Tepitud diivan lambanahkadega, sulgedest unenäopüüdja ja kööginurk taga',
+        en: 'The buttoned sofa under sheepskins, a feather dreamcatcher and the kitchen counter behind',
+        ru: 'Стёганый диван с овчинами, ловец снов из перьев и кухня позади',
+      },
+    },
+    {
+      src: '/galerii/metsamaja/elutuba-rippkiik.webp',
+      alt: {
+        et: 'Rippkiik akna all, tugitool kamina ees ja uks murule',
+        en: 'The hanging chair at the window, an armchair by the fire and the door onto the lawn',
+        ru: 'Подвесное кресло у окна, кресло у камина и дверь на газон',
+      },
+    },
     {
       src: '/galerii/metsamaja/magamistuba.jpeg',
       alt: {
@@ -175,11 +220,27 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
-      src: '/galerii/metsamaja/kamin.jpeg',
+      src: '/galerii/metsamaja/magamistuba-sees.webp',
       alt: {
-        et: 'Kamin vanast lauast seina ees, tohust korv puudega ja lambanahk põrandal',
-        en: 'The fireplace against its reclaimed-timber breast, a birch-bark basket of logs and a sheepskin on the floor',
-        ru: 'Камин у стены из состаренного дерева, берестяная корзина с дровами и овчина на полу',
+        et: 'Voodi palkseinte vahel, valgustatud pullipea peatsis',
+        en: 'The bed between the log walls, a lit bull’s head above the headboard',
+        ru: 'Кровать между бревенчатыми стенами, подсвеченная голова быка над изголовьем',
+      },
+    },
+    {
+      src: '/galerii/metsamaja/magamistuba-ohtul.webp',
+      alt: {
+        et: 'Sama voodi õhtul, ainus valgus pullipea silmis',
+        en: 'The same bed at night, the only light in the bull’s eyes',
+        ru: 'Та же кровать вечером, единственный свет — в глазах быка',
+      },
+    },
+    {
+      src: '/galerii/metsamaja/tualett.webp',
+      alt: {
+        et: 'Valge plaaditud tualettruum kraanikausi ja peegliga',
+        en: 'The white-tiled washroom with basin and mirror',
+        ru: 'Санузел в белой плитке с раковиной и зеркалом',
       },
     },
   ],
