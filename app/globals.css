@@ -8,6 +8,8 @@
   --bark:    #2a3020;
   --cream:   #faf7f0;
   --gold:    #b8a870;
+  /* Near-black, for type that has to hold over a photograph. */
+  --ink:     #0e1108;
 
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-sans:    var(--font-jost), -apple-system, "Helvetica Neue", sans-serif;
@@ -1757,9 +1759,9 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  * behind it that softness becomes a legibility problem, and it varies by house — pale sky
  * behind Saunamaja, bright roof behind Metsamaja, dark water behind Tiigimaja.
  *
- * So everything here goes to bark, the darkest ink on the site, at full strength. The
- * hierarchy is carried by size, weight and letter-spacing instead of by tint, which
- * survives any background; tint does not.
+ * So everything here goes to `--ink`, a near-black kept fractionally warm so it still
+ * belongs to the palette. The hierarchy is carried by size, weight and letter-spacing
+ * instead of by tint, which survives any background; tint does not.
  */
 .avail-panel .avail-label,
 .avail-panel .avail-month-name,
@@ -1777,16 +1779,16 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-panel .avail-select,
 .avail-panel .avail-arrow,
 .avail-panel .avail-day {
-  color: var(--bark);
+  color: var(--ink);
   opacity: 1;
 }
 /* Sold and past nights still have to read as unavailable, so they keep a step back —
-   but from bark, not from fern, so they are dimmed rather than washed out. */
-.avail-panel .avail-day.is-taken { color: var(--bark); opacity: 0.5; }
-.avail-panel .avail-day.is-past { color: var(--bark); opacity: 0.38; }
+   but from the near-black, so they are dimmed rather than washed out. */
+.avail-panel .avail-day.is-taken { color: var(--ink); opacity: 0.55; }
+.avail-panel .avail-day.is-past { color: var(--ink); opacity: 0.42; }
 .avail-panel .avail-day.is-picked { color: var(--linen); opacity: 1; }
 .avail-panel .avail-outof,
-.avail-panel .avail-nights { color: var(--bark); }
+.avail-panel .avail-nights { color: var(--ink); }
 .avail-panel .avail-arrow:disabled { opacity: 0.3; }
 
 /* A stronger halo to match. Darker ink over a photograph needs more separation, not less. */
