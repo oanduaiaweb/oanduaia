@@ -1647,10 +1647,18 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--fern);
   opacity: 0.75;
 }
-.avail-swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
-.avail-swatch--free   { border: 1px solid rgba(90,110,80,0.35); }
-.avail-swatch--taken  { background: var(--sage); opacity: 0.45; }
-.avail-swatch--picked { background: var(--moss); }
+/* Solid and full strength. At 10px and 45% these vanished over a photograph, and the
+   legend is the one thing on the panel whose whole job is to be read at a glance. */
+.avail-swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+  display: inline-block;
+  border: 1px solid rgba(14,17,8,0.35);
+}
+.avail-swatch--free   { background: rgba(252,250,245,0.75); }
+.avail-swatch--taken  { background: #9aae86; }
+.avail-swatch--picked { background: var(--moss); border-color: var(--moss); }
 
 .avail-turnover {
   font-family: var(--font-sans);
@@ -1784,7 +1792,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 /* Sold and past nights still have to read as unavailable, so they keep a step back —
    but from the near-black, so they are dimmed rather than washed out. */
-.avail-panel .avail-day.is-taken { color: var(--ink); opacity: 0.55; }
+.avail-panel .avail-day.is-taken {
+  color: var(--ink);
+  opacity: 1;
+  background: rgba(154,174,134,0.62);
+  text-decoration-color: rgba(14,17,8,0.65);
+}
 .avail-panel .avail-day.is-past { color: var(--ink); opacity: 0.42; }
 .avail-panel .avail-day.is-picked { color: var(--linen); opacity: 1; }
 .avail-panel .avail-outof,
