@@ -2534,10 +2534,18 @@ body.gallery-page .nav-social { text-shadow: none; }
    * The hero copy still clears the bottom with room to spare.
    */
   .hero {
-    padding: 3.2rem var(--section-h) 1.6rem;
-    height: 76svh;
-    min-height: 520px;
+    /*
+     * 82svh rather than 76: the copy block is bottom-anchored and already sat 25px off
+     * the edge, so there was nowhere left inside the old box to move it. A taller hero
+     * carries it further down the screen and keeps the clearance. It costs a little of
+     * the photograph's width to the crop, which is the trade for the position.
+     */
+    padding: 3.2rem var(--section-h) 1.1rem;
+    height: 82svh;
+    min-height: 540px;
   }
+  /* Wraps earlier, so the line still holds when the page is zoomed in. */
+  .hero-desc { max-width: 30ch; }
   /*
    * The desktop scrim is lightest across its middle, which is where the copy now falls in
    * the shorter phone box — the headline was sitting on bright grass. This one darkens the
