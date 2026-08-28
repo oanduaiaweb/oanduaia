@@ -855,6 +855,9 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  */
 .photo-strip--light { --strip-pass: 120s; }
 
+/* Slow, because these are photographs to look at rather than a texture to feel. */
+.photo-strip--plain { --strip-pass: 110s; }
+
 /*
  * The light section needs the opposite scrim: a linen veil dense enough that moss-green
  * body copy at 300 weight still reads over a photograph. 0.86 leaves the subjects as a
@@ -892,6 +895,38 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
         rgba(240,235,224,0.92) 84%,
         var(--linen) 100%);
   }
+}
+
+/*
+ * The food ribbon. No veil — the photographs are the point here, not the ground, and a
+ * ghosted charcuterie board sells nothing. Only the two ends fade, so the band has no
+ * hard edge where it meets the page. Narrower frames than the background strips, so
+ * more of the year is on screen at once.
+ */
+.photo-strip--plain .photo-strip-frame {
+  width: 26vw;
+  max-width: 400px;
+  min-width: 210px;
+}
+.photo-strip--plain .photo-strip-scrim {
+  background: linear-gradient(90deg,
+    var(--linen) 0%,
+    rgba(240,235,224,0) 10%,
+    rgba(240,235,224,0) 90%,
+    var(--linen) 100%);
+}
+.food-band {
+  position: relative;
+  height: 260px;
+  margin-top: 4rem;
+  /* Full-bleed out of the capped, centred section it sits in. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  .food-band { height: 170px; margin-top: 2.6rem; }
 }
 
 /* Full-bleed wrapper for the capped, centred intro section. */

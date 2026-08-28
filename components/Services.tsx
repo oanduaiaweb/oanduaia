@@ -4,6 +4,8 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import Image from 'next/image'
 import { T } from '@/lib/translations'
 import { SERVICE_IMAGES } from '@/lib/services'
+import PhotoStrip from '@/components/PhotoStrip'
+import { FOOD_STRIP } from '@/lib/strips'
 
 export default function Services() {
   const { lang } = useLanguage()
@@ -41,6 +43,14 @@ export default function Services() {
             <a href="mailto:info@oanduaia.ee" className="service-arrow">{t.arrow[lang]}</a>
           </div>
         ))}
+      </div>
+
+      {/*
+        The rest of the table, under the two cards rather than behind them: the cards
+        have a solid ground, so a background strip would only show in the margins.
+      */}
+      <div className="food-band">
+        <PhotoStrip photos={FOOD_STRIP} reverse variant="plain" />
       </div>
     </section>
   )

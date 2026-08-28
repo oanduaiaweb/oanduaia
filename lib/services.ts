@@ -12,25 +12,26 @@ export type ServiceImage = {
 
 export const SERVICE_IMAGES: ServiceImage[] = [
   {
-    // Breakfast & lunch. Mikk's photograph: the table already laid — juice, bread,
-    // pastries, fruit — and the host lighting the candles before anyone sits down.
-    // Square original, so the focus favours the table over the ceiling.
-    src: '/galerii/hommikulaud.jpeg',
-    focus: '50% 58%',
+    // Breakfast & lunch. The buffet as guests actually meet it — the host behind the
+    // table, cakes and berry desserts already out. Landscape original, no crop needed.
+    src: '/galerii/toit/buffet-perenaine.jpeg',
+    focus: '50% 50%',
     alt: {
-      et: 'Perenaine süütab küünlad kaetud hommikulaual palkmaja söögitoas',
-      en: 'The host lighting the candles at the laid breakfast table in the log dining room',
-      ru: 'Хозяйка зажигает свечи за накрытым столом к завтраку в бревенчатой столовой',
+      et: 'Perenaine kaetud puhvetilaua taga väliköögis, koogid ja marjadesserdid ees',
+      en: 'The host behind the laid buffet in the outdoor kitchen, cakes and berry desserts to the front',
+      ru: 'Хозяйка за накрытым столом в летней кухне, торты и ягодные десерты впереди',
     },
   },
   {
-    // Festive long table
-    src: '/galerii/065.jpeg',
-    focus: '50% 50%',
+    // The festive long table, lit. Portrait original cropped to the card's 4:3, so the
+    // focus sits high enough to keep the jasmine and the table running away — lower
+    // down the crop was all napkin rings and no length.
+    src: '/galerii/toit/pidulik-pikk-laud.jpeg',
+    focus: '50% 38%',
     alt: {
-      et: 'Pidulikult kaetud pikk laud kristallklaaside ja lilledega',
-      en: 'The long table laid for a dinner, with crystal glasses and flowers',
-      ru: 'Праздничный длинный стол с хрусталём и цветами',
+      et: 'Küünlavalgel pikk laud messingist salvrätirõngaste ja jasmiinikimpudega',
+      en: 'The long table by candlelight, with brass napkin rings and jars of jasmine',
+      ru: 'Длинный стол при свечах, латунные кольца для салфеток и букеты жасмина',
     },
   },
 ]

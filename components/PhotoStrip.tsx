@@ -18,8 +18,11 @@ export default function PhotoStrip({
   photos: string[]
   /** Right to left instead of left to right. */
   reverse?: boolean
-  /** Which section colour the strip has to disappear into at its edges. */
-  variant?: 'dark' | 'light'
+  /**
+   * Which section colour the strip has to disappear into at its edges. `plain` also
+   * drops the veil: use it where the photographs are the point rather than the ground.
+   */
+  variant?: 'dark' | 'light' | 'plain'
 }) {
   const frames = [...photos, ...photos]
 

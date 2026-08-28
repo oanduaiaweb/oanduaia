@@ -48,3 +48,25 @@ export const DETAIL_STRIP: string[] = [
   '/galerii/084.jpeg',
   '/galerii/089.jpeg',
 ]
+
+/**
+ * The ribbon under the food cards — the table through a year, travelling right to left.
+ *
+ * Unlike the other two this one is not veiled: it is shown, not suggested. Food is the
+ * thing being sold on that part of the page, and a ghosted charcuterie board sells
+ * nothing. Summer and winter alternate deliberately, because the question the section
+ * has to answer is "what is this like in February".
+ */
+export const FOOD_STRIP: string[] = [
+  '/galerii/toit/marjadesserdid.jpeg',
+  '/galerii/toit/valikook-ohtul.jpeg',
+  '/galerii/toit/talvine-suupistelaud.jpeg',
+  '/galerii/toit/roheline-laud.jpeg',
+  '/galerii/toit/tee-lumes.jpeg',
+  '/galerii/toit/pergolalaud.jpeg',
+  '/galerii/toit/viinamarjad-ja-klaasid.jpeg',
+  '/galerii/toit/roosa-vein.jpeg',
+  '/galerii/toit/kuldne-laudlina.jpeg',
+  '/galerii/toit/laud-tiigi-aares.jpeg',
+  '/galerii/toit/klaasid-ja-lilled.jpeg',
+]
