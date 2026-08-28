@@ -1164,7 +1164,49 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   padding: 0 var(--section-h);
 }
 .trails-header {
+  margin-bottom: 0;
+}
+
+/*
+ * The forest behind the forest heading. Full-bleed, and dark enough that linen display
+ * type and sage body copy keep the contrast they have on flat bark — the photograph is
+ * the ground here, not the subject; the subject is two sentences about being outside.
+ *
+ * Both ends fade to solid bark so the band has no edge against the section it sits in.
+ */
+.trails-band {
+  position: relative;
+  padding: 5.5rem 0 6rem;
   margin-bottom: 5rem;
+  overflow: hidden;
+}
+.trails-band-bg { position: absolute; inset: 0; z-index: 0; }
+.trails-band-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    var(--bark) 0%,
+    rgba(42,48,32,0.88) 26%,
+    rgba(42,48,32,0.88) 74%,
+    var(--bark) 100%);
+}
+/*
+ * The body copy is the weak link, not the headline: small, light-weight and sage on a
+ * frame of high-frequency foliage. A shadow rather than more scrim, so the trees stay
+ * legible as trees — the same trade the hero makes over its photographs.
+ */
+.trails-band .trails-heading,
+.trails-band .trails-desc,
+.trails-band .section-label { text-shadow: 0 1px 14px rgba(10,14,6,0.75), 0 1px 3px rgba(10,14,6,0.5); }
+.trails-band-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--section-h);
+}
+@media (max-width: 700px) {
+  .trails-band { padding: 3.6rem 0 4rem; margin-bottom: 3.4rem; }
 }
 .trails-desc {
   margin-top: 2.2rem;

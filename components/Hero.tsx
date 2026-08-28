@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
+import { scrollToId } from '@/lib/scrollToId'
 import { HERO_SLIDES, HERO_HOLD, HERO_FADE, slideSizes } from '@/lib/hero'
 import { estoniaOutline } from '@/components/SocialRow'
 import { SOCIAL } from '@/lib/social'
@@ -11,7 +12,7 @@ import { SOCIAL } from '@/lib/social'
 function scrollTo(id: string) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    scrollToId(id)
   }
 }
 

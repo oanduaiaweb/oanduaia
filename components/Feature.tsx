@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
+import { scrollToId } from '@/lib/scrollToId'
 import { HOUSE_IMAGES } from '@/lib/houses'
 import { HOUSE_GALLERIES } from '@/lib/housePhotos'
 import PhotoStrip from '@/components/PhotoStrip'
@@ -12,7 +13,7 @@ import { HOUSE_STRIP } from '@/lib/strips'
 function scrollTo(id: string) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    scrollToId(id)
   }
 }
 
