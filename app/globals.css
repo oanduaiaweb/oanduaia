@@ -48,7 +48,7 @@ body {
 }
 
 /* Scroll offset so section headings aren't hidden under sticky nav */
-#lugu, #majad, #toit, #loodus, #broneeri, #vorm {
+#lugu, #majad, #toit, #loodus, #broneeri, #vorm, #pildid {
   scroll-margin-top: 5.5rem;
 }
 

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import { HOUSE_IMAGES } from '@/lib/houses'
+import { HOUSE_GALLERIES } from '@/lib/housePhotos'
 
 function scrollTo(id: string) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -76,7 +77,14 @@ export default function Feature() {
                 <Link href={`/${lang}/majad/${house.slug}`} className="feature-house-link">
                   {T.housePage.more[lang]}
                 </Link>
-                <Link href={`/${lang}/gallery#${house.slug}`} className="feature-gallery-link">
+                <Link
+                  href={
+                    HOUSE_GALLERIES[house.slug as keyof typeof HOUSE_GALLERIES]?.length
+                      ? `/${lang}/majad/${house.slug}#pildid`
+                      : `/${lang}/gallery#${house.slug}`
+                  }
+                  className="feature-gallery-link"
+                >
                   {t.galleryLink[lang]}
                 </Link>
               </div>

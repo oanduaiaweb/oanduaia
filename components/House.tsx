@@ -54,9 +54,18 @@ export default function House({ slug }: { slug: string }) {
               <li key={item.et}>{item[lang].replace(/ · /g, ', ')}</li>
             ))}
           </ul>
-          <Link href={`/${lang}/gallery#${slug}`} className="house-gallery-link">
-            {f.galleryLink[lang]}
-          </Link>
+          {/*
+            "Vaata pilte" promises this house's pictures. When the house has its own, that
+            is where it goes — sending someone to a 93-photo gallery of the whole property
+            with one cover shot highlighted is not what the button says.
+          */}
+          {photos.length > 0 ? (
+            <a href="#pildid" className="house-gallery-link">{f.galleryLink[lang]}</a>
+          ) : (
+            <Link href={`/${lang}/gallery#${slug}`} className="house-gallery-link">
+              {f.galleryLink[lang]}
+            </Link>
+          )}
         </div>
 
         <aside className="house-rates">
@@ -83,7 +92,7 @@ export default function House({ slug }: { slug: string }) {
         Every photograph is shown whole.
       */}
       {photos.length > 0 && (
-        <section className="house-photos" aria-label={t.photos[lang]}>
+        <section className="house-photos" id="pildid" aria-label={t.photos[lang]}>
           <p className="house-photos-label">{t.photos[lang]}</p>
           <div className="house-photos-grid">
             {photos.map(ph => (
