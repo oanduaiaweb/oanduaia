@@ -27,6 +27,14 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
+      src: '/galerii/saunamaja/jaaauk-talvel.webp',
+      alt: {
+        et: 'Jääauk tiigis saunamaja ees pakasepäeval, käsipuu vette',
+        en: 'An ice hole cut in the pond before the sauna house on a frozen day, a handrail leading in',
+        ru: 'Прорубь в пруду перед банным домом в мороз, поручень к воде',
+      },
+    },
+    {
       src: '/galerii/saunamaja/elutuba.jpeg',
       alt: {
         et: 'Avar elutuba lambanahkadega diivanil, tammelehtedega lühter ja paeplaatidest põrand',

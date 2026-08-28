@@ -147,6 +147,14 @@ const RAW_2026: [string, string, string, string][] = [
 ]
 
 /**
+ * One-offs, newest first. Anything added singly lands here rather than growing one of
+ * the dated batches below, so the front of the gallery stays the most recent work.
+ */
+const RAW_LATEST: [string, string, string, string][] = [
+  ['saunamaja/jaaauk-talvel.webp', 'Jääauk tiigis saunamaja ees pakasepäeval, käsipuu vette', 'An ice hole cut in the pond before the sauna house on a frozen day, a handrail leading in', 'Прорубь в пруду перед банным домом в мороз, поручень к воде'],
+]
+
+/**
  * The table, added 28 Aug 2026. Same shape; the name carries the `toit/` folder.
  *
  * These also run as the ribbon under the food cards, and the two card photographs are
@@ -169,8 +177,13 @@ const RAW_TOIT: [string, string, string, string][] = [
   ['toit/klaasid-ja-lilled', 'Kaks klaasi tõstetud suure lillekimbu kõrval, lumi akna taga', 'Two glasses raised beside a tall arrangement of flowers, snow through the window', 'Два бокала подняты у большого букета, снег за окном'],
 ]
 
-export const GALLERY_PHOTOS: GalleryPhoto[] = [...RAW_TOIT, ...RAW_2026, ...RAW].map(([n, et, en, ru]) => ({
-  src: `/galerii/${n}.jpeg`,
+/**
+ * `.jpeg` is assumed, because all but a handful of these are. Give the name its own
+ * extension — 'saunamaja/jaaauk-talvel.webp' — and that wins instead. Without this a
+ * .webp entry silently became a 404 pointing at a .jpeg that was never there.
+ */
+export const GALLERY_PHOTOS: GalleryPhoto[] = [...RAW_LATEST, ...RAW_TOIT, ...RAW_2026, ...RAW].map(([n, et, en, ru]) => ({
+  src: `/galerii/${n.includes('.') ? n : `${n}.jpeg`}`,
   alt: { et, en, ru },
 }))
 
