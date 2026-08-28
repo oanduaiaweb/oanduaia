@@ -126,9 +126,14 @@ nav.nav-scrolled .nav-mark svg { opacity: 0; }
 /* Faded out means gone, not merely invisible — an unseen click target is a trap. */
 nav.nav-scrolled .nav-mark { pointer-events: none; }
 
+/*
+ * The gap is smaller than it looks: every item now carries the box's padding whether
+ * the box is drawn or not, so nothing shifts sideways when one lights up. 1.2rem of
+ * gap plus 0.85rem of padding either side is the 2.9rem the row read as before.
+ */
 .nav-links {
   display: flex;
-  gap: 2.8rem;
+  gap: 1.2rem;
   list-style: none;
   opacity: 0;
   animation: fadeUp 1.2s var(--ease-expo) 0.5s forwards;
@@ -142,11 +147,26 @@ nav.nav-scrolled .nav-mark { pointer-events: none; }
   color: var(--linen);
   text-decoration: none;
   opacity: 0.95;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, border-color 0.3s, background 0.3s;
   text-shadow: 0 1px 12px rgba(0,0,0,0.8);
+  border: 1px solid transparent;
+  padding: 0.38rem 0.85rem;
 }
 nav.nav-scrolled .nav-links a { text-shadow: none; opacity: 0.72; }
 .nav-links a:hover { opacity: 1 !important; }
+
+/*
+ * The box marks where you are, and nothing else. It used to sit permanently around
+ * Galerii, which read as "this is the important one" rather than "you are here" — so
+ * on the gallery page the marker and the decoration were the same thing and said
+ * nothing. Now every item can wear it and only the current one does.
+ */
+.nav-links a.is-active,
+.nav-gallery-btn.is-active {
+  border-color: rgba(200,212,184,0.45);
+  background: rgba(200,212,184,0.06);
+  opacity: 1 !important;
+}
 
 /* Nav right group */
 .nav-right {
@@ -157,14 +177,16 @@ nav.nav-scrolled .nav-links a { text-shadow: none; opacity: 0.72; }
 }
 
 /* Gallery button in nav */
+/* Sized and spaced exactly like the five links now, because it is one of them. */
 .nav-gallery-btn {
   font-family: var(--font-sans);
-  font-size: var(--fs-2xs);
+  font-size: var(--fs-xs);
+  font-weight: 300;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--linen);
   text-decoration: none;
-  border: 1px solid rgba(200,212,184,0.28);
+  border: 1px solid transparent;
   padding: 0.38rem 0.85rem;
   opacity: 0;
   white-space: nowrap;
@@ -173,11 +195,7 @@ nav.nav-scrolled .nav-links a { text-shadow: none; opacity: 0.72; }
   text-shadow: 0 1px 10px rgba(0,0,0,0.7);
 }
 nav.nav-scrolled .nav-gallery-btn { text-shadow: none; }
-.nav-gallery-btn:hover {
-  opacity: 1 !important;
-  border-color: rgba(200,212,184,0.6);
-  background: rgba(200,212,184,0.08);
-}
+.nav-gallery-btn:hover { opacity: 1 !important; }
 
 /* Social icons */
 .nav-socials {
@@ -2671,7 +2689,7 @@ body.gallery-page .nav-social { text-shadow: none; }
 @media (max-width: 900px) {
   :root { --section-v: 6.5rem; --section-h: 2.5rem; --label-gap: 1.8rem; }
 
-  .nav-links { gap: 2rem; }
+  .nav-links { gap: 0.5rem; }
 
   .intro-section { grid-template-columns: 1fr; gap: 2.8rem; }
 

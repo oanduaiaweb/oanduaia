@@ -35,16 +35,65 @@ function smoothScroll(id: string, then?: () => void) {
 
 export default function Nav() {
   const { lang, setLang } = useLanguage()
+  const pathname = usePathname()
+  const isHome = pathname === `/${lang}`
+  const home = `/${lang}`
+  const onGallery = pathname === `/${lang}/gallery`
+  /*
+   * A house page is a page about the houses, so Majad stays lit while you are on one —
+   * otherwise following a house from the menu unlights the thing you just followed.
+   */
+  const onHouse = pathname.startsWith(`/${lang}/majad/`)
+
   const [scrolled, setScrolled] = useState(false)
+  /** Which section the reader is in, on the home page. Null in the hero, and off it. */
+  const [activeId, setActiveId] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
   const langRef = useRef<HTMLDivElement>(null)
 
+  /**
+   * One scroll listener does both jobs: condensing the bar, and working out which
+   * section the reader is actually in so its name can be boxed.
+   *
+   * The test is which section has crossed a line at 45% of the viewport, not which is
+   * merely visible — with tall sections two are on screen at once for most of a scroll,
+   * and "topmost visible" flickers between them at every boundary.
+   *
+   * `getBoundingClientRect`, not `offsetTop`: #lugu now sits inside the positioned
+   * .intro-band, so its offsetTop is a few pixels, not its position on the page.
+   */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60)
+      if (!isHome) return
+      const line = window.scrollY + window.innerHeight * 0.45
+      let current: string | null = null
+      for (const l of links) {
+        const el = document.getElementById(l.id)
+        if (el && el.getBoundingClientRect().top + window.scrollY <= line) current = l.id
+      }
+      setActiveId(current)
+    }
+    /*
+     * Three times, not once. Landing on /et#toit, the browser performs its jump after
+     * mount, so a single check on mount reads scrollY 0 — which left the bar in its
+     * transparent hero state, linen text on a linen section, and nothing boxed.
+     */
+    onScroll()
+    const raf = requestAnimationFrame(onScroll)
+    const t = setTimeout(onScroll, 400)
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    window.addEventListener('resize', onScroll)
+    window.addEventListener('hashchange', onScroll)
+    return () => {
+      cancelAnimationFrame(raf)
+      clearTimeout(t)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      window.removeEventListener('hashchange', onScroll)
+    }
+  }, [isHome])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -67,9 +116,6 @@ export default function Nav() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  const pathname = usePathname()
-  const isHome = pathname === `/${lang}`
-  const home = `/${lang}`
 
   const close = () => setMenuOpen(false)
   const current = LANGS.find(l => l.code === lang)!
@@ -102,6 +148,16 @@ export default function Nav() {
                 <a
                   href={isHome ? `#${l.id}` : `${home}#${l.id}`}
                   onClick={isHome ? smoothScroll(l.id) : undefined}
+                  className={
+                    (isHome && activeId === l.id) || (onHouse && l.id === 'majad')
+                      ? 'is-active'
+                      : undefined
+                  }
+                  aria-current={
+                    (isHome && activeId === l.id) || (onHouse && l.id === 'majad')
+                      ? 'true'
+                      : undefined
+                  }
                 >
                   {T.nav[l.key][lang]}
                 </a>
@@ -109,7 +165,11 @@ export default function Nav() {
             ))}
           </ul>
 
-          <Link href={`${home}/gallery`} className="nav-gallery-btn">
+          <Link
+            href={`${home}/gallery`}
+            className={`nav-gallery-btn${onGallery ? ' is-active' : ''}`}
+            aria-current={onGallery ? 'page' : undefined}
+          >
             {T.nav.galerii[lang]}
           </Link>
 
