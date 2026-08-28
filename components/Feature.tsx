@@ -88,7 +88,7 @@ export default function Feature() {
 
       <div className="feature-outro">
         <p className="feature-price-note">{t.priceNote[lang]}</p>
-        <a href="#saadavus" className="feature-cta" onClick={scrollTo('saadavus')}>{t.cta[lang]}</a>
+        <a href="#broneeri" className="feature-cta" onClick={scrollTo('broneeri')}>{t.cta[lang]}</a>
       </div>
     </section>
   )

@@ -46,7 +46,7 @@ body {
 }
 
 /* Scroll offset so section headings aren't hidden under sticky nav */
-#lugu, #majad, #toit, #loodus, #saadavus, #broneeri {
+#lugu, #majad, #toit, #loodus, #broneeri, #vorm {
   scroll-margin-top: 5.5rem;
 }
 
@@ -1071,6 +1071,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-align: center;
   background: var(--linen);
 }
+.booking-section--form { padding-top: calc(var(--section-v) * 0.42); }
 .booking-eyebrow {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);

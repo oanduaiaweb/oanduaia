@@ -55,19 +55,9 @@ export default function Booking() {
     }
   }
 
+  // The intro to all of this now lives above the calendar; this section is just the message.
   return (
-    <section className="booking-section" id="broneeri">
-      <p className="booking-eyebrow">{t.label[lang]}</p>
-      <h2 className="booking-heading reveal">
-        {t.h1[lang]} <em>{t.h2em[lang]}</em>
-      </h2>
-      <p className="booking-sub reveal reveal-delay-1">{t.sub[lang]}</p>
-      <p className="booking-times reveal reveal-delay-1">
-        {t.times[lang]}
-        <span className="booking-terms">{t.terms[lang]}</span>
-        <span className="booking-pets">{t.pets[lang]}</span>
-        <span className="booking-pets booking-pets--channel">{t.petsDirect[lang]}</span>
-      </p>
+    <section className="booking-section booking-section--form" id="vorm">
 
       {sent ? (
         <div className="booking-success">

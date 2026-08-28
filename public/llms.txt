@@ -73,9 +73,9 @@ Published in Estonian, English and Russian, each on its own URL:
 https://www.oanduaia.ee/sitemap.xml
 
 ## Availability
-Live per-house availability is shown on the site at https://www.oanduaia.ee/et#saadavus
-(also /en#saadavus and /ru#saadavus). The calendar mirrors the Booking.com calendar and
-is refreshed roughly every half hour, so it is close to current but not instantaneous.
+Live per-house availability is shown on the site at https://www.oanduaia.ee/et#broneeri
+(also /en#broneeri and /ru#broneeri). The hosts keep that calendar themselves; where a
+Booking.com feed is connected it is merged in as well, refreshed roughly every half hour.
 Choosing dates there produces an indicative price and sends an enquiry; a stay is only
 confirmed once we reply by email.
 

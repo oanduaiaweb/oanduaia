@@ -32,6 +32,7 @@ function weekdayInitials(lang: Lang) {
 /** Estonian and English take two forms, Russian three. */
 function nights(n: number, lang: Lang) {
   const t = T.availability
+  const b = T.booking
   let word: string
   if (lang === 'ru') {
     const mod10 = n % 10
@@ -54,6 +55,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
   const { lang } = useLanguage()
   const { request } = useBookingDraft()
   const t = T.availability
+  const b = T.booking
 
   const [feed, setFeed] = useState<Feed | null>(null)
   const [failed, setFailed] = useState(false)
@@ -135,7 +137,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
       '',
     ].filter(Boolean).join('\n')
     request({ dates, message })
-    document.getElementById('broneeri')?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById('vorm')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const months = cursor
@@ -163,12 +165,23 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
   const atEnd = !!cursor && cursor.y * 12 + cursor.m >= limit.y * 12 + limit.m
 
   return (
-    <section className="avail-section" id="saadavus">
-      <p className="avail-eyebrow">{t.label[lang]}</p>
-      <h2 className="avail-heading reveal">
-        {t.h1[lang]} <em>{t.h2em[lang]}</em>
+    <section className="avail-section" id="broneeri">
+      {/*
+        The reservation intro used to sit below the calendar, introducing only the form.
+        It heads the whole block now: why you are here, the house rules, then the dates,
+        then the message. Moved wholesale rather than duplicated — the form keeps none of it.
+      */}
+      <p className="avail-eyebrow">{b.label[lang]}</p>
+      <h2 className="booking-heading reveal">
+        {b.h1[lang]} <em>{b.h2em[lang]}</em>
       </h2>
-      <p className="avail-sub reveal reveal-delay-1">{t.sub[lang]}</p>
+      <p className="booking-sub reveal reveal-delay-1">{b.sub[lang]}</p>
+      <p className="booking-times reveal reveal-delay-1">
+        {b.times[lang]}
+        <span className="booking-terms">{b.terms[lang]}</span>
+        <span className="booking-pets">{b.pets[lang]}</span>
+        <span className="booking-pets booking-pets--channel">{b.petsDirect[lang]}</span>
+      </p>
 
       <div className="avail-panel reveal reveal-delay-2">
         <div className="avail-controls">

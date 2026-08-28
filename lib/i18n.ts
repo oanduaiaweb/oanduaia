@@ -115,7 +115,7 @@ export function houseJsonLd(lang: Lang, slug: string) {
     ).map(n => ({ '@type': 'LocationFeatureSpecification', name: n, value: true })),
     potentialAction: {
       '@type': 'ReserveAction',
-      target: `${SITE}/${lang}/majad/${slug}#saadavus`,
+      target: `${SITE}/${lang}/majad/${slug}#broneeri`,
     },
     priceRange: from === to ? `€${from}` : `€${from}–€${to}`,
   }
