@@ -780,19 +780,19 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  * on a phone, where a frame is most of the screen, you could not tell it was moving
  * at all.
  */
-.house-strip {
+.photo-strip {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
 }
-.house-strip-track {
+.photo-strip-track {
   display: flex;
   width: max-content;
   height: 100%;
-  animation: houseStrip 40s linear infinite;
+  animation: photoStrip 40s linear infinite;
 }
-.house-strip-frame {
+.photo-strip-frame {
   position: relative;
   flex: none;
   width: 34vw;
@@ -800,7 +800,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   min-width: 260px;
   height: 100%;
 }
-@keyframes houseStrip {
+@keyframes photoStrip {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
 }
@@ -809,7 +809,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  * the brightest thing in the block, and fade both ends into the section colour so the
  * strip has no visible edge where it meets the bands above and below.
  */
-.house-strip-scrim {
+.photo-strip-scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -825,9 +825,55 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
       rgba(42,48,32,0.72) 78%,
       var(--bark) 100%);
 }
+/* Right to left, for the strip that runs against the one below it. */
+.photo-strip--reverse .photo-strip-track { animation-direction: reverse; }
+
+/*
+ * The light section needs the opposite scrim: a linen veil dense enough that moss-green
+ * body copy at 300 weight still reads over a photograph. 0.86 leaves the subjects as a
+ * suggestion, which is all they are here.
+ */
+.photo-strip--light .photo-strip-scrim {
+  background:
+    linear-gradient(90deg,
+      var(--linen) 0%,
+      rgba(240,235,224,0) 22%,
+      rgba(240,235,224,0) 78%,
+      var(--linen) 100%),
+    linear-gradient(180deg,
+      var(--linen) 0%,
+      rgba(240,235,224,0.86) 20%,
+      rgba(240,235,224,0.86) 80%,
+      var(--linen) 100%);
+}
+
+/*
+ * On a phone the copy runs the full width, so it sits over the middle of the frames
+ * rather than beside them, and the same veil that read well on desktop was not enough.
+ */
+@media (max-width: 700px) {
+  .photo-strip--light .photo-strip-scrim {
+    background:
+      linear-gradient(90deg,
+        var(--linen) 0%,
+        rgba(240,235,224,0) 14%,
+        rgba(240,235,224,0) 86%,
+        var(--linen) 100%),
+      linear-gradient(180deg,
+        var(--linen) 0%,
+        rgba(240,235,224,0.92) 16%,
+        rgba(240,235,224,0.92) 84%,
+        var(--linen) 100%);
+  }
+}
+
+/* Full-bleed wrapper for the capped, centred intro section. */
+.intro-band { position: relative; overflow: hidden; }
+.intro-band > .intro-section { position: relative; z-index: 2; }
+
 /* Standing still, it is a photograph behind a heading; moving, it is a distraction. */
 @media (prefers-reduced-motion: reduce) {
-  .house-strip-track { animation: none; transform: translateX(-25%); }
+  .photo-strip-track { animation: none; transform: translateX(-25%); }
 }
 
 /* One band per house: photograph on one side, its own detail on the other.

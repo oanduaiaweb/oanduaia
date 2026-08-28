@@ -130,7 +130,7 @@ const RAW_2026: [string, string, string, string][] = [
   ['ilus-tiik', 'Vaikne tiik vesiroosidega suvel', 'The still pond with water lilies in summer', 'Тихий пруд с кувшинками летом'],
   ['puu-ja-majad', 'Vana puu murul, majad taga', 'An old tree on the lawn with the houses behind', 'Старое дерево на газоне, дома позади'],
   ['kivid-ja-tiik', 'Rändrahnud tiigi kaldal', 'Boulders along the edge of the pond', 'Валуны на берегу пруда'],
-  ['tiik-selge-vesi', 'Selge vesi tiigi madalas servas', 'Clear water at the shallow edge of the pond', 'Прозрачная вода у мелкого края пруда'],
+  ['tiik-selge-vesi', 'Õhtupäike puude vahelt üle vaikse tiigi', 'Evening sun through the trees across the still pond', 'Вечернее солнце сквозь деревья над тихим прудом'],
   ['ait-ja-saun', 'Vana ait ja saun muru serval', 'The old granary and sauna at the lawn’s edge', 'Старый амбар и сауна на краю газона'],
   ['metsamaja-kaugelt', 'Metsamaja üle muru metsa taustal', 'The Forest House across the lawn against the forest', 'Лесной дом через газон на фоне леса'],
   ['metsamaja-tagant', 'Metsamaja tagantvaade puude vahelt', 'The Forest House from behind, seen through the trees', 'Лесной дом сзади, сквозь деревья'],
@@ -142,7 +142,7 @@ const RAW_2026: [string, string, string, string][] = [
   ['valikook-istumine', 'Kaetud välisöögikoht pika puidust lauaga', 'The covered outdoor dining area with its long timber table', 'Крытая летняя столовая с длинным деревянным столом'],
   ['valikook', 'Väliköögi istumisala rippuvate lillede all', 'The outdoor kitchen seating beneath hanging flowers', 'Зона отдыха летней кухни под подвесными цветами'],
   ['kokteil', 'Kokteiliklaas tiigi kohal õhtupäikeses', 'A cocktail glass held above the pond in evening light', 'Бокал коктейля над прудом в вечернем свете'],
-  ['lilled', 'Punased lilled kiviktaimlas', 'Red flowers in the rockery', 'Красные цветы в каменистом саду'],
+  ['lilled', 'Lillad petuunikad puidust istutuskastis terrassil', 'Purple petunias in a timber planter on the deck', 'Фиолетовые петунии в деревянном ящике на террасе'],
   ['istumine-taevas', 'Välisistumisala avara sinise taeva all', 'The outdoor seating area under a wide blue sky', 'Зона отдыха под широким синим небом'],
 ]
 
