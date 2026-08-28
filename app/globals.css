@@ -102,16 +102,16 @@ nav.nav-scrolled .nav-logo { text-shadow: none; }
   margin-top: 0.65rem;
   display: block;
   color: var(--linen);
-  pointer-events: none;
   opacity: 0;
   animation: fadeUp 1.2s var(--ease-expo) 0.55s forwards;
 }
+.nav-mark:hover svg { opacity: 1; transform: translateY(-1px); }
 /* The logo carries a text-shadow over the photograph; the mark needs the same lift. */
 .nav-mark svg {
   display: block;
   filter: drop-shadow(0 1px 16px rgba(0,0,0,0.7));
   opacity: 0.94;
-  transition: opacity 0.35s var(--ease-smooth);
+  transition: opacity 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth);
 }
 /*
  * Gone once the header condenses. It belongs over the hero photograph, not over the linen
@@ -119,6 +119,8 @@ nav.nav-scrolled .nav-logo { text-shadow: none; }
  * on the svg rather than the span so it does not fight the entrance animation.
  */
 nav.nav-scrolled .nav-mark svg { opacity: 0; }
+/* Faded out means gone, not merely invisible — an unseen click target is a trap. */
+nav.nav-scrolled .nav-mark { pointer-events: none; }
 
 .nav-links {
   display: flex;

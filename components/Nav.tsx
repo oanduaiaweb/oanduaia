@@ -78,14 +78,21 @@ export default function Nav() {
     <>
       <nav className={`site-nav${scrolled ? ' nav-scrolled' : ''}`}>
         {/*
-          The wordmark and, under it, Estonia. Absolutely positioned so it cannot change
-          the height of a fixed header, and decorative rather than a link — the Google Maps
-          link already lives in the row on the right, and a second one inside the logo's
-          own corner would be a link nested beside a link.
+          The wordmark and, under it, Estonia. A sibling of the logo link rather than a
+          child of it, so it can be a link in its own right, and absolutely positioned so
+          it cannot change the height of a fixed header.
         */}
         <div className="nav-brand">
           <a href={home} className="nav-logo">Oanduaia</a>
-          <span className="nav-mark" aria-hidden="true">{SOCIAL_ICONS.maps(28)}</span>
+          <a
+            href={MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-mark"
+            aria-label="Google Maps"
+          >
+            {SOCIAL_ICONS.maps(28)}
+          </a>
         </div>
 
         <div className="nav-right">
