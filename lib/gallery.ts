@@ -146,10 +146,11 @@ const RAW_2026: [string, string, string, string][] = [
   ['kokteil', 'Kokteiliklaas tiigi kohal õhtupäikeses', 'A cocktail glass held above the pond in evening light', 'Бокал коктейля над прудом в вечернем свете'],
   ['lilled', 'Punased lilled kiviktaimlas', 'Red flowers in the rockery', 'Красные цветы в каменистом саду'],
   ['istumine-taevas', 'Välisistumisala avara sinise taeva all', 'The outdoor seating area under a wide blue sky', 'Зона отдыха под широким синим небом'],
-  ['tiigimaja-siseruum', 'Tiigimaja elutuba diivani ja suurte akendega', 'The Pond House living room with sofa and wide windows', 'Гостиная Прудового дома с диваном и большими окнами'],
-  ['tiigimaja-magamistuba', 'Tiigimaja magamistuba, aknad metsa poole', 'The Pond House bedroom with windows to the forest', 'Спальня Прудового дома с окнами в лес'],
-  ['tiigimaja-vannituba', 'Tiigimaja vannituba puidu ja kiviga', 'The Pond House bathroom in timber and stone', 'Ванная Прудового дома из дерева и камня'],
-  ['tiigimaja-kooginurk', 'Tiigimaja kööginurk gaasipliidi ja külmikuga', 'The Pond House kitchenette with hob and fridge', 'Кухонный уголок Прудового дома с плитой и холодильником'],
+  ['tiigimaja-siseruum', 'Tiigimaja elutuba rohelise diivani ja nikerdatud katusetalaga', 'The Pond House living room with its green sofa and carved roof beam', 'Гостиная Прудового дома с зелёным диваном и резной балкой'],
+  ['tiigimaja-kamin', 'Tiigimaja kamin ja klaasseinad metsa poole', 'The fireplace and forest-facing glass walls in the Pond House', 'Камин и стеклянные стены в лес в Прудовом доме'],
+  ['tiigimaja-kook', 'Tiigimaja köögitasapind gaasipliidi, avariiuli ja retrokülmikuga', 'The Pond House kitchen counter with gas hob, open shelf and retro fridge', 'Кухонная столешница Прудового дома с газовой плитой, полкой и ретро-холодильником'],
+  ['tiigimaja-magamistuba', 'Tiigimaja magamistuba põrandast laeni akendega niidule, pealuu palkseinal', 'The Pond House bedroom, floor-to-ceiling windows onto the meadow and a skull on the log wall', 'Спальня Прудового дома с окнами в пол на луг и черепом на бревенчатой стене'],
+  ['tiigimaja-vannituba', 'Tiigimaja vannituba graniidist valamulaua ja dušinurgaga tumedas puidus', 'The Pond House bathroom with a granite vanity and walk-in shower in dark timber', 'Ванная Прудового дома с гранитной столешницей и душевой в тёмном дереве'],
 ]
 
 export const GALLERY_PHOTOS: GalleryPhoto[] = [...RAW_2026, ...RAW].map(([n, et, en, ru]) => ({

@@ -59,4 +59,46 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
   ],
+  tiigimaja: [
+    {
+      src: '/galerii/tiigimaja-siseruum.jpeg',
+      alt: {
+        et: 'Elutuba rohelise diivani, nikerdatud katusetala ja lambanahkse vaibaga',
+        en: 'The living room with its green sofa, carved roof beam and sheepskin rug',
+        ru: 'Гостиная с зелёным диваном, резной балкой и ковром из овчины',
+      },
+    },
+    {
+      src: '/galerii/tiigimaja-kamin.jpeg',
+      alt: {
+        et: 'Kamin ja klaasseinad, mis avanevad murule ja metsale',
+        en: 'The fireplace and glass walls opening onto lawn and forest',
+        ru: 'Камин и стеклянные стены, открытые на газон и лес',
+      },
+    },
+    {
+      src: '/galerii/tiigimaja-kook.jpeg',
+      alt: {
+        et: 'Köögitasapind gaasipliidi, avariiuli ja retrokülmikuga',
+        en: 'The kitchen counter with gas hob, open shelf and retro fridge',
+        ru: 'Кухонная столешница с газовой плитой, открытой полкой и ретро-холодильником',
+      },
+    },
+    {
+      src: '/galerii/tiigimaja-magamistuba.jpeg',
+      alt: {
+        et: 'Magamistuba põrandast laeni akendega niidule ja pealuuga palkseinal',
+        en: 'The bedroom with floor-to-ceiling windows onto the meadow and a skull on the log wall',
+        ru: 'Спальня с окнами в пол на луг и черепом на бревенчатой стене',
+      },
+    },
+    {
+      src: '/galerii/tiigimaja-vannituba.jpeg',
+      alt: {
+        et: 'Vannituba graniidist valamulaua ja dušinurgaga tumedas puidus',
+        en: 'The bathroom with a granite vanity and walk-in shower in dark timber',
+        ru: 'Ванная с гранитной столешницей и душевой в тёмном дереве',
+      },
+    },
+  ],
 }
