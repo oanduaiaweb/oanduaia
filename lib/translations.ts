@@ -80,7 +80,7 @@ export const T = {
         name: { et: 'Saunamaja', en: 'Sauna House', ru: 'Банный дом' },
         tag:  { et: 'Saun, köök, seltskond – kõik olemas.', en: 'Sauna, kitchen, company – all there.', ru: 'Сауна, кухня, компания – всё есть.' },
         items: [
-          { et: 'Kuni 5 ööbijat · 3 kahekohalist voodit · 2 korrust', en: 'Up to 5 guests · 3 double beds · 2 floors', ru: 'До 5 гостей · 3 двухместные кровати · 2 этажа' },
+          { et: 'Kuni 5 ööbijat · 2 kahekohalist voodit · 2 korrust', en: 'Up to 5 guests · 2 double beds · 2 floors', ru: 'До 5 гостей · 2 двухместные кровати · 2 этажа' },
           { et: 'Avatud toad, puuküttega saun, täisvarustatud köök, kamin', en: 'Open rooms, wood-fired sauna, fully equipped kitchen, fireplace', ru: 'Открытые комнаты, дровяная сауна, оборудованная кухня, камин' },
         ],
         prices: [
