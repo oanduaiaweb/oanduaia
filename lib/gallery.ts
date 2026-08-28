@@ -70,8 +70,6 @@ const RAW: A[] = [
   ['046', 'Langenud puud sammaldunud ürgmetsas', 'Fallen trees in mossy old-growth forest', 'Поваленные деревья во мшистом старом лесу'],
   ['047', 'Laps hoiab kaussi värskete maasikatega', 'A child holding a bowl of freshly picked strawberries', 'Ребёнок держит миску со свежей клубникой'],
   ['048', 'Tiik kaskede vahel, maja vasakul kaldal', 'The pond among birches, a house on the left bank', 'Пруд среди берёз, дом на левом берегу'],
-  ['049', 'Avatud uks palkmaja magamistuppa, lambanahad voodil', 'An open door into the log bedroom, sheepskins on the bed', 'Открытая дверь в спальню, овчины на кровати'],
-  ['050', 'Elutuba lõõmava kaminaga ja tohust korviga', 'The living room with a lit fireplace and a birch-bark basket', 'Гостиная с горящим камином и берестяной корзиной'],
   ['051', 'Roogkatusega maja tiigi ääres varakevadel', 'The thatched house by the pond in early spring', 'Дом с камышовой крышей у пруда ранней весной'],
   ['052', 'Palkmaja koridor, nahad laetalade peal, trepp taga', 'Log house hallway with hides over the beams and a staircase', 'Коридор дома из бруса со шкурами на балках'],
   ['053', 'Pikk puidust välilaud pinkidega maja ees', 'A long timber outdoor table and benches before the house', 'Длинный деревянный стол со скамьями перед домом'],

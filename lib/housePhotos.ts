@@ -165,4 +165,22 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
   ],
+  metsamaja: [
+    {
+      src: '/galerii/metsamaja/magamistuba.jpeg',
+      alt: {
+        et: 'Avatud uks palkseintega magamistuppa, unenäopüüdja ja lambanahad',
+        en: 'The open door into the log-walled sleeping room, a dreamcatcher and sheepskins',
+        ru: 'Открытая дверь в спальню с бревенчатыми стенами, ловец снов и овчины',
+      },
+    },
+    {
+      src: '/galerii/metsamaja/kamin.jpeg',
+      alt: {
+        et: 'Kamin vanast lauast seina ees, tohust korv puudega ja lambanahk põrandal',
+        en: 'The fireplace against its reclaimed-timber breast, a birch-bark basket of logs and a sheepskin on the floor',
+        ru: 'Камин у стены из состаренного дерева, берестяная корзина с дровами и овчина на полу',
+      },
+    },
+  ],
 }
