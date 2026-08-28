@@ -1418,15 +1418,42 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   transition: opacity 0.7s var(--ease-smooth);
 }
 .avail-panel-photo.is-on { opacity: 1; }
+.avail-panel-photo img { filter: saturate(1.12) contrast(1.04); }
 .avail-panel-scrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(240,235,224,0.80) 0%,
-    rgba(240,235,224,0.88) 45%,
-    rgba(240,235,224,0.93) 100%
+    rgba(240,235,224,0.62) 0%,
+    rgba(240,235,224,0.72) 45%,
+    rgba(240,235,224,0.80) 100%
   );
+}
+/*
+ * A pale halo behind the panel's dark type. The scrim was doing that job on its own and
+ * had to be heavy enough for the worst case — a bright thatched roof behind a day number —
+ * which meant burying the house to protect six characters. Shadowing the text instead lets
+ * the scrim come down by a fifth and the house come forward.
+ *
+ * Not applied to the selected house pill or the submit button: both are light type on a
+ * dark fill, where a light halo would smear rather than separate.
+ */
+.avail-panel .avail-label,
+.avail-panel .avail-house:not(.is-on),
+.avail-panel .avail-select,
+.avail-panel .avail-note,
+.avail-panel .avail-status,
+.avail-panel .avail-turnover,
+.avail-panel .avail-month-name,
+.avail-panel .avail-week-heads span,
+.avail-panel .avail-day:not(.is-picked),
+.avail-panel .avail-legend span,
+.avail-panel .avail-hint,
+.avail-panel .avail-check,
+.avail-panel .avail-quote-row dt,
+.avail-panel .avail-quote-row dd,
+.avail-panel .avail-quote-note {
+  text-shadow: 0 1px 2px rgba(245,241,232,0.95), 0 0 7px rgba(245,241,232,0.8);
 }
 
 /* — house and party size — */
@@ -1548,7 +1575,10 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   font-size: var(--fs-2xs);
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
-  color: var(--sage);
+  /* Fern, not sage: these sit over whatever the photograph puts behind them, and sage on
+     a bright sky is the one thing in the panel that stopped being legible. */
+  color: var(--fern);
+  opacity: 0.75;
   text-align: center;
   padding-bottom: 0.45rem;
 }
@@ -1569,7 +1599,9 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 .avail-day.is-blank { cursor: default; }
 .avail-day:hover:not(:disabled):not(.is-picked) { background: var(--mist); }
-.avail-day.is-past { opacity: 0.22; cursor: default; }
+/* Nudged up from 0.22: on flat linen that read as "gone", but over a photograph it read
+   as nothing at all, and the grid lost its shape. Still plainly not selectable. */
+.avail-day.is-past { opacity: 0.34; cursor: default; }
 /* A sold night is struck through, not merely dimmed — dimmed reads as "quiet", not "gone". */
 .avail-day.is-taken {
   color: var(--fern);
