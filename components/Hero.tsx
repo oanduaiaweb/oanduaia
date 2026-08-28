@@ -80,6 +80,12 @@ export default function Hero() {
         <div className="hero-bg-overlay" />
       </div>
       <div className="hero-grain" aria-hidden="true" />
+      {/*
+        Four flat children, deliberately. On a phone they stack in this order and read top
+        to bottom. On desktop a grid places them instead: the small lines up under the
+        logo, the headline bottom-left, the button bottom-right on the headline's own
+        baseline. Same markup, same reading order, two different compositions.
+      */}
       <div className="hero-content">
         <h1 className="hero-title">
           <span className="line"><span>{h.line1[lang]}</span></span>
@@ -87,10 +93,10 @@ export default function Hero() {
           <span className="line"><span>{h.line3[lang]}</span></span>
         </h1>
         <p className="hero-eyebrow">{h.eyebrow[lang]}</p>
-        <div className="hero-bottom">
-          <p className="hero-desc">{h.desc[lang]}</p>
-          <a href="#broneeri" className="btn-primary" onClick={scrollTo('broneeri')}>{h.cta[lang]}</a>
-        </div>
+        <p className="hero-desc">{h.desc[lang]}</p>
+        <a href="#broneeri" className="btn-primary hero-cta" onClick={scrollTo('broneeri')}>
+          {h.cta[lang]}
+        </a>
       </div>
     </section>
   )

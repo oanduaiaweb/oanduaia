@@ -356,8 +356,9 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   min-height: 640px;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
-  padding: 4.5rem var(--section-h) 3.2rem;
+  align-items: stretch;
+  /* Deep top padding so the small lines clear the fixed header rather than tucking under it. */
+  padding: 8.5rem var(--section-h) 3.2rem;
 }
 
 /* Top vignette — nav always readable */
@@ -411,7 +412,19 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   position: relative;
   z-index: 3;
   width: 100%;
+  /*
+   * Rows: the place line, then the strapline, then a gap that absorbs the height, then
+   * the headline and the button sharing the last row so their baselines land together.
+   */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
+  column-gap: 2rem;
 }
+.hero-content > .hero-eyebrow { grid-area: 1 / 1 / 2 / 3; align-self: start; }
+.hero-content > .hero-desc    { grid-area: 2 / 1 / 3 / 3; align-self: start; }
+.hero-content > .hero-title   { grid-area: 4 / 1 / 5 / 2; align-self: end; margin-bottom: 0; }
+.hero-content > .hero-cta     { grid-area: 4 / 2 / 5 / 3; align-self: end; justify-self: end; }
 
 .hero-title {
   font-size: clamp(2rem, 4.6vw, 4.1rem);
@@ -446,16 +459,18 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-transform: uppercase;
   color: var(--mist);
   opacity: 0;
-  margin-bottom: 1.9rem;
+  margin-bottom: 0.7rem;
   animation: fadeUp 1s var(--ease-expo) 1.3s forwards;
 }
 
-.hero-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+/* The button carries the entrance the old bottom row used to. */
+.hero-cta {
   opacity: 0;
   animation: fadeUp 1s var(--ease-expo) 1.6s forwards;
+}
+.hero-desc {
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-expo) 1.5s forwards;
 }
 .hero-desc {
   font-size: 1.12rem;
@@ -2577,10 +2592,20 @@ body.gallery-page .nav-social { text-shadow: none; }
    * groups them, and because the block is bottom-anchored, shortening it also drops the
    * headline further down the frame.
    */
+  /* Back to a plain stack on a phone: headline, place line, strapline, button. */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+  }
+  .hero-content > .hero-title,
+  .hero-content > .hero-eyebrow,
+  .hero-content > .hero-desc,
+  .hero-content > .hero-cta { grid-area: auto; align-self: auto; justify-self: start; }
   .hero-title { font-size: clamp(1.5rem, 5.8vw, 2.5rem); margin-bottom: 0.9rem; line-height: 1.18; }
   .hero-eyebrow { margin-bottom: 1.15rem; white-space: normal; overflow-wrap: break-word; font-size: var(--fs-2xs); letter-spacing: var(--ls-wide); }
-  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.15rem; }
-  .hero-desc { white-space: normal; line-height: 1.6; font-size: 1.02rem; }
+  .hero-desc { white-space: normal; line-height: 1.6; font-size: 1.02rem; margin-bottom: 1.15rem; }
   .btn-primary, .btn-dark, .btn-ghost, .feature-cta { letter-spacing: var(--ls-wide); padding: 0.9rem 1.6rem; }
 
   .services-grid { grid-template-columns: 1fr; }
