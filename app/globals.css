@@ -1749,6 +1749,65 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 .avail-cta:disabled:hover { transform: none; background: var(--fern); }
 
+/*
+ * The panel's ink, darkened.
+ *
+ * Its palette was chosen when the panel was flat linen: fern and sage, several of them at
+ * reduced opacity, which reads as a soft hierarchy on a plain ground. With a photograph
+ * behind it that softness becomes a legibility problem, and it varies by house — pale sky
+ * behind Saunamaja, bright roof behind Metsamaja, dark water behind Tiigimaja.
+ *
+ * So everything here goes to bark, the darkest ink on the site, at full strength. The
+ * hierarchy is carried by size, weight and letter-spacing instead of by tint, which
+ * survives any background; tint does not.
+ */
+.avail-panel .avail-label,
+.avail-panel .avail-month-name,
+.avail-panel .avail-week-heads span,
+.avail-panel .avail-legend span,
+.avail-panel .avail-note,
+.avail-panel .avail-status,
+.avail-panel .avail-turnover,
+.avail-panel .avail-hint,
+.avail-panel .avail-check,
+.avail-panel .avail-quote-row dt,
+.avail-panel .avail-quote-row dd,
+.avail-panel .avail-quote-note,
+.avail-panel .avail-house:not(.is-on),
+.avail-panel .avail-select,
+.avail-panel .avail-arrow,
+.avail-panel .avail-day {
+  color: var(--bark);
+  opacity: 1;
+}
+/* Sold and past nights still have to read as unavailable, so they keep a step back —
+   but from bark, not from fern, so they are dimmed rather than washed out. */
+.avail-panel .avail-day.is-taken { color: var(--bark); opacity: 0.5; }
+.avail-panel .avail-day.is-past { color: var(--bark); opacity: 0.38; }
+.avail-panel .avail-day.is-picked { color: var(--linen); opacity: 1; }
+.avail-panel .avail-outof,
+.avail-panel .avail-nights { color: var(--bark); }
+.avail-panel .avail-arrow:disabled { opacity: 0.3; }
+
+/* A stronger halo to match. Darker ink over a photograph needs more separation, not less. */
+.avail-panel .avail-label,
+.avail-panel .avail-house:not(.is-on),
+.avail-panel .avail-select,
+.avail-panel .avail-note,
+.avail-panel .avail-status,
+.avail-panel .avail-turnover,
+.avail-panel .avail-month-name,
+.avail-panel .avail-week-heads span,
+.avail-panel .avail-day:not(.is-picked),
+.avail-panel .avail-legend span,
+.avail-panel .avail-hint,
+.avail-panel .avail-check,
+.avail-panel .avail-quote-row dt,
+.avail-panel .avail-quote-row dd,
+.avail-panel .avail-quote-note {
+  text-shadow: 0 1px 2px rgba(247,244,237,1), 0 0 9px rgba(247,244,237,0.92);
+}
+
 /* What the calendar attached to the enquiry, shown before it is sent. */
 .booking-summary {
   font-family: var(--font-sans);
