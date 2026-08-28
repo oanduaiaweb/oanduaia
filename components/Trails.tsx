@@ -3,6 +3,7 @@
 import { useLanguage } from '@/contexts/LanguageContext'
 import Image from 'next/image'
 import { T } from '@/lib/translations'
+import { TRAIL_LINKS } from '@/lib/trails'
 
 const delays = ['', ' reveal-delay-1', ' reveal-delay-2']
 
@@ -45,13 +46,32 @@ export default function Trails() {
 
       <div className="trails-inner">
         <div className="trails-grid">
-          {t.items.map((trail, i) => (
-            <div key={trail.name.et} className={`trail-item reveal${delays[i % 3]}`}>
-              <p className="trail-distance">{trail.dist[lang]}</p>
-              <h3 className="trail-name">{trail.name[lang]}</h3>
-              <p className="trail-desc">{trail.desc[lang]}</p>
-            </div>
-          ))}
+          {t.items.map((trail, i) => {
+            const link = TRAIL_LINKS[trail.name.et]
+            return (
+              <div key={trail.name.et} className={`trail-item reveal${delays[i % 3]}`}>
+                <p className="trail-distance">{trail.dist[lang]}</p>
+                <h3 className="trail-name">{trail.name[lang]}</h3>
+                <p className="trail-desc">{trail.desc[lang]}</p>
+                {/*
+                  On the trail it belongs to, not under the list. The booklet is the map
+                  for Oandu–Ikla specifically; a button under six trails would imply it
+                  covered all of them.
+                */}
+                {link && (
+                  <a
+                    className="trail-link"
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.label[lang]}
+                    <span className="trail-link-meta">{link.meta}</span>
+                  </a>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>

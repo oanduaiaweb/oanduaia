@@ -1272,6 +1272,37 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   letter-spacing: var(--ls-normal);
 }
 
+/*
+ * The map booklet on the Oandu–Ikla row. A bordered box rather than an underlined word,
+ * because it leaves the site and downloads a megabyte — that deserves to look like a
+ * button and to say so before it is tapped.
+ */
+.trail-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(200,212,184,0.28);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--linen);
+  text-decoration: none;
+  transition: border-color 0.3s, background 0.3s;
+}
+.trail-link:hover {
+  border-color: rgba(200,212,184,0.6);
+  background: rgba(200,212,184,0.08);
+}
+.trail-link-meta {
+  letter-spacing: var(--ls-wide);
+  color: var(--mist);
+  opacity: 0.6;
+  text-transform: none;
+}
+
 /* ══════════════════════════════
    STATS STRIP — light divider between dark sections
 ══════════════════════════════ */
