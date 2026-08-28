@@ -88,7 +88,7 @@ export const T = {
           { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 300, upTo: 4 },
         ],
         priceExtra: {
-          et: 'Rohkem magamiskohti on võimalik – võta meiega otse ühendust.',
+          et: 'Rohkem magamiskohti on saadaval – võta meiega otse ühendust.',
           en: 'More sleeping options are available – please contact us directly.',
           ru: 'Возможны дополнительные спальные места – свяжитесь с нами напрямую.',
         },
