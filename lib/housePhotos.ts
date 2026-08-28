@@ -61,7 +61,23 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
   ],
   tiigimaja: [
     {
-      src: '/galerii/tiigimaja-siseruum.jpeg',
+      src: '/galerii/tiigimaja-veepealt.jpeg',
+      alt: {
+        et: 'Tiigimaja üle vee, kask kaldal ja maja peegeldumas tiigis',
+        en: 'The Pond House across the water, a birch on the bank and the house mirrored in the pond',
+        ru: 'Прудовой дом через воду, берёза на берегу и отражение дома в пруду',
+      },
+    },
+    {
+      src: '/galerii/kiigud.jpeg',
+      alt: {
+        et: 'Kaks puidust võrkkiike kaskede vahel maja ees kevadel',
+        en: 'Two timber hammocks slung between birches before the house in spring',
+        ru: 'Два деревянных гамака между берёзами перед домом весной',
+      },
+    },
+    {
+      src: '/galerii/tiigimaja/siseruum.jpeg',
       alt: {
         et: 'Elutuba rohelise diivani, nikerdatud katusetala ja lambanahkse vaibaga',
         en: 'The living room with its green sofa, carved roof beam and sheepskin rug',
@@ -69,7 +85,7 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
-      src: '/galerii/tiigimaja-kamin.jpeg',
+      src: '/galerii/tiigimaja/kamin.jpeg',
       alt: {
         et: 'Kamin ja klaasseinad, mis avanevad murule ja metsale',
         en: 'The fireplace and glass walls opening onto lawn and forest',
@@ -77,7 +93,7 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
-      src: '/galerii/tiigimaja-kook.jpeg',
+      src: '/galerii/tiigimaja/kook.jpeg',
       alt: {
         et: 'Köögitasapind gaasipliidi, avariiuli ja retrokülmikuga',
         en: 'The kitchen counter with gas hob, open shelf and retro fridge',
@@ -85,7 +101,7 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
-      src: '/galerii/tiigimaja-magamistuba.jpeg',
+      src: '/galerii/tiigimaja/magamistuba.jpeg',
       alt: {
         et: 'Magamistuba põrandast laeni akendega niidule ja pealuuga palkseinal',
         en: 'The bedroom with floor-to-ceiling windows onto the meadow and a skull on the log wall',
@@ -93,7 +109,7 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
-      src: '/galerii/tiigimaja-vannituba.jpeg',
+      src: '/galerii/tiigimaja/vannituba.jpeg',
       alt: {
         et: 'Vannituba graniidist valamulaua ja dušinurgaga tumedas puidus',
         en: 'The bathroom with a granite vanity and walk-in shower in dark timber',
