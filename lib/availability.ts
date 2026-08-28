@@ -1,18 +1,19 @@
 import { addDays, blockedNights, type DateStr } from './ical'
+import { readBookings, blockedNightsFor } from './bookings'
 
 /**
- * Availability is read from the channels, not stored here.
+ * Our own calendar is the master, and any channel feed is merged on top of it.
  *
- * Booking.com publishes one iCal export link per room type, and each of the three houses
- * is its own room type — so each house gets its own feed URL, set as an environment
- * variable. Booking.com stays the single source of truth, which is the whole point: a
- * calendar of our own would be a second truth to keep in sync, and the two would drift.
+ * This is the way round Mikk wants it: the aim is direct guests, with Booking.com as one
+ * channel among others rather than the owner of the truth. So every house's availability
+ * starts from the blocks kept in our own store.
  *
- * Booking.com allows iCal only while the property has no channel manager / XML connection
- * and no more than 20 room types with one unit each. Three houses sits well inside that.
+ * A configured Booking.com iCal feed is then unioned in. It cannot free a night we hold —
+ * it can only add nights we did not know about. That makes it a safety net rather than an
+ * authority: paste the export links and the "check Booking.com before confirming" step
+ * stops depending on anyone remembering.
  *
- * A house may carry more than one feed (a second channel later on) — separate the URLs
- * with a comma. Everything the feeds block is merged.
+ * A house may carry more than one feed — separate the URLs with a comma.
  */
 export const HOUSE_SLUGS = ['saunamaja', 'tiigimaja', 'metsamaja'] as const
 export type HouseSlug = (typeof HOUSE_SLUGS)[number]
@@ -32,15 +33,22 @@ export const REVALIDATE_SECONDS = 1800
 export type HouseAvailability = {
   slug: HouseSlug
   /**
-   * `ok` — the feeds answered and `blocked` is complete.
-   * `unconfigured` — no feed URL set yet.
-   * `error` — a feed exists but did not answer.
+   * `ok` — our own calendar was read, and every configured feed answered.
+   * `error` — our store failed, or a configured feed did not answer.
    *
-   * The last two are NOT "everything is free". Anything other than `ok` must be shown as
-   * unknown, or the first thing this calendar does is sell a night that is already sold.
+   * `error` is NOT "everything is free". It must be shown as unknown, or the first thing
+   * this calendar does is sell a night that is already sold.
    */
-  status: 'ok' | 'unconfigured' | 'error'
+  status: 'ok' | 'error'
   blocked: DateStr[]
+  /** Whether a channel feed is wired up for this house — surfaced in the admin, not to guests. */
+  feedConnected: boolean
+  /**
+   * Whether what we show is complete: a channel feed is connected, or Mikk has marked this
+   * house's own calendar as up to date. When false the guest is told the dates still need
+   * confirming, because an empty calendar and a free calendar look identical.
+   */
+  trusted: boolean
 }
 
 export type Availability = {
@@ -53,16 +61,25 @@ function today(): DateStr {
   return new Date().toISOString().slice(0, 10)
 }
 
-async function readFeeds(slug: HouseSlug, from: DateStr, to: DateStr): Promise<HouseAvailability> {
+async function readFeeds(
+  slug: HouseSlug,
+  from: DateStr,
+  to: DateStr,
+  own: DateStr[],
+  live: boolean,
+): Promise<HouseAvailability> {
   const urls = (process.env[FEED_ENV[slug]] ?? '')
     .split(',')
     .map(u => u.trim())
     .filter(Boolean)
 
-  if (!urls.length) return { slug, status: 'unconfigured', blocked: [] }
-
-  const nights = new Set<DateStr>()
+  // Our own blocks are the floor. A feed can only add to them.
+  const nights = new Set<DateStr>(own.filter(n => n >= from && n < to))
   let failed = false
+
+  if (!urls.length) {
+    return { slug, status: 'ok', blocked: [...nights].sort(), feedConnected: false, trusted: live }
+  }
 
   await Promise.all(
     urls.map(async url => {
@@ -86,12 +103,41 @@ async function readFeeds(slug: HouseSlug, from: DateStr, to: DateStr): Promise<H
   )
 
   // One bad feed out of several still means we cannot claim to know what is free.
-  return { slug, status: failed ? 'error' : 'ok', blocked: [...nights].sort() }
+  return {
+    slug,
+    status: failed ? 'error' : 'ok',
+    blocked: [...nights].sort(),
+    feedConnected: true,
+    trusted: true,
+  }
 }
 
 export async function getAvailability(): Promise<Availability> {
   const from = today()
   const to = addDays(from, HORIZON_MONTHS * 31)
-  const houses = await Promise.all(HOUSE_SLUGS.map(slug => readFeeds(slug, from, to)))
+
+  // If our own store cannot be read we know nothing, whatever the feeds say.
+  let store
+  try {
+    store = await readBookings()
+  } catch {
+    return {
+      from,
+      to,
+      houses: HOUSE_SLUGS.map(slug => ({
+        slug,
+        status: 'error' as const,
+        blocked: [],
+        feedConnected: false,
+        trusted: false,
+      })),
+    }
+  }
+
+  const houses = await Promise.all(
+    HOUSE_SLUGS.map(slug =>
+      readFeeds(slug, from, to, blockedNightsFor(store, slug), !!store.live[slug]),
+    ),
+  )
   return { from, to, houses }
 }

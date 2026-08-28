@@ -82,8 +82,8 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
 
   const houseFeed = feed?.houses.find(h => h.slug === slug)
   const known = houseFeed?.status === 'ok'
-  // "Not linked yet" is a different message from "the feed broke" — only the second is a fault.
-  const notLinked = !failed && houseFeed?.status === 'unconfigured'
+  // Complete, as opposed to merely readable. An empty calendar is not an empty house.
+  const trusted = houseFeed?.trusted === true
   const blocked = useMemo(() => new Set(known ? houseFeed!.blocked : []), [known, houseFeed])
 
   const max = maxGuests(slug)
@@ -212,7 +212,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
           <p className="avail-status">{t.loading[lang]}</p>
         ) : (
           <>
-            {notLinked && <p className="avail-status">{t.notLinked[lang]}</p>}
+            {known && !trusted && <p className="avail-status">{t.notLinked[lang]}</p>}
             {(failed || houseFeed?.status === 'error') && (
               <p className="avail-status avail-status--warn">{t.unknown[lang]}</p>
             )}

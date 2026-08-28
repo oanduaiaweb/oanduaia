@@ -4,7 +4,8 @@ import { SITE } from '@/lib/i18n'
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: '*', allow: '/' },
+      // The admin and the private feeds are not for crawlers.
+      { userAgent: '*', allow: '/', disallow: ['/admin', '/api/'] },
       // Named explicitly so AI crawlers are unambiguously permitted.
       { userAgent: 'GPTBot', allow: '/' },
       { userAgent: 'OAI-SearchBot', allow: '/' },

@@ -1810,6 +1810,167 @@ a.feature-house-name:hover { color: var(--mist); }
 }
 
 /* ══════════════════════════════
+   ADMIN — /admin
+   One operator's tool, not a page of the site. Plain, dense, legible.
+══════════════════════════════ */
+.adm {
+  font-family: var(--font-sans);
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+  color: var(--bark);
+}
+.adm--narrow { max-width: 380px; }
+.adm-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+.adm-title {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 400;
+  color: var(--moss);
+}
+.adm-muted {
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--fern);
+  opacity: 0.8;
+  margin-bottom: 1.8rem;
+  max-width: 62ch;
+}
+.adm-label {
+  display: block;
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--fern);
+  opacity: 0.75;
+  margin-bottom: 0.4rem;
+}
+.adm-input {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: var(--bark);
+  background: var(--cream);
+  border: 1px solid rgba(90,110,80,0.3);
+  border-radius: 3px;
+  padding: 0.6rem 0.7rem;
+}
+.adm-input:focus { outline: 2px solid var(--sage); outline-offset: -1px; }
+.adm-btn {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--linen);
+  background: var(--moss);
+  border: none;
+  border-radius: 3px;
+  padding: 0.75rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.adm-btn:hover:not(:disabled) { background: var(--fern); }
+.adm-btn:disabled { opacity: 0.4; cursor: default; }
+.adm-login { display: grid; gap: 0.5rem; margin-top: 1.5rem; }
+.adm-login .adm-btn { margin-top: 0.6rem; }
+.adm-error {
+  font-size: var(--fs-sm);
+  color: #8a3a2a;
+  margin: 0.5rem 0;
+}
+.adm-link {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--fern);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+.adm-link--danger { color: #8a3a2a; }
+
+.adm-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9rem;
+  align-items: end;
+  padding: 1.2rem;
+  background: var(--linen);
+  border: 1px solid rgba(90,110,80,0.16);
+  border-radius: 4px;
+}
+.adm-field--wide { grid-column: span 3; }
+.adm-field--submit { grid-column: span 1; }
+
+.adm-house { margin-top: 2.4rem; }
+.adm-house-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--moss);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(90,110,80,0.16);
+  margin-bottom: 0.9rem;
+}
+.adm-tag {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.adm-tag--on { color: var(--fern); opacity: 0.7; }
+.adm-live {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--fern);
+  margin-bottom: 1rem;
+  max-width: 70ch;
+  cursor: pointer;
+}
+.adm-live input { margin-top: 0.25rem; accent-color: var(--moss); }
+.adm-live-warn { color: #8a6a1a; font-weight: 400; }
+
+.adm-list { list-style: none; }
+.adm-item {
+  display: grid;
+  grid-template-columns: 15rem 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(90,110,80,0.1);
+}
+.adm-dates { color: var(--bark); }
+.adm-nights { color: var(--fern); opacity: 0.65; font-size: var(--fs-2xs); }
+.adm-who { color: var(--fern); opacity: 0.85; }
+
+@media (max-width: 760px) {
+  .adm-form { grid-template-columns: 1fr 1fr; }
+  .adm-field--wide, .adm-field--submit { grid-column: span 2; }
+  .adm-item { grid-template-columns: 1fr; gap: 0.2rem; }
+}
+
+/* ══════════════════════════════
    FOOTER
 ══════════════════════════════ */
 footer {

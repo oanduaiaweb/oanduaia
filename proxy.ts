@@ -35,7 +35,7 @@ export default function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Everything except API routes, Next internals, metadata files and static assets.
-    '/((?!api|_next|.*\\..*|icon|apple-icon|sitemap.xml|robots.txt).*)',
+    '/((?!api|_next|admin|.*\\..*|icon|apple-icon|sitemap.xml|robots.txt).*)',
   ],
 }
 
