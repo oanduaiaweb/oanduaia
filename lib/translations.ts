@@ -153,9 +153,8 @@ export const T = {
       en: 'Map: Oanduaia in Oandu village, its pond and houses circled',
       ru: 'Карта: Oanduaia в деревне Оанду, пруд и дома обведены',
     },
-    // Required by Maa- ja Ruumiamet's terms: a reference that is constantly and clearly
-    // visible wherever their base map is shown. Not translated — it is a source credit.
-    mapCredit: 'Aluskaart: Maa- ja Ruumiamet 2026',
+    mapOpen: { et: 'Ava Google Mapsis', en: 'Open in Google Maps', ru: 'Открыть в Google Maps' },
+    mapDownload: { et: 'Lae kaart alla', en: 'Download the map', ru: 'Скачать карту' },
     items: [
       {
         dist: { et: '822 km · pikkajaline', en: '822 km · long-distance', ru: '822 км · дальний' },
