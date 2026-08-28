@@ -93,6 +93,33 @@ nav.nav-scrolled {
 }
 nav.nav-scrolled .nav-logo { text-shadow: none; }
 
+/* Estonia under the wordmark. Out of flow, so the header keeps its height. */
+.nav-brand { position: relative; }
+.nav-mark {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.65rem;
+  display: block;
+  color: var(--linen);
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeUp 1.2s var(--ease-expo) 0.55s forwards;
+}
+/* The logo carries a text-shadow over the photograph; the mark needs the same lift. */
+.nav-mark svg {
+  display: block;
+  filter: drop-shadow(0 1px 16px rgba(0,0,0,0.7));
+  opacity: 0.94;
+  transition: opacity 0.35s var(--ease-smooth);
+}
+/*
+ * Gone once the header condenses. It belongs over the hero photograph, not over the linen
+ * sections below it, and the condensed bar has no room beneath the wordmark. The fade sits
+ * on the svg rather than the span so it does not fight the entrance animation.
+ */
+nav.nav-scrolled .nav-mark svg { opacity: 0; }
+
 .nav-links {
   display: flex;
   gap: 2.8rem;
