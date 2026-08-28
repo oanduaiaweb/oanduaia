@@ -729,9 +729,14 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   overflow: hidden;
   min-height: 340px;
 }
+/*
+ * Lightened from 10-40%. The heavy end of that gradient sat exactly where each house
+ * stands in its photograph, so the subject was the most darkened part of the frame. The
+ * text lives in its own column here, so this is atmosphere, not legibility.
+ */
 .house-band-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(26,32,16,0.10) 0%, rgba(26,32,16,0.40) 100%);
+  background: linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%);
   z-index: 1;
 }
 .house-band-content {

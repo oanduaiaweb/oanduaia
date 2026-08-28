@@ -32,7 +32,11 @@ export const SOCIAL_ICONS = {
    * flat by an equirectangular projection.
    */
   maps: (s: number) => (
-    <svg width={s} height={s} viewBox="-1 -1 26 18" fill="currentColor" aria-hidden="true">
+    // Estonia is half again as wide as it is tall, so a square box letterboxed it: the
+    // shape rendered ~30% shorter than its neighbours and read as the runt of the row.
+    // Sized to its own proportions instead, it carries the same weight as the others.
+    <svg width={Math.round(s * 1.22)} height={Math.round(s * 0.85)}
+         viewBox="-1 -1 26 18" fill="currentColor" aria-hidden="true">
       <path d="M6.4 5.4 6.7 3.4 10.9 2.3 14.2 1.4 17.5 2.1 22.9 2.3 23.6 3.6 21.2 7.0 20.8 11.2 21.5 13.3 17.4 15.3 13.2 13.4 10.6 14.1 10.5 10.6 7.8 9.9 6.7 7.6Z" />
       <ellipse cx="3.6" cy="9.9" rx="2.6" ry="1.7" />
       <ellipse cx="4.1" cy="5.9" rx="1.5" ry="0.85" />
