@@ -21,10 +21,21 @@ export const SOCIAL_ICONS = {
       <path d="M2.288 2.67c0-.203.163-.367.365-.367s.367.164.367.367-.164.367-.367.367-.365-.164-.365-.367" />
     </svg>
   ),
+  /**
+   * Estonia, rather than a generic pin. Filled rather than stroked: at 22px a country
+   * outline in a 1.8px stroke reads as noise, while the silhouette still reads as a map.
+   *
+   * The mainland traces the real coast — the north shore, the Narva corner, the western
+   * bite of Lake Peipus, the southern border, the Gulf of Riga — and Saaremaa and Hiiumaa
+   * sit off the west coast where they belong. Longitude is scaled against latitude by the
+   * cosine of 58.7°N, so the country keeps its true proportions instead of being stretched
+   * flat by an equirectangular projection.
+   */
   maps: (s: number) => (
-    <svg width={s} height={s} viewBox="0 0 24 24" {...S}>
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
-      <circle cx="12" cy="10" r="3" />
+    <svg width={s} height={s} viewBox="-1 -1 26 18" fill="currentColor" aria-hidden="true">
+      <path d="M6.4 5.4 6.7 3.4 10.9 2.3 14.2 1.4 17.5 2.1 22.9 2.3 23.6 3.6 21.2 7.0 20.8 11.2 21.5 13.3 17.4 15.3 13.2 13.4 10.6 14.1 10.5 10.6 7.8 9.9 6.7 7.6Z" />
+      <ellipse cx="3.6" cy="9.9" rx="2.6" ry="1.7" />
+      <ellipse cx="4.1" cy="5.9" rx="1.5" ry="0.85" />
     </svg>
   ),
 } as const

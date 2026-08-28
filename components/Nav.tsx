@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { SOCIAL_ICONS } from '@/components/SocialRow'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T, type Lang } from '@/lib/translations'
 
@@ -116,10 +117,7 @@ export default function Nav() {
               </svg>
             </a>
             <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Google Maps">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
+              {SOCIAL_ICONS.maps(22)}
             </a>
           </div>
 
@@ -214,10 +212,7 @@ export default function Nav() {
             Booking.com
           </a>
           <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" aria-label="Google Maps">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-              </svg>
+            {SOCIAL_ICONS.maps(20)}
             Google Maps
           </a>
         </div>
