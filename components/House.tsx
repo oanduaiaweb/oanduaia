@@ -41,7 +41,6 @@ export default function House({ slug }: { slug: string }) {
         <div className="house-hero-text">
           <p className="house-hero-eyebrow">{t.eyebrow[lang]}</p>
           <h1 className="house-hero-name">{house.name[lang]}</h1>
-          <p className="house-hero-tag">{house.tag[lang]}</p>
         </div>
       </header>
 
@@ -82,7 +81,6 @@ export default function House({ slug }: { slug: string }) {
           {others.map(o => (
             <Link key={o.slug} href={`/${lang}/majad/${o.slug}`} className="house-others-link">
               <span className="house-others-name">{o.name[lang]}</span>
-              <span className="house-others-tag">{o.tag[lang]}</span>
             </Link>
           ))}
         </div>

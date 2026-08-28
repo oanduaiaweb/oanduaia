@@ -1977,14 +1977,6 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--linen);
   margin-bottom: 0.8rem;
 }
-.house-hero-tag {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-  font-weight: 300;
-  color: var(--mist);
-  max-width: 34ch;
-}
 
 .house-body {
   max-width: var(--max-w);
@@ -2103,7 +2095,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   display: block;
   text-decoration: none;
   border: 1px solid rgba(90,110,80,0.18);
-  padding: 1.3rem 1.5rem;
+  /* One line now that the tagline is gone; the old padding was set for two. */
+  padding: 1.05rem 1.4rem;
   transition: border-color 0.3s, background 0.3s;
 }
 .house-others-link:hover { border-color: var(--fern); background: var(--linen); }
@@ -2113,18 +2106,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   font-size: 1.35rem;
   font-weight: 300;
   color: var(--moss);
-  margin-bottom: 0.35rem;
 }
-.house-others-tag {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: var(--fs-2xs);
-  font-weight: 300;
-  letter-spacing: var(--ls-normal);
-  color: var(--fern);
-  opacity: 0.75;
-  line-height: 1.6;
-}
+
 .house-back {
   display: inline-block;
   margin-top: 1.6rem;

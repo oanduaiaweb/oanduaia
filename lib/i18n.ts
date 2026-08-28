@@ -79,7 +79,14 @@ export function houseMeta(lang: Lang, slug: string) {
   const from = Math.min(...h.prices.map(x => x.eur))
   return {
     title: `${h.name[lang]} — ${p.titleSuffix[lang]}`,
-    description: `${h.name[lang]} — ${h.tag[lang]} ${h.items[0][lang]}. ${p.descFrom[lang]} ${from} ${p.descUnit[lang]}`,
+    /*
+     * No tagline here any more. That is a gain, not a loss: "Saun, köök, seltskond — kõik
+     * olemas" was occupying the front of a 155-character description with nothing anyone
+     * searches for, ahead of the bed count, the capacity and the price, which are what
+     * people actually type. The interpuncts become commas because this is read as a
+     * sentence in a search result, not scanned as a list on a page.
+     */
+    description: `${h.name[lang]} — ${h.items[0][lang].replace(/ · /g, ', ')}. ${p.descFrom[lang]} ${from} ${p.descUnit[lang]}`,
   }
 }
 
@@ -96,7 +103,7 @@ export function houseJsonLd(lang: Lang, slug: string) {
     '@type': 'Accommodation',
     '@id': `${SITE}/${lang}/majad/${slug}#accommodation`,
     name: h.name[lang],
-    description: `${h.tag[lang]} ${h.items.map(i => i[lang]).join(' ')}`,
+    description: h.items.map(i => i[lang].replace(/ · /g, ', ')).join('. ') + '.',
     url: `${SITE}/${lang}/majad/${slug}`,
     image: img ? `${SITE}${img.src}` : undefined,
     // The priced tiers cap at 4; Saunamaja sleeps 5, which the page says in its own words.
