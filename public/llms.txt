@@ -70,6 +70,11 @@ Published in Estonian, English and Russian, each on its own URL:
 ## Sitemap
 https://www.oanduaia.ee/sitemap.xml
 
+## Season
+Saunamaja is open all year. Tiigimaja and Metsamaja are CLOSED for the winter, from
+1 December to 31 March inclusive; their first night of the new season is 1 April and
+their last night of the old one is 30 November. The calendar reflects this.
+
 ## Availability
 Live per-house availability is shown on the site at https://www.oanduaia.ee/et#broneeri
 (also /en#broneeri and /ru#broneeri). The hosts keep that calendar themselves; where a

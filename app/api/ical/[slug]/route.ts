@@ -1,5 +1,7 @@
 import { readBookings } from '@/lib/bookings'
-import { HOUSE_SLUGS, type HouseSlug } from '@/lib/availability'
+import { HOUSE_SLUGS, HORIZON_MONTHS, type HouseSlug } from '@/lib/availability'
+import { closedRuns } from '@/lib/season'
+import { addDays } from '@/lib/ical'
 
 /**
  * Our calendar, published as an iCal feed so the channels can import it.
@@ -33,6 +35,11 @@ export async function GET(
   const store = await readBookings()
   const blocks = store.blocks[slug as HouseSlug] ?? []
 
+  // The winter closure goes out too, as whole runs rather than a hundred single nights,
+  // so a channel importing this feed shuts the same season we do.
+  const today = new Date().toISOString().slice(0, 10)
+  const runs = closedRuns(slug as HouseSlug, today, addDays(today, HORIZON_MONTHS * 31))
+
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -54,6 +61,18 @@ export async function GET(
       'END:VEVENT',
     )
   }
+  runs.forEach(([from, to], i) => {
+    lines.push(
+      'BEGIN:VEVENT',
+      `UID:closed-${slug}-${from}-${i}@oanduaia.ee`,
+      `DTSTAMP:${stamp(today)}T000000Z`,
+      `DTSTART;VALUE=DATE:${stamp(from)}`,
+      `DTEND;VALUE=DATE:${stamp(to)}`,
+      'SUMMARY:CLOSED - Not available',
+      'TRANSP:OPAQUE',
+      'END:VEVENT',
+    )
+  })
   lines.push('END:VCALENDAR')
 
   return new Response(lines.join('\r\n') + '\r\n', {

@@ -1,5 +1,6 @@
 import { addDays, blockedNights, type DateStr } from './ical'
 import { readBookings, blockedNightsFor } from './bookings'
+import { closedNights } from './season'
 
 /**
  * Our own calendar is the master, and any channel feed is merged on top of it.
@@ -14,6 +15,9 @@ import { readBookings, blockedNightsFor } from './bookings'
  * stops depending on anyone remembering.
  *
  * A house may carry more than one feed — separate the URLs with a comma.
+ *
+ * On top of both sits the winter closure (see `season.ts`), which no feed and no admin
+ * action can open: a house that is shut is shut.
  */
 export const HOUSE_SLUGS = ['saunamaja', 'tiigimaja', 'metsamaja'] as const
 export type HouseSlug = (typeof HOUSE_SLUGS)[number]
@@ -73,8 +77,11 @@ async function readFeeds(
     .map(u => u.trim())
     .filter(Boolean)
 
-  // Our own blocks are the floor. A feed can only add to them.
-  const nights = new Set<DateStr>(own.filter(n => n >= from && n < to))
+  // Our own blocks are the floor, and the closed season sits under everything.
+  const nights = new Set<DateStr>([
+    ...closedNights(slug, from, to),
+    ...own.filter(n => n >= from && n < to),
+  ])
   let failed = false
 
   if (!urls.length) {
