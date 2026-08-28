@@ -4,6 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import Image from 'next/image'
 import { T } from '@/lib/translations'
 import { TRAIL_LINKS } from '@/lib/trails'
+import { SOCIAL } from '@/lib/social'
 
 const delays = ['', ' reveal-delay-1', ' reveal-delay-2']
 
@@ -72,6 +73,37 @@ export default function Trails() {
               </div>
             )
           })}
+        </div>
+
+        {/*
+          The Maa- ja Ruumiamet base map, the same one RMK draws the trails on, built to a
+          single PNG by scripts/build-map.py. Static on purpose: the map answers "where is
+          this" once, and a tile client would cost 46KB of JavaScript, a third-party request
+          on every view and a layout shift to add panning nobody asked for.
+
+          NOT captioned "Andmed: Eesti Looduse Infosüsteem". That line on RMK's map credits
+          the nature data they overlay on top; we show no EELIS data, so claiming it would
+          credit a source we do not use.
+        */}
+        <div className="trails-map-block reveal">
+          <p className="section-label">{t.mapLabel[lang]}</p>
+          <a
+            className="trails-map"
+            href={SOCIAL.maps}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/images/map-oandu.png"
+              alt={t.mapAlt[lang]}
+              width={1280}
+              height={700}
+              sizes="(max-width: 900px) 94vw, 1200px"
+              quality={84}
+              style={{ width: '100%', height: 'auto' }}
+            />
+            <span className="trails-map-credit">{t.mapCredit}</span>
+          </a>
         </div>
       </div>
     </section>

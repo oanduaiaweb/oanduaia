@@ -1273,6 +1273,32 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 
 /*
+ * The location map. The credit is required by Maa- ja Ruumiamet's terms — "constantly and
+ * clearly visible to the user" — so it is burned into the corner of the frame rather than
+ * left as a caption that could scroll away from the thing it credits.
+ */
+.trails-map-block { margin-top: 5rem; }
+.trails-map {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(200,212,184,0.14);
+}
+.trails-map img { display: block; }
+.trails-map-credit {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0.4rem 0.8rem;
+  background: rgba(42,48,32,0.78);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--mist);
+}
+@media (max-width: 700px) { .trails-map-block { margin-top: 3rem; } }
+
+/*
  * The map booklet on the Oandu–Ikla row. A bordered box rather than an underlined word,
  * because it leaves the site and downloads a megabyte — that deserves to look like a
  * button and to say so before it is tapped.

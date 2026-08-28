@@ -147,6 +147,15 @@ export const T = {
       en: 'Between three manors: Palmse, Sagadi and Vihula – all a stone\'s throw away. Six hiking trails begin here, including Estonia\'s longest – Oandu-Ikla, 822 km.',
       ru: 'Между тремя поместьями: Палмсе, Сагади и Вихула – все в двух шагах. Отсюда начинаются шесть маршрутов, в т.ч. самый длинный в Эстонии – Оанду-Икла, 822 км.',
     },
+    mapLabel: { et: 'Asukoht', en: 'Where we are', ru: 'Расположение' },
+    mapAlt: {
+      et: 'Kaart: Oanduaia Oandu külas, tiik ja majad ringiga tähistatud',
+      en: 'Map: Oanduaia in Oandu village, its pond and houses circled',
+      ru: 'Карта: Oanduaia в деревне Оанду, пруд и дома обведены',
+    },
+    // Required by Maa- ja Ruumiamet's terms: a reference that is constantly and clearly
+    // visible wherever their base map is shown. Not translated — it is a source credit.
+    mapCredit: 'Aluskaart: Maa- ja Ruumiamet 2026',
     items: [
       {
         dist: { et: '822 km · pikkajaline', en: '822 km · long-distance', ru: '822 км · дальний' },
