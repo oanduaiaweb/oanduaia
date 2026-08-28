@@ -19,6 +19,9 @@ export function scrollToId(id: string) {
   const from = window.scrollY
   window.scrollTo({ top, behavior: 'smooth' })
   window.setTimeout(() => {
-    if (Math.abs(window.scrollY - from) < 4) window.scrollTo({ top, behavior: 'auto' })
+    // 'instant', never 'auto': 'auto' means "use the scroll-behavior property", which
+    // on this page is `smooth` — the very thing that does not work. Verified live:
+    // behavior 'auto' left scrollY at 0, 'instant' landed on 4066.
+    if (Math.abs(window.scrollY - from) < 4) window.scrollTo({ top, behavior: 'instant' })
   }, 260)
 }
