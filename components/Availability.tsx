@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useBookingDraft } from '@/contexts/BookingDraftContext'
@@ -7,6 +8,7 @@ import { T, type Lang } from '@/lib/translations'
 import type { DateStr } from '@/lib/ical'
 import { HOUSE_SLUGS, HORIZON_MONTHS, type Availability as Feed, type HouseSlug } from '@/lib/availability'
 import { formatDate, house as houseData, maxGuests, nightlyRate, quote } from '@/lib/pricing'
+import { HOUSE_IMAGES } from '@/lib/houses'
 
 const LOCALE: Record<Lang, string> = { et: 'et', en: 'en-GB', ru: 'ru' }
 
@@ -183,6 +185,32 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
       </p>
 
       <div className="avail-panel reveal reveal-delay-2">
+        {/*
+          The house you picked, behind the panel. All three are stacked and cross-faded
+          rather than swapped, so switching houses dissolves instead of flashing. They are
+          the same photographs the Houses section uses, under a linen scrim heavy enough to
+          keep the calendar's small dark type readable.
+        */}
+        <div className="avail-panel-bg" aria-hidden="true">
+          {HOUSE_SLUGS.map(s => {
+            const img = HOUSE_IMAGES[s]
+            if (!img) return null
+            return (
+              <div key={s} className={`avail-panel-photo${s === slug ? ' is-on' : ''}`}>
+                <Image
+                  src={img.src}
+                  alt=""
+                  fill
+                  sizes="(max-width: 900px) 100vw, 900px"
+                  quality={70}
+                  style={{ objectFit: 'cover', objectPosition: img.focus ?? 'center' }}
+                />
+              </div>
+            )
+          })}
+          <div className="avail-panel-scrim" />
+        </div>
+
         <div className="avail-controls">
           <div className="avail-control">
             <span className="avail-label">{t.lHouse[lang]}</span>
