@@ -223,7 +223,7 @@ export const T = {
     titleSuffix: {
       et: 'majutus Lahemaal | Oanduaia',
       en: 'lodging in Lahemaa, Estonia | Oanduaia',
-      ru: 'проживание в Лахемаа | Oanduaia',
+      ru: 'проживание в Лахемаа, Эстония | Oanduaia',
     },
     descFrom: { et: 'Hind alates', en: 'From', ru: 'От' },
     descUnit: {

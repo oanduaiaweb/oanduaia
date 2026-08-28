@@ -19,22 +19,37 @@ export function isLocale(v: string | undefined): v is Lang {
 
 /** Per-locale metadata. Kept here rather than in translations.ts so it stays SEO-shaped. */
 export const META: Record<Lang, { title: string; description: string; ogLocale: string }> = {
+  /*
+   * Words chosen for what people type, not for density. The English pages already say
+   * sauna, forest, Estonia and Lahemaa dozens of times in their own copy — repeating
+   * them here would be stuffing. What was genuinely missing was different:
+   *
+   * - "sauna" was absent from the English TITLE, the most valuable slot on the page,
+   *   on a property whose main house is a sauna house.
+   * - "cabin" appeared nowhere at all, in any language. It is how English speakers
+   *   search for this ("forest cabin Estonia", "cabin with sauna"), and log cabin is
+   *   what these buildings literally are.
+   * - Russian had no "баня". "Сауна" is the loanword; баня is what Russian speakers
+   *   type, and it is accurate for a wood-fired sauna.
+   * - Estonian had "metsaspaa", which nobody searches, and no "saunaga puhkemaja",
+   *   which is the standard phrase for renting a place like this.
+   */
   et: {
-    title: 'Oanduaia — metsaspaa ja majutus Lahemaal',
+    title: 'Oanduaia — saunaga puhkemajad ja majutus Lahemaal',
     description:
-      'Saun, majutus ja loodus Lahemaa rahvuspargi südames. Kolm maja — Saunamaja, Tiigimaja ja Metsamaja — Oandu külas, metsa ja mere vahel. Booking.com hinnang 9.6/10.',
+      'Kolm palkmaja puuküttega sauna ja tiigiga Lahemaa rahvuspargis, metsa ja mere vahel. Saunamaja, Tiigimaja ja Metsamaja Oandu külas. Booking.com hinnang 9.6/10.',
     ogLocale: 'et_EE',
   },
   en: {
-    title: 'Oanduaia — forest spa and lodging in Lahemaa, Estonia',
+    title: 'Oanduaia — sauna and forest cabins in Lahemaa, Estonia',
     description:
-      'Sauna, lodging and nature in the heart of Lahemaa National Park, Estonia. Three houses — Sauna House, Pond House and Forest House — in Oandu village, between forest and sea. Rated 9.6/10 on Booking.com.',
+      'Three Estonian log cabins with a wood-fired sauna in Lahemaa National Park, between forest and sea. Sauna House, Pond House and Forest House. Rated 9.6/10 on Booking.com.',
     ogLocale: 'en_GB',
   },
   ru: {
-    title: 'Oanduaia — лесной спа-отдых и проживание в Лахемаа',
+    title: 'Oanduaia — баня и лесные дома в Лахемаа, Эстония',
     description:
-      'Сауна, проживание и природа в сердце национального парка Лахемаа, Эстония. Три дома — Банный, Прудовой и Лесной — в деревне Оанду, между лесом и морем. Оценка 9.6/10 на Booking.com.',
+      'Три деревянных дома с дровяной баней в национальном парке Лахемаа, Эстония — между лесом и морем. Банный, Прудовой и Лесной дом в деревне Оанду. 9.6/10 на Booking.com.',
     ogLocale: 'ru_RU',
   },
 }
