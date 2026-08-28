@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { SOCIAL_ICONS } from '@/components/SocialRow'
+import { SOCIAL_ICONS, estoniaOutline } from '@/components/SocialRow'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T, type Lang } from '@/lib/translations'
 
@@ -91,7 +91,7 @@ export default function Nav() {
             className="nav-mark"
             aria-label="Google Maps"
           >
-            {SOCIAL_ICONS.maps(28)}
+            {estoniaOutline(46)}
           </a>
         </div>
 

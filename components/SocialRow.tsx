@@ -1,5 +1,18 @@
 import { SOCIAL } from '@/lib/social'
 
+/**
+ * Estonia's coastline, simplified: the north shore, the Narva corner, the western bite of
+ * Lake Peipus, the southern border and the Gulf of Riga, with Saaremaa and Hiiumaa off the
+ * west coast. Longitude is scaled against latitude by the cosine of 58.7°N, so the country
+ * keeps its real proportions rather than being stretched flat.
+ *
+ * One definition, two renderings — filled for the small icon, stroked for the large mark.
+ */
+const EE_VIEWBOX = '-1 -1 26 18'
+const EE_MAINLAND =
+  'M6.4 5.4 6.7 3.4 10.9 2.3 14.2 1.4 17.5 2.1 22.9 2.3 23.6 3.6 21.2 7.0 20.8 11.2 ' +
+  '21.5 13.3 17.4 15.3 13.2 13.4 10.6 14.1 10.5 10.6 7.8 9.9 6.7 7.6Z'
+
 const S = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' } as const
 
 export const SOCIAL_ICONS = {
@@ -22,22 +35,14 @@ export const SOCIAL_ICONS = {
     </svg>
   ),
   /**
-   * Estonia, rather than a generic pin. Filled rather than stroked: at 22px a country
-   * outline in a 1.8px stroke reads as noise, while the silhouette still reads as a map.
-   *
-   * The mainland traces the real coast — the north shore, the Narva corner, the western
-   * bite of Lake Peipus, the southern border, the Gulf of Riga — and Saaremaa and Hiiumaa
-   * sit off the west coast where they belong. Longitude is scaled against latitude by the
-   * cosine of 58.7°N, so the country keeps its true proportions instead of being stretched
-   * flat by an equirectangular projection.
+   * Estonia, rather than a generic pin. Filled here: at 22px a country traced in a
+   * hairline is noise, and the silhouette still reads as a map. The larger brand mark
+   * under the wordmark uses the same geometry stroked — see `estoniaOutline`.
    */
   maps: (s: number) => (
-    // Estonia is half again as wide as it is tall, so a square box letterboxed it: the
-    // shape rendered ~30% shorter than its neighbours and read as the runt of the row.
-    // Sized to its own proportions instead, it carries the same weight as the others.
     <svg width={Math.round(s * 1.22)} height={Math.round(s * 0.85)}
-         viewBox="-1 -1 26 18" fill="currentColor" aria-hidden="true">
-      <path d="M6.4 5.4 6.7 3.4 10.9 2.3 14.2 1.4 17.5 2.1 22.9 2.3 23.6 3.6 21.2 7.0 20.8 11.2 21.5 13.3 17.4 15.3 13.2 13.4 10.6 14.1 10.5 10.6 7.8 9.9 6.7 7.6Z" />
+         viewBox={EE_VIEWBOX} fill="currentColor" aria-hidden="true">
+      <path d={EE_MAINLAND} />
       <ellipse cx="3.6" cy="9.9" rx="2.6" ry="1.7" />
       <ellipse cx="4.1" cy="5.9" rx="1.5" ry="0.85" />
     </svg>
@@ -60,5 +65,30 @@ export default function SocialRow({ className = '', itemClassName = '', size = 2
         </a>
       ))}
     </div>
+  )
+}
+
+/**
+ * The outline version, for the brand mark under the wordmark. Drawn rather than filled so
+ * the photograph behind it comes through — which only works at size: the stroke has to
+ * stay above a pixel and a half or the islands close up into dots.
+ */
+export function estoniaOutline(s: number) {
+  return (
+    <svg
+      width={Math.round(s * 1.22)}
+      height={Math.round(s * 0.85)}
+      viewBox={EE_VIEWBOX}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={0.9}
+      strokeLinejoin="round"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <path d={EE_MAINLAND} />
+      <ellipse cx="3.6" cy="9.9" rx="2.6" ry="1.7" />
+      <ellipse cx="4.1" cy="5.9" rx="1.5" ry="0.85" />
+    </svg>
   )
 }
