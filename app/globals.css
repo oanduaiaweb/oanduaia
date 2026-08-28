@@ -345,12 +345,17 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 ══════════════════════════════ */
 .hero {
   position: relative;
-  height: 110vh;
-  min-height: 700px;
+  /*
+   * One screen, not one and a tenth. At 110vh the bottom of the hero — the strapline and
+   * the call to action — sat below the fold on a laptop, so the first thing a visitor saw
+   * was a block cut off at the edge. 100svh lands it exactly on the first screen.
+   */
+  height: 100svh;
+  min-height: 640px;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  padding: 4.5rem var(--section-h) 3rem;
+  padding: 4.5rem var(--section-h) 3.2rem;
 }
 
 /* Top vignette — nav always readable */
@@ -413,7 +418,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--linen);
   text-transform: uppercase;
   letter-spacing: var(--ls-display);
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.5rem;
 }
 /* No overflow:hidden on lines — opacity:0 handles pre-animation invisibility.
    This eliminates all glyph-clipping artifacts (the "g" dots). */
@@ -439,7 +444,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-transform: uppercase;
   color: var(--mist);
   opacity: 0;
-  margin-bottom: 3rem;
+  margin-bottom: 1.9rem;
   animation: fadeUp 1s var(--ease-expo) 1.3s forwards;
 }
 
