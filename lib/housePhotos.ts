@@ -58,6 +58,14 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
         ru: 'Игристое вино и ягоды рядом с хрустальными бокалами на гранитном столе',
       },
     },
+    {
+      src: '/galerii/saunamaja/koogisaar-ja-elutuba.jpeg',
+      alt: {
+        et: 'Köögisaar ja elutuba ühes ruumis hämaras, potiraam ja kruusid palgi all',
+        en: 'The kitchen island and the living room in one space at dusk, pots and mugs hung from the beam',
+        ru: 'Кухонный остров и гостиная в одном пространстве в сумерках, посуда на балке',
+      },
+    },
   ],
   tiigimaja: [
     {
