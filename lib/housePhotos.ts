@@ -106,6 +106,54 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
         ru: 'Гостиная под люстрой из дубовых листьев, окна с трёх сторон на газон',
       },
     },
+    {
+      src: '/galerii/saunamaja/saun.webp',
+      alt: {
+        et: 'Leiliruum, kuumad kivid kerisel ja kaseviht ämbris lava all',
+        en: 'The steam room, hot stones on the stove and a birch whisk in a bucket beneath the bench',
+        ru: 'Парная — раскалённые камни на печи и берёзовый веник в ведре под полком',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/ratikud.webp',
+      alt: {
+        et: 'Oanduaia tikandiga rätikud ja teokarbid sauna pingil',
+        en: 'Towels embroidered Oanduaia, with shells, on the sauna bench',
+        ru: 'Полотенца с вышивкой Oanduaia и ракушки на банной скамье',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/elutuba-talvel.webp',
+      alt: {
+        et: 'Elutuba talvel, lumi akende taga ja küünlad graniitlaual',
+        en: 'The living room in winter, snow beyond the windows and candles on the granite table',
+        ru: 'Гостиная зимой, снег за окнами и свечи на гранитном столе',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/magamistuba-ulal.webp',
+      alt: {
+        et: 'Rõdukorruse voodi katusekalde all, sepispiire ja laeventilaator',
+        en: 'The loft bed under the roof slope, the forged railing and a ceiling fan',
+        ru: 'Кровать на антресоли под скатом крыши, кованое ограждение и вентилятор',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/magamistuba-lilleline.webp',
+      alt: {
+        et: 'Teine voodi rõdul, lilleline tekk ja sepistatud okstega piire',
+        en: 'The second bed in the loft, a floral quilt and the forged branch railing',
+        ru: 'Вторая кровать на антресоли, покрывало в цветах и кованое ограждение',
+      },
+    },
+    {
+      src: '/galerii/saunamaja/magamistuba-kuunlaga.webp',
+      alt: {
+        et: 'Voodi palkseina ääres, küünal seinaküünlajalas ja pilt kohal',
+        en: 'A bed against the log wall, a candle in its sconce and a picture above',
+        ru: 'Кровать у бревенчатой стены, свеча в бра и картина над ней',
+      },
+    },
   ],
   tiigimaja: [
     {
