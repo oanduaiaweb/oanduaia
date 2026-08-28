@@ -64,34 +64,87 @@ export default function LocationMap() {
 
       map = L.map(holder.current, {
         center: [LAT, LON],
-        zoom: 15,
-        minZoom: 9,
+        // 13 rather than 15: this is a map of where the trails go, and at 15 you are
+        // inside the garden with nothing marked around you.
+        zoom: 13,
+        // Maa-amet serves down to zoom 4. The old floor of 9 was mine, not theirs, and
+        // it stopped the map zooming out — the first thing anyone tries on a trail map.
+        minZoom: 6,
         maxZoom: 18,
         // The page scrolls; a wheel over the map should scroll it too, not zoom by
         // surprise. Ctrl/⌘+wheel and the +/- buttons still zoom, and so does a pinch.
         scrollWheelZoom: false,
         attributionControl: true,
+        /*
+         * The zoom TWEEN is off. With it on, zooming did not merely look wrong — it did
+         * not happen: `map.setZoom(11)` left the zoom at 13, from the buttons, the
+         * keyboard and the API alike. The same call with `{animate: false}` moves
+         * instantly and correctly, so the map was fine and its animation was not.
+         *
+         * This page has form for exactly that. Chrome silently drops every smooth scroll
+         * here too — see lib/scrollToId, where the fix is the same shape: stop asking the
+         * browser to animate, and just move. What is lost is a 250ms tween; what is
+         * gained is a zoom button that works.
+         */
+        zoomAnimation: false,
       })
 
       L.tileLayer('https://tiles.maaamet.ee/tm/tms/1.0.0/kaart@GMC/{z}/{x}/{y}.png', {
         tms: true,
-        minZoom: 9,
+        minZoom: 6,
         maxZoom: 18,
         attribution:
           'Aluskaart: <a href="https://maaamet.ee" target="_blank" rel="noopener noreferrer">Maa- ja Ruumiamet</a>',
       }).addTo(map)
 
-      // A ring, not a pin — Leaflet's default marker needs image assets we would
-      // otherwise have to ship and path-fix, and the ring matches the static map.
-      L.circleMarker([LAT, LON], {
-        radius: 13,
-        color: '#3a4a35',
-        weight: 3,
-        fillColor: '#f0ebe0',
-        fillOpacity: 0.25,
+      /*
+       * The marked routes, drawn over the Estonian base map: E11 through Oandu, the RMK
+       * Oandu loops, the Sagadi link. This is the layer that makes it a hiking map rather
+       * than a pin on a field.
+       *
+       * Rendered by Waymarked Trails from OpenStreetMap data. It is a free community
+       * service with no guarantee behind it — if it ever stops answering, the tiles
+       * simply do not draw and the Maa-amet base map underneath is unaffected. The OSM
+       * attribution below is required by that project's licence.
+       */
+      L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        opacity: 0.85,
+        attribution:
+          'Rajad: <a href="https://hiking.waymarkedtrails.org" target="_blank" rel="noopener noreferrer">Waymarked Trails</a>, © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>',
+      }).addTo(map)
+
+      /*
+       * A divIcon — an HTML ring — rather than L.circleMarker.
+       *
+       * circleMarker is an SVG vector layer, and with it on the map every zoom threw
+       * "Cannot read properties of undefined (reading 'baseVal')" out of Leaflet's SVG
+       * renderer. The exception aborted the zoom, so the map sat at one level however
+       * many times you pressed + or −, with nothing visibly wrong. That is the bug Mikk
+       * hit. No SVG layer, no SVG renderer, no zoom to break — and a div takes the ring
+       * styling from our own stylesheet.
+       */
+      L.marker([LAT, LON], {
+        icon: L.divIcon({ className: 'oa-map-pin', html: '', iconSize: [26, 26] }),
+        keyboard: false,
+        title: 'Oanduaia',
       })
         .addTo(map)
         .bindPopup('<strong>Oanduaia</strong><br>Oandu, Lääne-Virumaa')
+
+      /*
+       * Leaflet measures its container once, at construction. Here that happens after an
+       * idle callback on a page still settling fonts and images, so it can measure the
+       * wrong size and leave grey where tiles were never requested. One invalidateSize
+       * on the next frame makes it measure again.
+       *
+       * Deliberately NOT a ResizeObserver on the container. That was tried and it broke
+       * zooming outright: Leaflet resizes its own panes while a zoom animates, the
+       * observer fired, invalidateSize reset the animation, and the map sat at one zoom
+       * level however many times you pressed + or -. Leaflet tracks window resize itself
+       * (`trackResize`, on by default), which is the case that actually matters.
+       */
+      requestAnimationFrame(() => map?.invalidateSize())
     })()
 
     return () => { cancelled = true; map?.remove() }
@@ -111,10 +164,6 @@ export default function LocationMap() {
       <div className="trails-map-links">
         <a className="trail-link" href={SOCIAL.maps} target="_blank" rel="noopener noreferrer">
           {t.mapOpen[lang]}
-        </a>
-        <a className="trail-link" href="/images/map-oandu.png" download="oanduaia-kaart.png">
-          {t.mapDownload[lang]}
-          <span className="trail-link-meta">PNG</span>
         </a>
       </div>
     </div>

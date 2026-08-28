@@ -154,7 +154,6 @@ export const T = {
       ru: 'Карта: Oanduaia в деревне Оанду, пруд и дома обведены',
     },
     mapOpen: { et: 'Ava Google Mapsis', en: 'Open in Google Maps', ru: 'Открыть в Google Maps' },
-    mapDownload: { et: 'Lae kaart alla', en: 'Download the map', ru: 'Скачать карту' },
     items: [
       {
         dist: { et: '822 km · pikkajaline', en: '822 km · long-distance', ru: '822 км · дальний' },

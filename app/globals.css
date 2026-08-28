@@ -1280,12 +1280,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .trails-map-block { margin-top: 5rem; }
 .trails-map {
   position: relative;
-  height: 520px;
+  height: 420px;
   overflow: hidden;
   border: 1px solid rgba(200,212,184,0.14);
   background: #e9ece0;   /* Maa-amet's own land tone, so the frame is never a white flash */
 }
-@media (max-width: 700px) { .trails-map { height: 380px; } }
+@media (max-width: 700px) { .trails-map { height: 340px; } }
 
 /*
  * Leaflet's own chrome, dressed to match. The attribution stays — it is required to be
@@ -1312,6 +1312,13 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   border-color: rgba(58,74,53,0.18);
 }
 .trails-map .leaflet-control-zoom a:hover { background: #fff; }
+/* The marker: an open ring, so it circles the property rather than covering it. */
+.trails-map .oa-map-pin {
+  border: 3px solid var(--moss);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.65);
+  background: rgba(240,235,224,0.18);
+}
 .trails-map .leaflet-popup-content { font-family: var(--font-sans); font-size: var(--fs-xs); }
 
 .trails-map-links {
