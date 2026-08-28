@@ -2212,20 +2212,6 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   border-bottom: 1px solid rgba(90,110,80,0.14);
 }
 .house-facts li:last-child { border-bottom: none; }
-.house-gallery-link {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: var(--fs-2xs);
-  letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
-  color: var(--fern);
-  text-decoration: none;
-  border: 1px solid rgba(90,110,80,0.3);
-  padding: 0.6rem 1.1rem;
-  margin-top: 1.4rem;
-  transition: border-color 0.3s, background 0.3s, color 0.3s;
-}
-.house-gallery-link:hover { background: var(--moss); border-color: var(--moss); color: var(--linen); }
 
 /* Rates, on linen rather than the dark band — the .house-price-* rules are for the
    homepage bands and read as invisible on a light ground. */

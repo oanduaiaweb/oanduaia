@@ -55,17 +55,12 @@ export default function House({ slug }: { slug: string }) {
             ))}
           </ul>
           {/*
-            "Vaata pilte" promises this house's pictures. When the house has its own, that
-            is where it goes — sending someone to a 93-photo gallery of the whole property
-            with one cover shot highlighted is not what the button says.
+            No "Vaata pilte" here. It used to send you to the whole-property gallery, then
+            to #pildid once each house had its own photographs — but #pildid is now the
+            next thing on the page. A button whose only job is to scroll you to what you
+            were about to reach anyway is furniture. The home-page cards keep theirs:
+            there it crosses a page boundary and earns its place.
           */}
-          {photos.length > 0 ? (
-            <a href="#pildid" className="house-gallery-link">{f.galleryLink[lang]}</a>
-          ) : (
-            <Link href={`/${lang}/gallery#${slug}`} className="house-gallery-link">
-              {f.galleryLink[lang]}
-            </Link>
-          )}
         </div>
 
         <aside className="house-rates">
