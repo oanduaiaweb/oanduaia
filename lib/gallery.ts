@@ -146,7 +146,30 @@ const RAW_2026: [string, string, string, string][] = [
   ['istumine-taevas', 'Välisistumisala avara sinise taeva all', 'The outdoor seating area under a wide blue sky', 'Зона отдыха под широким синим небом'],
 ]
 
-export const GALLERY_PHOTOS: GalleryPhoto[] = [...RAW_2026, ...RAW].map(([n, et, en, ru]) => ({
+/**
+ * The table, added 28 Aug 2026. Same shape; the name carries the `toit/` folder.
+ *
+ * These also run as the ribbon under the food cards, and the two card photographs are
+ * here too — unlike the house interiors, which were pulled OUT of this gallery, food is
+ * not about one building. It is the property, which is what this gallery is for.
+ */
+const RAW_TOIT: [string, string, string, string][] = [
+  ['toit/buffet-perenaine', 'Perenaine kaetud puhvetilaua taga väliköögis, koogid ja marjadesserdid ees', 'The host behind the laid buffet in the outdoor kitchen, cakes and berry desserts to the front', 'Хозяйка за накрытым столом в летней кухне, торты и ягодные десерты впереди'],
+  ['toit/pidulik-pikk-laud', 'Küünlavalgel pikk laud messingist salvrätirõngaste ja jasmiinikimpudega', 'The long table by candlelight, with brass napkin rings and jars of jasmine', 'Длинный стол при свечах, латунные кольца для салфеток и букеты жасмина'],
+  ['toit/marjadesserdid', 'Marjadesserdid klaasides puidust kandikul, metsalilled ja kuusk taga', 'Berry desserts in coupe glasses on a wooden tray, wildflowers and spruce behind', 'Ягодные десерты в креманках на деревянном подносе, полевые цветы и ели позади'],
+  ['toit/valikook-ohtul', 'Väliköök hämaras, suitsevad tulealused murul', 'The outdoor kitchen at dusk, fire bowls smoking on the lawn', 'Летняя кухня в сумерках, дымящиеся жаровни на газоне'],
+  ['toit/talvine-suupistelaud', 'Talvine suupistelaud juustu ja oliividega, lumi klaasuste taga', 'A winter spread of cheese and olives, snow beyond the glass doors', 'Зимний стол с сыром и оливками, снег за стеклянными дверями'],
+  ['toit/roheline-laud', 'Roheliselt kaetud laud kiviterrassil, kristall ja vahuvein', 'The table laid in green on the stone terrace, crystal and sparkling wine', 'Стол в зелёном на каменной террасе, хрусталь и игристое'],
+  ['toit/tee-lumes', 'Aurav klaas teed sepistatud laual lumes', 'A steaming glass of tea on a wrought-iron table in the snow', 'Дымящийся стакан чая на кованом столе в снегу'],
+  ['toit/pergolalaud', 'Kaetud laud kuuele pergola all, mets kardinate taga', 'A table laid for six under the pergola, forest behind the curtains', 'Стол на шестерых под перголой, лес за занавесями'],
+  ['toit/viinamarjad-ja-klaasid', 'Viinamarjad, maasikad ja oliivid vaagnal, šampanjaklaasid ja küünlajalg', 'Grapes, strawberries and olives on trays, champagne flutes and a brass candelabra', 'Виноград, клубника и оливки на подносах, бокалы и бронзовый канделябр'],
+  ['toit/roosa-vein', 'Roosa vein kullatud jahutuskausis terrassil, roogkatusega maja taga', 'Rosé cooling in a gilded bowl on the deck, the thatched house beyond', 'Розовое вино в золочёной чаше на террасе, дом с камышовой крышей позади'],
+  ['toit/kuldne-laudlina', 'Kuldne laudlina, roosid, põlev küünal ja pakitud kingitus', 'A gold damask cloth with roses, a lit candle and a wrapped gift', 'Золотая скатерть, розы, зажжённая свеча и упакованный подарок'],
+  ['toit/laud-tiigi-aares', 'Juustu- ja vorstivaagen tiigi ääres kevadpäikeses', 'A board of cheese and cured meats by the pond in spring sun', 'Доска с сыром и мясными закусками у пруда на весеннем солнце'],
+  ['toit/klaasid-ja-lilled', 'Kaks klaasi tõstetud suure lillekimbu kõrval, lumi akna taga', 'Two glasses raised beside a tall arrangement of flowers, snow through the window', 'Два бокала подняты у большого букета, снег за окном'],
+]
+
+export const GALLERY_PHOTOS: GalleryPhoto[] = [...RAW_TOIT, ...RAW_2026, ...RAW].map(([n, et, en, ru]) => ({
   src: `/galerii/${n}.jpeg`,
   alt: { et, en, ru },
 }))
