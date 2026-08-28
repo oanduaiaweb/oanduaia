@@ -2,6 +2,12 @@ import type { Lang } from './translations'
 
 export type HeroSlide = {
   src: string
+  /**
+   * The file's real pixels, measured not guessed. They decide how much of the photograph
+   * survives the phone crop, and therefore how wide a file to ask for — see `slideSizes`.
+   */
+  w: number
+  h: number
   alt: Record<Lang, string>
   /**
    * object-position for the crop. The hero is a wide box on desktop and a tall one on
@@ -12,8 +18,8 @@ export type HeroSlide = {
 }
 
 /** Crossfade timing, in ms. HOLD is how long a slide sits still; FADE is the dissolve. */
-export const HERO_HOLD = 3600
-export const HERO_FADE = 1100
+export const HERO_HOLD = 2400
+export const HERO_FADE = 750
 
 /**
  * Hero slideshow. Use **landscape** images only — the hero is a wide crop and a portrait
@@ -25,6 +31,8 @@ export const HERO_FADE = 1100
 export const HERO_SLIDES: HeroSlide[] = [
   {
     src: '/images/hero.jpg',
+    w: 1800,
+    h: 1200,
     focus: { desktop: '50% 50%', mobile: '28% 50%' },
     alt: {
       et: 'Lahemaa mets Oanduaia ümber',
@@ -34,6 +42,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     src: '/galerii/039.jpeg',
+    w: 1600,
+    h: 1200,
     focus: { desktop: '50% 50%', mobile: '50% 50%' },
     alt: {
       et: 'Pikk roogkatusega palkmaja suvises päikeses',
@@ -43,6 +53,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     src: '/galerii/087.jpeg',
+    w: 2048,
+    h: 1536,
     focus: { desktop: '62% 50%', mobile: '80% 50%' },
     alt: {
       et: 'Ümar roogkatusega hoone tiigi ääres',
@@ -51,16 +63,9 @@ export const HERO_SLIDES: HeroSlide[] = [
     },
   },
   {
-    src: '/galerii/043.jpeg',
-    focus: { desktop: '50% 50%', mobile: '50% 50%' },
-    alt: {
-      et: 'Paadisild tiigil, puud peegelduvad vees',
-      en: 'The jetty on the pond with trees mirrored in the water',
-      ru: 'Мостик на пруду, деревья отражаются в воде',
-    },
-  },
-  {
     src: '/galerii/051.jpeg',
+    w: 1600,
+    h: 1321,
     focus: { desktop: '45% 50%', mobile: '32% 50%' },
     alt: {
       et: 'Roogkatusega maja tiigi ääres varakevadel',
@@ -70,6 +75,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     src: '/galerii/kolm-hoonet.jpeg',
+    w: 1536,
+    h: 2048,
     focus: { desktop: '50% 38%', mobile: '50% 45%' },
     alt: {
       et: 'Kolm hoonet peegeldumas vaikses tiigis',
@@ -79,6 +86,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     src: '/galerii/peamajast-ulevalt.jpeg',
+    w: 2048,
+    h: 1536,
     focus: { desktop: '40% 50%', mobile: '26% 50%' },
     alt: {
       et: 'Avar muru peamaja ees kõrgete pilvede all',
@@ -88,6 +97,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     src: '/galerii/kiigud.jpeg',
+    w: 2048,
+    h: 2048,
     focus: { desktop: '50% 58%', mobile: '50% 55%' },
     alt: {
       et: 'Kaks puidust võrkkiike kaskede vahel maja ees',
@@ -97,6 +108,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     src: '/galerii/saunamaja-veepealt.jpeg',
+    w: 1536,
+    h: 2048,
     focus: { desktop: '50% 45%', mobile: '50% 45%' },
     alt: {
       et: 'Saunamaja üle vee, mets peegeldumas tiigis',
@@ -106,6 +119,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     src: '/galerii/oja.jpeg',
+    w: 1536,
+    h: 2048,
     focus: { desktop: '50% 42%', mobile: '50% 40%' },
     alt: {
       et: 'Õhtupäike läbi puude tiigi kohal',
@@ -114,3 +129,23 @@ export const HERO_SLIDES: HeroSlide[] = [
     },
   },
 ]
+
+/**
+ * The `sizes` hint for one slide.
+ *
+ * On a phone the hero is a tall, narrow box and `object-fit: cover` scales each photograph
+ * until its shorter dimension fills. A LANDSCAPE slide therefore renders far wider than the
+ * viewport — its width spills off both edges — and asking for 100vw fetches a file sized for
+ * the screen which is then upscaled to fill. That was why the phone hero looked soft.
+ *
+ * A PORTRAIT slide fills the box by width instead, so 100vw is already right for it, and
+ * asking for more is bytes spent on pixels nobody can see.
+ */
+export function slideSizes(slide: HeroSlide): string {
+  const aspect = slide.w / slide.h
+  // The phone hero is 76svh tall; ~0.63 is what that works out to across common handsets.
+  const HERO_ASPECT_MOBILE = 0.63
+  if (aspect <= HERO_ASPECT_MOBILE) return '100vw'
+  const overflow = Math.min(Math.round((aspect / HERO_ASPECT_MOBILE) * 100), 300)
+  return `(max-width: 700px) ${overflow}vw, 100vw`
+}

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
-import { HERO_SLIDES, HERO_HOLD, HERO_FADE } from '@/lib/hero'
+import { HERO_SLIDES, HERO_HOLD, HERO_FADE, slideSizes } from '@/lib/hero'
 
 function scrollTo(id: string) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -21,6 +21,13 @@ export default function Hero() {
   // The non-LCP slides are held back until after first paint so they do not
   // compete with the hero image for bandwidth.
   const [mounted, setMounted] = useState(false)
+  /**
+   * The furthest slide reached. Only this one and the next are in the DOM, so the
+   * carousel loads a slide at a time instead of all nine at once — on a phone that was
+   * nearly eight megabytes before anyone had scrolled. A visitor who leaves after a few
+   * seconds pays for two or three pictures, not the whole set.
+   */
+  const [reached, setReached] = useState(0)
 
   useEffect(() => {
     setMounted(true)
@@ -35,6 +42,8 @@ export default function Hero() {
     return () => clearInterval(id)
   }, [])
 
+  useEffect(() => { setReached(r => Math.max(r, index)) }, [index])
+
   return (
     <section className="hero">
       <div
@@ -45,7 +54,7 @@ export default function Hero() {
         }}
       >
         {HERO_SLIDES.map((slide, i) => {
-          if (i > 0 && !mounted) return null
+          if (i > 0 && (!mounted || i > reached + 1)) return null
           return (
             <div
               key={slide.src}
@@ -61,8 +70,8 @@ export default function Hero() {
                 alt={i === index ? slide.alt[lang] : ''}
                 fill
                 priority={i === 0}
-                sizes="100vw"
-                quality={75}
+                sizes={slideSizes(slide)}
+                quality={88}
                 className="hero-bg-img"
               />
             </div>
