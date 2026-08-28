@@ -10,6 +10,11 @@ export const SOCIAL = {
   instagram: 'https://www.instagram.com/oanduaia/',
   facebook: 'https://www.facebook.com/Oanduaia/',
   booking: 'https://www.booking.com/hotel/ee/oanduaia-saunamaja.html',
+  /**
+   * The place itself, by CID — verified in a browser to resolve to Oanduaia. Shorter and
+   * more durable than the full coordinate URL, and it is what "write a review" opens.
+   */
+  mapsPlace: 'https://maps.google.com/?cid=9811987788853274564',
   maps:
     'https://www.google.com/maps/place/Oanduaia/@59.5602003,26.1040144,17.51z/data=!4m9!3m8!' +
     '1s0x4693a5e9eb2501f1:0x882b2ee86711e7c4!5m2!4m1!1i2!8m2!3d59.5601919!4d26.1067858!' +

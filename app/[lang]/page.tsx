@@ -5,7 +5,7 @@ import Services from '@/components/Services'
 import Feature from '@/components/Feature'
 import Trails from '@/components/Trails'
 import Stats from '@/components/Stats'
-import Testimonial from '@/components/Testimonial'
+import Reviews from '@/components/Reviews'
 import Availability from '@/components/Availability'
 import Booking from '@/components/Booking'
 import Footer from '@/components/Footer'
@@ -22,7 +22,7 @@ export default function Page() {
       <Services />
       <Trails />
       <Stats />
-      <Testimonial />
+      <Reviews />
       <Availability />
       <Booking />
       <Footer />

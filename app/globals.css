@@ -1009,55 +1009,192 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* ══════════════════════════════
    TESTIMONIAL — compact dark
 ══════════════════════════════ */
-.testimonial-section {
+/* ══════════════════════════════
+   REVIEWS
+   Three real scores a guest can go and verify, instead of one quote we chose.
+══════════════════════════════ */
+.reviews-section {
   background: var(--bark);
-  padding: 5rem var(--section-h);
+  padding: 5.5rem var(--section-h) 5rem;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-.testimonial-section::before {
+.reviews-section::before {
   content: '"';
   position: absolute;
-  top: -2rem; left: 50%;
+  top: -3rem; left: 50%;
   transform: translateX(-50%);
   font-size: 18rem;
   font-family: var(--font-display);
   font-weight: 300;
   color: var(--moss);
-  opacity: 0.18;
+  opacity: 0.16;
   line-height: 1;
   pointer-events: none;
 }
-.testimonial-rating {
+.reviews-section > * { position: relative; z-index: 1; }
+
+.reviews-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.9;
+  margin-bottom: var(--label-gap);
+}
+.reviews-heading {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: var(--ls-tight);
+  color: var(--linen);
+  margin-bottom: 1rem;
+}
+.reviews-heading em { font-style: italic; color: var(--sage); }
+.reviews-sub {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--mist);
+  opacity: 0.62;
+  max-width: 48ch;
+  margin: 0 auto 3rem;
+  text-wrap: balance;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.review-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 2rem 1.2rem 1.6rem;
+  border: 1px solid rgba(200,212,184,0.17);
+  border-radius: 3px;
+  text-decoration: none;
+  background: rgba(200,212,184,0.02);
+  transition: border-color 0.35s var(--ease-smooth), background 0.35s var(--ease-smooth),
+              transform 0.35s var(--ease-smooth);
+}
+.review-card:hover {
+  border-color: rgba(200,212,184,0.42);
+  background: rgba(200,212,184,0.06);
+  transform: translateY(-3px);
+}
+/* Two lines' worth whether or not the channel names a house, so the scores line up. */
+.review-channel {
+  min-height: 2.7em;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--sage);
+  opacity: 0.85;
+}
+.review-place {
+  display: block;
+  margin-top: 0.25rem;
+  letter-spacing: var(--ls-normal);
+  text-transform: none;
+  color: var(--mist);
+  opacity: 0.7;
+}
+.review-score {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.review-outof {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--sage);
+  opacity: 0.65;
+}
+.review-count {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--mist);
+  opacity: 0.55;
+}
+.review-go {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--mist);
+  opacity: 0.7;
+  margin-top: 0.5rem;
+  transition: opacity 0.3s;
+}
+.review-go::after { content: ' →'; }
+.review-card:hover .review-go { opacity: 1; }
+
+/* Asking for one, which is the half the old quote block never did. */
+.reviews-write {
+  max-width: 900px;
+  margin: 3.2rem auto 0;
+  padding-top: 2.6rem;
+  border-top: 1px solid rgba(200,212,184,0.14);
+}
+.reviews-write-h {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--linen);
+  margin-bottom: 0.5rem;
+}
+.reviews-write-sub {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  color: var(--mist);
+  opacity: 0.6;
+  margin-bottom: 1.6rem;
+  line-height: 1.7;
+}
+.reviews-write-btn {
+  display: inline-block;
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 2rem;
-  opacity: 0.9;
-  position: relative;
-  z-index: 1;
+  color: var(--bark);
+  background: var(--linen);
+  border: 1px solid var(--linen);
+  border-radius: 4px;
+  padding: 0.95rem 2rem;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s, transform 0.3s var(--ease-smooth);
 }
-.testimonial-quote {
-  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.45;
+.reviews-write-btn:hover {
+  background: transparent;
   color: var(--linen);
-  max-width: 860px;
-  margin: 0 auto 1.8rem;
-  position: relative;
-  z-index: 1;
+  transform: translateY(-2px);
 }
-.testimonial-author {
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-widest);
-  text-transform: uppercase;
-  color: var(--sage);
-  opacity: 0.8;
+
+@media (max-width: 760px) {
+  .reviews-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+  .review-card { flex-direction: row; flex-wrap: wrap; justify-content: space-between; text-align: left; padding: 1.3rem 1.2rem; }
+  /* The two-line reserve is only there to align columns; the stacked cards are rows. */
+  .review-card .review-channel { flex: 1 1 auto; min-height: 0; }
+  .review-card .review-score { order: 3; }
+  .review-count { flex-basis: 100%; }
+  .review-go { margin-top: 0.2rem; }
+  .reviews-write-btn { width: 100%; }
 }
 
 /* ══════════════════════════════

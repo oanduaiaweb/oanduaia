@@ -186,14 +186,23 @@ export const T = {
     l3: { et: 'km Eesti pikim matkarada', en: "km Estonia's longest trail", ru: 'км – самый длинный маршрут' },
     l4: { et: 'm² kaetud väliköök', en: 'm² covered outdoor kitchen', ru: 'м² крытая летняя кухня' },
   },
-  testimonial: {
-    rating:  { et: 'Booking.com · 9.6 / 10', en: 'Booking.com · 9.6 / 10', ru: 'Booking.com · 9.6 / 10' },
-    quote: {
-      et: 'Kogu koht on kaunistatud kuni väikseima detailini. Väike paradiis maa peal.',
-      en: 'The whole place is decorated down to the smallest detail – a little paradise on earth.',
-      ru: 'Всё место украшено до мельчайших деталей – маленький рай на земле.',
+  reviews: {
+    label: { et: 'Arvustused', en: 'Reviews', ru: 'Отзывы' },
+    h1:    { et: 'Mida külalised', en: 'What our guests', ru: 'Что говорят' },
+    h2em:  { et: 'räägivad.', en: 'say.', ru: 'наши гости.' },
+    sub: {
+      et: 'Kolm kohta, kus meist kirjutatakse. Kõik hinnangud on külaliste omad.',
+      en: 'Three places where guests write about us. Every score is theirs, not ours.',
+      ru: 'Три места, где о нас пишут. Все оценки принадлежат гостям.',
     },
-    author: { et: 'Külalisarvustus, 2024', en: 'Guest review, 2024', ru: 'Отзыв гостя, 2024' },
+    read:  { et: 'Loe arvustusi', en: 'Read the reviews', ru: 'Читать отзывы' },
+    writeH: { et: 'Käisid meil?', en: 'Stayed with us?', ru: 'Гостили у нас?' },
+    writeSub: {
+      et: 'Paar rida sinult aitab järgmisel külalisel meid üles leida.',
+      en: 'A couple of lines from you helps the next guest find us.',
+      ru: 'Пара строк от вас поможет следующему гостю нас найти.',
+    },
+    write: { et: 'Kirjuta arvustus', en: 'Write a review', ru: 'Написать отзыв' },
   },
   housePage: {
     eyebrow:  { et: 'Majutus', en: 'Accommodation', ru: 'Размещение' },
