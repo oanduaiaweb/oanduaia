@@ -173,6 +173,14 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
+      src: '/galerii/tiigimaja/terrass.jpeg',
+      alt: {
+        et: 'Lai puitterrass tiigi ääres, lamamistoolid ja pergola all istumisala',
+        en: 'The broad timber deck at the pond, loungers and seating under the pergola',
+        ru: 'Широкая деревянная терраса у пруда, шезлонги и зона отдыха под перголой',
+      },
+    },
+    {
       src: '/galerii/tiigimaja/siseruum.jpeg',
       alt: {
         et: 'Elutuba rohelise diivani, nikerdatud katusetala ja lambanahkse vaibaga',
