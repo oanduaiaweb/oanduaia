@@ -759,9 +759,75 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 
 /* Heading block above the three house bands */
 .feature-intro {
+  position: relative;
+  overflow: hidden;
   padding: var(--section-v) 5rem 3.5rem;
 }
+/* Lift the label and heading clear of the drifting photographs behind them. */
+.feature-intro > .section-label,
+.feature-intro > .feature-heading { position: relative; z-index: 2; }
 .feature-intro .section-label { color: var(--sage); opacity: 0.7; }
+
+/*
+ * The houses drift behind the heading, left to right.
+ *
+ * The track holds the six frames twice and animates from -50% to 0: at -50% the
+ * second copy stands exactly where the first began, so the loop has no seam. Moving
+ * toward 0 is what makes it travel rightward — the eye reads the page left to right
+ * and the photographs arrive with it rather than against it.
+ *
+ * 88s for one pass is deliberately slower than it sounds. This sits behind type; at
+ * anything brisker it competes with the words instead of settling under them.
+ */
+.house-strip {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.house-strip-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: houseStrip 88s linear infinite;
+}
+.house-strip-frame {
+  position: relative;
+  flex: none;
+  width: 34vw;
+  max-width: 560px;
+  min-width: 260px;
+  height: 100%;
+}
+@keyframes houseStrip {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+/*
+ * Two jobs in one layer: hold the photographs far enough back that the heading stays
+ * the brightest thing in the block, and fade both ends into the section colour so the
+ * strip has no visible edge where it meets the bands above and below.
+ */
+.house-strip-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg,
+      var(--bark) 0%,
+      rgba(42,48,32,0) 22%,
+      rgba(42,48,32,0) 78%,
+      var(--bark) 100%),
+    linear-gradient(180deg,
+      var(--bark) 0%,
+      rgba(42,48,32,0.72) 22%,
+      rgba(42,48,32,0.72) 78%,
+      var(--bark) 100%);
+}
+/* Standing still, it is a photograph behind a heading; moving, it is a distraction. */
+@media (prefers-reduced-motion: reduce) {
+  .house-strip-track { animation: none; transform: translateX(-25%); }
+}
 
 /* One band per house: photograph on one side, its own detail on the other.
    Bands alternate direction so the page does not read as a list. */

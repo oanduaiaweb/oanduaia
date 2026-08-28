@@ -6,6 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import { HOUSE_IMAGES } from '@/lib/houses'
 import { HOUSE_GALLERIES } from '@/lib/housePhotos'
+import HouseStrip from '@/components/HouseStrip'
 
 function scrollTo(id: string) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -21,6 +22,7 @@ export default function Feature() {
   return (
     <section className="feature-section" id="majad">
       <div className="feature-intro">
+        <HouseStrip />
         <p className="section-label">{t.label[lang]}</p>
         <h2 className="feature-heading">
           {t.h1[lang]}
