@@ -777,7 +777,6 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   gap: 0.4rem;
 }
 .house-band-content .feature-list { width: 100%; }
-.house-band-content .feature-house-tag { margin-bottom: 1.2rem; }
 .house-band-content .feature-gallery-link { margin-top: 1.8rem; }
 
 /* Price block — one row per guest tier, sits under the house detail list. */
@@ -898,14 +897,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--linen);
   letter-spacing: var(--ls-normal);
 }
-.feature-house-tag {
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-wide);
-  color: var(--sage);
-  font-style: italic;
-  opacity: 0.85;
-}
+
 .feature-house .feature-list li {
   padding: 0.7rem 0;
   font-size: var(--fs-xs);

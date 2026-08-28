@@ -52,7 +52,6 @@ export default function Feature() {
               <Link href={`/${lang}/majad/${house.slug}`} className="feature-house-name">
                 {house.name[lang]}
               </Link>
-              <span className="feature-house-tag">{house.tag[lang]}</span>
               <ul className="feature-list">
                 {house.items.map(item => (
                   <li key={item.et}>{item[lang].replace(/ · /g, ', ')}</li>
