@@ -180,7 +180,6 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
         {b.times[lang]}
         <span className="booking-terms">{b.terms[lang]}</span>
         <span className="booking-pets">{b.pets[lang]}</span>
-        <span className="booking-pets booking-pets--channel">{b.petsDirect[lang]}</span>
       </p>
 
       <div className="avail-panel reveal reveal-delay-2">

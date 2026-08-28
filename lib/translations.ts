@@ -306,15 +306,6 @@ export const T = {
       en: 'If other guests are on the property at the same time, please keep your dog on a leash. Pets remain the responsibility of their owner.',
       ru: 'Если на территории одновременно находятся другие гости, просим держать собаку на поводке. За питомца отвечает его владелец.',
     },
-    // Booking.com's own listing says pets are not allowed. Rather than quietly contradict
-    // it, the site states which channel the 20 € pet policy actually applies to — otherwise
-    // a guest reads this page, books through Booking.com and arrives with a dog against
-    // that listing's rules.
-    petsDirect: {
-      et: 'Lemmikloom on teretulnud otse meilt broneerides – Booking.com-i kaudu tehtud broneeringutele see ei laiene.',
-      en: 'Pets are welcome when you book with us directly – this does not apply to bookings made through Booking.com.',
-      ru: 'Питомцы приветствуются при прямом бронировании – на бронирования через Booking.com это не распространяется.',
-    },
     lNimi:   { et: 'Nimi', en: 'Name', ru: 'Имя' },
     pNimi:   { et: 'Sinu nimi', en: 'Your name', ru: 'Ваше имя' },
     lEmail:  { et: 'E-post', en: 'E-mail', ru: 'Эл. почта' },
