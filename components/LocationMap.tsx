@@ -22,7 +22,9 @@ const LON = 26.1067858
 
 /**
  * A real, pannable map on the Maa- ja Ruumiamet base layer — the same one RMK draws its
- * routes on.
+ * routes on, but plain. A Waymarked Trails overlay was tried here and drew E11 and the
+ * Oandu loops across it; Mikk preferred the base map clean, so the marked routes are
+ * gone and the trails are described in words in the list above instead.
  *
  * The Leaflet library is imported inside an effect, so the 42KB is fetched only when
  * someone actually scrolls to the map. On a page that already carries three photograph
@@ -72,9 +74,12 @@ export default function LocationMap() {
 
       map = L.map(holder.current, {
         center: [LAT, LON],
-        // 13 rather than 15: this is a map of where the trails go, and at 15 you are
-        // inside the garden with nothing marked around you.
-        zoom: 13,
+        /*
+         * Back to 15. 13 was chosen to fit the trail overlay in frame; with the overlay
+         * gone it is a wide green nothing, and at 15 Maa-amet prints "Oanduaia" itself
+         * beside the buildings and the pond, which is the whole job of a location map.
+         */
+        zoom: 15,
         // Maa-amet serves down to zoom 4. The old floor of 9 was mine, not theirs, and
         // it stopped the map zooming out — the first thing anyone tries on a trail map.
         minZoom: 6,
@@ -105,22 +110,6 @@ export default function LocationMap() {
           'Aluskaart: <a href="https://maaamet.ee" target="_blank" rel="noopener noreferrer">Maa- ja Ruumiamet</a>',
       }).addTo(map)
 
-      /*
-       * The marked routes, drawn over the Estonian base map: E11 through Oandu, the RMK
-       * Oandu loops, the Sagadi link. This is the layer that makes it a hiking map rather
-       * than a pin on a field.
-       *
-       * Rendered by Waymarked Trails from OpenStreetMap data. It is a free community
-       * service with no guarantee behind it — if it ever stops answering, the tiles
-       * simply do not draw and the Maa-amet base map underneath is unaffected. The OSM
-       * attribution below is required by that project's licence.
-       */
-      L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        opacity: 0.85,
-        attribution:
-          'Rajad: <a href="https://hiking.waymarkedtrails.org" target="_blank" rel="noopener noreferrer">Waymarked Trails</a>, © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>',
-      }).addTo(map)
 
       /*
        * A divIcon — an HTML ring — rather than L.circleMarker.
