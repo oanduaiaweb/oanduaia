@@ -12,10 +12,25 @@ import Availability from '@/components/Availability'
 import Booking from '@/components/Booking'
 import Footer from '@/components/Footer'
 import ScrollRevealInit from '@/components/ScrollReveal'
+import { faqJsonLd, isLocale } from '@/lib/i18n'
 
-export default function Page() {
+export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params
   return (
     <>
+      {/*
+        The site-wide FAQ schema lives here, not in the layout.
+        It used to be emitted on every page — including trail and house pages, where none
+        of those thirteen questions appear. FAQPage is meant to describe the FAQ ON the
+        page carrying it, and the landing page ended up with two FAQPage nodes: its own
+        five questions and these thirteen. Now the thirteen sit with the visible FAQ.
+      */}
+      {isLocale(lang) && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(lang)) }}
+        />
+      )}
       <ScrollRevealInit />
       <Nav />
       <Hero />
