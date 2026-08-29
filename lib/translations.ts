@@ -14,7 +14,21 @@ export const T = {
     line2:  { et: 'kõigest.',          en: 'from all.',        ru: 'от всего.' },
     line3:  { et: 'Puhka päriselt.',   en: 'Rest for real.',   ru: 'По\u2011настоящему.' },
     eyebrow:{ et: 'Lahemaa rahvuspark · Oandu · Est', en: 'Lahemaa National Park · Oandu · Est', ru: 'Нац. парк Лахемаа · Оанду · Est' },
-    desc:   { et: 'Kolme mõisa vahel, mere lähedal, metsas – Lahemaa südames.', en: 'Between three manors, near the sea, in the forest – in the heart of Lahemaa.', ru: 'Между тремя поместьями, у моря, в лесу – в сердце Лахемаа.' },
+    /*
+     * The strapline now says plainly what this is — forest cabins, a private wood-fired
+     * sauna, Lahemaa, Estonia — instead of only where it is.
+     *
+     * That sentence belongs HERE and not in the headline. "Kaugel kõigest / Far from all"
+     * is the poster line, the reason someone stays on the page; replacing it with a
+     * keyword string would cost the thing the site is good at and gain a phrase Google
+     * can read perfectly well one line lower. The <h1> keeps the poetry, the sentence
+     * under it carries the meaning, and both are in the server HTML.
+     */
+    desc:   {
+      et: 'Metsamajad ja oma puuküttega saun Lahemaa rahvuspargis – kolme mõisa vahel, mere lähedal.',
+      en: 'Forest cabins and a private wood-fired sauna in Lahemaa National Park, Estonia – between three manors, near the sea.',
+      ru: 'Лесные дома и своя дровяная баня в национальном парке Лахемаа, Эстония – между тремя мызами, у моря.',
+    },
     cta:    { et: 'Küsi pakkumist', en: 'Request an offer', ru: 'Запросить предложение' },
     alt:    { et: 'Lahemaa mets', en: 'Lahemaa forest', ru: 'Лес Лахемаа' },
   },
@@ -35,9 +49,24 @@ export const T = {
       ru: 'Сначала построили банный домик. Потом главный дом. Первые гости были друзьями. Друзья рассказывали дальше. Так и пошло. Oanduaia растёт и сейчас – не через рекламу, а через рекомендации. Не по плану, а из любви к этому месту.',
     },
     p3: {
-      et: 'Oanduaia on pereettevõte.',
-      en: 'Oanduaia is a family business.',
-      ru: 'Oanduaia — семейное дело.',
+      et: 'Oanduaia asub Oandu külas Lääne-Virumaal, Lahemaa rahvuspargis – Eesti vanimas ja suurimas rahvuspargis, mis 1971. aastal asutatuna oli esimene kogu Nõukogude Liidus. Läänemere rannik jääb mõne minuti kaugusele põhja poole. Palmse, Sagadi ja Vihula mõis on kõik lühikese sõidu kaugusel. Tallinnasse on umbes 90 kilomeetrit, veidi üle tunni autoga.',
+      en: 'Oanduaia stands in Oandu village in Lääne-Virumaa, inside Lahemaa National Park — the oldest and largest in Estonia, and when it was founded in 1971 the first national park in the whole Soviet Union. The Baltic coast is a few minutes north. The manors of Palmse, Sagadi and Vihula are each a short drive away. Tallinn is about 90 kilometres west, a little over an hour by car.',
+      ru: 'Oanduaia находится в деревне Оанду в Ляэне-Вирумаа, в национальном парке Лахемаа — старейшем и крупнейшем в Эстонии, а в 1971 году, при основании, первом во всём Советском Союзе. До балтийского побережья несколько минут на север. Мызы Палмсе, Сагади и Вихула — каждая в коротком переезде. До Таллинна около 90 километров, чуть больше часа на машине.',
+    },
+    p4: {
+      et: 'Siin on puuküttega saun, tiik, kus ujuda, allikavesi ja linnulaul. Pole protseduuride nimekirja ega broneerimisportaali. Külast algab või möödub kuus märgistatud matkarada, nende seas Oandu–Ikla matkatee – Eesti pikim, mis algab siit ja kulgeb 822 kilomeetrit Läti piirini.',
+      en: 'What is here is a wood-fired sauna, a pond to swim in, spring water and birdsong. There is no list of treatments and no booking portal. Six marked hiking trails start at or pass through the village, among them the Oandu–Ikla trail – the longest in Estonia, which begins here and runs 822 kilometres to the Latvian border.',
+      ru: 'Здесь дровяная баня, пруд, в котором можно плавать, родниковая вода и пение птиц. Никаких списков процедур и порталов бронирования. От деревни начинаются или через неё проходят шесть маркированных троп, среди них Оанду–Икла – самый длинный маршрут Эстонии, он начинается здесь и идёт 822 километра до латвийской границы.',
+    },
+    p5: {
+      et: 'See sobib paarile, kes tahab maja endale, perele, kes tahab lapsed õue, ja väiksele seltskonnale, kes tahab üht pikka lauda ja mitte kedagi teist majja. Iga maja renditakse tervikuna – jagama ei pea. Koerad on teretulnud. Talvel on Saunamaja avatud, saun köetud ja jäässe raiutud auk.',
+      en: 'It suits a couple who want a house to themselves, a family who want the children outdoors, and a small group who want one long table and nobody else in the building. Each house is rented whole – you will not be sharing it. Dogs are welcome. In winter the Sauna House stays open, the sauna is lit, and there is a hole cut in the ice.',
+      ru: 'Это подходит паре, которая хочет дом целиком, семье, которая хочет, чтобы дети были на улице, и небольшой компании, которой нужен один длинный стол и никого больше в доме. Каждый дом сдаётся целиком – делить его не придётся. Собаки желанны. Зимой Банный дом открыт, баня топится, а во льду прорублена прорубь.',
+    },
+    p6: {
+      et: 'Söögi teeb perenaine ise, värskest toorainest – hommikusöök, lõuna või pidulikult kaetud pikk laud. Oanduaia on pereettevõte ja on kasvanud soovituste, mitte reklaami toel.',
+      en: 'The food is cooked by the host herself, from fresh ingredients – breakfast, lunch, or a long table laid for a celebration. Oanduaia is a family business, and it grew from recommendations rather than advertising.',
+      ru: 'Еду готовит сама хозяйка, из свежих продуктов – завтрак, обед или празднично накрытый длинный стол. Oanduaia — семейное дело, выросшее на рекомендациях, а не на рекламе.',
     },
   },
   services: {
@@ -154,6 +183,12 @@ export const T = {
       ru: 'Карта: Oanduaia в деревне Оанду, пруд и дома обведены',
     },
     mapOpen: { et: 'Ava Google Mapsis', en: 'Open in Google Maps', ru: 'Открыть в Google Maps' },
+    mapBook: { et: 'Broneeri oma aeg', en: 'Book your stay', ru: 'Забронировать' },
+    nearby: {
+      et: 'Palmse, Sagadi ja Vihula mõis jäävad kõik lühikese sõidu kaugusele. Altja kaluriküla oma kiigega on rannikul põhja pool, Käsmu – kaptenite küla – veidi kaugemal läänes. Oandu külastuskeskus ja loodusmetsarada on jalutuskäigu kaugusel. Tallinnasse on umbes 90 kilomeetrit, veidi üle tunni autoga.',
+      en: 'The manors of Palmse, Sagadi and Vihula are each a short drive away. Altja fishing village and its swing sit on the coast to the north; Käsmu, the captains’ village, a little further west. The Oandu visitor centre and the old-growth forest trail are within walking distance. Tallinn is about 90 kilometres away, a little over an hour by car.',
+      ru: 'Мызы Палмсе, Сагади и Вихула — каждая в коротком переезде. Рыбацкая деревня Алтья со своими качелями лежит на побережье к северу, Кясму, деревня капитанов, — чуть западнее. Центр посетителей Оанду и тропа древнего леса — в пешей доступности. До Таллинна около 90 километров, чуть больше часа на машине.',
+    },
     items: [
       {
         dist: { et: '822 km · pikkajaline', en: '822 km · long-distance', ru: '822 км · дальний' },
@@ -301,6 +336,82 @@ export const T = {
     mBreakfast: { et: 'Hommikusöök', en: 'Breakfast', ru: 'Завтрак' },
     mEstimate:{ et: 'Esialgne hind', en: 'Indicative price', ru: 'Предварительная цена' },
     mYes:     { et: 'jah', en: 'yes', ru: 'да' },
+  },
+  /*
+   * The scannable summary of the offer, between the houses and the questions. Six
+   * reasons, each one a fact stated elsewhere on the site — nothing here is a new
+   * promise, it is the same promises gathered where someone skimming will see them.
+   */
+  why: {
+    label: { et: 'Miks siia', en: 'Why stay here', ru: 'Почему сюда' },
+    h1:    { et: 'Kuus põhjust,', en: 'Six reasons,', ru: 'Шесть причин,' },
+    h2em:  { et: 'miks tulla.', en: 'to come.', ru: 'чтобы приехать.' },
+    items: [
+      {
+        icon: 'house',
+        t: { et: 'Terve maja endale', en: 'The whole house to yourself', ru: 'Весь дом только вам' },
+        d: {
+          et: 'Iga maja renditakse tervikuna. Ei jagatud koridore ega naabreid seina taga.',
+          en: 'Each house is rented whole. No shared corridors, no neighbours through the wall.',
+          ru: 'Каждый дом сдаётся целиком. Ни общих коридоров, ни соседей за стеной.',
+        },
+      },
+      {
+        icon: 'flame',
+        t: { et: 'Puuküttega saun', en: 'A wood-fired sauna', ru: 'Дровяная баня' },
+        d: {
+          et: 'Köetud puudega, mitte lülitiga. Tiik on kümne sammu kaugusel, talvel on jääs auk.',
+          en: 'Heated with wood, not a switch. The pond is ten steps away, and in winter there is a hole in the ice.',
+          ru: 'Топится дровами, а не выключателем. Пруд в десяти шагах, зимой во льду прорубь.',
+        },
+      },
+      {
+        icon: 'tree',
+        t: { et: 'Rahvuspargi sees', en: 'Inside a national park', ru: 'Внутри национального парка' },
+        d: {
+          et: 'Lahemaa algab väravast. Ürgmets, raba, rannik ja kolm mõisa lühikese sõidu kaugusel.',
+          en: 'Lahemaa begins at the gate. Old-growth forest, bog, coast and three manors a short drive away.',
+          ru: 'Лахемаа начинается у ворот. Древний лес, болото, побережье и три мызы неподалёку.',
+        },
+      },
+      {
+        icon: 'trail',
+        t: { et: 'Kuus rada uksest', en: 'Six trails from the door', ru: 'Шесть троп от порога' },
+        d: {
+          et: 'Nende seas Oandu–Ikla, Eesti pikim märgistatud matkarada, mis algab siit.',
+          en: 'Among them Oandu–Ikla, the longest marked trail in Estonia, which starts here.',
+          ru: 'Среди них Оанду–Икла, самый длинный маркированный маршрут Эстонии, он начинается здесь.',
+        },
+      },
+      {
+        icon: 'bowl',
+        t: { et: 'Perenaise köök', en: 'Food cooked by the host', ru: 'Кухня хозяйки' },
+        d: {
+          et: 'Hommikusöök, lõuna või pidulik pikk laud – kõik värskest toorainest, kohapeal tehtud.',
+          en: 'Breakfast, lunch or a long table – all from fresh ingredients, cooked here.',
+          ru: 'Завтрак, обед или праздничный длинный стол – всё из свежих продуктов, приготовлено здесь.',
+        },
+      },
+      {
+        icon: 'quiet',
+        t: { et: 'Vaikus, meelega', en: 'Quiet, on purpose', ru: 'Тишина, намеренно' },
+        d: {
+          et: 'Majades WiFi-t ei ole. Mobiillevi on hea, nii et telefon töötab, kui vaja.',
+          en: 'There is no WiFi in the houses. Mobile coverage is good, so a phone works when it must.',
+          ru: 'Wi-Fi в домах нет. Мобильная связь хорошая, так что телефон работает, когда нужен.',
+        },
+      },
+    ],
+  },
+  /*
+   * The questions guests ask before booking, on the page as well as in the FAQPage
+   * schema. Both read from ONE list in lib/i18n.ts, so the answer a search engine is
+   * given and the answer a visitor reads can never drift apart.
+   */
+  faq: {
+    label: { et: 'Korduma kippuvad küsimused', en: 'Frequently asked', ru: 'Частые вопросы' },
+    h1:    { et: 'Enne kui', en: 'Before you', ru: 'Прежде чем' },
+    h2em:  { et: 'küsid.', en: 'ask.', ru: 'спросить.' },
   },
   booking: {
     label:   { et: 'Reserveerimine', en: 'Reservations', ru: 'Бронирование' },

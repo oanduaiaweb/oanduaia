@@ -8,6 +8,14 @@ import 'leaflet/dist/leaflet.css'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import { SOCIAL } from '@/lib/social'
+import { scrollToId } from '@/lib/scrollToId'
+
+function scrollTo(id: string) {
+  return (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    scrollToId(id)
+  }
+}
 
 const LAT = 59.5601919
 const LON = 26.1067858
@@ -161,7 +169,11 @@ export default function LocationMap() {
     <div className="trails-map-block">
       <p className="section-label">{t.mapLabel[lang]}</p>
       <div className="trails-map" ref={holder} role="application" aria-label={t.mapAlt[lang]} />
+      <p className="trails-nearby">{t.nearby[lang]}</p>
       <div className="trails-map-links">
+        <a className="trail-link trail-link--solid" href="#broneeri" onClick={scrollTo('broneeri')}>
+          {t.mapBook[lang]}
+        </a>
         <a className="trail-link" href={SOCIAL.maps} target="_blank" rel="noopener noreferrer">
           {t.mapOpen[lang]}
         </a>

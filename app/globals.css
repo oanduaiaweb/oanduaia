@@ -1372,6 +1372,146 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 
 /* ══════════════════════════════
+   WHY STAY — six reasons, scannable
+══════════════════════════════ */
+.why-section { background: var(--linen); }
+.why-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--section-v) var(--section-h);
+}
+.why-head { margin-bottom: 4.5rem; }
+.why-heading {
+  font-size: clamp(2.2rem, 3.4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--moss);
+}
+.why-heading em { font-style: italic; color: var(--fern); }
+.why-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.4rem 3rem;
+}
+.why-item { max-width: 34ch; }
+/* Drawn at the weight of the display face, not of a UI toolkit. */
+.why-icon {
+  width: 30px;
+  height: 30px;
+  color: var(--fern);
+  margin-bottom: 1.4rem;
+  display: block;
+}
+.why-item-title {
+  font-size: 1.22rem;
+  font-weight: 400;
+  color: var(--moss);
+  line-height: 1.3;
+  margin-bottom: 0.7rem;
+}
+.why-item-desc {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--fern);
+  letter-spacing: var(--ls-normal);
+}
+@media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2.4rem; } }
+@media (max-width: 700px) {
+  .why-inner { padding: var(--section-v) 1.5rem; }
+  .why-grid { grid-template-columns: 1fr; gap: 2.6rem; }
+  .why-head { margin-bottom: 3rem; }
+  .why-item { max-width: none; }
+}
+
+/* ══════════════════════════════
+   FAQ — native <details>, no JavaScript
+══════════════════════════════ */
+.faq-section { background: var(--bark); }
+.faq-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--section-v) var(--section-h);
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 5rem;
+  align-items: start;
+}
+.faq-heading {
+  font-size: clamp(2.2rem, 3.4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--linen);
+}
+.faq-heading em { font-style: italic; color: var(--sage); }
+.faq-item { border-top: 1px solid rgba(200,212,184,0.16); }
+.faq-item:last-child { border-bottom: 1px solid rgba(200,212,184,0.16); }
+.faq-q {
+  cursor: pointer;
+  list-style: none;
+  padding: 1.5rem 2.5rem 1.5rem 0;
+  position: relative;
+  font-size: 1.12rem;
+  font-weight: 300;
+  color: var(--linen);
+  transition: color 0.3s;
+}
+.faq-q::-webkit-details-marker { display: none; }
+/* A plus that becomes a minus. Rotating one stroke is cheaper than swapping icons. */
+.faq-q::before,
+.faq-q::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 13px;
+  height: 1px;
+  background: var(--sage);
+  transition: transform 0.35s var(--ease-smooth);
+}
+.faq-q::after { transform: rotate(90deg); }
+.faq-item[open] .faq-q::after { transform: rotate(0deg); }
+.faq-item[open] .faq-q { color: var(--sage); }
+.faq-q:hover { color: var(--sage); }
+.faq-a {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--mist);
+  opacity: 0.78;
+  letter-spacing: var(--ls-normal);
+  padding: 0 2.5rem 1.7rem 0;
+  max-width: 62ch;
+}
+@media (max-width: 900px) { .faq-inner { grid-template-columns: 1fr; gap: 2.8rem; } }
+@media (max-width: 700px) { .faq-inner { padding: var(--section-v) 1.5rem; } }
+
+/* Nearby attractions, under the map. */
+.trails-nearby {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--mist);
+  opacity: 0.72;
+  letter-spacing: var(--ls-normal);
+  max-width: 68ch;
+  margin-top: 1.6rem;
+}
+/* The one button on this page that is an action, so it is filled rather than outlined. */
+.trail-link--solid {
+  background: var(--linen);
+  border-color: var(--linen);
+  color: var(--bark);
+}
+.trail-link--solid:hover { background: #fff; border-color: #fff; }
+
+/* ══════════════════════════════
    STATS STRIP — light divider between dark sections
 ══════════════════════════════ */
 .stats-section {

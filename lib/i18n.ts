@@ -274,8 +274,10 @@ export function siteJsonLd(lang: Lang) {
  * cancellation or cleaning fees — none of that is published, and inventing it in schema
  * would be worse than silence.
  */
-const FAQ: Record<Lang, [string, string][]> = {
+export const FAQ: Record<Lang, [string, string][]> = {
   et: [
+    ['Kui kaugel on Tallinn?',
+     'Umbes 90 kilomeetrit, veidi üle tunni autoga. Tallinnast tuleb sõita Narva suunas ja Viitna juures põhja poole Lahemaale. Ühistranspordiga on tulek keeruline – enamik külalisi tuleb autoga.'],
     ['Kus Oanduaia asub?',
      'Oandu külas Lääne-Virumaal, Lahemaa rahvuspargis, metsa ja mere vahel — kolme mõisa, Palmse, Sagadi ja Vihula vahel.'],
     ['Kui palju maju ja kohti on?',
@@ -296,6 +298,8 @@ const FAQ: Record<Lang, [string, string][]> = {
      'Kohest veebibroneeringut ei ole. Vaata saadavust kalendrist ja saada päring vormiga või kirjuta info@oanduaia.ee — vastame 24 tunni jooksul. Oleme ka Booking.comis.'],
   ],
   en: [
+    ['How far is Tallinn?',
+     'About 90 kilometres, a little over an hour by car. From Tallinn you drive towards Narva and turn north into Lahemaa at Viitna. Public transport is awkward — most guests arrive by car.'],
     ['Where is Oanduaia?',
      'In Oandu village, Lääne-Virumaa, inside Lahemaa National Park in Estonia — between forest and sea, among three manors: Palmse, Sagadi and Vihula.'],
     ['How many houses are there, and for how many guests?',
@@ -316,6 +320,8 @@ const FAQ: Record<Lang, [string, string][]> = {
      'There is no instant online booking. Check the availability calendar, send an enquiry through the form or write to info@oanduaia.ee — we reply within 24 hours. We are also listed on Booking.com.'],
   ],
   ru: [
+    ['Далеко ли до Таллинна?',
+     'Около 90 километров, чуть больше часа на машине. Из Таллинна нужно ехать в сторону Нарвы и у Вийтна свернуть на север, в Лахемаа. Общественным транспортом добираться неудобно — большинство гостей приезжают на машине.'],
     ['Где находится Oanduaia?',
      'В деревне Оанду, Ляэне-Вирумаа, в национальном парке Лахемаа в Эстонии — между лесом и морем, среди трёх мыз: Палмсе, Сагади и Вихула.'],
     ['Сколько домов и на сколько гостей?',
