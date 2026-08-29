@@ -900,8 +900,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
       var(--linen) 100%),
     linear-gradient(180deg,
       var(--linen) 0%,
-      rgba(240,235,224,0.86) 20%,
-      rgba(240,235,224,0.86) 80%,
+      rgba(240,235,224,0.82) 20%,
+      rgba(240,235,224,0.82) 80%,
       var(--linen) 100%);
 }
 
@@ -919,8 +919,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
         var(--linen) 100%),
       linear-gradient(180deg,
         var(--linen) 0%,
-        rgba(240,235,224,0.92) 16%,
-        rgba(240,235,224,0.92) 84%,
+        rgba(240,235,224,0.80) 16%,
+        rgba(240,235,224,0.80) 84%,
         var(--linen) 100%);
   }
 }
@@ -1429,8 +1429,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   inset: 0;
   background: linear-gradient(180deg,
     var(--linen) 0%,
-    rgba(240,235,224,0.90) 18%,
-    rgba(240,235,224,0.90) 82%,
+    rgba(240,235,224,0.86) 18%,
+    rgba(240,235,224,0.86) 82%,
     var(--linen) 100%);
 }
 .why-inner {
@@ -1486,12 +1486,18 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 @media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2.4rem; } }
 @media (max-width: 700px) {
-  /* The copy runs the full width on a phone, over the middle of the frame, not beside it. */
+  /*
+   * The phone veil is now LIGHTER than the desktop one, which is the reverse of how it
+   * started. It was raised to 0.92/0.93 back when this copy was mid-green and needed
+   * protecting; the copy is near-black now, which buys the headroom to let the
+   * photograph through. On a phone the background is most of what you see, and Mikk
+   * could not see it at all.
+   */
   .why-scrim {
     background: linear-gradient(180deg,
       var(--linen) 0%,
-      rgba(240,235,224,0.93) 12%,
-      rgba(240,235,224,0.93) 88%,
+      rgba(240,235,224,0.80) 12%,
+      rgba(240,235,224,0.80) 88%,
       var(--linen) 100%);
   }
   .why-inner { padding: var(--section-v) 1.5rem; }
