@@ -60,9 +60,9 @@ export const T = {
       ru: 'Oanduaia находится в деревне Оанду в Ляэне-Вирумаа, в национальном парке Лахемаа — старейшем и крупнейшем в Эстонии, а в 1971 году, при основании, первом во всём Советском Союзе. До балтийского побережья несколько минут на север. Мызы Палмсе, Сагади и Вихула — каждая в коротком переезде. До Таллинна около 90 километров, чуть больше часа на машине.',
     },
     p4: {
-      et: 'Siin on puuküttega saun, tiik, kus ujuda, allikavesi ja linnulaul. Pole protseduuride nimekirja ega broneerimisportaali. Külast algab või möödub kuus märgistatud matkarada, nende seas Oandu–Ikla matkatee – Eesti pikim, mis algab siit ja kulgeb 822 kilomeetrit Läti piirini.',
-      en: 'What is here is a wood-fired sauna, a pond to swim in, spring water and birdsong. There is no list of treatments and no booking portal. Six marked hiking trails start at or pass through the village, among them the Oandu–Ikla trail – the longest in Estonia, which begins here and runs 822 kilometres to the Latvian border.',
-      ru: 'Здесь дровяная баня, пруд, в котором можно плавать, родниковая вода и пение птиц. Никаких списков процедур и порталов бронирования. От деревни начинаются или через неё проходят шесть маркированных троп, среди них Оанду–Икла – самый длинный маршрут Эстонии, он начинается здесь и идёт 822 километра до латвийской границы.',
+      et: 'Siin on puuküttega saun, tiik, kus ujuda, allikavesi ja linnulaul. Pole protseduuride nimekirja ega broneerimisportaali. Külast algab või möödub kuus märgistatud matkarada, nende seas RMK Oandu–Aegviidu–Ikla matkatee, mis algab RMK Oandu külastuskeskusest ja kulgeb 370 kilomeetrit läbi Kõrvemaa ja Soomaa Ikla piirini.',
+      en: 'What is here is a wood-fired sauna, a pond to swim in, spring water and birdsong. There is no list of treatments and no booking portal. Six marked hiking trails start at or pass through the village, among them the RMK Oandu–Aegviidu–Ikla route, which begins at the RMK Oandu visitor centre and runs 370 kilometres through Kõrvemaa and Soomaa to Ikla on the Latvian border.',
+      ru: 'Здесь дровяная баня, пруд, в котором можно плавать, родниковая вода и пение птиц. Никаких списков процедур и порталов бронирования. От деревни начинаются или через неё проходят шесть маркированных троп, среди них маршрут RMK Оанду–Аэгвийду–Икла: он начинается у центра посетителей RMK в Оанду и идёт 370 километров через Кырвемаа и Соомаа до Икла.',
     },
     p5: {
       et: 'See sobib paarile, kes tahab maja endale, perele, kes tahab lapsed õue, ja väiksele seltskonnale, kes tahab üht pikka lauda ja mitte kedagi teist majja. Iga maja renditakse tervikuna – jagama ei pea. Koerad on teretulnud. Talvel on Saunamaja avatud, saun köetud ja jäässe raiutud auk.',
@@ -251,9 +251,9 @@ export const T = {
       ru: 'Дровяная сауна, купание в пруду, родниковая вода, пение птиц. Никаких списков процедур и порталов – только лес, вода и тишина.',
     },
     desc2: {
-      et: 'Kolme mõisa vahel: Palmse, Sagadi ja Vihula – kõik kivikese kaugusel. Siit algab kuus matkarada, sh Eesti pikim – Oandu-Ikla, 822 km.',
-      en: 'Between three manors: Palmse, Sagadi and Vihula – all a stone\'s throw away. Six hiking trails begin here, including Estonia\'s longest – Oandu-Ikla, 822 km.',
-      ru: 'Между тремя поместьями: Палмсе, Сагади и Вихула – все в двух шагах. Отсюда начинаются шесть маршрутов, в т.ч. самый длинный в Эстонии – Оанду-Икла, 822 км.',
+      et: 'Kolme mõisa vahel: Palmse, Sagadi ja Vihula – kõik kivikese kaugusel. Siit algab kuus matkarada, sh RMK Oandu–Aegviidu–Ikla matkatee, 370 km.',
+      en: 'Between three manors: Palmse, Sagadi and Vihula – all a stone\'s throw away. Six hiking trails begin here, including the RMK Oandu-Aegviidu-Ikla route, 370 km.',
+      ru: 'Между тремя поместьями: Палмсе, Сагади и Вихула – все в двух шагах. Отсюда начинаются шесть маршрутов, в том числе RMK Оанду–Аэгвийду–Икла, 370 км.',
     },
     mapLabel: { et: 'Asukoht', en: 'Where we are', ru: 'Расположение' },
     mapAlt: {
@@ -270,32 +270,32 @@ export const T = {
     },
     items: [
       {
-        dist: { et: '822 km · pikkajaline', en: '822 km · long-distance', ru: '822 км · дальний' },
-        name: { et: 'Oandu-Ikla matkatee', en: 'Oandu–Ikla Trail', ru: 'Маршрут Оанду–Икла' },
-        desc: { et: 'Eesti pikim märgistatud matkarada. Algab siin.', en: "Estonia's longest marked trail. Starts here.", ru: 'Самый длинный маршрут Эстонии. Начинается здесь.' },
+        dist: { et: '370 km · pikkajaline', en: '370 km · long-distance', ru: '370 км · дальний' },
+        name: { et: 'Oandu–Aegviidu–Ikla matkatee', en: 'Oandu–Aegviidu–Ikla route', ru: 'Маршрут Оанду–Аэгвийду–Икла' },
+        desc: { et: 'Algab RMK Oandu külastuskeskusest ja kulgeb läbi Kõrvemaa ja Soomaa Ikla piirini.', en: 'Starts at the RMK Oandu visitor centre and runs through Kõrvemaa and Soomaa to Ikla.', ru: 'Начинается у центра посетителей RMK в Оанду и идёт через Кырвемаа и Соомаа до Икла.' },
       },
       {
-        dist: { et: '~4 km · kerge', en: '~4 km · easy', ru: '~4 км · лёгкий' },
+        dist: { et: '4,7 km · kerge', en: '4.7 km · easy', ru: '4,7 км · лёгкий' },
         name: { et: 'Oandu loodusmetsarada', en: 'Oandu Nature Forest Trail', ru: 'Природная тропа Оанду' },
         desc: { et: 'Looduslik ringrada läbi muistse metsa ja ürgoru.', en: 'A natural loop through ancient forest and a primeval valley.', ru: 'Кольцевая тропа через древний лес и долину.' },
       },
       {
-        dist: { et: '~14 km · keskmine', en: '~14 km · medium', ru: '~14 км · средний' },
-        name: { et: 'Võsu-Oandu matkarada', en: 'Võsu–Oandu Trail', ru: 'Маршрут Высу–Оанду' },
+        dist: { et: '9,5 km · keskmine', en: '9.5 km · medium', ru: '9,5 км · средний' },
+        name: { et: 'Oandu–Võsu matkarada', en: 'Oandu–Võsu Trail', ru: 'Маршрут Оанду–Высу' },
         desc: { et: 'Meri kuni mets – rannikult läbi rahvuspargi.', en: 'Sea to forest – from the coast through the national park.', ru: 'От моря до леса – с побережья через нацпарк.' },
       },
       {
-        dist: { et: '~1,3 km · kerge', en: '~1.3 km · easy', ru: '~1.3 км · лёгкий' },
+        dist: { et: '1 km · kerge', en: '1 km · easy', ru: '1 км · лёгкий' },
         name: { et: 'Koprarada', en: 'Beaver Trail', ru: 'Бобровая тропа' },
         desc: { et: 'Lühike rada koprapaisude ja järvepindade vaatluspunktideni.', en: 'A short trail to beaver dams and lake observation points.', ru: 'Короткая тропа к бобровым плотинам и смотровым площадкам.' },
       },
       {
-        dist: { et: '~8 km · kerge', en: '~8 km · easy', ru: '~8 км · лёгкий' },
-        name: { et: 'Pärimusrada', en: 'Heritage Trail', ru: 'Тропа наследия' },
+        dist: { et: '3,4 km · kerge', en: '3.4 km · easy', ru: '3,4 км · лёгкий' },
+        name: { et: 'Oandu pärimusrada', en: 'Oandu Heritage Trail', ru: 'Тропа наследия Оанду' },
         desc: { et: 'Lahemaa külade pärimusloo jälgedel.', en: 'Following the heritage story of Lahemaa villages.', ru: 'По следам исторического наследия деревень Лахемаа.' },
       },
       {
-        dist: { et: '~11 km · keskmine', en: '~11 km · medium', ru: '~11 км · средний' },
+        dist: { et: '3 km · kerge', en: '3 km · easy', ru: '3 км · лёгкий' },
         name: { et: 'Altja matkarada', en: 'Altja Hiking Trail', ru: 'Тропа Алтья' },
         desc: { et: 'Altja kaluriküla kaudu rannikule. Ajalugu ja loodus.', en: 'Via Altja fishing village to the coast. History and nature.', ru: 'Через рыбацкую деревню Алтья к побережью. История и природа.' },
       },
@@ -304,7 +304,7 @@ export const T = {
   stats: {
     l1: { et: 'Booking.com hinne', en: 'Booking.com rating', ru: 'Рейтинг Booking.com' },
     l2: { et: 'privaatset maja', en: 'private houses', ru: 'отдельных дома' },
-    l3: { et: 'km Eesti pikim matkarada', en: "km Estonia's longest trail", ru: 'км – самый длинный маршрут' },
+    l3: { et: 'km RMK matkateed siit', en: 'km of RMK hiking route from here', ru: 'км маршрута RMK отсюда' },
     l4: { et: 'm² kaetud väliköök', en: 'm² covered outdoor kitchen', ru: 'м² крытая летняя кухня' },
   },
   reviews: {
@@ -459,9 +459,9 @@ export const T = {
         icon: 'trail',
         t: { et: 'Kuus rada uksest', en: 'Six trails from the door', ru: 'Шесть троп от порога' },
         d: {
-          et: 'Nende seas Oandu–Ikla, Eesti pikim märgistatud matkarada, mis algab siit.',
-          en: 'Among them Oandu–Ikla, the longest marked trail in Estonia, which starts here.',
-          ru: 'Среди них Оанду–Икла, самый длинный маркированный маршрут Эстонии, он начинается здесь.',
+          et: 'Nende seas RMK Oandu–Aegviidu–Ikla matkatee, 370 km, mis algab siit.',
+          en: 'Among them the RMK Oandu–Aegviidu–Ikla route, 370 km, which starts here.',
+          ru: 'Среди них маршрут RMK Оанду–Аэгвийду–Икла, 370 км, он начинается здесь.',
         },
       },
       {
