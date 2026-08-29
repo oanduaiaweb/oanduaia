@@ -28,8 +28,17 @@ export const SOCIAL_ICONS = {
       <path d="M14 8.5V6.9c0-.7.2-1.1 1.2-1.1H16.6V3.1A17 17 0 0 0 14.7 3C12.6 3 11.1 4.3 11.1 6.6V8.5H8.8V11.3h2.3V21h2.9V11.3h2.3l.4-2.8H14z" />
     </svg>
   ),
+  /*
+   * The padded viewBox is the whole point. Booking's "B." glyph fills its box edge to
+   * edge, while Instagram sits in a 20-of-24 rect and Facebook's f spans about three
+   * quarters of its height. Rendered at the same declared size the B. therefore looked
+   * a size larger than its neighbours. Padding the box to 4.05 leaves the glyph at ~75%
+   * of it — a shade under Instagram's 83%, on purpose, because a solid bold letterform
+   * reads heavier than an outlined square at identical height. Unlike shrinking
+   * width/height, the icon still occupies the same square, so nothing in the row shifts.
+   */
   booking: (s: number) => (
-    <svg width={s} height={s} viewBox="0 0 3.036 3.037" fill="currentColor">
+    <svg width={s} height={s} viewBox="-0.34 -0.5 4.05 4.05" fill="currentColor">
       <path d="M1.113 2.524h-.51v-.61c0-.13.05-.2.162-.214h.35a.38.38 0 0 1 .41.411c0 .26-.157.415-.41.415zM.602.875v-.16c0-.14.06-.208.19-.216h.262c.224 0 .36.134.36.36 0 .17-.092.37-.35.37h-.46zm1.164.61l-.092-.052.08-.07c.094-.08.25-.262.25-.575 0-.48-.372-.79-.947-.79h-.73a.32.32 0 0 0-.309.317v2.72H1.07c.64 0 1.052-.348 1.052-.888 0-.29-.133-.54-.358-.665" />
       <path d="M2.288 2.67c0-.203.163-.367.365-.367s.367.164.367.367-.164.367-.367.367-.365-.164-.365-.367" />
     </svg>
