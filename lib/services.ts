@@ -24,18 +24,21 @@ export const SERVICE_IMAGES: ServiceImage[] = [
   },
   {
     /*
-     * The card opens by saying the long table is laid in the outdoor kitchen, so it
-     * shows that: the table running away under the pavilion roof, the lawn and the
-     * house beyond. The candlelit indoor version it replaced was the better photograph
-     * in isolation and the worse one here — it illustrated the sentence's second half.
-     * It moves into the ribbon below rather than off the page.
+     * The candlelit table, restored. It was swapped for the outdoor kitchen so the
+     * picture matched the copy's first line; Mikk's judgement is that the fancy table
+     * simply sells the card better, and he is right — "Pidulik pikk laud" is a promise
+     * about an evening, not about a roof. The outdoor kitchen is two photographs along
+     * in the ribbon directly below, which is close enough to answer the same sentence.
+     *
+     * Portrait original cropped to the card's 4:3, so the focus sits high enough to
+     * keep the jasmine and the length of the table; lower down it was all napkin rings.
      */
-    src: '/galerii/valikook.jpeg',
-    focus: '50% 55%',
+    src: '/galerii/toit/pidulik-pikk-laud.jpeg',
+    focus: '50% 38%',
     alt: {
-      et: 'Pikk puidust laud väliköögi katuse all, muru ja maja taga',
-      en: 'The long timber table under the outdoor kitchen roof, lawn and house beyond',
-      ru: 'Длинный деревянный стол под крышей летней кухни, газон и дом позади',
+      et: 'Küünlavalgel pikk laud messingist salvrätirõngaste ja jasmiinikimpudega',
+      en: 'The long table by candlelight, with brass napkin rings and jars of jasmine',
+      ru: 'Длинный стол при свечах, латунные кольца для салфеток и букеты жасмина',
     },
   },
 ]

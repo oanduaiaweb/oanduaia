@@ -31,6 +31,10 @@ export const HOUSE_STRIP: string[] = [
  * third of a column and veiled to 14% is an unreadable smudge; a bee on a daisy, a
  * birch whisk by the stove, still read as themselves.
  *
+ * The outdoor kitchen sits near the front — the long table under its roof, and the
+ * flagstone terrace — because the card above promises it in the first line and the
+ * card's own photograph is the candlelit indoor table.
+ *
  * Made things and growing things alternate, so neither half of the place dominates
  * the loop. Two otherwise good detail shots are missing on purpose — the forged
  * balustrade and the spinning wheel are so dark that under a linen veil they are
@@ -58,9 +62,10 @@ export const DETAIL_STRIP: string[] = [
  * has to answer is "what is this like in February".
  */
 export const FOOD_STRIP: string[] = [
-  '/galerii/toit/pidulik-pikk-laud.jpeg',
+  '/galerii/valikook.jpeg',
   '/galerii/toit/marjadesserdid.jpeg',
   '/galerii/toit/valikook-ohtul.jpeg',
+  '/galerii/valikook-istumine.jpeg',
   '/galerii/toit/talvine-suupistelaud.jpeg',
   '/galerii/toit/roheline-laud.jpeg',
   '/galerii/toit/tee-lumes.jpeg',
