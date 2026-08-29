@@ -141,9 +141,9 @@ export const T = {
           { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 300, upTo: 4 },
         ],
         priceExtra: {
-          et: 'Rohkem magamiskohti on saadaval – võta meiega otse ühendust.',
-          en: 'More sleeping options are available – please contact us directly.',
-          ru: 'Возможны дополнительные спальные места – свяжитесь с нами напрямую.',
+          et: 'Lisavoodi on igasse majja võimalik – kinnitame broneerides.',
+          en: 'An extra bed can be added in any house – confirmed when you book.',
+          ru: 'Дополнительную кровать можно поставить в любом доме – подтверждаем при бронировании.',
         },
       },
       {
@@ -175,7 +175,11 @@ export const T = {
         prices: [
           { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150, upTo: 2 },
         ],
-        priceExtra: null,
+        priceExtra: {
+          et: 'Lisavoodi on igasse majja võimalik – kinnitame broneerides.',
+          en: 'An extra bed can be added in any house – confirmed when you book.',
+          ru: 'Дополнительную кровать можно поставить в любом доме – подтверждаем при бронировании.',
+        },
       },
       {
         slug: 'metsamaja',
@@ -207,7 +211,11 @@ export const T = {
           { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150, upTo: 2 },
           { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 200, upTo: 4 },
         ],
-        priceExtra: null,
+        priceExtra: {
+          et: 'Lisavoodi on igasse majja võimalik – kinnitame broneerides.',
+          en: 'An extra bed can be added in any house – confirmed when you book.',
+          ru: 'Дополнительную кровать можно поставить в любом доме – подтверждаем при бронировании.',
+        },
       },
     ],
     priceLabel:  { et: 'Hind', en: 'Price', ru: 'Цена' },
