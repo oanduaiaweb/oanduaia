@@ -100,7 +100,7 @@ export function houseMeta(lang: Lang, slug: string) {
   const kind = h.seoKind ? h.seoKind[lang] : null
   return {
     title: kind
-      ? `${h.name[lang]} — ${kind}, Lahemaa, ${p.titleCountry[lang]} | Oanduaia`
+      ? `${h.name[lang]} — ${kind}, ${p.titlePlace[lang]}, ${p.titleCountry[lang]} | Oanduaia`
       : `${h.name[lang]} — ${p.titleSuffix[lang]}`,
     /*
      * No tagline here any more. That is a gain, not a loss: "Saun, köök, seltskond — kõik

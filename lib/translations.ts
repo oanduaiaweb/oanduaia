@@ -112,7 +112,7 @@ export const T = {
          * from what is already true of the house — the build, who it suits, what is
          * around it — not padded to a word count.
          */
-        seoKind: { et: 'saunaga palkmaja', en: 'sauna cabin', ru: 'дом с баней' },
+        seoKind: { et: 'saunaga palkmaja', en: 'sauna cabin', ru: 'сруб с дровяной баней' },
         body: [
           {
             et: 'Saunamaja on roogkatusega palkmaja Oandu külas, Lahemaa rahvuspargi sees. Kaks korrust, avatud toad, paeplaatidest põrand ja kamin, mille kohal on sepistatud tammeokstega rõdupiire. Köök on täisvarustatud, köögisaar telliskivijalal ja puuküttega pliit. Magamiskohti on kuni viiele, kolm kahekohalist voodit üle kahe korruse.',
@@ -148,7 +148,7 @@ export const T = {
       },
       {
         slug: 'tiigimaja',
-        seoKind: { et: 'majake tiigi ääres', en: 'waterside cabin', ru: 'дом у пруда' },
+        seoKind: { et: 'majake tiigi ääres', en: 'waterside cabin', ru: 'домик на берегу пруда' },
         body: [
           {
             et: 'Tiigimaja seisab vee ääres, oma tiigi kaldal. Sees on üks avatud ruum: elutuba rohelise diivani ja nikerdatud katusetalaga, kamin uivpuust skulptuuri all ja klaasseinad, mis avanevad murule ja metsale. Kööginurgas on gaasipliit ja retrokülmik. Magamistoal on põrandast laeni aknad niidule.',
@@ -179,7 +179,7 @@ export const T = {
       },
       {
         slug: 'metsamaja',
-        seoKind: { et: 'metsamaja', en: 'forest cabin', ru: 'лесной дом' },
+        seoKind: { et: 'palkmaja metsa serval', en: 'forest cabin', ru: 'дом среди елей' },
         body: [
           {
             et: 'Metsamaja seisab kõrgete kuuskede vahel, muru serval. Kaks magamistuba 180 cm voodiga, kamin, miniköök, WC ja dušš. Elutoas on tepitud diivan lambanahkade all, ruuduline vaip ja rippkiik akna all; magamistoa palkseinte vahel valgustatud pullipea voodi kohal.',
@@ -315,6 +315,7 @@ export const T = {
     photos:   { et: 'Pildid', en: 'Photographs', ru: 'Фотографии' },
     // Titles and descriptions are composed from published copy only — the house name, its
     // own tagline, its first detail line and its lowest published rate. Nothing invented.
+    titlePlace:   { et: 'Lahemaa', en: 'Lahemaa', ru: 'Лахемаа' },
     titleCountry: { et: 'Eesti', en: 'Estonia', ru: 'Эстония' },
     titleSuffix: {
       et: 'majutus Lahemaal | Oanduaia',
