@@ -124,18 +124,20 @@ export const T = {
       winter:   { et: 'Talvel', en: 'In winter', ru: 'Зимой' },
       price:    { et: 'Hind alates', en: 'From', ru: 'От' },
       bestFor:  { et: 'Sobib', en: 'Best for', ru: 'Подходит' },
+      extra:    { et: 'Lisaks', en: 'Extra', ru: 'Дополнительно' },
     },
     compareUnit: { et: 'ööpäev, kogu maja', en: 'a night, whole house', ru: 'за ночь, весь дом' },
     houses: [
       {
         slug: 'saunamaja',
-        sleeps: 5,
+        sleeps: 4,
         compare: {
           bedrooms: { et: '2 korrust, avatud toad', en: '2 floors, open rooms', ru: '2 этажа, открытые комнаты' },
           sauna:    { et: 'Majas', en: 'In the house', ru: 'В доме' },
           kitchen:  { et: 'Täisvarustatud', en: 'Fully equipped', ru: 'Полностью оборудована' },
           winter:   { et: 'Avatud', en: 'Open', ru: 'Открыт' },
           bestFor:  { et: 'Seltskond, väike tähistamine', en: 'A group, a small celebration', ru: 'Компания, небольшой праздник' },
+          extra:    { et: 'Lisavoodi lapsele', en: 'Extra bed for a child', ru: 'Детская доп. кровать' },
         },
         /*
          * Prose for the house page. The three cabins had 220-250 indexable words each
@@ -146,9 +148,9 @@ export const T = {
         seoKind: { et: 'saunaga palkmaja', en: 'sauna cabin', ru: 'сруб с дровяной баней' },
         body: [
           {
-            et: 'Saunamaja on roogkatusega palkmaja Oandu külas, Lahemaa rahvuspargi sees. Kaks korrust, avatud toad, paeplaatidest põrand ja kamin, mille kohal on sepistatud tammeokstega rõdupiire. Köök on täisvarustatud, köögisaar telliskivijalal ja puuküttega pliit. Magamiskohti on kuni viiele, kaks kahekohalist voodit üle kahe korruse.',
-            en: 'The Sauna House is a thatched log cabin in Oandu village, inside Lahemaa National Park. Two floors, open rooms, a flagstone floor and a fireplace, with a loft above it behind a balustrade of forged oak branches. The kitchen is fully equipped — an island on a brick base and a wood-fired range. It sleeps up to five, two double beds across two floors.',
-            ru: 'Банный дом — бревенчатый дом с камышовой крышей в деревне Оанду, в национальном парке Лахемаа. Два этажа, открытые комнаты, каменный пол и камин, а над ним антресоль за коваными дубовыми ветвями ограждения. Кухня полностью оборудована: остров на кирпичном основании и дровяная плита. Спальных мест до пяти — две двуспальные кровати на двух этажах.',
+            et: 'Saunamaja on roogkatusega palkmaja Oandu külas, Lahemaa rahvuspargi sees. Kaks korrust, avatud toad, paeplaatidest põrand ja kamin, mille kohal on sepistatud tammeokstega rõdupiire. Köök on täisvarustatud, köögisaar telliskivijalal ja puuküttega pliit. Magamiskohti on neljale, kaks kahekohalist voodit üle kahe korruse.',
+            en: 'The Sauna House is a thatched log cabin in Oandu village, inside Lahemaa National Park. Two floors, open rooms, a flagstone floor and a fireplace, with a loft above it behind a balustrade of forged oak branches. The kitchen is fully equipped — an island on a brick base and a wood-fired range. It sleeps four, two double beds across two floors.',
+            ru: 'Банный дом — бревенчатый дом с камышовой крышей в деревне Оанду, в национальном парке Лахемаа. Два этажа, открытые комнаты, каменный пол и камин, а над ним антресоль за коваными дубовыми ветвями ограждения. Кухня полностью оборудована: остров на кирпичном основании и дровяная плита. Спальных мест на четверых — две двуспальные кровати на двух этажах.',
           },
           {
             et: 'Süda on puuküttega saun. Köetakse puudega, mitte lülitiga, ja tiik on kümne sammu kaugusel – suvel ujumiseks, talvel on jäässe raiutud auk. Saunamaja on ainus kolmest, mis on avatud aasta läbi.',
@@ -164,7 +166,7 @@ export const T = {
         name: { et: 'Saunamaja', en: 'Sauna House', ru: 'Банный дом' },
         tag:  { et: 'Saun, köök, seltskond – kõik olemas.', en: 'Sauna, kitchen, company – all there.', ru: 'Сауна, кухня, компания – всё есть.' },
         items: [
-          { et: 'Kuni 5 ööbijat · 2 kahekohalist voodit · 2 korrust', en: 'Up to 5 guests · 2 double beds · 2 floors', ru: 'До 5 гостей · 2 двухместные кровати · 2 этажа' },
+          { et: 'Kuni 4 ööbijat · 2 kahekohalist voodit · 2 korrust', en: 'Up to 4 guests · 2 double beds · 2 floors', ru: 'До 4 гостей · 2 двухместные кровати · 2 этажа' },
           { et: 'Avatud toad, puuküttega saun, täisvarustatud köök, kamin', en: 'Open rooms, wood-fired sauna, fully equipped kitchen, fireplace', ru: 'Открытые комнаты, дровяная сауна, оборудованная кухня, камин' },
         ],
         prices: [
@@ -172,9 +174,9 @@ export const T = {
           { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 300, upTo: 4 },
         ],
         priceExtra: {
-          et: 'Lisavoodi on igasse majja võimalik – kinnitame broneerides.',
-          en: 'An extra bed can be added in any house – confirmed when you book.',
-          ru: 'Дополнительную кровать можно поставить в любом доме – подтверждаем при бронировании.',
+          et: 'Lapsele saab igasse majja lisavoodi – kokkuleppel broneerides.',
+          en: 'An extra bed for a child can be added in any house – by arrangement when you book.',
+          ru: 'Детскую дополнительную кровать можно поставить в любом доме – по договорённости при бронировании.',
         },
       },
       {
@@ -186,6 +188,7 @@ export const T = {
           kitchen:  { et: 'Kööginurk', en: 'Kitchenette', ru: 'Кухонный уголок' },
           winter:   { et: 'Suletud dets–märts', en: 'Closed Dec–Mar', ru: 'Закрыт дек–март' },
           bestFor:  { et: 'Paar', en: 'A couple', ru: 'Пара' },
+          extra:    { et: 'Lisavoodi lapsele', en: 'Extra bed for a child', ru: 'Детская доп. кровать' },
         },
         seoKind: { et: 'majake tiigi ääres', en: 'waterside cabin', ru: 'домик на берегу пруда' },
         body: [
@@ -215,9 +218,9 @@ export const T = {
           { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя' }, eur: 150, upTo: 2 },
         ],
         priceExtra: {
-          et: 'Lisavoodi on igasse majja võimalik – kinnitame broneerides.',
-          en: 'An extra bed can be added in any house – confirmed when you book.',
-          ru: 'Дополнительную кровать можно поставить в любом доме – подтверждаем при бронировании.',
+          et: 'Lapsele saab igasse majja lisavoodi – kokkuleppel broneerides.',
+          en: 'An extra bed for a child can be added in any house – by arrangement when you book.',
+          ru: 'Детскую дополнительную кровать можно поставить в любом доме – по договорённости при бронировании.',
         },
       },
       {
@@ -229,6 +232,7 @@ export const T = {
           kitchen:  { et: 'Miniköök', en: 'Mini kitchen', ru: 'Мини-кухня' },
           winter:   { et: 'Suletud dets–märts', en: 'Closed Dec–Mar', ru: 'Закрыт дек–март' },
           bestFor:  { et: 'Pere või kaks paari', en: 'A family or two couples', ru: 'Семья или две пары' },
+          extra:    { et: 'Lisavoodi lapsele', en: 'Extra bed for a child', ru: 'Детская доп. кровать' },
         },
         seoKind: { et: 'palkmaja metsa serval', en: 'forest cabin', ru: 'дом среди елей' },
         body: [
@@ -259,9 +263,9 @@ export const T = {
           { guests: { et: '3–4 inimest', en: '3–4 guests', ru: '3–4 гостя' }, eur: 200, upTo: 4 },
         ],
         priceExtra: {
-          et: 'Lisavoodi on igasse majja võimalik – kinnitame broneerides.',
-          en: 'An extra bed can be added in any house – confirmed when you book.',
-          ru: 'Дополнительную кровать можно поставить в любом доме – подтверждаем при бронировании.',
+          et: 'Lapsele saab igasse majja lisavoodi – kokkuleppel broneerides.',
+          en: 'An extra bed for a child can be added in any house – by arrangement when you book.',
+          ru: 'Детскую дополнительную кровать можно поставить в любом доме – по договорённости при бронировании.',
         },
       },
     ],

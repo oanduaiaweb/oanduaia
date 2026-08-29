@@ -50,18 +50,25 @@ export default function LandingPage({ id }: { id: string }) {
 
       {/*
         Questions phrased the way someone types them into an assistant, each answered in
-        a couple of sentences directly underneath. That shape — question, then a short
-        self-contained factual answer — is what gets extracted and quoted.
+        a couple of sentences. That shape — question, then a short self-contained factual
+        answer — is what gets extracted and quoted.
+        
+        Collapsed by default, like the FAQ on the home page: five open answers is a wall
+        of text where a reader wants a list of questions to pick from. `<details>` keeps
+        every answer in the DOM whether it is open or not, so nothing is hidden from a
+        crawler — only from the eye.
       */}
       <section className="landing-qa">
         <div className="landing-qa-inner">
           <p className="section-label">{t.qaLabel[lang]}</p>
-          {l.qa.map(item => (
-            <div className="landing-qa-item" key={item.q.et}>
-              <h2 className="landing-qa-q">{item.q[lang]}</h2>
-              <p className="landing-qa-a">{item.a[lang]}</p>
-            </div>
-          ))}
+          <div className="faq-list">
+            {l.qa.map(item => (
+              <details className="faq-item" key={item.q.et}>
+                <summary className="faq-q">{item.q[lang]}</summary>
+                <p className="faq-a">{item.a[lang]}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
     </article>

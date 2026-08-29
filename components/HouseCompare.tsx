@@ -29,6 +29,7 @@ export default function HouseCompare() {
     [r.winter[lang],   i => houses[i].compare.winter[lang]],
     [r.price[lang],    i => `${Math.min(...houses[i].prices.map(p => p.eur))} €`],
     [r.bestFor[lang],  i => houses[i].compare.bestFor[lang]],
+    [r.extra[lang],    i => houses[i].compare.extra[lang]],
   ]
 
   return (

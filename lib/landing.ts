@@ -112,14 +112,14 @@ export const LANDINGS: Landing[] = [
         },
         p: [
           {
-            et: 'Oanduaia on pereettevõte Oandu külas: kolm eraldi maja, puuküttega saun, tiik ja väliköök. Iga maja renditakse tervikuna. Saunamaja on kuni viiele ja avatud aasta läbi, Metsamaja neljale, Tiigimaja kahele; Tiigimaja ja Metsamaja on talveks suletud 1. detsembrist 31. märtsini.',
-            en: 'Oanduaia is a family business in Oandu village: three separate houses, a wood-fired sauna, a pond and an outdoor kitchen. Each house is rented whole. The Sauna House sleeps up to five and is open all year, the Forest House four, the Pond House two; the Pond House and the Forest House close for the winter, from 1 December to 31 March.',
-            ru: 'Oanduaia — семейное дело в деревне Оанду: три отдельных дома, дровяная баня, пруд и летняя кухня. Каждый дом сдаётся целиком. Банный дом — до пяти человек, открыт круглый год; Лесной — на четверых; Прудовой — на двоих. Прудовой и Лесной закрыты с 1 декабря по 31 марта.',
+            et: 'Oanduaia on pereettevõte Oandu külas: kolm eraldi maja, puuküttega saun, tiik ja väliköök. Iga maja renditakse tervikuna. Saunamaja on neljale ja avatud aasta läbi, Metsamaja neljale, Tiigimaja kahele; Tiigimaja ja Metsamaja on talveks suletud 1. detsembrist 31. märtsini.',
+            en: 'Oanduaia is a family business in Oandu village: three separate houses, a wood-fired sauna, a pond and an outdoor kitchen. Each house is rented whole. The Sauna House sleeps four and is open all year, the Forest House four, the Pond House two; the Pond House and the Forest House close for the winter, from 1 December to 31 March.',
+            ru: 'Oanduaia — семейное дело в деревне Оанду: три отдельных дома, дровяная баня, пруд и летняя кухня. Каждый дом сдаётся целиком. Банный дом — на четверых, открыт круглый год; Лесной — на четверых; Прудовой — на двоих. Прудовой и Лесной закрыты с 1 декабря по 31 марта.',
           },
           {
-            et: 'Hommikusöök, lõuna või pidulik pikk laud tehakse kohapeal, ette tellides. Lisavoodi saab igasse majja, kokkuleppel. Lemmikloomad on lubatud, 20 € broneeringu kohta. WiFi-t majades ei ole, mobiillevi on hea.',
-            en: 'Breakfast, lunch or a festive long table are cooked here, ordered in advance. An extra bed can be added in any of the houses, by arrangement. Pets are welcome for €20 per stay. There is no WiFi in the houses; mobile coverage is good.',
-            ru: 'Завтрак, обед или праздничный длинный стол готовят на месте, по предварительному заказу. Дополнительную кровать можно поставить в любом доме, по договорённости. С питомцами можно — 20 € за проживание. Wi-Fi в домах нет, мобильная связь хорошая.',
+            et: 'Hommikusöök, lõuna või pidulik pikk laud tehakse kohapeal, ette tellides. Lapsele saab igasse majja lisavoodi, kokkuleppel. Lemmikloomad on lubatud, 20 € broneeringu kohta. WiFi-t majades ei ole, mobiillevi on hea.',
+            en: 'Breakfast, lunch or a festive long table are cooked here, ordered in advance. An extra bed for a child can be added in any of the houses, by arrangement. Pets are welcome for €20 per stay. There is no WiFi in the houses; mobile coverage is good.',
+            ru: 'Завтрак, обед или праздничный длинный стол готовят на месте, по предварительному заказу. Детскую дополнительную кровать можно поставить в любом доме, по договорённости. С питомцами можно — 20 € за проживание. Wi-Fi в домах нет, мобильная связь хорошая.',
           },
         ],
       },
@@ -146,9 +146,9 @@ export const LANDINGS: Landing[] = [
           ru: 'Где остановиться в национальном парке Лахемаа?',
         },
         a: {
-          et: 'Rahvuspargis ei ole suuri hotelle. Valida saab mõisamajutuse, külalistemajade ja tervikuna renditavate külamajade vahel; RMK telkimisalad ja metsaonnid on tasuta. Oanduaia on Oandu külas rahvuspargi idaosas: kolm eraldi maja kokku 11 külalisele, puuküttega saun, hinnad alates 150 € öö kogu maja eest.',
-          en: 'There are no large hotels in the park. The choice is between manor accommodation, guesthouses and village houses rented whole; RMK campsites and forest huts are free. Oanduaia is in Oandu village in the eastern part of the park: three separate houses for 11 guests in total, a wood-fired sauna, from €150 a night for the whole house.',
-          ru: 'Больших отелей в парке нет. Выбор между мызами, гостевыми домами и деревенскими домами, которые сдаются целиком; кемпинги и лесные избы RMK бесплатны. Oanduaia — в деревне Оанду в восточной части парка: три отдельных дома на 11 гостей, дровяная баня, от 150 € за ночь за весь дом.',
+          et: 'Rahvuspargis ei ole suuri hotelle. Valida saab mõisamajutuse, külalistemajade ja tervikuna renditavate külamajade vahel; RMK telkimisalad ja metsaonnid on tasuta. Oanduaia on Oandu külas rahvuspargi idaosas: kolm eraldi maja kokku 10 külalisele, puuküttega saun, hinnad alates 150 € öö kogu maja eest.',
+          en: 'There are no large hotels in the park. The choice is between manor accommodation, guesthouses and village houses rented whole; RMK campsites and forest huts are free. Oanduaia is in Oandu village in the eastern part of the park: three separate houses for 10 guests in total, a wood-fired sauna, from €150 a night for the whole house.',
+          ru: 'Больших отелей в парке нет. Выбор между мызами, гостевыми домами и деревенскими домами, которые сдаются целиком; кемпинги и лесные избы RMK бесплатны. Oanduaia — в деревне Оанду в восточной части парка: три отдельных дома на 10 гостей, дровяная баня, от 150 € за ночь за весь дом.',
         },
       },
       {
