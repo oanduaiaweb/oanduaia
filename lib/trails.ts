@@ -256,12 +256,7 @@ export function trailKm(trail: Trail, lang: Lang): string {
 
 export const TRAIL_SLUGS = TRAILS.map(t => t.slug)
 
-/** The trail list on the home page finds a trail's page by its Estonian name. */
-export const TRAIL_BY_KEY: Record<string, Trail> = Object.fromEntries(
-  TRAILS.map(t => [t.key, t]),
-)
-
-/** Kept for the existing link on the Oandu–Ikla row of the home-page list. */
+/** Keyed by slug, so a change to a display name can never break the lookup again. */
 export const TRAIL_LINKS: Record<string, TrailLink> = Object.fromEntries(
-  TRAILS.filter(t => t.link).map(t => [t.key, t.link!]),
+  TRAILS.filter(t => t.link).map(t => [t.slug, t.link!]),
 )

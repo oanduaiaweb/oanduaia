@@ -270,31 +270,37 @@ export const T = {
     },
     items: [
       {
+        slug: 'oandu-aegviidu-ikla',
         dist: { et: '370 km · pikkajaline', en: '370 km · long-distance', ru: '370 км · дальний' },
         name: { et: 'Oandu–Aegviidu–Ikla matkatee', en: 'Oandu–Aegviidu–Ikla route', ru: 'Маршрут Оанду–Аэгвийду–Икла' },
         desc: { et: 'Algab RMK Oandu külastuskeskusest ja kulgeb läbi Kõrvemaa ja Soomaa Ikla piirini.', en: 'Starts at the RMK Oandu visitor centre and runs through Kõrvemaa and Soomaa to Ikla.', ru: 'Начинается у центра посетителей RMK в Оанду и идёт через Кырвемаа и Соомаа до Икла.' },
       },
       {
+        slug: 'oandu-loodusmetsarada',
         dist: { et: '4,7 km · kerge', en: '4.7 km · easy', ru: '4,7 км · лёгкий' },
         name: { et: 'Oandu loodusmetsarada', en: 'Oandu Nature Forest Trail', ru: 'Природная тропа Оанду' },
         desc: { et: 'Looduslik ringrada läbi muistse metsa ja ürgoru.', en: 'A natural loop through ancient forest and a primeval valley.', ru: 'Кольцевая тропа через древний лес и долину.' },
       },
       {
+        slug: 'oandu-vosu',
         dist: { et: '9,5 km · keskmine', en: '9.5 km · medium', ru: '9,5 км · средний' },
         name: { et: 'Oandu–Võsu matkarada', en: 'Oandu–Võsu Trail', ru: 'Маршрут Оанду–Высу' },
         desc: { et: 'Meri kuni mets – rannikult läbi rahvuspargi.', en: 'Sea to forest – from the coast through the national park.', ru: 'От моря до леса – с побережья через нацпарк.' },
       },
       {
+        slug: 'koprarada',
         dist: { et: '1 km · kerge', en: '1 km · easy', ru: '1 км · лёгкий' },
         name: { et: 'Koprarada', en: 'Beaver Trail', ru: 'Бобровая тропа' },
         desc: { et: 'Lühike rada koprapaisude ja järvepindade vaatluspunktideni.', en: 'A short trail to beaver dams and lake observation points.', ru: 'Короткая тропа к бобровым плотинам и смотровым площадкам.' },
       },
       {
+        slug: 'oandu-parimusrada',
         dist: { et: '3,4 km · kerge', en: '3.4 km · easy', ru: '3,4 км · лёгкий' },
         name: { et: 'Oandu pärimusrada', en: 'Oandu Heritage Trail', ru: 'Тропа наследия Оанду' },
         desc: { et: 'Lahemaa külade pärimusloo jälgedel.', en: 'Following the heritage story of Lahemaa villages.', ru: 'По следам исторического наследия деревень Лахемаа.' },
       },
       {
+        slug: 'altja',
         dist: { et: '3 km · kerge', en: '3 km · easy', ru: '3 км · лёгкий' },
         name: { et: 'Altja matkarada', en: 'Altja Hiking Trail', ru: 'Тропа Алтья' },
         desc: { et: 'Altja kaluriküla kaudu rannikule. Ajalugu ja loodus.', en: 'Via Altja fishing village to the coast. History and nature.', ru: 'Через рыбацкую деревню Алтья к побережью. История и природа.' },

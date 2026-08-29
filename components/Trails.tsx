@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import Link from 'next/link'
-import { TRAIL_LINKS, TRAIL_BY_KEY } from '@/lib/trails'
+import { TRAIL_LINKS, TRAILS } from '@/lib/trails'
 import LocationMap from '@/components/LocationMap'
 
 const delays = ['', ' reveal-delay-1', ' reveal-delay-2']
@@ -49,8 +49,13 @@ export default function Trails() {
       <div className="trails-inner">
         <div className="trails-grid">
           {t.items.map((trail, i) => {
-            const link = TRAIL_LINKS[trail.name.et]
-            const page = TRAIL_BY_KEY[trail.name.et]
+            const link = TRAIL_LINKS[trail.slug]
+            /*
+             * By slug. This used to look the page up by the Estonian display name, and
+             * when that name was corrected to RMK's the two strings drifted apart and
+             * the Altja row silently stopped being a link — no error, just plain text.
+             */
+            const page = TRAILS.find(x => x.slug === trail.slug)
             return (
               <div key={trail.name.et} className={`trail-item reveal${delays[i % 3]}`}>
                 <p className="trail-distance">{trail.dist[lang]}</p>
