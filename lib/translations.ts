@@ -89,10 +89,15 @@ export const T = {
     s2: {
       t1: { et: 'Pidulik pikk laud', en: 'Festive long table', ru: 'Праздничный стол' },
       t2: { et: '', en: '', ru: '' },
+      /*
+       * Two lines against the breakfast card's five left this side of the section
+       * visibly short. It now says the thing that was missing anyway: the long table
+       * is laid in the outdoor kitchen OR indoors, so weather is not a reason not to ask.
+       */
       desc: {
-        et: 'Ette tellides kahele kuni kümnele. Suvel väliköögis kuni kahekümnele.',
-        en: 'Pre-ordered for two to ten. In summer, up to twenty in the outdoor kitchen.',
-        ru: 'По предварительному заказу для двух–десяти человек. Летом – до двадцати на открытой кухне.',
+        et: 'Ette tellides kahele kuni kümnele. Suvel kaetakse pikk laud väliköögis, rippuvate lillede ja valguskee all, kuni kahekümnele. Halva ilmaga ja talvel katame sama laua tuppa, maja enda lauale. Lilled, küünlad ja kristall käivad juurde – menüü lepime enne kokku.',
+        en: 'Laid to order for two to ten. In summer the long table is set in the outdoor kitchen for up to twenty, under the hanging flowers and the string lights. In poor weather, and in winter, the same table is laid indoors on the house’s own. Flowers, candles and glassware come with it — the menu is agreed beforehand.',
+        ru: 'По предварительному заказу на двух–десять человек. Летом длинный стол накрывают в летней кухне до двадцати гостей — под подвесными цветами и гирляндой. В непогоду и зимой тот же стол накрывают в доме. Цветы, свечи и хрусталь входят в это, меню согласуем заранее.',
       },
       price: null,
     },
