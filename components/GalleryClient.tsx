@@ -49,6 +49,12 @@ export default function Gallery() {
         <div className="gallery-header">
           <Link href={`/${lang}`} className="gallery-back">{t.back[lang]}</Link>
           <h1 className="gallery-title">{t.title[lang]}</h1>
+          {/*
+            One sentence, because the page was 43 indexable words — a hundred photographs
+            and almost no text. It names the houses, the sauna, the park and the village,
+            which is what someone would have to type to find a picture of any of them.
+          */}
+          <p className="gallery-intro">{T.gallery.intro[lang]}</p>
         </div>
         <div className="gallery-grid">
           {photos.map((p, i) => (

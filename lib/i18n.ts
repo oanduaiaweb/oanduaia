@@ -56,19 +56,19 @@ export const META: Record<Lang, { title: string; description: string; ogLocale: 
 
 export const GALLERY_META: Record<Lang, { title: string; description: string }> = {
   et: {
-    title: 'Galerii — Oanduaia metsaspaa Lahemaal',
+    title: 'Galerii — saunaga puhkemajad Lahemaal | Oanduaia',
     description:
-      'Fotod Oanduaia majadest, saunast, tiigist ja Lahemaa loodusest igal aastaajal.',
+      'Üle saja foto Oanduaia kolmest palkmajast, puuküttega saunast, tiigist ja Lahemaa rahvuspargist – suvest talveni, Oandu külas Lääne-Virumaal.',
   },
   en: {
-    title: 'Gallery — Oanduaia forest spa in Lahemaa',
+    title: 'Photo gallery — sauna and forest cabins in Lahemaa | Oanduaia',
     description:
-      'Photographs of the Oanduaia houses, sauna, pond and the surrounding Lahemaa forest through the seasons.',
+      'Over a hundred photographs of the three Oanduaia log cabins, the wood-fired sauna, the pond and Lahemaa National Park — summer through winter, in Oandu village, Estonia.',
   },
   ru: {
-    title: 'Галерея — лесной спа Oanduaia в Лахемаа',
+    title: 'Галерея — дома с баней в Лахемаа, Эстония | Oanduaia',
     description:
-      'Фотографии домов Oanduaia, сауны, пруда и природы Лахемаа в разные времена года.',
+      'Более ста фотографий трёх домов Oanduaia, дровяной бани, пруда и национального парка Лахемаа — от лета до зимы, деревня Оанду, Эстония.',
   },
 }
 
@@ -92,8 +92,16 @@ export function houseMeta(lang: Lang, slug: string) {
   if (!h) return null
   const p = T.housePage
   const from = Math.min(...h.prices.map(x => x.eur))
+  /*
+   * "Sauna House — lodging in Lahemaa, Estonia" was unique but said nothing about which
+   * house it was. Each now names its own kind — sauna cabin, waterside cabin, forest
+   * cabin — which is both the difference between them and the phrase people search.
+   */
+  const kind = h.seoKind ? h.seoKind[lang] : null
   return {
-    title: `${h.name[lang]} — ${p.titleSuffix[lang]}`,
+    title: kind
+      ? `${h.name[lang]} — ${kind}, Lahemaa, ${p.titleCountry[lang]} | Oanduaia`
+      : `${h.name[lang]} — ${p.titleSuffix[lang]}`,
     /*
      * No tagline here any more. That is a gain, not a loss: "Saun, köök, seltskond — kõik
      * olemas" was occupying the front of a 155-character description with nothing anyone

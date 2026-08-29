@@ -55,6 +55,17 @@ export default function House({ slug }: { slug: string }) {
             ))}
           </ul>
           {/*
+            Prose, because a photograph is not indexable and this is the page that has to
+            rank for "sauna cabin Lahemaa". What the house is, who it suits, what is
+            around it — all of it already true elsewhere on the site.
+          */}
+          {house.body && (
+            <div className="house-body-copy">
+              {house.body.map(par => <p key={par.et}>{par[lang]}</p>)}
+            </div>
+          )}
+
+          {/*
             No "Vaata pilte" here. It used to send you to the whole-property gallery, then
             to #pildid once each house had its own photographs — but #pildid is now the
             next thing on the page. A button whose only job is to scroll you to what you
@@ -94,7 +105,18 @@ export default function House({ slug }: { slug: string }) {
               <figure className="house-photo" key={ph.src}>
                 <Image
                   src={ph.src}
-                  alt={ph.alt[lang]}
+                  /*
+                   * Prefixed with the house name. On the page the context is obvious, but
+                   * an alt attribute is read context-free by image search, where "the
+                   * kitchen island on a brick base" belongs to no particular building.
+                   * Skipped where the description already names the house, so nothing
+                   * reads "Sauna House — the Sauna House on an autumn evening".
+                   */
+                  alt={
+                    ph.alt[lang].toLowerCase().includes(house.name[lang].toLowerCase())
+                      ? ph.alt[lang]
+                      : `${house.name[lang]} — ${ph.alt[lang].charAt(0).toLowerCase()}${ph.alt[lang].slice(1)}`
+                  }
                   width={800}
                   height={1000}
                   sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw"

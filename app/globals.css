@@ -1371,6 +1371,33 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-transform: none;
 }
 
+/* Prose on a house page, and the gallery's one sentence. */
+.house-body-copy {
+  margin-top: 2.4rem;
+  max-width: 62ch;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.house-body-copy p {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--fern);
+  letter-spacing: var(--ls-normal);
+}
+.gallery-intro {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--fern);
+  letter-spacing: var(--ls-normal);
+  max-width: 70ch;
+  margin-top: 1.4rem;
+}
+
 /* ══════════════════════════════
    WHY STAY — six reasons, scannable
 ══════════════════════════════ */

@@ -106,6 +106,30 @@ export const T = {
     houses: [
       {
         slug: 'saunamaja',
+        /*
+         * Prose for the house page. The three cabins had 220-250 indexable words each
+         * and leaned on photographs; a search engine cannot read a photograph. Written
+         * from what is already true of the house — the build, who it suits, what is
+         * around it — not padded to a word count.
+         */
+        seoKind: { et: 'saunaga palkmaja', en: 'sauna cabin', ru: 'дом с баней' },
+        body: [
+          {
+            et: 'Saunamaja on roogkatusega palkmaja Oandu külas, Lahemaa rahvuspargi sees. Kaks korrust, avatud toad, paeplaatidest põrand ja kamin, mille kohal on sepistatud tammeokstega rõdupiire. Köök on täisvarustatud, köögisaar telliskivijalal ja puuküttega pliit. Magamiskohti on kuni viiele, kolm kahekohalist voodit üle kahe korruse.',
+            en: 'The Sauna House is a thatched log cabin in Oandu village, inside Lahemaa National Park. Two floors, open rooms, a flagstone floor and a fireplace, with a loft above it behind a balustrade of forged oak branches. The kitchen is fully equipped — an island on a brick base and a wood-fired range. It sleeps up to five, three double beds across two floors.',
+            ru: 'Банный дом — бревенчатый дом с камышовой крышей в деревне Оанду, в национальном парке Лахемаа. Два этажа, открытые комнаты, каменный пол и камин, а над ним антресоль за коваными дубовыми ветвями ограждения. Кухня полностью оборудована: остров на кирпичном основании и дровяная плита. Спальных мест до пяти — три двуспальные кровати на двух этажах.',
+          },
+          {
+            et: 'Süda on puuküttega saun. Köetakse puudega, mitte lülitiga, ja tiik on kümne sammu kaugusel – suvel ujumiseks, talvel on jäässe raiutud auk. Saunamaja on ainus kolmest, mis on avatud aasta läbi.',
+            en: 'The heart of it is the wood-fired sauna. It is heated with wood, not a switch, and the pond is ten steps away — for swimming in summer, and in winter there is a hole cut in the ice. The Sauna House is the only one of the three open all year round.',
+            ru: 'Сердце дома — дровяная баня. Она топится дровами, а не выключателем, и пруд в десяти шагах: летом для купания, зимой во льду прорублена прорубь. Банный дом — единственный из трёх, открытый круглый год.',
+          },
+          {
+            et: 'See sobib seltskonnale, kes tahab ühte lauda ja oma sauna: sõpradele, kahele perele, väiksele tähistamisele. Maja renditakse tervikuna. Ümberringi on Lahemaa – Palmse, Sagadi ja Vihula mõis lühikese sõidu kaugusel, Altja kaluriküla ja rannik põhja pool, Oandu külastuskeskus ja loodusmetsarada jalutuskäigu kaugusel. Tallinnasse on umbes 90 kilomeetrit.',
+            en: 'It suits a group who want one table and a sauna of their own: friends, two families, a small celebration. The house is rented whole. Around it is Lahemaa — the manors of Palmse, Sagadi and Vihula a short drive away, Altja fishing village and the coast to the north, the Oandu visitor centre and the old-growth forest trail within walking distance. Tallinn is about 90 kilometres away.',
+            ru: 'Подходит компании, которой нужен один стол и своя баня: друзьям, двум семьям, небольшому празднику. Дом сдаётся целиком. Вокруг — Лахемаа: мызы Палмсе, Сагади и Вихула в коротком переезде, рыбацкая деревня Алтья и побережье к северу, центр посетителей Оанду и тропа древнего леса в пешей доступности. До Таллинна около 90 километров.',
+          },
+        ],
         name: { et: 'Saunamaja', en: 'Sauna House', ru: 'Банный дом' },
         tag:  { et: 'Saun, köök, seltskond – kõik olemas.', en: 'Sauna, kitchen, company – all there.', ru: 'Сауна, кухня, компания – всё есть.' },
         items: [
@@ -124,6 +148,24 @@ export const T = {
       },
       {
         slug: 'tiigimaja',
+        seoKind: { et: 'majake tiigi ääres', en: 'waterside cabin', ru: 'дом у пруда' },
+        body: [
+          {
+            et: 'Tiigimaja seisab vee ääres, oma tiigi kaldal. Sees on üks avatud ruum: elutuba rohelise diivani ja nikerdatud katusetalaga, kamin uivpuust skulptuuri all ja klaasseinad, mis avanevad murule ja metsale. Kööginurgas on gaasipliit ja retrokülmik. Magamistoal on põrandast laeni aknad niidule.',
+            en: 'The Pond House stands at the water, on the bank of its own pond. Inside is one open room: a living room with a green sofa and a carved roof beam, a fireplace beneath a driftwood sculpture, and glass walls that open onto lawn and forest. The kitchen corner has a gas hob and a retro fridge. The bedroom has floor-to-ceiling windows onto the meadow.',
+            ru: 'Прудовой дом стоит у воды, на берегу собственного пруда. Внутри одно открытое пространство: гостиная с зелёным диваном и резной балкой, камин под скульптурой из коряги и стеклянные стены, открытые на газон и лес. В кухонном углу газовая плита и ретро-холодильник. В спальне окна в пол, выходящие на луг.',
+          },
+          {
+            et: 'Ees on lai puitterrass lamamistoolide ja pergola all istumisalaga – hommikukohv vee kohal, õhtu välja. Maja on kahele.',
+            en: 'In front is a broad timber deck with loungers and seating under a pergola — morning coffee over the water, the evening outdoors. The house is for two.',
+            ru: 'Перед домом широкая деревянная терраса с шезлонгами и зоной отдыха под перголой — утренний кофе над водой, вечер на улице. Дом рассчитан на двоих.',
+          },
+          {
+            et: 'See on kolmest kõige vaiksem ja sobib paarile. Saun on Saunamajas, mõne sammu kaugusel. Tiigimaja on talveks suletud 1. detsembrist 31. märtsini; hooaja esimene öö on 1. aprill. Lahemaa matkarajad, mõisad ja rannik on samamoodi lähedal nagu ülejäänud majadel.',
+            en: 'It is the quietest of the three and suits a couple. The sauna is in the Sauna House, a few steps away. The Pond House closes for the winter, from 1 December to 31 March; the first night of the new season is 1 April. The Lahemaa trails, manors and coast are as near as they are from the other houses.',
+            ru: 'Это самый тихий из трёх домов, он подходит паре. Баня — в Банном доме, в нескольких шагах. Прудовой дом закрыт на зиму с 1 декабря по 31 марта; первая ночь нового сезона — 1 апреля. Тропы Лахемаа, мызы и побережье так же близко, как и от остальных домов.',
+          },
+        ],
         name: { et: 'Tiigimaja', en: 'Pond House', ru: 'Прудовой дом' },
         tag:  { et: 'Tule kaheks päevaks. Jää kaheks nädalaks.', en: 'Come for two days. Stay for two weeks.', ru: 'Приедь на два дня. Останься на две недели.' },
         items: [
@@ -137,6 +179,24 @@ export const T = {
       },
       {
         slug: 'metsamaja',
+        seoKind: { et: 'metsamaja', en: 'forest cabin', ru: 'лесной дом' },
+        body: [
+          {
+            et: 'Metsamaja seisab kõrgete kuuskede vahel, muru serval. Kaks magamistuba 180 cm voodiga, kamin, miniköök, WC ja dušš. Elutoas on tepitud diivan lambanahkade all, ruuduline vaip ja rippkiik akna all; magamistoa palkseinte vahel valgustatud pullipea voodi kohal.',
+            en: 'The Forest House stands among tall spruce at the edge of the lawn. Two bedrooms with 180 cm beds, a fireplace, a mini kitchen, a WC and a shower. In the living room a buttoned sofa under sheepskins, a checked rug and a hanging chair at the window; in the bedroom, between log walls, a lit bull’s head above the bed.',
+            ru: 'Лесной дом стоит среди высоких елей на краю газона. Две спальни с кроватями 180 см, камин, мини-кухня, санузел с душем. В гостиной стёганый диван под овчинами, клетчатый ковёр и подвесное кресло у окна; в спальне между бревенчатыми стенами — подсвеченная голова быка над кроватью.',
+          },
+          {
+            et: 'See on neljale ja sobib perele või kahele paarile: kaks eraldi magamistuba, oma kamin ja mets akna taga. Maja renditakse tervikuna.',
+            en: 'It is for four and suits a family or two couples: two separate bedrooms, a fireplace of its own and forest outside the window. The house is rented whole.',
+            ru: 'Дом на четверых, подходит семье или двум парам: две отдельные спальни, собственный камин и лес за окном. Дом сдаётся целиком.',
+          },
+          {
+            et: 'Saun on Saunamajas, mõne sammu kaugusel üle muru. Metsamaja on talveks suletud 1. detsembrist 31. märtsini; hooaja esimene öö on 1. aprill. Matkarajad algavad külast, Palmse, Sagadi ja Vihula mõis ning Altja rannik on lühikese sõidu kaugusel, Tallinnasse umbes 90 kilomeetrit.',
+            en: 'The sauna is in the Sauna House, a few steps across the lawn. The Forest House closes for the winter, from 1 December to 31 March; the first night of the new season is 1 April. The trails start from the village, the manors of Palmse, Sagadi and Vihula and the coast at Altja are a short drive away, and Tallinn is about 90 kilometres.',
+            ru: 'Баня — в Банном доме, в нескольких шагах через газон. Лесной дом закрыт на зиму с 1 декабря по 31 марта; первая ночь нового сезона — 1 апреля. Тропы начинаются от деревни, мызы Палмсе, Сагади и Вихула и побережье в Алтья — в коротком переезде, до Таллинна около 90 километров.',
+          },
+        ],
         name: { et: 'Metsamaja', en: 'Forest House', ru: 'Лесной дом' },
         tag:  { et: 'Neli inimest. Kaks tuba. Üks mets.', en: 'Four people. Two rooms. One forest.', ru: 'Четыре человека. Две комнаты. Один лес.' },
         items: [
@@ -255,6 +315,7 @@ export const T = {
     photos:   { et: 'Pildid', en: 'Photographs', ru: 'Фотографии' },
     // Titles and descriptions are composed from published copy only — the house name, its
     // own tagline, its first detail line and its lowest published rate. Nothing invented.
+    titleCountry: { et: 'Eesti', en: 'Estonia', ru: 'Эстония' },
     titleSuffix: {
       et: 'majutus Lahemaal | Oanduaia',
       en: 'lodging in Lahemaa, Estonia | Oanduaia',
@@ -476,6 +537,11 @@ export const T = {
     loc:     { et: 'Lahemaa rahvuspark · Estonia', en: 'Lahemaa National Park · Estonia', ru: 'Нац. парк Лахемаа · Эстония' },
   },
   gallery: {
+    intro: {
+      et: 'Fotod Oanduaia kolmest majast, puuküttega saunast, tiigist ja Lahemaa rahvuspargi loodusest – suvest talveni. Saunamaja, Tiigimaja ja Metsamaja seest ja väljast, väliköök ja kaetud lauad, matkarajad ja rannik Oandu külas Lääne-Virumaal.',
+      en: 'Photographs of the three Oanduaia cabins, the wood-fired sauna, the pond and the Lahemaa National Park around them, from summer through to winter. The Sauna House, Pond House and Forest House inside and out, the outdoor kitchen and the laid tables, the trails and the coast at Oandu village in Lääne-Virumaa, Estonia.',
+      ru: 'Фотографии трёх домов Oanduaia, дровяной бани, пруда и природы национального парка Лахемаа — от лета до зимы. Банный, Прудовой и Лесной дом снаружи и внутри, летняя кухня и накрытые столы, тропы и побережье в деревне Оанду, Ляэне-Вирумаа, Эстония.',
+    },
     title: { et: 'Galerii', en: 'Gallery', ru: 'Галерея' },
     back:  { et: '← Tagasi', en: '← Back', ru: '← Назад' },
   },
