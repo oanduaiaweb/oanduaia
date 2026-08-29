@@ -1412,8 +1412,30 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* ══════════════════════════════
    WHY STAY — six reasons, scannable
 ══════════════════════════════ */
-.why-section { background: var(--linen); }
+.why-section {
+  background: var(--linen);
+  position: relative;
+  overflow: hidden;
+}
+.why-bg { position: absolute; inset: 0; z-index: 0; }
+/*
+ * A linen veil dense enough that moss headings and fern body copy hold their contrast
+ * over a photograph, with both ends fading to solid linen so the band has no edge
+ * against the sections above and below. Same numbers as the story block, which was
+ * measured rather than guessed.
+ */
+.why-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    var(--linen) 0%,
+    rgba(240,235,224,0.90) 18%,
+    rgba(240,235,224,0.90) 82%,
+    var(--linen) 100%);
+}
 .why-inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--max-w);
   margin: 0 auto;
   padding: var(--section-v) var(--section-h);
@@ -1449,16 +1471,29 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   line-height: 1.3;
   margin-bottom: 0.7rem;
 }
+/*
+ * Near-black, not fern. Fern was picked to sit on flat linen; with a photograph behind
+ * it, a mid green at 300 weight loses contrast exactly where the frame is busy. The
+ * same trade the story block makes — see `.intro-band .intro-text`.
+ */
 .why-item-desc {
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 300;
   line-height: 1.8;
-  color: var(--fern);
+  color: var(--ink);
   letter-spacing: var(--ls-normal);
 }
 @media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2.4rem; } }
 @media (max-width: 700px) {
+  /* The copy runs the full width on a phone, over the middle of the frame, not beside it. */
+  .why-scrim {
+    background: linear-gradient(180deg,
+      var(--linen) 0%,
+      rgba(240,235,224,0.93) 12%,
+      rgba(240,235,224,0.93) 88%,
+      var(--linen) 100%);
+  }
   .why-inner { padding: var(--section-v) 1.5rem; }
   .why-grid { grid-template-columns: 1fr; gap: 2.6rem; }
   .why-head { margin-bottom: 3rem; }

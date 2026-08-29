@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 
@@ -29,6 +30,23 @@ export default function Why() {
 
   return (
     <section className="why-section" id="miks">
+      {/*
+        The outdoor kitchen behind the six reasons, so the section is not a flat panel
+        of linen. A still photograph rather than one of the drifting strips: six items
+        of reading text is more to read than the story block, not less, and that one
+        already had to be slowed to half speed to stop it pulling the eye off the line.
+      */}
+      <div className="why-bg" aria-hidden="true">
+        <Image
+          src="/galerii/kasvuhoone-valikook.jpeg"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={60}
+          style={{ objectFit: 'cover', objectPosition: '50% 58%' }}
+        />
+        <div className="why-scrim" />
+      </div>
       <div className="why-inner">
         <div className="why-head reveal">
           <p className="section-label">{t.label[lang]}</p>
