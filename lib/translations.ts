@@ -527,8 +527,13 @@ export const T = {
      * Why book here rather than through the channel. Not a discount — none is published
      * and inventing one would bind Mikk to it. What is offered instead is what a small
      * family place can actually give and a channel cannot: a person who knows which
-     * house suits you, meals and sauna arranged with the booking, and payment that does
-     * not go through anyone else.
+     * house suits you, meals and sauna arranged with the booking, and payment by
+     * transfer or cash.
+     *
+     * The payment line used to end "No card form and no middleman." Mikk cut it, and he
+     * is right: Booking.com is a channel he wants to keep, and calling it a middleman on
+     * his own site argues against a business he depends on. The fact stands on its own
+     * without the swipe.
      */
     directLabel: { et: 'Otse broneerides', en: 'Booking direct', ru: 'При прямом бронировании' },
     direct: [
@@ -548,9 +553,9 @@ export const T = {
         ru: 'Вы пишете напрямую хозяевам – дополнительная кровать, поздний заезд, собака, день рождения.',
       },
       {
-        et: 'Makse pangaülekandega või sularahas kohapeal. Kaardivormi ega vahendajat ei ole.',
-        en: 'Payment by bank transfer or in cash on arrival. No card form and no middleman.',
-        ru: 'Оплата переводом или наличными на месте. Ни формы карты, ни посредника.',
+        et: 'Makse pangaülekandega või sularahas kohapeal.',
+        en: 'Payment by bank transfer or in cash on arrival.',
+        ru: 'Оплата переводом или наличными на месте.',
       },
     ],
     lNimi:   { et: 'Nimi', en: 'Name', ru: 'Имя' },
