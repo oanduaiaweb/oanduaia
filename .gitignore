@@ -16,3 +16,5 @@ out/
 npm-debug.log*
 .vercel
 .env*
+# ...except the template, which holds names and notes, never values.
+!.env.example
