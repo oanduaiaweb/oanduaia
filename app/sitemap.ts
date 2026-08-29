@@ -6,6 +6,7 @@ import { HOUSE_SLUGS } from '@/lib/availability'
 import { HOUSE_IMAGES } from '@/lib/houses'
 import { HOUSE_GALLERIES } from '@/lib/housePhotos'
 import { TRAILS } from '@/lib/trails'
+import { LANDINGS } from '@/lib/landing'
 
 const PAGES = ['', '/gallery']
 
@@ -79,6 +80,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
         alternates: { languages },
         images: [`${SITE}${t.photo}`],
+      })
+    }
+  }
+
+  /*
+   * Topic landing pages. Their slug differs per language, so the alternates are built
+   * from each locale's own slug rather than from one shared suffix.
+   */
+  for (const l of LANDINGS) {
+    const languages: Record<string, string> = {}
+    for (const x of LOCALES) languages[HREFLANG[x]] = `${SITE}/${x}/${l.slug[x]}`
+    languages['x-default'] = `${SITE}/${DEFAULT_LOCALE}/${l.slug[DEFAULT_LOCALE]}`
+    for (const lang of LOCALES) {
+      entries.push({
+        url: `${SITE}/${lang}/${l.slug[lang]}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.85,
+        alternates: { languages },
+        images: [`${SITE}${l.photo}`],
       })
     }
   }

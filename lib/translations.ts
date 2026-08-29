@@ -560,6 +560,11 @@ export const T = {
     otherTrails: { et: 'Teised rajad', en: 'Other trails', ru: 'Другие тропы' },
     back:        { et: '← Kõik rajad', en: '← All trails', ru: '← Все тропы' },
   },
+  /* Shared chrome for the topic landing pages. */
+  landing: {
+    cta:     { et: 'Vaata saadavust', en: 'Check availability', ru: 'Проверить наличие' },
+    qaLabel: { et: 'Korduvad küsimused', en: 'Common questions', ru: 'Частые вопросы' },
+  },
   booking: {
     label:   { et: 'Reserveerimine', en: 'Reservations', ru: 'Бронирование' },
     h1:      { et: 'Millal sa', en: 'When do', ru: 'Когда вы' },

@@ -1,6 +1,7 @@
 import { T, type Lang } from './translations'
 import { HOUSE_IMAGES } from './houses'
 import { TRAILS, trailKm } from './trails'
+import { LANDINGS } from './landing'
 import { HOUSE_GALLERIES } from './housePhotos'
 
 export const LOCALES: Lang[] = ['et', 'en', 'ru']
@@ -507,5 +508,45 @@ export function trailBreadcrumb(lang: Lang, slug: string) {
       { '@type': 'ListItem', position: 2, name: nature[lang], item: `${SITE}/${lang}#loodus` },
       { '@type': 'ListItem', position: 3, name: t.name[lang], item: `${SITE}/${lang}/rajad/${slug}` },
     ],
+  }
+}
+
+/** A landing page as a WebPage about the property, so the entity stays one entity. */
+export function landingJsonLd(lang: Lang, id: string) {
+  const l = LANDINGS.find(x => x.id === id)
+  if (!l) return null
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE}/${lang}/${l.slug[lang]}#page`,
+    name: l.h1[lang],
+    description: l.description[lang],
+    url: `${SITE}/${lang}/${l.slug[lang]}`,
+    inLanguage: HREFLANG[lang],
+    primaryImageOfPage: `${SITE}${l.photo}`,
+    about: { '@id': `${SITE}/#lodging` },
+    isPartOf: { '@id': `${SITE}/#website` },
+  }
+}
+
+/**
+ * The page's own questions as an FAQPage. Separate from the site-wide FAQ: these answer
+ * "where should I stay in Lahemaa", which is a different question from "what time is
+ * check-in", and they belong to this page rather than to every page.
+ */
+export function landingFaqJsonLd(lang: Lang, id: string) {
+  const l = LANDINGS.find(x => x.id === id)
+  if (!l || !l.qa.length) return null
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${SITE}/${lang}/${l.slug[lang]}#faq`,
+    inLanguage: HREFLANG[lang],
+    about: { '@id': `${SITE}/#lodging` },
+    mainEntity: l.qa.map(x => ({
+      '@type': 'Question',
+      name: x.q[lang],
+      acceptedAnswer: { '@type': 'Answer', text: x.a[lang] },
+    })),
   }
 }

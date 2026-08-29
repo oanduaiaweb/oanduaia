@@ -1455,6 +1455,119 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 @media (max-width: 700px) { .booking-direct { margin-bottom: 2.4rem; } }
 
 /* ══════════════════════════════
+   LANDING PAGES — topic doors into the site
+══════════════════════════════ */
+.landing { background: var(--linen); }
+.landing-hero {
+  position: relative;
+  height: 52vh;
+  min-height: 340px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.landing-hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(14,20,8,0.42) 0%, rgba(14,20,8,0.12) 45%, rgba(14,20,8,0.7) 100%);
+  z-index: 1;
+}
+.landing-hero-text {
+  position: relative; z-index: 2;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 var(--section-h) 3rem;
+}
+.landing-h1 {
+  font-size: clamp(2rem, 4.4vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.08;
+  color: var(--linen);
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 16px rgba(10,14,6,0.55);
+}
+.landing-body {
+  max-width: 74ch;
+  margin: 0 auto;
+  padding: var(--section-v) var(--section-h);
+}
+.landing-lead {
+  font-size: 1.28rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--moss);
+  letter-spacing: var(--ls-normal);
+  margin-bottom: 3.4rem;
+}
+.landing-h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--moss);
+  margin-bottom: 1.2rem;
+}
+.landing-section + .landing-section { margin-top: 3.2rem; }
+.landing-section p {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--ink);
+  letter-spacing: var(--ls-normal);
+}
+.landing-section p + p { margin-top: 1.2rem; }
+
+/* The comparison table is on bark, as it is on the home page. */
+.landing-compare {
+  background: var(--bark);
+  padding: var(--section-v) var(--section-h);
+  text-align: center;
+}
+.landing-cta {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--bark);
+  background: var(--linen);
+  text-decoration: none;
+  padding: 0.95rem 2rem;
+  transition: background 0.3s;
+}
+.landing-cta:hover { background: #fff; }
+
+.landing-qa { background: var(--cream); }
+.landing-qa-inner {
+  max-width: 74ch;
+  margin: 0 auto;
+  padding: var(--section-v) var(--section-h);
+}
+.landing-qa-item + .landing-qa-item { margin-top: 2.4rem; }
+.landing-qa-q {
+  font-size: 1.22rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--moss);
+  margin-bottom: 0.7rem;
+}
+.landing-qa-a {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--ink);
+  letter-spacing: var(--ls-normal);
+}
+@media (max-width: 700px) {
+  .landing-hero { height: 40vh; min-height: 260px; }
+  .landing-hero-text { padding: 0 1.5rem 2rem; }
+  .landing-body, .landing-qa-inner { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .landing-compare { padding: var(--section-v) 1.5rem; }
+}
+
+/* ══════════════════════════════
    HOUSE COMPARISON — the three side by side
    Lives in .feature-outro, which is on --bark. Light type on dark, not the other way.
 ══════════════════════════════ */
