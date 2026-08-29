@@ -58,6 +58,7 @@ export const DETAIL_STRIP: string[] = [
  * has to answer is "what is this like in February".
  */
 export const FOOD_STRIP: string[] = [
+  '/galerii/toit/pidulik-pikk-laud.jpeg',
   '/galerii/toit/marjadesserdid.jpeg',
   '/galerii/toit/valikook-ohtul.jpeg',
   '/galerii/toit/talvine-suupistelaud.jpeg',

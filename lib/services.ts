@@ -23,15 +23,19 @@ export const SERVICE_IMAGES: ServiceImage[] = [
     },
   },
   {
-    // The festive long table, lit. Portrait original cropped to the card's 4:3, so the
-    // focus sits high enough to keep the jasmine and the table running away — lower
-    // down the crop was all napkin rings and no length.
-    src: '/galerii/toit/pidulik-pikk-laud.jpeg',
-    focus: '50% 38%',
+    /*
+     * The card opens by saying the long table is laid in the outdoor kitchen, so it
+     * shows that: the table running away under the pavilion roof, the lawn and the
+     * house beyond. The candlelit indoor version it replaced was the better photograph
+     * in isolation and the worse one here — it illustrated the sentence's second half.
+     * It moves into the ribbon below rather than off the page.
+     */
+    src: '/galerii/valikook.jpeg',
+    focus: '50% 55%',
     alt: {
-      et: 'Küünlavalgel pikk laud messingist salvrätirõngaste ja jasmiinikimpudega',
-      en: 'The long table by candlelight, with brass napkin rings and jars of jasmine',
-      ru: 'Длинный стол при свечах, латунные кольца для салфеток и букеты жасмина',
+      et: 'Pikk puidust laud väliköögi katuse all, muru ja maja taga',
+      en: 'The long timber table under the outdoor kitchen roof, lawn and house beyond',
+      ru: 'Длинный деревянный стол под крышей летней кухни, газон и дом позади',
     },
   },
 ]
