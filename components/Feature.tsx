@@ -8,6 +8,7 @@ import { scrollToId } from '@/lib/scrollToId'
 import { HOUSE_IMAGES } from '@/lib/houses'
 import { HOUSE_GALLERIES } from '@/lib/housePhotos'
 import PhotoStrip from '@/components/PhotoStrip'
+import HouseCompare from '@/components/HouseCompare'
 import { HOUSE_STRIP } from '@/lib/strips'
 
 function scrollTo(id: string) {
@@ -99,6 +100,7 @@ export default function Feature() {
 
       <div className="feature-outro">
         <p className="feature-price-note">{t.priceNote[lang]}</p>
+        <HouseCompare />
         <a href="#broneeri" className="feature-cta" onClick={scrollTo('broneeri')}>{t.cta[lang]}</a>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { T, type Lang } from './translations'
 import { HOUSE_IMAGES } from './houses'
 import { TRAILS, trailKm } from './trails'
+import { HOUSE_GALLERIES } from './housePhotos'
 
 export const LOCALES: Lang[] = ['et', 'en', 'ru']
 export const DEFAULT_LOCALE: Lang = 'et'
@@ -129,12 +130,43 @@ export function houseJsonLd(lang: Lang, slug: string) {
     name: h.name[lang],
     description: h.items.map(i => i[lang].replace(/ · /g, ', ')).join('. ') + '.',
     url: `${SITE}/${lang}/majad/${slug}`,
-    image: img ? `${SITE}${img.src}` : undefined,
-    // The priced tiers cap at 4; Saunamaja sleeps 5, which the page says in its own words.
+    /*
+     * Every photograph on the house's page, not just the cover. Image search and the
+     * assistants both take this list; there are between nine and eighteen per house and
+     * they were all described in three languages, which is wasted if only one is offered.
+     */
+    image: [
+      ...(img ? [`${SITE}${img.src}`] : []),
+      ...(HOUSE_GALLERIES[slug as keyof typeof HOUSE_GALLERIES] ?? []).map(p => `${SITE}${p.src}`),
+    ],
+    /*
+     * `sleeps`, not the top price tier. The tiers cap at four, so the schema had been
+     * telling every crawler that the Sauna House sleeps four while the page beside it
+     * said five. A capacity is exactly the kind of fact an assistant repeats verbatim.
+     */
     occupancy: {
       '@type': 'QuantitativeValue',
-      value: Math.max(...h.prices.map(x => x.upTo)),
+      value: h.sleeps,
       unitText: 'guests',
+    },
+    /*
+     * The published rate as an Offer. The prices are on the page already; giving them a
+     * currency and a unit is what lets a search engine or an assistant say "from €150 a
+     * night" instead of guessing. `unitCode: DAY` because these are per night for the
+     * whole house, not per person.
+     */
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'EUR',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: from,
+        priceCurrency: 'EUR',
+        unitCode: 'DAY',
+        referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'DAY' },
+      },
+      url: `${SITE}/${lang}/majad/${slug}`,
     },
     numberOfBedrooms: slug === 'metsamaja' ? 2 : undefined,
     containedInPlace: { '@id': `${SITE}/#lodging` },

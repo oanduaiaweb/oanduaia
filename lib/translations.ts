@@ -114,9 +114,29 @@ export const T = {
     // Estonian is one compound word, so it takes no second line.
     h1:   { et: 'Majutusvõimalused', en: 'Accommodation', ru: 'Варианты' },
     h2:   { et: '', en: 'options.', ru: 'размещения.' },
+    /* Labels for the three-house comparison table. */
+    compareLabel: { et: 'Kolm maja kõrvuti', en: 'The three houses side by side', ru: 'Три дома рядом' },
+    compareRows: {
+      guests:   { et: 'Kohti', en: 'Sleeps', ru: 'Мест' },
+      bedrooms: { et: 'Magamine', en: 'Sleeping', ru: 'Спальни' },
+      sauna:    { et: 'Saun', en: 'Sauna', ru: 'Баня' },
+      kitchen:  { et: 'Köök', en: 'Kitchen', ru: 'Кухня' },
+      winter:   { et: 'Talvel', en: 'In winter', ru: 'Зимой' },
+      price:    { et: 'Hind alates', en: 'From', ru: 'От' },
+      bestFor:  { et: 'Sobib', en: 'Best for', ru: 'Подходит' },
+    },
+    compareUnit: { et: 'ööpäev, kogu maja', en: 'a night, whole house', ru: 'за ночь, весь дом' },
     houses: [
       {
         slug: 'saunamaja',
+        sleeps: 5,
+        compare: {
+          bedrooms: { et: '2 korrust, avatud toad', en: '2 floors, open rooms', ru: '2 этажа, открытые комнаты' },
+          sauna:    { et: 'Majas', en: 'In the house', ru: 'В доме' },
+          kitchen:  { et: 'Täisvarustatud', en: 'Fully equipped', ru: 'Полностью оборудована' },
+          winter:   { et: 'Avatud', en: 'Open', ru: 'Открыт' },
+          bestFor:  { et: 'Seltskond, väike tähistamine', en: 'A group, a small celebration', ru: 'Компания, небольшой праздник' },
+        },
         /*
          * Prose for the house page. The three cabins had 220-250 indexable words each
          * and leaned on photographs; a search engine cannot read a photograph. Written
@@ -126,9 +146,9 @@ export const T = {
         seoKind: { et: 'saunaga palkmaja', en: 'sauna cabin', ru: 'сруб с дровяной баней' },
         body: [
           {
-            et: 'Saunamaja on roogkatusega palkmaja Oandu külas, Lahemaa rahvuspargi sees. Kaks korrust, avatud toad, paeplaatidest põrand ja kamin, mille kohal on sepistatud tammeokstega rõdupiire. Köök on täisvarustatud, köögisaar telliskivijalal ja puuküttega pliit. Magamiskohti on kuni viiele, kolm kahekohalist voodit üle kahe korruse.',
-            en: 'The Sauna House is a thatched log cabin in Oandu village, inside Lahemaa National Park. Two floors, open rooms, a flagstone floor and a fireplace, with a loft above it behind a balustrade of forged oak branches. The kitchen is fully equipped — an island on a brick base and a wood-fired range. It sleeps up to five, three double beds across two floors.',
-            ru: 'Банный дом — бревенчатый дом с камышовой крышей в деревне Оанду, в национальном парке Лахемаа. Два этажа, открытые комнаты, каменный пол и камин, а над ним антресоль за коваными дубовыми ветвями ограждения. Кухня полностью оборудована: остров на кирпичном основании и дровяная плита. Спальных мест до пяти — три двуспальные кровати на двух этажах.',
+            et: 'Saunamaja on roogkatusega palkmaja Oandu külas, Lahemaa rahvuspargi sees. Kaks korrust, avatud toad, paeplaatidest põrand ja kamin, mille kohal on sepistatud tammeokstega rõdupiire. Köök on täisvarustatud, köögisaar telliskivijalal ja puuküttega pliit. Magamiskohti on kuni viiele, kaks kahekohalist voodit üle kahe korruse.',
+            en: 'The Sauna House is a thatched log cabin in Oandu village, inside Lahemaa National Park. Two floors, open rooms, a flagstone floor and a fireplace, with a loft above it behind a balustrade of forged oak branches. The kitchen is fully equipped — an island on a brick base and a wood-fired range. It sleeps up to five, two double beds across two floors.',
+            ru: 'Банный дом — бревенчатый дом с камышовой крышей в деревне Оанду, в национальном парке Лахемаа. Два этажа, открытые комнаты, каменный пол и камин, а над ним антресоль за коваными дубовыми ветвями ограждения. Кухня полностью оборудована: остров на кирпичном основании и дровяная плита. Спальных мест до пяти — две двуспальные кровати на двух этажах.',
           },
           {
             et: 'Süda on puuküttega saun. Köetakse puudega, mitte lülitiga, ja tiik on kümne sammu kaugusel – suvel ujumiseks, talvel on jäässe raiutud auk. Saunamaja on ainus kolmest, mis on avatud aasta läbi.',
@@ -159,6 +179,14 @@ export const T = {
       },
       {
         slug: 'tiigimaja',
+        sleeps: 2,
+        compare: {
+          bedrooms: { et: '1 magamistuba', en: '1 bedroom', ru: '1 спальня' },
+          sauna:    { et: 'Saunamajas, kõrval', en: 'In the Sauna House, next door', ru: 'В Банном доме, рядом' },
+          kitchen:  { et: 'Kööginurk', en: 'Kitchenette', ru: 'Кухонный уголок' },
+          winter:   { et: 'Suletud dets–märts', en: 'Closed Dec–Mar', ru: 'Закрыт дек–март' },
+          bestFor:  { et: 'Paar', en: 'A couple', ru: 'Пара' },
+        },
         seoKind: { et: 'majake tiigi ääres', en: 'waterside cabin', ru: 'домик на берегу пруда' },
         body: [
           {
@@ -194,6 +222,14 @@ export const T = {
       },
       {
         slug: 'metsamaja',
+        sleeps: 4,
+        compare: {
+          bedrooms: { et: '2 magamistuba, 180 cm voodid', en: '2 bedrooms, 180 cm beds', ru: '2 спальни, кровати 180 см' },
+          sauna:    { et: 'Saunamajas, üle muru', en: 'In the Sauna House, across the lawn', ru: 'В Банном доме, через газон' },
+          kitchen:  { et: 'Miniköök', en: 'Mini kitchen', ru: 'Мини-кухня' },
+          winter:   { et: 'Suletud dets–märts', en: 'Closed Dec–Mar', ru: 'Закрыт дек–март' },
+          bestFor:  { et: 'Pere või kaks paari', en: 'A family or two couples', ru: 'Семья или две пары' },
+        },
         seoKind: { et: 'palkmaja metsa serval', en: 'forest cabin', ru: 'дом среди елей' },
         body: [
           {

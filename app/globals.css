@@ -1455,6 +1455,82 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 @media (max-width: 700px) { .booking-direct { margin-bottom: 2.4rem; } }
 
 /* ══════════════════════════════
+   HOUSE COMPARISON — the three side by side
+   Lives in .feature-outro, which is on --bark. Light type on dark, not the other way.
+══════════════════════════════ */
+.compare {
+  max-width: var(--max-w);
+  margin: 0 auto 3.4rem;
+  text-align: left;
+}
+.compare-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.6rem;
+}
+/* Three columns fit a phone; the wrapper is there for the narrowest ones. */
+.compare-scroll { overflow-x: auto; }
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  color: var(--mist);
+  letter-spacing: var(--ls-normal);
+}
+.compare-table th,
+.compare-table td {
+  text-align: left;
+  padding: 0.95rem 1.1rem 0.95rem 0;
+  border-bottom: 1px solid rgba(200,212,184,0.14);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.compare-table thead th {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--linen);
+  border-bottom-color: rgba(200,212,184,0.3);
+  padding-bottom: 0.8rem;
+}
+.compare-table thead th a { color: inherit; text-decoration: none; transition: color 0.3s; }
+.compare-table thead th a:hover { color: var(--gold); }
+.compare-table tbody th {
+  font-weight: 300;
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--sage);
+  white-space: nowrap;
+  padding-right: 1.6rem;
+}
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td { border-bottom: 0; }
+.compare-corner { border-bottom-color: rgba(200,212,184,0.3) !important; }
+.compare-note {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  color: var(--mist);
+  opacity: 0.62;
+  margin-top: 0.9rem;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+@media (max-width: 700px) {
+  .compare-table { font-size: var(--fs-2xs); }
+  .compare-table th, .compare-table td { padding: 0.75rem 0.7rem 0.75rem 0; }
+  .compare-table thead th { font-size: 0.95rem; }
+}
+
+/* ══════════════════════════════
    TRAIL PAGE — one page per trail
 ══════════════════════════════ */
 .trail-page { background: var(--linen); }
