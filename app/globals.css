@@ -499,18 +499,23 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   z-index: 3;
   width: 100%;
   /*
-   * Rows: the place line, then the strapline, then a gap that absorbs the height, then
-   * the headline and the button sharing the last row so their baselines land together.
+   * Rows: the place line, a gap that absorbs the height, then the headline with the
+   * button on its own baseline, and the strapline beneath the headline at the foot.
+   *
+   * The strapline used to sit at the top, under the place line. Down here it reads as
+   * the caption to the headline rather than as a second label, and the whole block
+   * finishes on the sentence that says what this actually is. Desktop only — the phone
+   * keeps the stacked order, reset in the media query at the foot of this file.
    */
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto 1fr auto auto;
   column-gap: 2rem;
 }
 .hero-content > .hero-eyebrow { grid-area: 1 / 1 / 2 / 3; align-self: start; }
-.hero-content > .hero-desc    { grid-area: 2 / 1 / 3 / 3; align-self: start; }
-.hero-content > .hero-title   { grid-area: 4 / 1 / 5 / 2; align-self: end; margin-bottom: 0; }
-.hero-content > .hero-cta     { grid-area: 4 / 2 / 5 / 3; align-self: end; justify-self: end; }
+.hero-content > .hero-title   { grid-area: 3 / 1 / 4 / 2; align-self: end; margin-bottom: 0; }
+.hero-content > .hero-cta     { grid-area: 3 / 2 / 4 / 3; align-self: end; justify-self: end; }
+.hero-content > .hero-desc    { grid-area: 4 / 1 / 5 / 2; align-self: end; margin-top: 1.3rem; }
 
 .hero-title {
   font-size: clamp(2rem, 4.6vw, 4.1rem);
@@ -564,7 +569,13 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--mist);
   line-height: 1.8;
   letter-spacing: var(--ls-normal);
-  white-space: nowrap;
+  /*
+   * It used to be `nowrap`, which was safe on one line at the top of the frame. Under
+   * the headline it has the full column, so it is left to wrap instead: one line on a
+   * desktop, two on a narrow laptop, rather than running off the right edge. No
+   * max-width — the grid column is the limit, and a ch-based cap only forced a break
+   * where there was room.
+   */
 }
 
 /* ══════════════════════════════
