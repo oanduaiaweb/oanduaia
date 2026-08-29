@@ -27,7 +27,18 @@ export async function GET(
     return new Response('Not found', { status: 404 })
   }
 
-  const { slug } = await params
+  /*
+   * `.ics` is optional in the path, because the two audiences disagree. Booking.com and
+   * most channel importers want a URL that ends in .ics — some validate the extension
+   * before they will accept the feed at all — while the route parameter is the bare
+   * house slug. Stripping it here means /api/ical/saunamaja and
+   * /api/ical/saunamaja.ics are the same feed.
+   *
+   * This was a real 404: the documented URL in .env.example carried the extension, and
+   * the route rejected it.
+   */
+  const { slug: raw } = await params
+  const slug = raw.replace(/\.ics$/i, '')
   if (!(HOUSE_SLUGS as readonly string[]).includes(slug)) {
     return new Response('Not found', { status: 404 })
   }
