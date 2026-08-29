@@ -29,7 +29,13 @@ export const T = {
       en: 'Forest cabins and a private wood-fired sauna in Lahemaa National Park, Estonia – between three manors, near the sea.',
       ru: 'Лесные дома и своя дровяная баня в национальном парке Лахемаа, Эстония – между тремя мызами, у моря.',
     },
-    cta:    { et: 'Küsi pakkumist', en: 'Request an offer', ru: 'Запросить предложение' },
+    /*
+     * "Küsi pakkumist" / "Request an offer" invited a negotiation. Someone looking at a
+     * house wants to know whether it is free and what it costs, so the primary button
+     * says that — and the same words the houses section already uses, since both scroll
+     * to the same calendar.
+     */
+    cta:    { et: 'Vaata saadavust', en: 'Check availability', ru: 'Проверить наличие' },
     alt:    { et: 'Lahemaa mets', en: 'Lahemaa forest', ru: 'Лес Лахемаа' },
   },
   intro: {
@@ -517,6 +523,36 @@ export const T = {
       en: 'If other guests are on the property at the same time, please keep your dog on a leash. Pets remain the responsibility of their owner.',
       ru: 'Если на территории одновременно находятся другие гости, просим держать собаку на поводке. За питомца отвечает его владелец.',
     },
+    /*
+     * Why book here rather than through the channel. Not a discount — none is published
+     * and inventing one would bind Mikk to it. What is offered instead is what a small
+     * family place can actually give and a channel cannot: a person who knows which
+     * house suits you, meals and sauna arranged with the booking, and payment that does
+     * not go through anyone else.
+     */
+    directLabel: { et: 'Otse broneerides', en: 'Booking direct', ru: 'При прямом бронировании' },
+    direct: [
+      {
+        et: 'Aitame valida maja – ütle, kes tulevad ja millal, ja soovitame, milline kolmest sobib.',
+        en: 'We help you choose the house – tell us who is coming and when, and we will say which of the three fits.',
+        ru: 'Поможем выбрать дом – скажите, кто приезжает и когда, и мы подскажем, какой из трёх подойдёт.',
+      },
+      {
+        et: 'Hommikusöök, pikk laud ja saun lepitakse kokku sama kirjaga, mitte eraldi.',
+        en: 'Breakfast, the long table and the sauna are arranged in the same message, not separately.',
+        ru: 'Завтрак, длинный стол и баня согласуются тем же письмом, а не отдельно.',
+      },
+      {
+        et: 'Kirjavahetus käib otse peremehega – lisavoodi, hiline saabumine, koer, sünnipäev.',
+        en: 'You write directly to the hosts – an extra bed, a late arrival, a dog, a birthday.',
+        ru: 'Вы пишете напрямую хозяевам – дополнительная кровать, поздний заезд, собака, день рождения.',
+      },
+      {
+        et: 'Makse pangaülekandega või sularahas kohapeal. Kaardivormi ega vahendajat ei ole.',
+        en: 'Payment by bank transfer or in cash on arrival. No card form and no middleman.',
+        ru: 'Оплата переводом или наличными на месте. Ни формы карты, ни посредника.',
+      },
+    ],
     lNimi:   { et: 'Nimi', en: 'Name', ru: 'Имя' },
     pNimi:   { et: 'Sinu nimi', en: 'Your name', ru: 'Ваше имя' },
     lEmail:  { et: 'E-post', en: 'E-mail', ru: 'Эл. почта' },
@@ -525,7 +561,12 @@ export const T = {
     pKuup:   { et: 'Saabun – lahkun', en: 'Arrival – departure', ru: 'Заезд – выезд' },
     lSonum:  { et: 'Sõnum', en: 'Message', ru: 'Сообщение' },
     pSonum:  { et: 'Külaliste arv, soovid, küsimused...', en: 'Number of guests, wishes, questions...', ru: 'Кол-во гостей, пожелания, вопросы...' },
-    submit:  { et: 'Küsi pakkumist', en: 'Request an offer', ru: 'Запросить предложение' },
+    /*
+     * Not "Book now": there is no instant confirmation, and a button that claims one
+     * would be a lie the reply email has to walk back. "Send booking request" is the
+     * honest transactional form — it is a booking, not the start of a negotiation.
+     */
+    submit:  { et: 'Saada broneeringusoov', en: 'Send booking request', ru: 'Отправить запрос на бронирование' },
     success: { et: 'Sõnum saadetud!', en: 'Message sent!', ru: 'Сообщение отправлено!' },
     successSub: { et: 'Aitäh, et kirjutasid. Vastame 24 tunni jooksul.', en: 'Thank you for reaching out. We\'ll reply within 24 hours.', ru: 'Спасибо за обращение. Мы ответим в течение 24 часов.' },
     sending: { et: 'Saadan...', en: 'Sending...', ru: 'Отправка...' },

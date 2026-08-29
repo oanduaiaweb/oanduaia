@@ -58,6 +58,17 @@ export default function Booking() {
   // The intro to all of this now lives above the calendar; this section is just the message.
   return (
     <section className="booking-section booking-section--form" id="vorm">
+      {/*
+        Beside the form, not above the calendar. Someone reads this at the moment they are
+        deciding whether to send it here or go back to the channel — which is the only
+        moment the argument is worth making.
+      */}
+      <aside className="booking-direct reveal reveal-delay-1">
+        <p className="booking-direct-label">{t.directLabel[lang]}</p>
+        <ul className="booking-direct-list">
+          {t.direct.map(d => <li key={d.et}>{d[lang]}</li>)}
+        </ul>
+      </aside>
 
       {sent ? (
         <div className="booking-success">

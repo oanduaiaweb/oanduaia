@@ -1409,6 +1409,51 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   margin-top: 1.4rem;
 }
 
+/*
+ * Why book here rather than through the channel, immediately above the form — the moment
+ * someone is deciding whether to send it here or go back to Booking.com.
+ *
+ * Ranged left inside a centred section on purpose: four reasons read as a list, and a
+ * centred list is a poster, not something you scan.
+ */
+.booking-direct {
+  width: 100%;
+  max-width: 620px;
+  text-align: left;
+  margin: 0 auto 3.2rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid rgba(58,74,53,0.16);
+}
+.booking-direct-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.4rem;
+}
+.booking-direct-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+.booking-direct-list li {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--fern);
+  letter-spacing: var(--ls-normal);
+  padding-left: 1.2rem;
+  position: relative;
+}
+.booking-direct-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 6px;
+  height: 1px;
+  background: var(--sage);
+}
+@media (max-width: 700px) { .booking-direct { margin-bottom: 2.4rem; } }
+
 /* ══════════════════════════════
    WHY STAY — six reasons, scannable
 ══════════════════════════════ */
