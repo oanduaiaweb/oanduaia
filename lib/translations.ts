@@ -494,6 +494,30 @@ export const T = {
     h1:    { et: 'Enne kui', en: 'Before you', ru: 'Прежде чем' },
     h2em:  { et: 'küsid.', en: 'ask.', ru: 'спросить.' },
   },
+  /* Labels for the individual trail pages. */
+  trailPage: {
+    eyebrow:     { et: 'Matkarada', en: 'Hiking trail', ru: 'Маршрут' },
+    km:          { et: 'km', en: 'km', ru: 'км' },
+    length:      { et: 'Pikkus', en: 'Length', ru: 'Длина' },
+    difficulty:  { et: 'Raskus', en: 'Difficulty', ru: 'Сложность' },
+    duration:    { et: 'Kestus', en: 'Time', ru: 'Время' },
+    startPoint:  { et: 'Algus', en: 'Starts at', ru: 'Начало' },
+    season:      { et: 'Hooaeg', en: 'Season', ru: 'Сезон' },
+    source: {
+      et: 'Pikkus RMK andmetel. Kestus on meie hinnang rahulikus tempos.',
+      en: 'Length as published by RMK. The time is our own estimate at an easy pace.',
+      ru: 'Длина по данным RMK. Время — наша оценка при спокойном темпе.',
+    },
+    rmkLink:     { et: 'RMK rajakirjeldus', en: 'RMK trail page', ru: 'Описание тропы на RMK' },
+    stay: {
+      et: 'Otsid pärast matka ööbimiskohta? Oanduaia on Oandu külas, RMK külastuskeskusest jalutuskäigu kaugusel – kolm eraldi maja, puuküttega saun ja perenaise tehtud hommikusöök.',
+      en: 'Looking for somewhere to stay after the hike? Oanduaia is in Oandu village, a walk from the RMK visitor centre — three separate houses, a wood-fired sauna and breakfast cooked by the host.',
+      ru: 'Ищете, где остановиться после похода? Oanduaia — в деревне Оанду, в пешей доступности от центра посетителей RMK: три отдельных дома, дровяная баня и завтрак, приготовленный хозяйкой.',
+    },
+    stayCta:     { et: 'Vaata majasid', en: 'See the houses', ru: 'Посмотреть дома' },
+    otherTrails: { et: 'Teised rajad', en: 'Other trails', ru: 'Другие тропы' },
+    back:        { et: '← Kõik rajad', en: '← All trails', ru: '← Все тропы' },
+  },
   booking: {
     label:   { et: 'Reserveerimine', en: 'Reservations', ru: 'Бронирование' },
     h1:      { et: 'Millal sa', en: 'When do', ru: 'Когда вы' },

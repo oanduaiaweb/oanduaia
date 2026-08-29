@@ -1455,6 +1455,198 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 @media (max-width: 700px) { .booking-direct { margin-bottom: 2.4rem; } }
 
 /* ══════════════════════════════
+   TRAIL PAGE — one page per trail
+══════════════════════════════ */
+.trail-page { background: var(--linen); }
+.trail-hero {
+  position: relative;
+  height: 58vh;
+  min-height: 380px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.trail-hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(14,20,8,0.42) 0%, rgba(14,20,8,0.14) 45%, rgba(14,20,8,0.72) 100%);
+  z-index: 1;
+}
+.trail-hero-text {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--section-h) 3.4rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  width: 100%;
+}
+.trail-hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: var(--label-gap);
+  text-shadow: 0 1px 12px rgba(10,14,6,0.6);
+}
+.trail-hero-name {
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--linen);
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 16px rgba(10,14,6,0.55);
+}
+
+.trail-body {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--section-v) var(--section-h);
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 4.5rem;
+  align-items: start;
+}
+.trail-main p {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--ink);
+  letter-spacing: var(--ls-normal);
+  max-width: 64ch;
+}
+.trail-main p + p { margin-top: 1.4rem; }
+.trail-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2.4rem; }
+.trail-links .trail-link { margin-top: 0; border-color: rgba(58,74,53,0.28); color: var(--moss); }
+.trail-links .trail-link:hover { border-color: rgba(58,74,53,0.6); background: rgba(58,74,53,0.06); }
+.trail-links .trail-link-meta { color: var(--fern); opacity: 0.7; }
+
+/* The facts panel: RMK's numbers, and one of ours marked as ours. */
+.trail-facts {
+  background: var(--cream);
+  padding: 2.4rem 2.2rem;
+  border: 1px solid var(--parch);
+}
+.trail-facts-list > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--parch);
+}
+.trail-facts-list > div:first-child { padding-top: 0; }
+.trail-facts-list > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.trail-facts-list dt {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--sage);
+}
+.trail-facts-list dd {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--moss);
+}
+.trail-facts-note {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  line-height: 1.7;
+  color: var(--fern);
+  opacity: 0.7;
+  margin-top: 1.6rem;
+}
+
+/* The commercial point of the page, stated once and plainly. */
+.trail-stay {
+  background: var(--bark);
+  padding: 4.5rem var(--section-h);
+  text-align: center;
+}
+.trail-stay-text {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--mist);
+  max-width: 62ch;
+  margin: 0 auto 2rem;
+  letter-spacing: var(--ls-normal);
+}
+.trail-stay-cta {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--bark);
+  background: var(--linen);
+  text-decoration: none;
+  padding: 0.95rem 2rem;
+  transition: background 0.3s;
+}
+.trail-stay-cta:hover { background: #fff; }
+
+.trail-others {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--section-v) var(--section-h);
+}
+.trail-others-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 2rem;
+}
+.trail-others-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--parch); }
+.trail-others-link {
+  background: var(--linen);
+  padding: 1.6rem 1.4rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: background 0.3s;
+}
+.trail-others-link:hover { background: var(--cream); }
+.trail-others-km {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--gold);
+}
+.trail-others-name { font-size: 1.05rem; font-weight: 300; color: var(--moss); line-height: 1.35; }
+.trail-back {
+  display: inline-block;
+  margin-top: 2.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+  text-decoration: none;
+}
+.trail-back:hover { color: var(--moss); }
+
+/* The trail names in the home-page list are links now. */
+.trail-name a { color: inherit; text-decoration: none; transition: color 0.3s; }
+.trail-name a:hover { color: var(--gold); }
+
+@media (max-width: 900px) {
+  .trail-body { grid-template-columns: 1fr; gap: 2.8rem; }
+  .trail-others-links { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .trail-hero { height: 46vh; min-height: 300px; }
+  .trail-hero-text { padding: 0 1.5rem 2.4rem; }
+  .trail-body, .trail-others { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .trail-stay { padding: 3.2rem 1.5rem; }
+}
+
+/* ══════════════════════════════
    WHY STAY — six reasons, scannable
 ══════════════════════════════ */
 .why-section {

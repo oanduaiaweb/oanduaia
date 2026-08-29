@@ -3,7 +3,8 @@
 import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
-import { TRAIL_LINKS } from '@/lib/trails'
+import Link from 'next/link'
+import { TRAIL_LINKS, TRAIL_BY_KEY } from '@/lib/trails'
 import LocationMap from '@/components/LocationMap'
 
 const delays = ['', ' reveal-delay-1', ' reveal-delay-2']
@@ -49,10 +50,20 @@ export default function Trails() {
         <div className="trails-grid">
           {t.items.map((trail, i) => {
             const link = TRAIL_LINKS[trail.name.et]
+            const page = TRAIL_BY_KEY[trail.name.et]
             return (
               <div key={trail.name.et} className={`trail-item reveal${delays[i % 3]}`}>
                 <p className="trail-distance">{trail.dist[lang]}</p>
-                <h3 className="trail-name">{trail.name[lang]}</h3>
+                {/*
+                  Each row is now a door. A trail page is where someone planning a walk
+                  in Lahemaa arrives — earlier in their trip than anyone searching for a
+                  bed — and this list is the only thing linking to them.
+                */}
+                <h3 className="trail-name">
+                  {page
+                    ? <Link href={`/${lang}/rajad/${page.slug}`}>{trail.name[lang]}</Link>
+                    : trail.name[lang]}
+                </h3>
                 <p className="trail-desc">{trail.desc[lang]}</p>
                 {/*
                   On the trail it belongs to, not under the list. The booklet is the map

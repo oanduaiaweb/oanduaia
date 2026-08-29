@@ -1,5 +1,6 @@
 import { T, type Lang } from './translations'
 import { HOUSE_IMAGES } from './houses'
+import { TRAILS, trailKm } from './trails'
 
 export const LOCALES: Lang[] = ['et', 'en', 'ru']
 export const DEFAULT_LOCALE: Lang = 'et'
@@ -396,6 +397,83 @@ export function breadcrumbJsonLd(lang: Lang, slug: string) {
       { '@type': 'ListItem', position: 1, name: 'Oanduaia', item: `${SITE}/${lang}` },
       { '@type': 'ListItem', position: 2, name: majad[lang], item: `${SITE}/${lang}#majad` },
       { '@type': 'ListItem', position: 3, name: h.name[lang], item: `${SITE}/${lang}/majad/${slug}` },
+    ],
+  }
+}
+
+/**
+ * Per-trail metadata. The title carries the length, because "how long is it" is the
+ * question people type — "Oandu nature trail 4.7 km" is closer to a real search than
+ * any adjective would be.
+ */
+export function trailMeta(lang: Lang, slug: string) {
+  const t = TRAILS.find(x => x.slug === slug)
+  if (!t) return null
+  const place: Record<Lang, string> = {
+    et: 'Lahemaa rahvuspark',
+    en: 'Lahemaa National Park',
+    ru: 'Национальный парк Лахемаа',
+  }
+  const lead: Record<Lang, string> = {
+    et: `${t.km} km, ${t.difficulty.et.toLowerCase()}. Algab: ${t.start.et}.`,
+    en: `${trailKm(t, 'en')} km, ${t.difficulty.en.toLowerCase()}. Starts at ${t.start.en}.`,
+    ru: `${t.km} км, ${t.difficulty.ru.toLowerCase()}. Начало: ${t.start.ru}.`,
+  }
+  // Cyrillic takes the Cyrillic unit; "4,7 km" in a Russian title is half-translated.
+  const unit: Record<Lang, string> = { et: 'km', en: 'km', ru: 'км' }
+  return {
+    title: `${t.name[lang]} — ${trailKm(t, lang)} ${unit[lang]}, ${place[lang]} | Oanduaia`,
+    description: `${lead[lang]} ${t.body[0][lang].slice(0, 150)}`.slice(0, 300),
+  }
+}
+
+/**
+ * A trail as a place, tied back to Lahemaa and to us. schema.org has no HikingTrail, so
+ * TouristAttraction is the honest nearest type — it is a thing people travel to see.
+ */
+export function trailJsonLd(lang: Lang, slug: string) {
+  const t = TRAILS.find(x => x.slug === slug)
+  if (!t) return null
+  const park: Record<Lang, string> = {
+    et: 'Lahemaa rahvuspark',
+    en: 'Lahemaa National Park',
+    ru: 'Национальный парк Лахемаа',
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    '@id': `${SITE}/${lang}/rajad/${slug}#trail`,
+    name: t.name[lang],
+    description: t.body[0][lang],
+    url: `${SITE}/${lang}/rajad/${slug}`,
+    image: `${SITE}${t.photo}`,
+    inLanguage: HREFLANG[lang],
+    isAccessibleForFree: true,
+    publicAccess: true,
+    containedInPlace: { '@type': 'Place', name: park[lang] },
+    // The length, as RMK publishes it. Comma decimals are Estonian; schema wants a dot.
+    additionalProperty: {
+      '@type': 'PropertyValue',
+      name: 'Length',
+      value: t.km.replace(',', '.'),
+      unitCode: 'KMT',
+    },
+    sameAs: t.rmk,
+  }
+}
+
+/** Home > Loodus > this trail. */
+export function trailBreadcrumb(lang: Lang, slug: string) {
+  const t = TRAILS.find(x => x.slug === slug)
+  if (!t) return null
+  const nature: Record<Lang, string> = { et: 'Loodus', en: 'Nature', ru: 'Природа' }
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Oanduaia', item: `${SITE}/${lang}` },
+      { '@type': 'ListItem', position: 2, name: nature[lang], item: `${SITE}/${lang}#loodus` },
+      { '@type': 'ListItem', position: 3, name: t.name[lang], item: `${SITE}/${lang}/rajad/${slug}` },
     ],
   }
 }

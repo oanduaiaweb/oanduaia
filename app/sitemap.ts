@@ -5,6 +5,7 @@ import { HERO_SLIDES } from '@/lib/hero'
 import { HOUSE_SLUGS } from '@/lib/availability'
 import { HOUSE_IMAGES } from '@/lib/houses'
 import { HOUSE_GALLERIES } from '@/lib/housePhotos'
+import { TRAILS } from '@/lib/trails'
 
 const PAGES = ['', '/gallery']
 
@@ -57,6 +58,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.9,
         alternates: { languages },
         images: shots.length ? shots : undefined,
+      })
+    }
+  }
+
+  /*
+   * A page per trail per locale. These sit below the houses: they are what brings
+   * someone in who has never heard of Oanduaia, but the houses are what is sold.
+   */
+  for (const t of TRAILS) {
+    const suffix = `/rajad/${t.slug}`
+    const languages: Record<string, string> = {}
+    for (const l of LOCALES) languages[HREFLANG[l]] = `${SITE}/${l}${suffix}`
+    languages['x-default'] = `${SITE}/${DEFAULT_LOCALE}${suffix}`
+    for (const lang of LOCALES) {
+      entries.push({
+        url: `${SITE}/${lang}${suffix}`,
+        lastModified: new Date(),
+        changeFrequency: 'yearly',
+        priority: 0.7,
+        alternates: { languages },
+        images: [`${SITE}${t.photo}`],
       })
     }
   }
