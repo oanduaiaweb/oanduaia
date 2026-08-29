@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import Link from 'next/link'
-import { TRAIL_LINKS, TRAILS } from '@/lib/trails'
+import { TRAILS } from '@/lib/trails'
 import LocationMap from '@/components/LocationMap'
 
 const delays = ['', ' reveal-delay-1', ' reveal-delay-2']
@@ -49,7 +49,6 @@ export default function Trails() {
       <div className="trails-inner">
         <div className="trails-grid">
           {t.items.map((trail, i) => {
-            const link = TRAIL_LINKS[trail.slug]
             /*
              * By slug. This used to look the page up by the Estonian display name, and
              * when that name was corrected to RMK's the two strings drifted apart and
@@ -70,22 +69,6 @@ export default function Trails() {
                     : trail.name[lang]}
                 </h3>
                 <p className="trail-desc">{trail.desc[lang]}</p>
-                {/*
-                  On the trail it belongs to, not under the list. The booklet is the map
-                  for Oandu–Ikla specifically; a button under six trails would imply it
-                  covered all of them.
-                */}
-                {link && (
-                  <a
-                    className="trail-link"
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {link.label[lang]}
-                    <span className="trail-link-meta">{link.meta}</span>
-                  </a>
-                )}
               </div>
             )
           })}

@@ -21,11 +21,18 @@ export type Trail = {
   /** Two or three paragraphs. Everything here comes from RMK's own page for the trail. */
   body: Record<Lang, string>[]
   season: Record<Lang, string>
-  /** RMK's page for this trail — the authority, and where the detail lives. */
+  /**
+   * RMK's page for this trail — the authority, and where the detail lives.
+   */
   rmk: string
   /** A Lahemaa photograph, honestly captioned. See the note in components/Trail.tsx. */
   photo: string
   photoAlt: Record<Lang, string>
+  /**
+   * An extra download for this trail. Shown on the trail's own page only — it used to
+   * sit on the home-page list as well, which put a 0.9 MB PDF in front of people
+   * scanning six trails to pick one.
+   */
   link?: TrailLink
 }
 
@@ -255,8 +262,3 @@ export function trailKm(trail: Trail, lang: Lang): string {
 }
 
 export const TRAIL_SLUGS = TRAILS.map(t => t.slug)
-
-/** Keyed by slug, so a change to a display name can never break the lookup again. */
-export const TRAIL_LINKS: Record<string, TrailLink> = Object.fromEntries(
-  TRAILS.filter(t => t.link).map(t => [t.slug, t.link!]),
-)
