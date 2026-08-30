@@ -2567,7 +2567,30 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 
 /* — the grid — */
-.avail-calendar { margin-top: 1.8rem; position: relative; }
+/*
+ * The grid gets its own ground.
+ *
+ * It used to sit straight on the house photograph, with only the panel scrim and a pale
+ * halo behind each number holding it together. That reads as atmosphere and fails as a
+ * calendar: thirty-one two-character numbers competing with thatch and sky, and a booked
+ * night no more obvious than a free one. The photograph still surrounds the panel — the
+ * house selector, the heading, the legend — it just stops running underneath the one
+ * element whose whole job is to be read precisely.
+ */
+.avail-calendar {
+  margin-top: 1.8rem;
+  position: relative;
+  background: rgba(252,250,245,0.94);
+  border: 1px solid rgba(90,110,80,0.2);
+  border-radius: 3px;
+  padding: 1.5rem 1.5rem 1.2rem;
+}
+/* On a flat ground the halo smears instead of separating, so it goes inside the card. */
+.avail-calendar .avail-month-name,
+.avail-calendar .avail-week-heads span,
+.avail-calendar .avail-day,
+.avail-calendar .avail-legend span,
+.avail-calendar .avail-turnover { text-shadow: none; }
 .avail-nav {
   position: absolute;
   top: -0.35rem;
@@ -2642,6 +2665,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* Nudged up from 0.22: on flat linen that read as "gone", but over a photograph it read
    as nothing at all, and the grid lost its shape. Still plainly not selectable. */
 .avail-day.is-past { opacity: 0.34; cursor: default; }
+/* On the card, a gone day is a faint recess rather than a ghost. */
+.avail-calendar .avail-day.is-past {
+  opacity: 1;
+  color: rgba(22,28,16,0.3);
+  background: rgba(90,110,80,0.05);
+}
 /* A sold night is struck through, not merely dimmed — dimmed reads as "quiet", not "gone". */
 .avail-day.is-taken {
   color: var(--fern);
@@ -2652,8 +2681,9 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* You may still leave on the morning the next guest arrives. */
 .avail-day.is-checkout-ok {
   cursor: pointer;
-  opacity: 0.8;
-  outline: 1px dashed rgba(90,110,80,0.5);
+  opacity: 1;
+  background: rgba(154,174,134,0.3);
+  outline: 1px dashed rgba(60,80,50,0.65);
   outline-offset: -2px;
 }
 .avail-day.is-range { background: var(--mist); }
@@ -2825,11 +2855,16 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 /* Sold and past nights still have to read as unavailable, so they keep a step back —
    but from the near-black, so they are dimmed rather than washed out. */
+/*
+ * Solid, not translucent. A sold night is the single most important thing on this grid
+ * and it was a washed-out tint over a photograph. It is now a filled block in the same
+ * green as the legend swatch, so the two teach each other.
+ */
 .avail-panel .avail-day.is-taken {
-  color: var(--ink);
+  color: rgba(22,28,16,0.78);
   opacity: 1;
-  background: rgba(154,174,134,0.62);
-  text-decoration-color: rgba(14,17,8,0.65);
+  background: #9aae86;
+  text-decoration-color: rgba(22,28,16,0.7);
 }
 .avail-panel .avail-day.is-past { color: var(--ink); opacity: 0.42; }
 .avail-panel .avail-day.is-picked { color: var(--linen); opacity: 1; }
