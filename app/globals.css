@@ -2867,22 +2867,15 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  * green as the legend swatch, so the two teach each other.
  */
 /*
- * `!important` on the fill, deliberately, after a long and unresolved chase.
- *
- * The rule matched the element, sat last in the stylesheet, was present in the deployed
- * CSS and was not inside a media query — and computed background still came back
- * transparent on the live site, while the same rule painted correctly on a local build.
- * I could not account for it from the cascade, and the browser would not enumerate its
- * own stylesheets to settle it (cssRules inaccessible).
- *
- * A sold night showing as free is the one thing this calendar must never do, so it is
- * not worth leaving to a cascade I cannot explain.
+ * A sold night is a filled block in the same green as the legend swatch, so the two
+ * teach each other, with the number struck through on top. Scoped to the card because
+ * that is where the days live.
  */
 .avail-calendar .avail-day.is-taken,
 .avail-panel .avail-calendar .avail-day.is-taken {
   color: rgba(20,26,14,0.82);
   opacity: 1;
-  background: #93a97e !important;
+  background: #93a97e;
   text-decoration-color: rgba(20,26,14,0.75);
 }
 .avail-panel .avail-day.is-past { color: var(--ink); opacity: 0.42; }
