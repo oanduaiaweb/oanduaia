@@ -2580,8 +2580,14 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-calendar {
   margin-top: 1.8rem;
   position: relative;
-  background: rgba(252,250,245,0.94);
-  border: 1px solid rgba(90,110,80,0.2);
+  /*
+   * 0.74, not 0.94. The first attempt at fixing legibility went too far the other way
+   * and turned the panel into a white slab with a house hidden somewhere behind it.
+   * This is enough ground to read thirty-one numbers against and still let the
+   * photograph through.
+   */
+  background: rgba(250,247,240,0.74);
+  border: 1px solid rgba(90,110,80,0.22);
   border-radius: 3px;
   padding: 1.5rem 1.5rem 1.2rem;
 }
@@ -2720,7 +2726,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   border: 1px solid rgba(14,17,8,0.35);
 }
 .avail-swatch--free   { background: rgba(252,250,245,0.75); }
-.avail-swatch--taken  { background: #9aae86; }
+.avail-swatch--taken  { background: #93a97e; }
 .avail-swatch--picked { background: var(--moss); border-color: var(--moss); }
 
 .avail-turnover {
@@ -2860,11 +2866,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  * and it was a washed-out tint over a photograph. It is now a filled block in the same
  * green as the legend swatch, so the two teach each other.
  */
-.avail-panel .avail-day.is-taken {
-  color: rgba(22,28,16,0.78);
+.avail-calendar .avail-day.is-taken,
+.avail-panel .avail-calendar .avail-day.is-taken {
+  color: rgba(20,26,14,0.82);
   opacity: 1;
-  background: #9aae86;
-  text-decoration-color: rgba(22,28,16,0.7);
+  background: #93a97e;
+  text-decoration-color: rgba(20,26,14,0.75);
 }
 .avail-panel .avail-day.is-past { color: var(--ink); opacity: 0.42; }
 .avail-panel .avail-day.is-picked { color: var(--linen); opacity: 1; }
