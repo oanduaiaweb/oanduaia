@@ -214,7 +214,7 @@ export const T = {
         tag:  { et: 'Saun, köök, seltskond – kõik olemas.', en: 'Sauna, kitchen, company – all there.', ru: 'Сауна, кухня, компания – всё есть.', de: 'Sauna, Küche, Gesellschaft – alles da.' },
         items: [
           { et: 'Kuni 4 ööbijat · 2 kahekohalist voodit · 2 korrust', en: 'Up to 4 guests · 2 double beds · 2 floors', ru: 'До 4 гостей · 2 двухместные кровати · 2 этажа', de: 'Bis zu 4 Gäste · 2 Doppelbetten · 2 Etagen' },
-          { et: 'Avatud toad, puuküttega saun, täisvarustatud köök, kamin', en: 'Open rooms, wood-fired sauna, fully equipped kitchen, fireplace', ru: 'Открытые комнаты, дровяная сауна, оборудованная кухня, камин', de: 'Offene Räume, Holzsauna, voll ausgestattete Küche, Kamin' },
+          { et: 'Avatud toad, puuküttega saun, täisvarustatud köök, külmavann tiigis', en: 'Open rooms, wood-fired sauna, fully equipped kitchen, cold plunge in the pond', ru: 'Открытые комнаты, дровяная сауна, оборудованная кухня, холодное купание в пруду', de: 'Offene Räume, Holzsauna, voll ausgestattete Küche, Kaltbad im Teich' },
         ],
         prices: [
           { guests: { et: '1–2 inimest', en: '1–2 guests', ru: '1–2 гостя', de: '1–2 Gäste' }, eur: 200, upTo: 2 },
