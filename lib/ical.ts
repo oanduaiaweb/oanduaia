@@ -58,14 +58,35 @@ export function nightsBetween(from: DateStr, to: DateStr): number {
 }
 
 /**
+ * A single event longer than this is not a booking — it is an empty calendar.
+ *
+ * Booking.com exports "no availability loaded" with exactly the same SUMMARY as a real
+ * reservation, so a property whose inventory stops in June comes back as one CLOSED run
+ * from June to the end of the horizon. Importing that marked all three houses as fully
+ * booked on the website: Tiigimaja for a whole year, Metsamaja from December onward.
+ *
+ * No guest books 60 nights on Booking.com. Our own closed season is applied separately in
+ * `season.ts`, so dropping a long run here cannot open a month we deliberately shut.
+ */
+export const MAX_IMPORT_NIGHTS = 60
+
+/**
  * Every night blocked by the feed, as `YYYY-MM-DD` of the night's first day.
  *
  * Cancelled events and events explicitly marked as free time (TRANSP:TRANSPARENT) are
  * skipped. A DTEND at or before DTSTART is treated as a single night rather than dropped,
  * because a zero-length block in a feed still means "do not sell this date".
+ *
+ * Returns the nights and the events dropped for being implausibly long, so the caller can
+ * say so out loud rather than silently showing a house as free.
  */
 export function blockedNights(ics: string): DateStr[] {
+  return readFeed(ics).nights
+}
+
+export function readFeed(ics: string): { nights: DateStr[]; ignored: Array<[DateStr, number]> } {
   const nights = new Set<DateStr>()
+  const ignored: Array<[DateStr, number]> = []
   let start: DateStr | null = null
   let end: DateStr | null = null
   let inEvent = false
@@ -84,9 +105,12 @@ export function blockedNights(ics: string): DateStr[] {
     if (line.name === 'END' && line.value.toUpperCase() === 'VEVENT') {
       if (usable && start) {
         const last = end && nightsBetween(start, end) > 0 ? end : addDays(start, 1)
-        // Guard against a malformed feed asking us to walk for years.
         const span = Math.min(nightsBetween(start, last), 800)
-        for (let i = 0; i < span; i++) nights.add(addDays(start, i))
+        if (span > MAX_IMPORT_NIGHTS) {
+          ignored.push([start, span])
+        } else {
+          for (let i = 0; i < span; i++) nights.add(addDays(start, i))
+        }
       }
       inEvent = false
       continue
@@ -100,5 +124,5 @@ export function blockedNights(ics: string): DateStr[] {
     }
   }
 
-  return [...nights].sort()
+  return { nights: [...nights].sort(), ignored }
 }

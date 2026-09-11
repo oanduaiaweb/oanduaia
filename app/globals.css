@@ -5,14 +5,29 @@
   --mist:    #c8d4b8;
   --linen:   #f0ebe0;
   --parch:   #e8e0cc;
-  --bark:    #2a3020;
+  /*
+   * The dark ground under the nav, the footer and every dark section.
+   *
+   * 6 Sep 2026: lifted from #2a3020. The old value was not cold so much as SEVERE —
+   * near-black and almost fully desaturated, which against a warm cream page read as
+   * institutional rather than as forest. This keeps the hue and lets it breathe.
+   * Anything that has to read as a CONTROL on this ground uses --bark-deep below;
+   * lifting the ground without re-anchoring the buttons makes them vanish into it.
+   */
+  --bark:    #38402c;
+  --bark-deep: #262c1d;
   --cream:   #faf7f0;
   --gold:    #b8a870;
   /* Near-black, for type that has to hold over a photograph. */
   --ink:     #0e1108;
 
   --font-display: var(--font-cormorant), Georgia, serif;
-  --font-sans:    var(--font-jost), -apple-system, "Helvetica Neue", sans-serif;
+  /*
+   * EXPERIMENT, 31 Aug 2026: the whole site set in Cormorant, wordmark and all.
+   * Jost is still loaded and one line away — put it back here to revert everything.
+   *   --font-sans: var(--font-jost), -apple-system, "Helvetica Neue", sans-serif;
+   */
+  --font-sans:    var(--font-cormorant), Georgia, serif;
 
   /* Type scale — four label steps and four trackings, so nothing is
      0.01rem away from something else for no reason. */
@@ -53,12 +68,30 @@ body {
   background: var(--cream);
   color: var(--bark);
   font-family: var(--font-display);
+  /*
+   * Cormorant defaults to old-style figures — 1 sits small, 3 and 4 hang below the
+   * baseline. Elegant in prose, wrong for a calendar grid, a price and a clock time,
+   * which is most of the numbers on this site. Jost had lining figures, so this keeps
+   * every number reading the way it did before the typeface changed.
+   */
+  font-variant-numeric: lining-nums;
   overflow-x: hidden;
 }
 
 /* Scroll offset so section headings aren't hidden under sticky nav */
 #lugu, #majad, #toit, #loodus, #broneeri, #vorm, #pildid {
   scroll-margin-top: 5.5rem;
+}
+
+/*
+ * Muted type on the dark ground. --sage (#8a9e7a) is pitched for the cream page; against
+ * the lifted --bark it falls to about 3.7:1, under the 4.5:1 body-text floor. Redefining
+ * the variable inside the surfaces that ARE bark fixes every use at once and leaves --sage
+ * untouched everywhere it sits on cream.
+ */
+.nav-overlay, .feature-section, .trails-section, .landing-compare,
+.trail-stay, .faq-section, .reviews-section, footer {
+  --sage: #a3b691;
 }
 
 /* ══════════════════════════════
@@ -81,7 +114,7 @@ nav.site-nav {
 nav.site-nav * { pointer-events: all; }
 
 nav.nav-scrolled {
-  background: rgba(22, 28, 16, 0.96);
+  background: rgba(38, 44, 29, 0.96);   /* --bark-deep; the nav sits deeper than the sections */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 1.1rem var(--section-h);
@@ -512,10 +545,27 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   grid-template-rows: auto 1fr auto auto;
   column-gap: 2rem;
 }
-.hero-content > .hero-eyebrow { grid-area: 1 / 1 / 2 / 3; align-self: start; }
+/*
+ * The place line sits under the button, bottom right — not at the top left where it was.
+ * Up there it was a third label competing with the wordmark and the nav; down here it reads
+ * as the dateline to the button, and the top of the frame is left to the photograph.
+ * Row 1 collapses to nothing once it is empty, so the 1fr row still does the spacing.
+ */
+.hero-content > .hero-eyebrow {
+  grid-area: 4 / 2 / 5 / 3;
+  align-self: baseline;
+  justify-self: end;
+  margin-top: 1.3rem;
+  margin-bottom: 0;
+}
 .hero-content > .hero-title   { grid-area: 3 / 1 / 4 / 2; align-self: end; margin-bottom: 0; }
 .hero-content > .hero-cta     { grid-area: 3 / 2 / 4 / 3; align-self: end; justify-self: end; }
-.hero-content > .hero-desc    { grid-area: 4 / 1 / 5 / 2; align-self: end; margin-top: 1.3rem; }
+/*
+ * Baseline-aligned with the place line opposite, not bottom-aligned. `end` put the two on
+ * different levels the moment their line counts differed; `baseline` locks their first
+ * lines to the same horizontal, which is what the eye reads as "level".
+ */
+.hero-content > .hero-desc    { grid-area: 4 / 1 / 5 / 2; align-self: baseline; margin-top: 1.3rem; }
 
 .hero-title {
   font-size: clamp(2rem, 4.6vw, 4.1rem);
@@ -609,7 +659,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--linen);
-  background: linear-gradient(160deg, var(--bark) 0%, var(--moss) 100%);
+  background: linear-gradient(160deg, var(--bark-deep) 0%, var(--moss) 100%);
   border: none;
   border-radius: 4px;
   padding: 1.2rem 2.6rem;
@@ -2437,15 +2487,53 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   margin-bottom: 3rem;
 }
 
+/*
+ * The panel is a dark object carrying the chosen house.
+ *
+ * The photograph was here once under a LINEN scrim, and it failed: light ground, near-black
+ * numbers, and a pale halo behind every character to survive a bright thatched roof landing
+ * behind a two-character day. That inverted on 31 Aug to a flat dark panel, which read well
+ * but said nothing about which house you were booking.
+ *
+ * This keeps the dark ground and puts the house back underneath it. The veil is dark rather
+ * than pale, so the type stays light and its contrast no longer depends on which house
+ * happens to be selected — the photograph can only ever make the ground DARKER than the
+ * scrim already guarantees, which is the safe direction for light ink.
+ */
 .avail-panel {
+  /*
+   * The calendar keeps Jost while the rest of the site is set in Cormorant (Mikk, 31 Aug).
+   * Every rule inside the panel reads var(--font-sans), so redefining the token HERE hands
+   * the whole panel back to the sans in one line — day numbers, prices, labels and all —
+   * without touching a single component. It is also the right exception to make: this is
+   * the densest small-text, most number-heavy block on the site.
+   */
+  --font-sans:  var(--font-jost), -apple-system, "Helvetica Neue", sans-serif;
+
+  --panel-ink:  #eef2e6;
+  --panel-dim:  rgba(226,234,214,0.60);
+  --panel-line: rgba(200,212,184,0.15);
+
   position: relative;
-  overflow: hidden;
+  overflow: hidden;             /* clips the photograph to the panel's rounded corners */
   width: 100%;
   max-width: 900px;
   text-align: left;
-  background: var(--linen);
-  border: 1px solid rgba(90,110,80,0.14);
+  /*
+   * Green, warmed and lifted a shade, moving with --bark rather than against it. It was a
+   * blue-black (#2d3625 → #1c2315), then briefly brown (#35301f); brown was abandoned because
+   * the site stays green. It must stay DARK whatever the hue — going lighter was tried and
+   * failed twice, the day numbers lose their grip against the photograph behind them.
+   *
+   * Stays under the photograph as the ground, so nothing ever flashes light while it loads.
+   */
+  background: linear-gradient(168deg, #333d29 0%, #1f2717 100%);
+  border: 1px solid rgba(200,212,184,0.16);
+  border-radius: 8px;
   padding: 2.4rem 2.4rem 2rem;
+  box-shadow:
+    0 24px 50px -22px rgba(10,14,7,0.6),
+    inset 0 1px 0 rgba(240,235,224,0.07);
 }
 /* Everything except the photo layer sits above it. Saves wrapping the whole panel body. */
 .avail-panel > *:not(.avail-panel-bg) { position: relative; z-index: 1; }
@@ -2458,42 +2546,21 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   transition: opacity 0.7s var(--ease-smooth);
 }
 .avail-panel-photo.is-on { opacity: 1; }
-.avail-panel-photo img { filter: saturate(1.12) contrast(1.04); }
+.avail-panel-photo img { filter: saturate(1.1) contrast(1.03); }
+/*
+ * Lighter at the top, heavier at the bottom: the controls are a single line of large-ish
+ * type and can take a brighter ground, while the calendar underneath is thirty-one small
+ * numbers and cannot. The grid well adds its own darkening on top of this.
+ */
 .avail-panel-scrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    rgba(240,235,224,0.62) 0%,
-    rgba(240,235,224,0.72) 45%,
-    rgba(240,235,224,0.80) 100%
+    168deg,
+    rgba(38,46,28,0.72) 0%,
+    rgba(28,35,19,0.84) 45%,
+    rgba(21,27,14,0.91) 100%
   );
-}
-/*
- * A pale halo behind the panel's dark type. The scrim was doing that job on its own and
- * had to be heavy enough for the worst case — a bright thatched roof behind a day number —
- * which meant burying the house to protect six characters. Shadowing the text instead lets
- * the scrim come down by a fifth and the house come forward.
- *
- * Not applied to the selected house pill or the submit button: both are light type on a
- * dark fill, where a light halo would smear rather than separate.
- */
-.avail-panel .avail-label,
-.avail-panel .avail-house:not(.is-on),
-.avail-panel .avail-select,
-.avail-panel .avail-note,
-.avail-panel .avail-status,
-.avail-panel .avail-turnover,
-.avail-panel .avail-month-name,
-.avail-panel .avail-week-heads span,
-.avail-panel .avail-day:not(.is-picked),
-.avail-panel .avail-legend span,
-.avail-panel .avail-hint,
-.avail-panel .avail-check,
-.avail-panel .avail-quote-row dt,
-.avail-panel .avail-quote-row dd,
-.avail-panel .avail-quote-note {
-  text-shadow: 0 1px 2px rgba(245,241,232,0.95), 0 0 7px rgba(245,241,232,0.8);
 }
 
 /* — house and party size — */
@@ -2504,7 +2571,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   justify-content: space-between;
   gap: 1.6rem 2rem;
   padding-bottom: 1.6rem;
-  border-bottom: 1px solid rgba(90,110,80,0.14);
+  border-bottom: 1px solid var(--panel-line);
 }
 .avail-label {
   display: block;
@@ -2522,39 +2589,56 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   font-size: var(--fs-xs);
   font-weight: 300;
   letter-spacing: var(--ls-wide);
-  color: var(--fern);
-  background: transparent;
-  border: 1px solid rgba(90,110,80,0.3);
+  color: var(--panel-ink);
+  background: linear-gradient(180deg, rgba(240,235,224,0.1), rgba(240,235,224,0.035));
+  border: 1px solid rgba(200,212,184,0.2);
+  border-radius: 5px;
   padding: 0.6rem 1.1rem;
   cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(240,235,224,0.16),
+    0 1px 2px rgba(0,0,0,0.3);
   transition: background 0.25s var(--ease-smooth), color 0.25s var(--ease-smooth),
-              border-color 0.25s var(--ease-smooth);
+              border-color 0.25s var(--ease-smooth), transform 0.25s var(--ease-smooth),
+              box-shadow 0.25s var(--ease-smooth);
 }
-.avail-house:hover { border-color: var(--fern); }
+.avail-house:hover {
+  border-color: rgba(200,212,184,0.4);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(240,235,224,0.24), 0 3px 7px rgba(0,0,0,0.36);
+}
+/* The chosen house is the lit one — light fill, dark type, standing off the panel. */
 .avail-house.is-on {
-  background: var(--moss);
-  border-color: var(--moss);
-  color: var(--linen);
+  background: linear-gradient(180deg, #e6edd9 0%, #c3d0b0 100%);
+  border-color: rgba(240,235,224,0.5);
+  color: #232b19;
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    0 4px 9px rgba(0,0,0,0.4);
 }
-.avail-control--guests { flex: 0 0 auto; }
 .avail-select {
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 300;
   letter-spacing: var(--ls-wide);
-  color: var(--bark);
-  background: transparent;
-  border: 1px solid rgba(90,110,80,0.3);
-  border-radius: 0;
+  color: var(--panel-ink);
+  background-color: rgba(9,13,6,0.3);
+  border: 1px solid rgba(200,212,184,0.2);
+  border-radius: 5px;
   padding: 0.55rem 1rem;
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
   padding-right: 2.2rem;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235a6e50' stroke-width='1.2'/%3E%3C/svg%3E");
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.34);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23c8d4b8' stroke-width='1.2'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.85rem center;
 }
+/* The native menu is drawn by the OS, so it needs its own colours stated. */
+.avail-select option { color: #eef2e6; background: #232b19; }
+
 .avail-note {
   font-family: var(--font-sans);
   font-size: var(--fs-2xs);
@@ -2568,39 +2652,28 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 
 /* — the grid — */
 /*
- * The grid gets its own ground.
- *
- * It used to sit straight on the house photograph, with only the panel scrim and a pale
- * halo behind each number holding it together. That reads as atmosphere and fails as a
- * calendar: thirty-one two-character numbers competing with thatch and sky, and a booked
- * night no more obvious than a free one. The photograph still surrounds the panel — the
- * house selector, the heading, the legend — it just stops running underneath the one
- * element whose whole job is to be read precisely.
+ * The grid sits in a well sunk into the panel, so the raised day tiles have something to
+ * be raised out of. Shadow in, tiles out: that is the whole depth model here.
  */
 .avail-calendar {
   margin-top: 1.8rem;
   position: relative;
-  /*
-   * 0.74, not 0.94. The first attempt at fixing legibility went too far the other way
-   * and turned the panel into a white slab with a house hidden somewhere behind it.
-   * This is enough ground to read thirty-one numbers against and still let the
-   * photograph through.
-   */
-  background: rgba(250,247,240,0.74);
-  border: 1px solid rgba(90,110,80,0.22);
-  border-radius: 3px;
+  background: rgba(9,13,6,0.26);
+  border: 1px solid rgba(0,0,0,0.28);
+  border-radius: 6px;
   padding: 1.5rem 1.5rem 1.2rem;
+  box-shadow:
+    inset 0 2px 7px rgba(0,0,0,0.36),
+    0 1px 0 rgba(240,235,224,0.05);
 }
-/* On a flat ground the halo smears instead of separating, so it goes inside the card. */
-.avail-calendar .avail-month-name,
-.avail-calendar .avail-week-heads span,
-.avail-calendar .avail-day,
-.avail-calendar .avail-legend span,
-.avail-calendar .avail-turnover { text-shadow: none; }
+/*
+ * Tucked inside the grid well rather than straddling its top border. They used to sit
+ * half outside it, which read as a misalignment against the frame.
+ */
 .avail-nav {
   position: absolute;
-  top: -0.35rem;
-  right: 0;
+  top: 0.5rem;
+  right: 0.6rem;
   display: flex;
   gap: 0.35rem;
   z-index: 2;
@@ -2609,15 +2682,26 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   font-family: var(--font-sans);
   font-size: 1.2rem;
   line-height: 1;
-  color: var(--fern);
-  background: transparent;
-  border: 1px solid rgba(90,110,80,0.3);
+  color: var(--panel-ink);
+  background: linear-gradient(180deg, rgba(240,235,224,0.1), rgba(240,235,224,0.035));
+  border: 1px solid rgba(200,212,184,0.2);
+  border-radius: 5px;
   width: 2rem;
   height: 2rem;
   cursor: pointer;
-  transition: border-color 0.25s var(--ease-smooth), opacity 0.25s;
+  box-shadow: inset 0 1px 0 rgba(240,235,224,0.16), 0 1px 2px rgba(0,0,0,0.3);
+  transition: border-color 0.25s var(--ease-smooth), opacity 0.25s,
+              transform 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth);
 }
-.avail-arrow:hover:not(:disabled) { border-color: var(--fern); }
+.avail-arrow:hover:not(:disabled) {
+  border-color: rgba(200,212,184,0.42);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(240,235,224,0.24), 0 3px 7px rgba(0,0,0,0.36);
+}
+.avail-arrow:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
 .avail-arrow:disabled { opacity: 0.25; cursor: default; }
 
 .avail-months {
@@ -2651,53 +2735,117 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-align: center;
   padding-bottom: 0.45rem;
 }
+/*
+ * Every day is a small raised tile: a lit top edge, a dark bottom edge, a shadow beneath.
+ * A bare number on a dark ground has nothing to stand on and the grid stops reading as
+ * something you can press — the tile is what makes it obviously tappable.
+ */
 .avail-day {
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 300;
-  color: var(--bark);
-  background: transparent;
+  color: var(--panel-ink);
+  background: linear-gradient(180deg, rgba(240,235,224,0.115), rgba(240,235,224,0.045));
   border: none;
-  border-radius: 2px;
+  border-radius: 5px;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.18s var(--ease-smooth), color 0.18s var(--ease-smooth);
+  box-shadow:
+    inset 0 1px 0 rgba(240,235,224,0.2),
+    inset 0 -1px 0 rgba(0,0,0,0.25),
+    0 1px 2px rgba(0,0,0,0.3);
+  transition:
+    background 0.18s var(--ease-smooth),
+    color 0.18s var(--ease-smooth),
+    box-shadow 0.18s var(--ease-smooth),
+    transform 0.18s var(--ease-smooth);
 }
-.avail-day.is-blank { cursor: default; }
-.avail-day:hover:not(:disabled):not(.is-picked) { background: var(--mist); }
-/* Nudged up from 0.22: on flat linen that read as "gone", but over a photograph it read
-   as nothing at all, and the grid lost its shape. Still plainly not selectable. */
-.avail-day.is-past { opacity: 0.34; cursor: default; }
-/* On the card, a gone day is a faint recess rather than a ghost. */
-.avail-calendar .avail-day.is-past {
-  opacity: 1;
-  color: rgba(22,28,16,0.3);
-  background: rgba(90,110,80,0.05);
+/* A blank has no tile at all — it is a hole in the month, not a day you cannot have. */
+.avail-day.is-blank {
+  cursor: default;
+  background: none;
+  box-shadow: none;
 }
-/* A sold night is struck through, not merely dimmed — dimmed reads as "quiet", not "gone". */
+/* Hover lifts the tile rather than repainting it. Days already in the stay are excluded:
+   repainting one of them with the faint hover wash would punch a hole in the block. */
+.avail-day:hover:not(:disabled):not(.is-picked):not(.is-range):not(.is-taken) {
+  background: linear-gradient(180deg, rgba(240,235,224,0.2), rgba(240,235,224,0.1));
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(240,235,224,0.3),
+    inset 0 -1px 0 rgba(0,0,0,0.25),
+    0 3px 6px rgba(0,0,0,0.38);
+}
+/* A gone day is pressed into the well: no lit edge, shadow on the inside. */
+.avail-day.is-past {
+  cursor: default;
+  color: rgba(226,234,214,0.22);
+  background: rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+  transform: none;
+}
+/*
+ * A sold night is a filled sage tile, the same green as its legend swatch so the two teach
+ * each other, with the number struck through on top. It is the one thing on this grid that
+ * has to be unmistakable at a glance.
+ */
 .avail-day.is-taken {
-  color: var(--fern);
-  opacity: 0.45;
+  color: rgba(18,24,12,0.86);
+  background: linear-gradient(180deg, #9db388 0%, #7f9569 100%);
   text-decoration: line-through;
+  text-decoration-color: rgba(18,24,12,0.7);
   cursor: not-allowed;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -1px 0 rgba(0,0,0,0.2),
+    0 1px 2px rgba(0,0,0,0.3);
 }
 /* You may still leave on the morning the next guest arrives. */
 .avail-day.is-checkout-ok {
   cursor: pointer;
-  opacity: 1;
-  background: rgba(154,174,134,0.3);
-  outline: 1px dashed rgba(60,80,50,0.65);
-  outline-offset: -2px;
-}
-.avail-day.is-range { background: var(--mist); }
-.avail-day.is-picked {
-  background: var(--moss);
-  color: var(--linen);
-  opacity: 1;
+  color: var(--panel-ink);
+  background: linear-gradient(180deg, rgba(157,179,136,0.42), rgba(127,149,105,0.3));
+  outline: 1px dashed rgba(216,228,200,0.7);
+  outline-offset: -3px;
   text-decoration: none;
+}
+/*
+ * The nights BETWEEN the two ends of the stay.
+ *
+ * These were a translucent wash (rgba(200,212,184,0.3 → 0.18)) and vanished: the panel sits
+ * over a photograph, so at 30% opacity a chosen night looked much like a free one.
+ *
+ * They now take the SAME fill as .is-picked, deliberately. A middling green between free and
+ * picked was tried first and it landed almost exactly on the booked tile (#9db388 → #7f9569),
+ * leaving the strike-through as the only thing separating "you chose this" from "you cannot
+ * have this" — the worst possible pair to confuse on a booking calendar. Three values, well
+ * apart: free is dark, booked is mid sage and struck through, the stay is pale.
+ *
+ * The two ends stay distinguishable by RELIEF, not colour: .is-picked below lifts a pixel and
+ * carries a brighter top edge, so the run still reads as having a start and an end.
+ */
+.avail-day.is-range {
+  background: linear-gradient(180deg, #e6edd9 0%, #c3d0b0 100%);
+  color: #232b19;
+  text-decoration: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -1px 0 rgba(0,0,0,0.16),
+    0 1px 3px rgba(0,0,0,0.3);
+}
+/* The pick is the brightest tile on the panel and stands highest off it. */
+.avail-day.is-picked {
+  background: linear-gradient(180deg, #e6edd9 0%, #c3d0b0 100%);
+  color: #232b19;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.75),
+    inset 0 -1px 0 rgba(0,0,0,0.16),
+    0 4px 9px rgba(0,0,0,0.42);
 }
 
 .avail-legend {
@@ -2718,16 +2866,21 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 /* Solid and full strength. At 10px and 45% these vanished over a photograph, and the
    legend is the one thing on the panel whose whole job is to be read at a glance. */
+/* Miniatures of the three tile states, lit and shadowed the same way. */
 .avail-swatch {
-  width: 13px;
-  height: 13px;
-  border-radius: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
   display: inline-block;
-  border: 1px solid rgba(14,17,8,0.35);
+  border: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.28),
+    inset 0 -1px 0 rgba(0,0,0,0.22),
+    0 1px 2px rgba(0,0,0,0.34);
 }
-.avail-swatch--free   { background: rgba(252,250,245,0.75); }
-.avail-swatch--taken  { background: #93a97e; }
-.avail-swatch--picked { background: var(--moss); border-color: var(--moss); }
+.avail-swatch--free   { background: linear-gradient(180deg, rgba(240,235,224,0.115), rgba(240,235,224,0.045)); }
+.avail-swatch--taken  { background: linear-gradient(180deg, #9db388 0%, #7f9569 100%); }
+.avail-swatch--picked { background: linear-gradient(180deg, #e6edd9 0%, #c3d0b0 100%); }
 
 .avail-turnover {
   font-family: var(--font-sans);
@@ -2760,7 +2913,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-summary {
   margin-top: 1.8rem;
   padding-top: 1.6rem;
-  border-top: 1px solid rgba(90,110,80,0.14);
+  border-top: 1px solid var(--panel-line);
 }
 .avail-hint {
   font-family: var(--font-display);
@@ -2769,7 +2922,44 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--moss);
   margin-bottom: 1.2rem;
 }
+/*
+ * "How many people", under the calendar.
+ *
+ * Two of these: the guest count for the stay, and — inside the mornings block — how many of
+ * them actually eat breakfast. Same row shape both times so they read as the same kind of
+ * question, and the label sits BESIDE the select rather than above it, because at this point
+ * in the panel the guest is scanning a short list of answers, not filling in a form.
+ */
+.avail-people {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem 0.9rem;
+  /* German runs to "Für wie viele Personen?" — uppercase and tracked, it is the widest of the
+     four. Wrapping rather than overflowing keeps the narrowest phone honest in every language. */
+  flex-wrap: wrap;
+  margin-bottom: 1.1rem;
+}
+.avail-people .avail-label { margin: 0; }
+.avail-people--breakfast {
+  margin: 0.9rem 0 1.1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--panel-line);
+}
+
+/*
+ * The "extra bed for a child" note. It used to be the last thing in the panel header, so it
+ * only ever needed space above it; down here it sits between the guest count and the pet /
+ * breakfast boxes and was running straight into them.
+ */
+.avail-summary .avail-note { margin: 0.1rem 0 1.1rem; }
+/* Sits where the headcount would be, so clearing every morning does not collapse the block. */
+.avail-summary .avail-note--pick { margin: 0.9rem 0 1rem; opacity: 1; color: var(--sage); }
+
 .avail-extras { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.4rem; }
+/* Nothing to attach breakfast to until a stay is chosen. Dimmed and unclickable rather than
+   hidden, so the row does not appear from nowhere once the dates are picked. */
+.avail-check.is-locked { opacity: 0.45; cursor: default; }
+.avail-check.is-locked input { cursor: default; }
 .avail-check {
   display: flex;
   align-items: center;
@@ -2781,7 +2971,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--fern);
   cursor: pointer;
 }
-.avail-check input { accent-color: var(--moss); width: 15px; height: 15px; cursor: pointer; }
+.avail-check input { accent-color: var(--sage); width: 15px; height: 15px; cursor: pointer; }
 
 .avail-quote { margin-bottom: 1.6rem; max-width: 30rem; }
 .avail-quote-row {
@@ -2805,12 +2995,15 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   white-space: nowrap;
 }
 .avail-quote-row--total {
-  border-top: 1px solid rgba(90,110,80,0.18);
+  border-top: 1px solid var(--panel-line);
   padding-top: 0.7rem;
   margin-top: 0.9rem;
 }
 .avail-quote-row--total dt { color: var(--moss); letter-spacing: var(--ls-widest); text-transform: uppercase; }
 .avail-quote-row--total dd { font-size: 1.7rem; color: var(--moss); }
+/* The total is the one number on the panel that should be brighter than its neighbours. */
+.avail-panel .avail-quote-row--total dt,
+.avail-panel .avail-quote-row--total dd { color: #dfe8d0; }
 .avail-quote-note {
   font-family: var(--font-sans);
   font-size: var(--fs-2xs);
@@ -2829,16 +3022,10 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-cta:disabled:hover { transform: none; background: var(--fern); }
 
 /*
- * The panel's ink, darkened.
+ * The panel's ink, inverted.
  *
- * Its palette was chosen when the panel was flat linen: fern and sage, several of them at
- * reduced opacity, which reads as a soft hierarchy on a plain ground. With a photograph
- * behind it that softness becomes a legibility problem, and it varies by house — pale sky
- * behind Saunamaja, bright roof behind Metsamaja, dark water behind Tiigimaja.
- *
- * So everything here goes to `--ink`, a near-black kept fractionally warm so it still
- * belongs to the palette. The hierarchy is carried by size, weight and letter-spacing
- * instead of by tint, which survives any background; tint does not.
+ * Hierarchy here is carried by size, weight and letter-spacing rather than by tint —
+ * that survived the photograph and it survives the dark ground just as well.
  */
 .avail-panel .avail-label,
 .avail-panel .avail-month-name,
@@ -2856,33 +3043,26 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-panel .avail-select,
 .avail-panel .avail-arrow,
 .avail-panel .avail-day {
-  color: var(--ink);
+  color: var(--panel-ink);
   opacity: 1;
 }
-/* Sold and past nights still have to read as unavailable, so they keep a step back —
-   but from the near-black, so they are dimmed rather than washed out. */
-/*
- * Solid, not translucent. A sold night is the single most important thing on this grid
- * and it was a washed-out tint over a photograph. It is now a filled block in the same
- * green as the legend swatch, so the two teach each other.
- */
-/*
- * A sold night is a filled block in the same green as the legend swatch, so the two
- * teach each other, with the number struck through on top. Scoped to the card because
- * that is where the days live.
- */
-.avail-calendar .avail-day.is-taken,
-.avail-panel .avail-calendar .avail-day.is-taken {
-  color: rgba(20,26,14,0.82);
-  opacity: 1;
-  background: #93a97e;
-  text-decoration-color: rgba(20,26,14,0.75);
-}
-.avail-panel .avail-day.is-past { color: var(--ink); opacity: 0.42; }
-.avail-panel .avail-day.is-picked { color: var(--linen); opacity: 1; }
+/* The tile states own their own colour — re-stated here only to outrank the block above. */
+.avail-panel .avail-day.is-taken   { color: rgba(18,24,12,0.86); }
+.avail-panel .avail-day.is-past    { color: rgba(226,234,214,0.22); }
+.avail-panel .avail-day.is-picked  { color: #232b19; }
+/* Was missing while .is-range was a translucent wash with light type. The moment the range
+   became an opaque light tile, that omission put white numbers on a pale green ground. */
+.avail-panel .avail-day.is-range   { color: #232b19; }
+.avail-panel .avail-note,
+.avail-panel .avail-status,
+.avail-panel .avail-turnover,
+.avail-panel .avail-quote-note,
+.avail-panel .avail-label,
+.avail-panel .avail-week-heads span,
+.avail-panel .avail-legend span { color: var(--panel-dim); }
 .avail-panel .avail-outof,
-.avail-panel .avail-nights { color: var(--ink); }
-.avail-panel .avail-arrow:disabled { opacity: 0.3; }
+.avail-panel .avail-nights { color: var(--panel-ink); }
+.avail-panel .avail-arrow:disabled { opacity: 0.28; }
 
 /*
  * Bigger, and heavier.
@@ -2931,25 +3111,6 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-panel .avail-quote-row--total dd { font-size: 1.85rem; }
 .avail-panel .avail-arrow { font-size: 1.35rem; }
 
-/* A stronger halo to match. Darker ink over a photograph needs more separation, not less. */
-.avail-panel .avail-label,
-.avail-panel .avail-house:not(.is-on),
-.avail-panel .avail-select,
-.avail-panel .avail-note,
-.avail-panel .avail-status,
-.avail-panel .avail-turnover,
-.avail-panel .avail-month-name,
-.avail-panel .avail-week-heads span,
-.avail-panel .avail-day:not(.is-picked),
-.avail-panel .avail-legend span,
-.avail-panel .avail-hint,
-.avail-panel .avail-check,
-.avail-panel .avail-quote-row dt,
-.avail-panel .avail-quote-row dd,
-.avail-panel .avail-quote-note {
-  text-shadow: 0 1px 2px rgba(247,244,237,1), 0 0 9px rgba(247,244,237,0.92);
-}
-
 /* What the calendar attached to the enquiry, shown before it is sent. */
 .booking-summary {
   font-family: var(--font-sans);
@@ -2966,12 +3127,103 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 
 @media (max-width: 900px) {
   .avail-panel { padding: 1.6rem 1.3rem 1.5rem; }
-  .avail-months { grid-template-columns: 1fr; gap: 2rem; }
-  /* One month at a time on a phone — two would squeeze the tap targets below 40px. */
-  .avail-month--second { display: none; }
+  /*
+   * Both months on a phone too, STACKED rather than side by side.
+   *
+   * The second month used to be hidden here, on the reasoning that two of them would squeeze
+   * the tap targets below 40px — true only if they sit in two columns. One under the other,
+   * each keeps the full panel width and every cell stays the size it already was, and the
+   * guest can see across a month boundary without hunting for the arrow. A stay that starts
+   * on the 29th is the normal case, not the exception.
+   */
+  .avail-months { grid-template-columns: 1fr; gap: 1.8rem; }
   .avail-controls { flex-direction: column; align-items: stretch; }
   .avail-panel .avail-day { font-size: 1.02rem; }
   .avail-cta { width: 100%; }
+}
+
+/* ══════════════════════════════
+   PAY PAGE — /{lang}/pay/{token}
+   One guest, one amount, reached only from a link we sent. Deliberately the plainest
+   page on the site: nothing to browse, nothing to decide, one button.
+══════════════════════════════ */
+.pay {
+  min-height: 100svh;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.4rem;
+}
+.pay-card {
+  width: 100%;
+  max-width: 34rem;
+  background: #fff;
+  border: 1px solid rgba(90,110,80,0.18);
+  border-radius: 6px;
+  padding: 2.6rem 2.2rem 2.2rem;
+  box-shadow: 0 18px 50px -30px rgba(20,26,14,0.5);
+}
+.pay-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.7rem;
+}
+.pay-h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--bark);
+  line-height: 1.15;
+  text-wrap: balance;
+  margin-bottom: 1.6rem;
+}
+.pay-rows { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.8rem; }
+.pay-rows > div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(90,110,80,0.12);
+}
+.pay-rows > div:last-child { border-bottom: none; padding-bottom: 0; }
+.pay-rows dt {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--fern);
+}
+.pay-rows dd { font-size: var(--fs-md); color: var(--bark); white-space: pre-line; }
+/* The amount is the one thing on this page that must not be misread. */
+.pay-amount {
+  font-size: 1.7rem;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.pay-cta { width: 100%; text-align: center; }
+.pay-cta:disabled { opacity: 0.55; cursor: default; }
+.pay-note {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--fern);
+  margin-top: 1.2rem;
+}
+.pay-error {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: #8a2f2f;
+  margin-top: 1rem;
+}
+@media (max-width: 520px) {
+  .pay { padding: 2rem 1rem; align-items: flex-start; }
+  .pay-card { padding: 2rem 1.4rem 1.6rem; }
+  .pay-rows > div { grid-template-columns: 1fr; gap: 0.2rem; }
 }
 
 /* ══════════════════════════════
@@ -3048,6 +3300,16 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   border-bottom: 1px solid rgba(90,110,80,0.14);
 }
 .house-facts li:last-child { border-bottom: none; }
+.house-facts li { overflow-wrap: break-word; }
+
+/* Phone: the display face is set large here, and both blocks sit full-width once the
+   two-column grid has collapsed. Bring them down a step so they are not the widest
+   thing on the page. */
+@media (max-width: 600px) {
+  .house-facts li { font-size: 1.15rem; }
+  .house-rates { padding: 1.4rem; }
+  .hp-row dd { font-size: 1.3rem; }
+}
 
 /* Rates, on linen rather than the dark band — the .house-price-* rules are for the
    homepage bands and read as invisible on a light ground. */
@@ -3069,6 +3331,15 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   border-bottom: 1px solid rgba(90,110,80,0.12);
 }
 .hp-row:last-child { border-bottom: none; margin-bottom: 0; }
+/*
+ * The rate row is a label beside a `white-space: nowrap` amount. On a narrow phone the
+ * pair could not fit on one line and, because neither side was allowed to shrink, the
+ * amount was pushed past the card's right edge — "150 € /" cut off. German made it worse
+ * ("Nacht" against Estonian "öö"). Wrapping is the right answer: the amount must stay
+ * unbroken, so the row has to be allowed to become two lines instead.
+ */
+.hp-row { flex-wrap: wrap; }
+.hp-row dt { min-width: 0; overflow-wrap: break-word; }
 .hp-row dt {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
@@ -3347,6 +3618,90 @@ a.feature-house-name:hover { color: var(--mist); }
 .adm-live input { margin-top: 0.25rem; accent-color: var(--moss); }
 .adm-live-warn { color: #8a6a1a; font-weight: 400; }
 
+/* ── enquiries ─────────────────────────────────────────────────────────
+   Sits above the calendar, because this page is the only place that answers
+   "has anyone written in?" and burying it would defeat keeping a copy. */
+.adm-section { margin: 2rem 0 2.6rem; }
+.adm-h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--moss);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(90,110,80,0.16);
+  margin-bottom: 0.9rem;
+}
+.adm-badge {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--linen);
+  background: var(--moss);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
+.adm-enq-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+.adm-enq {
+  border: 1px solid rgba(90,110,80,0.2);
+  border-left: 3px solid var(--moss);
+  border-radius: 5px;
+  padding: 0.9rem 1.1rem;
+  background: #fff;
+}
+/* Answered ones recede rather than disappear — the record is the point. */
+.adm-enq.is-done { opacity: 0.55; border-left-color: rgba(90,110,80,0.3); }
+.adm-enq-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.4rem;
+}
+.adm-enq-who { font-size: 1.02rem; color: var(--bark); }
+.adm-enq-lang {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
+  opacity: 0.7;
+  margin-left: 0.45rem;
+}
+.adm-enq-when {
+  margin-left: auto;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  color: var(--fern);
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+.adm-enq-dates {
+  font-size: var(--fs-sm);
+  color: var(--moss);
+  margin-bottom: 0.35rem;
+}
+/* The message keeps the line breaks the guest typed, and wraps rather than scrolling. */
+.adm-enq-body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--bark);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0 0 0.6rem;
+}
+.adm-enq-actions { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.adm-badge--warn { background: #8a6a1a; }
+.adm-pay-actions { display: flex; gap: 1rem; justify-content: flex-end; }
+.adm-pay--paid .adm-dates { color: #2f6b43; font-weight: 500; }
+.adm-pay--cancelled { opacity: 0.5; }
+.adm-pay--cancelled .adm-dates { text-decoration: line-through; }
+.adm-enq-actions .adm-live { margin-bottom: 0; }
+
 .adm-list { list-style: none; }
 .adm-item {
   display: grid;
@@ -3442,7 +3797,7 @@ footer {
 ══════════════════════════════ */
 /* Force nav into scrolled (dark) state on gallery page */
 body.gallery-page nav {
-  background: rgba(22, 28, 16, 0.96);
+  background: rgba(38, 44, 29, 0.96);   /* --bark-deep; the nav sits deeper than the sections */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 1.1rem var(--section-h);
@@ -3616,14 +3971,15 @@ body.gallery-page .nav-social { text-shadow: none; }
    */
   .hero {
     /*
-     * 82svh rather than 76: the copy block is bottom-anchored and already sat 25px off
-     * the edge, so there was nowhere left inside the old box to move it. A taller hero
-     * carries it further down the screen and keeps the clearance. It costs a little of
-     * the photograph's width to the crop, which is the trade for the position.
+     * Back to 76svh. It was raised to 82 only to carry a BOTTOM-anchored copy block further
+     * down the screen; the copy is top-aligned now, so that reason is gone and the extra
+     * height was only buying empty photograph under the button. 76svh also gives the crop
+     * back what 82 cost it — a landscape slide shows about 41% of its width here rather
+     * than 38%, and the file has less upscaling to do.
      */
-    padding: 3.2rem var(--section-h) 1.1rem;
-    height: 82svh;
-    min-height: 540px;
+    padding: 9.5rem var(--section-h) 1.1rem;
+    height: 76svh;
+    min-height: 520px;
   }
   /* Wraps earlier, so the line still holds when the page is zoomed in. */
   .hero-desc { max-width: 30ch; }
@@ -3658,11 +4014,21 @@ body.gallery-page .nav-social { text-shadow: none; }
    * groups them, and because the block is bottom-anchored, shortening it also drops the
    * headline further down the frame.
    */
-  /* Back to a plain stack on a phone: headline, place line, strapline, button. */
+  /*
+   * Top-aligned on a phone, not bottom-anchored.
+   *
+   * Bottom-anchoring left a dead gap between the Estonia mark under the wordmark and the
+   * headline — half the screen of photograph with nothing in it, and the copy pushed so far
+   * down that the button sat near the fold. Starting the block just below the mark closes
+   * that gap and puts the headline where the eye lands first.
+   *
+   * The top padding has to clear the FIXED header: nav padding, the wordmark, and the mark
+   * that hangs beneath it at `top: 100%`. 9.5rem is measured against that stack, not guessed.
+   */
   .hero-content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     height: 100%;
   }
   /*
@@ -3799,3 +4165,291 @@ body.gallery-page .nav-social { text-shadow: none; }
   display: inline-flex;
 }
 .footer-social:hover { opacity: 1; }
+
+/* ─────────────────────────────────────────────────────────────
+   The booking button that follows the page
+   ───────────────────────────────────────────────────────────── */
+/*
+ * Fixed bottom right at every width — phone and desktop both, deliberately.
+ *
+ * z-index 90 puts it under the mobile menu overlay (99) and the lightbox (1000): when
+ * either of those is open, the page behind them is not what the visitor is looking at.
+ * The dark fill is the one that survives this site's backgrounds, which run from linen
+ * panels to full-bleed forest photographs.
+ */
+.sticky-book {
+  position: fixed;
+  right: 1.25rem;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--linen);
+  background: linear-gradient(160deg, var(--bark-deep) 0%, var(--moss) 100%);
+  /*
+   * The button is fixed, so it passes over BOTH grounds and cannot know which is behind it.
+   * Its dark fill carries it over the cream half; over the lifted --bark sections the fill is
+   * close to the ground, so the edge and the shadow are what make it read as a raised object.
+   * They are load-bearing, not decoration — this went nearly invisible at 0.16.
+   */
+  border: 1px solid rgba(240, 235, 224, 0.42);
+  border-radius: 4px;
+  padding: 1rem 1.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 14px 34px -10px rgba(8, 11, 5, 0.78), 0 2px 10px rgba(8, 11, 5, 0.4);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth),
+              visibility 0.35s, background 0.35s;
+}
+.sticky-book.is-on {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+.sticky-book:hover {
+  background: linear-gradient(160deg, var(--moss) 0%, var(--fern) 100%);
+}
+.sticky-book:focus-visible { outline: 2px solid var(--linen); outline-offset: 3px; }
+
+@media (max-width: 600px) {
+  .sticky-book {
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    padding: 0.95rem 1.5rem;
+    font-size: var(--fs-2xs);
+  }
+}
+
+/* The entrance is decoration; the button still needs to appear. */
+@media (prefers-reduced-motion: reduce) {
+  .sticky-book { transform: none; transition: opacity 0.2s linear, visibility 0.2s; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Guest quotes, under the review scores
+   ───────────────────────────────────────────────────────────── */
+/*
+ * Three columns on desktop, stacked on a phone. Set in the display face because these are
+ * somebody's words rather than interface text — the same reason the headlines are.
+ */
+.quotes {
+  max-width: var(--max-w);
+  margin: 3.2rem auto 0;
+  padding: 0 var(--section-h);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem 3rem;
+  align-items: start;
+}
+.quote { margin: 0; }
+/* An odd number of quotes leaves one alone in a two-column grid. Centre it rather than
+   letting it hang in the left column looking like a mistake. */
+/* `:last-child` never matched — the "read the reviews" link is the real last child of the
+   grid. Counting figures with :*-of-type is what actually finds the final quote. */
+.quote:last-of-type:nth-of-type(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 48ch;
+  text-align: center;
+}
+/*
+ * Light ink. This section's ground is --bark, near-black — the quotes were first written in
+ * --bark on --bark and were invisible on the live site. Any colour added inside
+ * .reviews-section has to come from the light end of the palette.
+ */
+.quote-text {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-display);
+  font-size: 1.09rem;
+  font-weight: 300;
+  line-height: 1.66;
+  color: var(--linen);
+  letter-spacing: var(--ls-normal);
+}
+/* Real quotation marks, hung so the first line still aligns with the column. */
+.quote-text::before { content: '\201C'; }
+.quote-text::after  { content: '\201D'; }
+.quote-by { display: flex; flex-direction: column; gap: 0.15rem; }
+.quote-author {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--mist);
+}
+.quote-meta {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--mist);
+  opacity: 0.62;
+}
+.quotes-source {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--mist);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200, 212, 184, 0.35);
+  padding-bottom: 2px;
+}
+.quotes-source:hover { color: var(--linen); border-bottom-color: var(--linen); }
+
+@media (max-width: 900px) {
+  .quotes { grid-template-columns: 1fr; gap: 2rem; margin-top: 2.4rem; }
+}
+
+/* How the house is built — one line under the facts, on its own rule. */
+.house-build {
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(90, 110, 80, 0.14);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--fern);
+  letter-spacing: var(--ls-normal);
+  max-width: 46ch;
+}
+
+/* The line under the "why" heading — who the place is for, in one sentence. */
+.why-sub {
+  /* Under the heading, not centred — `auto` was pushing it into the middle of a
+     left-aligned block. */
+  margin: 0.9rem 0 0;
+  max-width: 52ch;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: var(--ls-normal);
+  color: var(--fern);
+}
+
+/* The "more questions" expander, and the questions inside it. */
+.faq-more { border-top: 1px solid rgba(200, 212, 184, 0.16); }
+.faq-more-q {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.15rem 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--mist);
+  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  transition: opacity 0.25s var(--ease-smooth);
+}
+.faq-more-q::-webkit-details-marker { display: none; }
+/* A chevron that turns, rather than the browser's default triangle. */
+.faq-more-q::after {
+  content: '';
+  width: 7px; height: 7px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.25s var(--ease-smooth);
+}
+.faq-more[open] .faq-more-q::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.faq-more-q:hover { opacity: 1; }
+.faq-more[open] .faq-more-q { opacity: 1; }
+
+/* — which mornings breakfast is wanted on — */
+/*
+ * Sits inside the dark booking panel, so it takes the panel's light ink like everything else
+ * in there. Chips rather than a second calendar: a stay is a handful of mornings, and a grid
+ * of thirty-one days to pick three of them would be a worse tool than four buttons.
+ */
+.avail-mornings {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--panel-line);
+}
+/* Label left, All/None right — the bulk controls belong to this row, not to the chips. */
+.avail-mornings-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.6rem;
+}
+.avail-mornings-bulk { display: flex; gap: 0.9rem; }
+.avail-bulk {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--panel-ink);
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(200,212,184,0.45);
+  padding: 0 0 1px;
+  cursor: pointer;
+  transition: opacity 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth);
+}
+.avail-bulk:hover:not(:disabled) { border-color: var(--panel-ink); }
+.avail-bulk:disabled { opacity: 0.3; cursor: default; border-color: transparent; }
+
+.avail-mornings-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--panel-dim);
+}
+.avail-morning-list { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+/*
+ * A morning that is NOT included. Dashed and dimmed on purpose: as a solid button it read as
+ * "tap me to choose this day", which is backwards — the mornings start included and every tap
+ * REMOVES one. A guest tapping all three to "select" them turned all three off instead, the
+ * breakfast line vanished from the price, and it read as a reset.
+ */
+.avail-morning {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--panel-ink);
+  opacity: 0.6;
+  background: none;
+  border: 1px dashed rgba(200,212,184,0.35);
+  border-radius: 5px;
+  padding: 0.42rem 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth),
+              color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth);
+}
+.avail-morning:hover { border-color: rgba(200,212,184,0.42); transform: translateY(-1px); }
+/* Chosen mornings are lit, the same way the chosen house is, and carry a tick. */
+.avail-morning.is-on {
+  opacity: 1;
+  background: linear-gradient(180deg, #e6edd9 0%, #c3d0b0 100%);
+  border-style: solid;
+  border-color: rgba(240,235,224,0.5);
+  color: #232b19;
+}
+/* Hidden rather than removed, so toggling a chip cannot change its width and reflow the row
+   out from under the finger that just tapped it. */
+.avail-morning-tick { visibility: hidden; font-size: 0.9em; }
+.avail-morning.is-on .avail-morning-tick { visibility: visible; }
+.avail-morning:focus-visible { outline: 2px solid var(--panel-ink); outline-offset: 2px; }

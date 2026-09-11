@@ -1,10 +1,10 @@
 import { T, type Lang } from './translations'
-import { nightsBetween, type DateStr } from './ical'
+import { addDays, nightsBetween, type DateStr } from './ical'
 import type { HouseSlug } from './availability'
 
 /** Published on the page, so it can be quoted here: 20 € for the whole stay, not per night. */
 export const PET_FEE_EUR = 20
-/** 20 € per person, per morning. A stay of N nights has N mornings. */
+/** 20 € per person, per morning — and the guest chooses which mornings. */
 export const BREAKFAST_EUR = 20
 
 export type House = (typeof T.feature.houses)[number]
@@ -32,6 +32,10 @@ export type Quote = {
   accommodation: number
   petFee: number
   breakfast: number
+  /** Mornings chosen, so the line can show the arithmetic the guest actually picked. */
+  breakfastCount: number
+  /** How many people eat it — not always everyone in the house. */
+  breakfastPeople: number
   total: number
 }
 
@@ -44,13 +48,33 @@ export type Quote = {
  * The total is indicative for the reason `feature.priceNote` already says out loud: high
  * season, holidays and long stays can be priced differently.
  */
+/**
+ * The mornings a guest could actually eat breakfast on this stay.
+ *
+ * Arrival is from 2 pm, so there is no breakfast on the day you come. Departure is at noon,
+ * so there IS one on the day you leave. That makes the eligible mornings the day after
+ * check-in through the check-out day inclusive — exactly as many mornings as there are
+ * nights, which is why the old all-or-nothing price of `guests × nights` was right.
+ */
+export function breakfastMornings(checkIn: DateStr, checkOut: DateStr): DateStr[] {
+  const n = nightsBetween(checkIn, checkOut)
+  return Array.from({ length: Math.max(0, n) }, (_, i) => addDays(checkIn, i + 1))
+}
+
 export function quote(
   slug: HouseSlug | string,
   guests: number,
   checkIn: DateStr,
   checkOut: DateStr,
   pet: boolean,
-  breakfast: boolean,
+  /** How many mornings breakfast was asked for — not whether it was. */
+  breakfastCount: number,
+  /**
+   * How many people eat it. Separate from `guests` on purpose: a family of four often wants
+   * breakfast for two, and billing the whole house for it is the kind of surprise on a quote
+   * that loses the booking.
+   */
+  breakfastPeople: number,
 ): Quote | null {
   const nights = nightsBetween(checkIn, checkOut)
   const rate = nightlyRate(slug, guests)
@@ -58,13 +82,18 @@ export function quote(
 
   const accommodation = nights * rate
   const petFee = pet ? PET_FEE_EUR : 0
-  const morningMeals = breakfast ? guests * nights * BREAKFAST_EUR : 0
+  // Never bill for more eaters than there are people in the house, whatever is passed in.
+  const eaters = Math.min(Math.max(0, breakfastPeople), guests)
+  const mornings = Math.max(0, breakfastCount)
+  const morningMeals = eaters * mornings * BREAKFAST_EUR
   return {
     nights,
     rate,
     accommodation,
     petFee,
     breakfast: morningMeals,
+    breakfastCount: mornings,
+    breakfastPeople: eaters,
     total: accommodation + petFee + morningMeals,
   }
 }
@@ -72,7 +101,7 @@ export function quote(
 /** `2026-09-01` → `1. september 2026` / `1 September 2026` / `1 сентября 2026`. */
 export function formatDate(date: DateStr, lang: Lang): string {
   const d = new Date(`${date}T12:00:00Z`)
-  const locale = lang === 'et' ? 'et' : lang === 'ru' ? 'ru' : 'en-GB'
+  const locale = lang === 'en' ? 'en-GB' : lang
   const body = new Intl.DateTimeFormat(locale, {
     day: 'numeric',
     month: 'long',

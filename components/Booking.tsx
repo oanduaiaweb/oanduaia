@@ -1,6 +1,7 @@
 'use client'
 
 import { FormEvent, useEffect, useState } from 'react'
+import { track } from '@/lib/analytics'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useBookingDraft } from '@/contexts/BookingDraftContext'
 import { T } from '@/lib/translations'
@@ -44,12 +45,23 @@ export default function Booking() {
           dates: form.kuupaevad,
           message: [summary, form.sonum].filter(Boolean).join('\n'),
           subject: t.eSubj[lang],
+          // So the admin list shows which language to answer in, without guessing from the text.
+          lang,
         }),
       })
       if (!res.ok) throw new Error()
       setSent(true)
+      /*
+       * The conversion. Everything else on this site exists to produce this event, so it
+       * carries the language and whether the calendar filled the dates in — that is how
+       * you find out which language and which path actually produce guests.
+       */
+      track('enquiry_sent', { lang, from_calendar: Boolean(draft) })
     } catch {
       setError(true)
+      // Tracked too: a form that silently fails is the worst thing that can happen here,
+      // and without this the only symptom is enquiries quietly stopping.
+      track('enquiry_failed', { lang })
     } finally {
       setSending(false)
     }

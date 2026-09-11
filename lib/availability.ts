@@ -1,4 +1,4 @@
-import { addDays, blockedNights, type DateStr } from './ical'
+import { addDays, readFeed, MAX_IMPORT_NIGHTS, type DateStr } from './ical'
 import { readBookings, blockedNightsFor } from './bookings'
 import { closedNights } from './season'
 
@@ -99,8 +99,15 @@ async function readFeeds(
         const body = await res.text()
         // A feed that came back as an HTML error page must not read as an empty calendar.
         if (!body.includes('BEGIN:VCALENDAR')) throw new Error('not an iCalendar feed')
-        for (const night of blockedNights(body)) {
+        const { nights: feedNights, ignored } = readFeed(body)
+        for (const night of feedNights) {
           if (night >= from && night < to) nights.add(night)
+        }
+        for (const [at, span] of ignored) {
+          console.warn(
+            `[availability] ${slug}: ignored a ${span}-night block from ${at} — longer than ` +
+            `${MAX_IMPORT_NIGHTS} nights, so it is unloaded inventory on the channel, not a booking.`,
+          )
         }
       } catch (err) {
         failed = true
