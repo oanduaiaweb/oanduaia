@@ -73,7 +73,19 @@ export default function Hero() {
                 fill
                 priority={i === 0}
                 sizes={slideSizes(slide)}
-                quality={88}
+                /*
+                 * 75, not 88. The hero is a full-bleed photograph behind a scrim and
+                 * headline type — detail the overlay hides is detail nobody sees, and it
+                 * is the LCP element on every page, so its bytes are the ones that decide
+                 * when the page is "loaded".
+                 *
+                 * 60 rather than 75 because AVIF holds this image together at 60 — checked
+                 * at 1:1 against 75 on a foliage crop, which is the hardest part of the
+                 * frame, and the difference is not visible. Desktop 1920w: 449 -> 332 KB.
+                 * The gallery stays at the 75 default; those photographs are opened
+                 * full-screen in the lightbox and ARE the product.
+                 */
+                quality={60}
                 className="hero-bg-img"
               />
             </div>

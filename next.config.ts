@@ -2,10 +2,27 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
-    formats: ['image/webp'],
+    /*
+     * AVIF FIRST, then WebP. This is not a micro-optimisation — without AVIF the
+     * optimiser could not beat the source JPEGs at all.
+     *
+     * Next encodes, compares against the original, and serves whichever is smaller.
+     * Our photographs are high-entropy forest and foliage: WebP came out LARGER than
+     * the source at every quality tried, so Next fell back to passing the original
+     * through untouched — a 524 KB hero on every desktop, and the same for any other
+     * photo whose slot asked for a width at or above the source's own width.
+     * AVIF wins where WebP could not (hero: 524 KB -> ~296 KB at the same apparent
+     * quality, checked at 1:1 before this was changed).
+     *
+     * Order matters: Next offers these in order against the browser's Accept header,
+     * so a browser too old for AVIF still gets WebP, and one too old for that gets
+     * the JPEG. Nothing breaks; older clients simply get what they already got.
+     */
+    formats: ['image/avif', 'image/webp'],
     // Next 16 refuses any `quality` not listed here and silently falls back to 75.
-    // 88 is for the hero, where the photographs are the product.
-    qualities: [75, 88],
+    // 60 is the hero; 75 is the default everything else uses. 88 is gone — nothing
+    // asked for it once AVIF made the extra bytes pointless.
+    qualities: [60, 75],
     remotePatterns: [
       {
         protocol: 'https',

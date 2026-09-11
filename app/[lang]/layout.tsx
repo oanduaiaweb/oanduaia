@@ -10,9 +10,12 @@ import { LOCALES, META, SITE, alternates, isLocale, jsonLd, siteJsonLd } from '@
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin', 'cyrillic'],
-  // 500 and 600 exist for the small UI text that used to be Jost — a 300-weight Garamond
-  // at 11px is a hairline, and the browser would otherwise synthesise the bolder weights.
-  weight: ['300', '400', '500', '600'],
+  // 500 exists for the small UI text that used to be Jost — a 300-weight Garamond at 11px
+  // is a hairline, and the browser would otherwise synthesise the bolder weight.
+  // 600 was declared here and used NOWHERE: grepping font-weight across globals.css and
+  // every component returns only 300 (158), 400 (40) and 500 (8). It was being fetched,
+  // and preloaded, for nothing.
+  weight: ['300', '400', '500'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant',
   display: 'swap',
@@ -23,6 +26,15 @@ const jost = Jost({
   weight: ['300', '400', '500'],
   variable: '--font-jost',
   display: 'swap',
+  /*
+   * NOT preloaded. Jost is used in exactly one place — `.avail-panel` redefines
+   * --font-sans so the availability calendar keeps a sans (Mikk, 31 Aug). That panel is
+   * far below the fold, yet next/font was emitting <link rel="preload"> for all three
+   * weights, so every visitor spent first-paint bandwidth on a font they may never
+   * scroll to, competing with the hero image that IS the LCP.
+   * display:'swap' already covers the late arrival.
+   */
+  preload: false,
 })
 
 export function generateStaticParams() {
@@ -75,8 +87,15 @@ export default async function LocaleLayout({
   return (
     <html lang={lang} className={`${cormorant.variable} ${jost.variable}`}>
       <head>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-B58Z9QKYLS" strategy="afterInteractive" />
-        <Script id="ga" strategy="afterInteractive">{`
+        {/*
+          * lazyOnload, not afterInteractive. afterInteractive makes Next emit a
+          * <link rel="preload" as="script"> for gtag.js, so Google Analytics was being
+          * fetched in competition with the LCP image on a site whose whole job is to look
+          * good in the first second. Nothing on the page reads gtag, so it can wait for
+          * idle; the pageview still fires.
+          */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-B58Z9QKYLS" strategy="lazyOnload" />
+        <Script id="ga" strategy="lazyOnload">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
