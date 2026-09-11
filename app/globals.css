@@ -323,10 +323,19 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .nav-lang-option:hover { opacity: 1; background: rgba(200,212,184,0.08); }
 
 /* Mobile overlay language buttons */
+/*
+ * Wraps, and the gap is small enough that it does not have to. Four buttons at a
+ * 1.5rem gap came to roughly 350px, so DE was cut off the right edge on a 390px
+ * phone and worse on a 320 — visible in Mikk's own screenshot.
+ */
 .nav-overlay-langs {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
   margin-top: 2.2rem;
+  padding-inline: 1rem;
+  max-width: 100%;
 }
 .nav-overlay-lang {
   display: flex;
@@ -432,8 +441,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
+  /* Uppercase has no descenders to separate the lines, so the gap does that work. */
+  gap: 0.62rem;
   text-align: center;
+  /* Nothing may touch the edge: tracked uppercase is wide and the panel is a phone. */
+  padding-inline: 1.1rem;
+  max-width: 100%;
 }
 /* Stagger in on open, instant out on close */
 .nav-overlay-links li {
@@ -447,14 +460,28 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   transform: translateY(0);
   transition-delay: calc(var(--i, 0) * 0.07s);
 }
+/*
+ * Set like the wordmark: upright, uppercase, --ls-widest, weight 400 — the same
+ * treatment OANDUAIA gets in the header, which is what Mikk asked for (11 Sep).
+ *
+ * The size had to come down with it. At 0.28em of tracking every glyph costs about
+ * 0.9em, so "BOOK NOW" runs roughly 6.8em wide — at the old 3.8rem cap that is over
+ * 400px and wraps or overflows on any phone. 11vw keeps the longest item on one line
+ * from a 320px SE upwards while still filling the panel.
+ *
+ * text-indent cancels the trailing letter-space. Tracking is applied AFTER the last
+ * glyph too, so centred text sits visibly left of centre without it.
+ */
 .nav-overlay-links a {
   display: block;
-  line-height: 1.22;
+  line-height: 1.34;
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 10vw, 3.8rem);
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: var(--ls-normal);
+  font-size: clamp(1.25rem, 8.5vw, 2.1rem);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: var(--ls-widest);
+  text-indent: var(--ls-widest);
+  text-transform: uppercase;
   color: var(--linen);
   text-decoration: none;
   transition: color 0.3s;
