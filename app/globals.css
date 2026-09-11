@@ -1070,10 +1070,50 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  * Lightened from 10-40%. The heavy end of that gradient sat exactly where each house
  * stands in its photograph, so the subject was the most darkened part of the frame. The
  * text lives in its own column here, so this is atmosphere, not legibility.
+ *
+ * It now also dissolves the photograph into the page (Mikk, 11 Sep): the frame used to
+ * stop dead against the green on three sides, and a hard rectangle is the one thing in
+ * this layout that looks printed on rather than part of it.
+ *
+ * Painted, not masked. Every edge that needs softening has --bark behind it, so fading
+ * TO --bark is indistinguishable from fading to transparent — and it avoids needing
+ * mask-composite:intersect, which is the only way to feather more than one edge with a
+ * mask and is the least portable thing in the file.
+ *
+ * The corners come free: where the side fade and the top fade overlap, the two ramps
+ * multiply and the corner rounds itself. Nothing here is a border-radius, which would
+ * have cut a hard arc — the opposite of what was asked for.
+ *
+ * The side fade is deliberately uneven, most of it in the last 60px. A linear ramp over
+ * the same distance greys the photograph long before the edge and reads as haze.
  */
 .house-band-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%);
+  background:
+    /* atmosphere, unchanged */
+    linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%),
+    /* the seam against the text column */
+    linear-gradient(to right,
+      rgba(56,64,44,0) calc(100% - 132px),
+      rgba(56,64,44,0.30) calc(100% - 74px),
+      rgba(56,64,44,0.72) calc(100% - 30px),
+      var(--bark) 100%),
+    /* top and bottom, where the band meets the one above and below */
+    linear-gradient(to bottom, var(--bark) 0, rgba(56,64,44,0) 58px),
+    linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0) 58px);
+  z-index: 1;
+}
+/* Mirrored: on a reversed band the text column is on the left. */
+.house-band--reversed .house-band-overlay {
+  background:
+    linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%),
+    linear-gradient(to left,
+      rgba(56,64,44,0) calc(100% - 132px),
+      rgba(56,64,44,0.30) calc(100% - 74px),
+      rgba(56,64,44,0.72) calc(100% - 30px),
+      var(--bark) 100%),
+    linear-gradient(to bottom, var(--bark) 0, rgba(56,64,44,0) 58px),
+    linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0) 58px);
   z-index: 1;
 }
 .house-band-content {
@@ -4004,6 +4044,18 @@ body.gallery-page .nav-social { text-shadow: none; }
   /* image always above the text, whichever way the desktop band runs */
   .house-band--reversed .house-band-image { order: 0; }
   .house-band-image { height: 55vw; min-height: 300px; }
+  /*
+   * One column here, so the photograph is full width with the text underneath: the
+   * seam is the BOTTOM edge, not a side. Fading a side as well would put a soft band
+   * down the middle of nothing.
+   */
+  .house-band-overlay,
+  .house-band--reversed .house-band-overlay {
+    background:
+      linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%),
+      linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0) 84px),
+      linear-gradient(to bottom, var(--bark) 0, rgba(56,64,44,0) 40px);
+  }
   .house-band-content { padding: 4rem 2.5rem; }
   .feature-intro { padding: var(--section-v) 2.5rem 2.5rem; }
   .feature-outro { padding: 2.5rem 2.5rem var(--section-v); }
