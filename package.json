@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "node scripts/check-i18n.mjs && node --no-warnings --experimental-strip-types scripts/test-locale.mjs && next build",
+    "start": "next start",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "check:locale": "node --no-warnings --experimental-strip-types scripts/test-locale.mjs",
+    "bookings": "node scripts/bookings.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.0",
@@ -13,7 +16,8 @@
     "next": "^16.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "resend": "^6.10.0"
+    "resend": "^6.10.0",
+    "stripe": "^22.6.1"
   },
   "browserslist": [
     "chrome >= 93",
