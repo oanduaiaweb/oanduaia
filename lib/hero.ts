@@ -38,6 +38,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Lahemaa mets Oanduaia ümber',
       en: 'The Lahemaa forest around Oanduaia',
       ru: 'Лес Лахемаа вокруг Oanduaia',
+      de: 'Der Wald von Lahemaa rund um Oanduaia',
     },
   },
   {
@@ -49,6 +50,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Pikk roogkatusega palkmaja suvises päikeses',
       en: 'The long thatched log house in summer sun',
       ru: 'Длинный дом из бруса с камышовой крышей на летнем солнце',
+      de: 'Das lange Blockhaus mit Reetdach in der Sommersonne',
     },
   },
   {
@@ -60,6 +62,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Ümar roogkatusega hoone tiigi ääres',
       en: 'A round thatched building beside the pond',
       ru: 'Круглое строение с камышовой крышей у пруда',
+      de: 'Das runde reetgedeckte Gebäude am Teich',
     },
   },
   {
@@ -71,6 +74,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Roogkatusega maja tiigi ääres varakevadel',
       en: 'The thatched house by the pond in early spring',
       ru: 'Дом с камышовой крышей у пруда ранней весной',
+      de: 'Das reetgedeckte Haus am Teich im zeitigen Frühling',
     },
   },
   {
@@ -82,6 +86,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Kolm hoonet peegeldumas vaikses tiigis',
       en: 'Three buildings mirrored in the still pond',
       ru: 'Три строения отражаются в спокойном пруду',
+      de: 'Drei Gebäude spiegeln sich im stillen Teich',
     },
   },
   {
@@ -93,6 +98,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Avar muru peamaja ees kõrgete pilvede all',
       en: 'Open lawn before the main house under high cloud',
       ru: 'Открытый газон перед главным домом под облаками',
+      de: 'Die offene Wiese vor dem Haupthaus unter Wolken',
     },
   },
   {
@@ -104,6 +110,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Kaks puidust võrkkiike kaskede vahel maja ees',
       en: 'Two timber hammocks slung between birches before the house',
       ru: 'Два деревянных гамака между берёзами перед домом',
+      de: 'Zwei Holzschaukeln zwischen Birken vor dem Haus',
     },
   },
   {
@@ -115,6 +122,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Saunamaja üle vee, mets peegeldumas tiigis',
       en: 'The sauna house across the water, forest mirrored in the pond',
       ru: 'Банный дом через воду, лес отражается в пруду',
+      de: 'Das Saunahaus über dem Wasser, der Wald spiegelt sich im Teich',
     },
   },
   {
@@ -126,6 +134,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       et: 'Õhtupäike läbi puude tiigi kohal',
       en: 'Evening sun through the trees above the pond',
       ru: 'Вечернее солнце сквозь деревья над прудом',
+      de: 'Abendsonne durch die Bäume über dem Teich',
     },
   },
 ]

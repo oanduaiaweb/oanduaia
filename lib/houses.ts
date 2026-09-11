@@ -23,6 +23,7 @@ export const HOUSE_IMAGES: Record<string, HouseImage> = {
       et: 'Saunamaja tiigi kaldal, mets peegeldumas vees',
       en: 'The Sauna House at the pond, forest mirrored in the water',
       ru: 'Банный дом у пруда, лес отражается в воде',
+      de: 'Das Saunahaus am Teich, der Wald spiegelt sich im Wasser',
     },
   },
   tiigimaja: {
@@ -32,6 +33,7 @@ export const HOUSE_IMAGES: Record<string, HouseImage> = {
       et: 'Tiigimaja üle vee, mets ja maja peegeldumas tiigis',
       en: 'The Pond House across the water, house and forest mirrored in the pond',
       ru: 'Прудовой дом через воду, дом и лес отражаются в пруду',
+      de: 'Das Teichhaus über dem Wasser, Haus und Wald spiegeln sich im Teich',
     },
   },
   metsamaja: {
@@ -40,6 +42,7 @@ export const HOUSE_IMAGES: Record<string, HouseImage> = {
       et: 'Metsamaja kõrgete kuuskede vahel',
       en: 'The Forest House among tall spruce',
       ru: 'Лесной дом среди высоких елей',
+      de: 'Das Waldhaus zwischen hohen Fichten',
     },
   },
 }

@@ -21,6 +21,8 @@ const ICONS: Record<string, React.ReactNode> = {
   tree: <><path d="M12 3 6.5 11h3L5 17h14l-4.5-6h3L12 3z" /><path d="M12 17v4" /></>,
   trail: <><path d="M4 20c3-1.5 3.5-5 1.5-7S3 8 5 5.5" /><path d="M13 20c2.5-2 2-5.5 0-7.5s-1.5-4 1-6" /><path d="M19 20c1.5-1.5 1.5-3.5.5-4.5" /></>,
   bowl: <><path d="M3.5 11h17a8.5 8.5 0 0 1-17 0z" /><path d="M12 8V5" /><path d="M2 20h20" /></>,
+  // Roof line over three stacked log courses — the thing the sentence is about.
+  timber: <><path d="M3 9.5 12 3.5l9 6" /><path d="M5.5 12.5h13" /><path d="M5.5 16h13" /><path d="M5.5 19.5h13" /></>,
   quiet: <><path d="M3 3l18 18" /><path d="M5.5 9.5a11 11 0 0 1 3.2-2" /><path d="M2 6.5a15 15 0 0 1 5-3.2" /><path d="M9 13a6 6 0 0 1 2-1.3" /><path d="M12 18h.01" /></>,
 }
 
@@ -53,6 +55,7 @@ export default function Why() {
           <h2 className="why-heading">
             {t.h1[lang]}<br /><em>{t.h2em[lang]}</em>
           </h2>
+          <p className="why-sub">{t.sub[lang]}</p>
         </div>
 
         <ul className="why-grid">

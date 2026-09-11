@@ -34,14 +34,23 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <ScrollRevealInit />
       <Nav />
       <Hero />
-      <Intro />
       <Feature />
-      {/* The offer summarised right after the houses, while someone is deciding. */}
+      {/*
+        Reviews sit immediately after the houses, not near the bottom. Someone who has just
+        read what the three houses are is deciding whether to believe us; that is the moment
+        other people's word is worth most. Lower down it was decoration.
+      */}
+      <Reviews />
+      {/*
+        The story sits between the houses and the reasons, not above them. Someone landing
+        here wants to see what they can rent before they are told what the place is like;
+        the story then lands as the answer to "why here", which is exactly what Why picks up.
+      */}
+      <Intro />
       <Why />
       <Services />
       <Trails />
       <Stats />
-      <Reviews />
       {/* Questions answered immediately before the enquiry form, not after it. */}
       <Faq />
       <Availability />

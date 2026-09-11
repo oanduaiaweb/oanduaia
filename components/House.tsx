@@ -54,6 +54,8 @@ export default function House({ slug }: { slug: string }) {
               <li key={item.et}>{item[lang].replace(/ · /g, ', ')}</li>
             ))}
           </ul>
+          {house.build && <p className="house-build">{house.build[lang]}</p>}
+
           {/*
             Prose, because a photograph is not indexable and this is the page that has to
             rank for "sauna cabin Lahemaa". What the house is, who it suits, what is

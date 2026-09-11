@@ -22,12 +22,14 @@ export default function HouseCompare() {
   const houses = f.houses
 
   const rows: [string, (i: number) => string][] = [
-    [r.guests[lang],   i => String(houses[i].sleeps)],
+    // Both of these come off the price tiers, so the two rows always line up: a house
+    // priced 200/300 reads 2–4 places, and one with a single tier reads a single number.
+    [r.guests[lang],   i => houses[i].prices.map(p => p.upTo).join('–')],
     [r.bedrooms[lang], i => houses[i].compare.bedrooms[lang]],
     [r.sauna[lang],    i => houses[i].compare.sauna[lang]],
     [r.kitchen[lang],  i => houses[i].compare.kitchen[lang]],
     [r.winter[lang],   i => houses[i].compare.winter[lang]],
-    [r.price[lang],    i => `${Math.min(...houses[i].prices.map(p => p.eur))} €`],
+    [r.price[lang],    i => `${houses[i].prices.map(p => p.eur).join('/')} €`],
     [r.bestFor[lang],  i => houses[i].compare.bestFor[lang]],
     [r.extra[lang],    i => houses[i].compare.extra[lang]],
   ]

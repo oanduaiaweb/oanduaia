@@ -15,14 +15,21 @@ const LANGS: { code: Lang; flag: string; label: string }[] = [
   { code: 'et', flag: '🇪🇪', label: 'ET' },
   { code: 'en', flag: '🇬🇧', label: 'EN' },
   { code: 'ru', flag: '🇷🇺', label: 'RU' },
+  { code: 'de', flag: '🇩🇪', label: 'DE' },
 ]
 
+/**
+ * In the order the sections actually appear on the page — houses first, then the story.
+ * The home page put the story above the houses until 31 Aug; this list did not follow it,
+ * so the menu and the scroll disagreed. **If a section moves in app/[lang]/page.tsx, move
+ * it here too.** Gallery is a page of its own and is appended after these.
+ */
 const links = [
-  { key: 'meist',    id: 'lugu' },
-  { key: 'majutus',  id: 'majad' },
-  { key: 'teenused', id: 'toit' },
-  { key: 'matkad',   id: 'loodus' },
-  { key: 'broneeri', id: 'broneeri' },
+  { key: 'majutus',    id: 'majad' },
+  { key: 'arvustused', id: 'arvustused' },
+  { key: 'meist',      id: 'lugu' },
+  { key: 'teenused',   id: 'toit' },
+  { key: 'broneeri',   id: 'broneeri' },
 ] as const
 
 /** Scrolls to the section without changing the URL. See lib/scrollToId. */

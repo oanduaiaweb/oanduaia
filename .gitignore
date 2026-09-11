@@ -18,3 +18,6 @@ npm-debug.log*
 .env*
 # ...except the template, which holds names and notes, never values.
 !.env.example
+
+# build artifact
+tsconfig.tsbuildinfo

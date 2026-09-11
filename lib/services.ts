@@ -20,6 +20,7 @@ export const SERVICE_IMAGES: ServiceImage[] = [
       et: 'Perenaine kaetud puhvetilaua taga väliköögis, koogid ja marjadesserdid ees',
       en: 'The host behind the laid buffet in the outdoor kitchen, cakes and berry desserts to the front',
       ru: 'Хозяйка за накрытым столом в летней кухне, торты и ягодные десерты впереди',
+      de: 'Die Gastgeberin hinter dem gedeckten Buffet in der Außenküche, Kuchen und Beerendesserts im Vordergrund',
     },
   },
   {
@@ -39,6 +40,7 @@ export const SERVICE_IMAGES: ServiceImage[] = [
       et: 'Küünlavalgel pikk laud messingist salvrätirõngaste ja jasmiinikimpudega',
       en: 'The long table by candlelight, with brass napkin rings and jars of jasmine',
       ru: 'Длинный стол при свечах, латунные кольца для салфеток и букеты жасмина',
+      de: 'Die lange Tafel bei Kerzenschein, mit Serviettenringen aus Messing und Gläsern voll Jasmin',
     },
   },
 ]

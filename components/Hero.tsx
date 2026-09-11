@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { track } from '@/lib/analytics'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import { scrollToId } from '@/lib/scrollToId'
@@ -95,7 +96,14 @@ export default function Hero() {
         </h1>
         <p className="hero-eyebrow">{h.eyebrow[lang]}</p>
         <p className="hero-desc">{h.desc[lang]}</p>
-        <a href="#broneeri" className="btn-primary hero-cta" onClick={scrollTo('broneeri')}>
+        <a
+          href="#broneeri"
+          className="btn-primary hero-cta"
+          onClick={e => {
+            track('booking_cta', { location: 'hero', lang })
+            scrollTo('broneeri')(e)
+          }}
+        >
           {h.cta[lang]}
         </a>
       </div>

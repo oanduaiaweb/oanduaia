@@ -5,11 +5,14 @@ import Script from 'next/script'
 import '../globals.css'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { BookingDraftProvider } from '@/contexts/BookingDraftContext'
+import StickyBook from '@/components/StickyBook'
 import { LOCALES, META, SITE, alternates, isLocale, jsonLd, siteJsonLd } from '@/lib/i18n'
 
 const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400'],
+  subsets: ['latin', 'cyrillic'],
+  // 500 and 600 exist for the small UI text that used to be Jost — a 300-weight Garamond
+  // at 11px is a hairline, and the browser would otherwise synthesise the bolder weights.
+  weight: ['300', '400', '500', '600'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant',
   display: 'swap',
@@ -86,7 +89,11 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd(lang), siteJsonLd(lang)]) }}
         />
         <LanguageProvider lang={lang}>
-          <BookingDraftProvider>{children}</BookingDraftProvider>
+          <BookingDraftProvider>
+            {children}
+            {/* Every locale page gets the following booking button; /admin has its own layout. */}
+            <StickyBook />
+          </BookingDraftProvider>
         </LanguageProvider>
       </body>
     </html>

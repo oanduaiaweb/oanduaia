@@ -1,8 +1,17 @@
 'use client'
 
 import { useLanguage } from '@/contexts/LanguageContext'
+import { track } from '@/lib/analytics'
 import { T } from '@/lib/translations'
-import { REVIEW_SOURCES, WRITE_REVIEW_URL, formatScore, reviewCount } from '@/lib/reviews'
+import {
+  REVIEW_SOURCES,
+  REVIEW_QUOTES,
+  translatedNote,
+  WRITE_REVIEW_URL,
+  formatScore,
+  reviewCount,
+} from '@/lib/reviews'
+import { SOCIAL } from '@/lib/social'
 
 /**
  * Replaces the single pulled quote that used to sit here. One flattering line, chosen by
@@ -44,6 +53,36 @@ export default function Reviews() {
         ))}
       </div>
 
+      {/*
+        The words, under the scores. A number tells you people were satisfied; a sentence
+        tells you what they were satisfied BY — and these three were chosen because they
+        answer different questions: the place, the food, and the sauna.
+      */}
+      <div className="quotes reveal reveal-delay-2">
+        {REVIEW_QUOTES.map(q => (
+          <figure key={q.id} className="quote">
+            <blockquote className="quote-text">{q.text[lang]}</blockquote>
+            <figcaption className="quote-by">
+              <span className="quote-author">{q.author}</span>
+              <span className="quote-meta">
+                {q.when[lang]}
+                {translatedNote(q.originalLang, lang) &&
+                  ` · ${translatedNote(q.originalLang, lang)}`}
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+        <a
+          className="quotes-source"
+          href={SOCIAL.mapsPlace}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track('review_source_click', { lang })}
+        >
+          {t.read[lang]} · Google
+        </a>
+      </div>
+
       <div className="reviews-write reveal reveal-delay-3">
         <p className="reviews-write-h">{t.writeH[lang]}</p>
         <p className="reviews-write-sub">{t.writeSub[lang]}</p>
@@ -52,6 +91,7 @@ export default function Reviews() {
           href={WRITE_REVIEW_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track('review_click', { lang })}
         >
           {t.write[lang]}
         </a>

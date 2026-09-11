@@ -1,6 +1,7 @@
 'use client'
 
 import { useLanguage } from '@/contexts/LanguageContext'
+import { track } from '@/lib/analytics'
 import { T } from '@/lib/translations'
 import SocialRow from '@/components/SocialRow'
 import { SOCIAL, EMAIL } from '@/lib/social'
@@ -32,6 +33,12 @@ export default function Footer() {
         <p className="footer-heading">{t.contH[lang]}</p>
         <ul className="footer-links">
           <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+          {/* Same number as the Business Profile — the two must not drift apart. */}
+          <li>
+            <a href={SOCIAL.phoneHref} onClick={() => track('phone_click', { lang })}>
+              {SOCIAL.phone}
+            </a>
+          </li>
           <li>
             <a href={SOCIAL.booking} target="_blank" rel="noopener noreferrer">Booking.com</a>
           </li>
