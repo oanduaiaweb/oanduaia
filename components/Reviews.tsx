@@ -12,6 +12,7 @@ import {
   reviewCount,
 } from '@/lib/reviews'
 import { SOCIAL } from '@/lib/social'
+import Stars from '@/components/Stars'
 
 /**
  * Replaces the single pulled quote that used to sit here. One flattering line, chosen by
@@ -46,6 +47,25 @@ export default function Reviews() {
             <span className="review-score">
               {formatScore(src.score, lang)}
               <span className="review-outof">{` / ${src.outOf}`}</span>
+            </span>
+            {/*
+              The stars repeat the number above them on purpose: the figure is exact and
+              the stars are instant. Anyone scanning the row reads the shape first.
+            */}
+            {/*
+              Wrapped, because the SVG cannot be the flex item itself. On the phone the
+              card becomes a wrapping row, and forcing the stars onto their own line needs
+              flex-basis:100% — which on the SVG would also stretch it to the card width,
+              while clamping it with max-width stops the wrap from happening at all. The
+              span takes the flex rules; the SVG inside keeps its own size.
+            */}
+            <span className="review-stars-line">
+              <Stars
+                id={src.id}
+                score={src.score}
+                outOf={src.outOf}
+                label={`${formatScore(src.score, lang)} / ${src.outOf} — ${src.channel}`}
+              />
             </span>
             <span className="review-count">{reviewCount(src.count, lang)}</span>
             <span className="review-go">{t.read[lang]}</span>

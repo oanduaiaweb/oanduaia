@@ -2213,6 +2213,41 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--sage);
   opacity: 0.65;
 }
+/*
+ * The stars sit between the figure and the review count. Width is fixed in rem rather
+ * than a percentage so all three cards show the same size star whatever the card width,
+ * and the row reads as one scale instead of three.
+ */
+.review-stars-line {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.review-stars {
+  display: block;
+  width: 6.6rem;
+  height: auto;
+  margin: 0.2rem 0 0.15rem;
+  overflow: visible;
+}
+/*
+ * The unfilled remainder, in a dimmed gold rather than a near-invisible sage.
+ *
+ * This is the whole point of drawing stars from a real score. At 0.13 alpha the empty
+ * part of the fifth star vanished against the olive and 9.6 read as five FULL stars —
+ * which is the one thing these must not do, since the score is not ours to round up.
+ * At this weight the missing sliver is legible, so 9.6, 9.7 and a true 5.0 look
+ * different from each other, which is the honest result.
+ */
+.review-star-bg {
+  fill: var(--gold);
+  opacity: 0.26;
+}
+/* The earned portion. A class, not fill="var(--gold)" — a CSS variable in an SVG
+   presentation attribute is not reliable across engines, and silently renders black. */
+.review-star-fill {
+  fill: var(--gold);
+}
 .review-count {
   font-family: var(--font-sans);
   font-size: var(--fs-2xs);
@@ -2282,6 +2317,19 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   /* The two-line reserve is only there to align columns; the stacked cards are rows. */
   .review-card .review-channel { flex: 1 1 auto; min-height: 0; }
   .review-card .review-score { order: 3; }
+  /*
+   * Own line. Sitting the stars beside the score pushed them straight off the right edge
+   * of the card — the mobile card is a wrapping row with space-between, and the score is
+   * already claiming that side. A full basis puts them under it instead, where the card
+   * has the width to spare.
+   */
+  /*
+   * flex-basis forces the wrap onto its own line; max-width is what actually sizes it.
+   * Setting `width` alone did nothing — on a flex item the basis wins, so the SVG
+   * stretched to the full width of the card.
+   */
+  .review-card .review-stars-line { order: 4; flex-basis: 100%; justify-content: flex-start; margin: 0.45rem 0 0; }
+  .review-card .review-stars { width: 5rem; }
   .review-count { flex-basis: 100%; }
   .review-go { margin-top: 0.2rem; }
   .reviews-write-btn { width: 100%; }
