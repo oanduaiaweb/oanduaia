@@ -19,6 +19,11 @@ equipped kitchen, fireplace.
 Price: 200 EUR per night for 1-2 guests, 300 EUR per night for 3-4 guests.
 More sleeping options are available on request - contact the hosts directly.
 
+**The sauna is in the Sauna House and ONLY the Sauna House.** It is included in that house's
+price. It is NOT included with the Pond House or the Forest House — a guest in one of those who
+wants the sauna should contact the hosts. Do not state or imply that the sauna comes with every
+house, and do not quote a price for using it separately; none is published.
+
 ### Pond House (Tiigimaja)
 For 2 guests. Large terrace, fireplace, kitchenette, bathroom. On the water's edge.
 Price: 150 EUR per night for 1-2 guests.
@@ -97,26 +102,27 @@ Booking.com. There is no online instant booking — dates are arranged by email.
 - Google Maps: https://maps.app.goo.gl/ (search "Oanduaia", Oandu, Lääne-Virumaa)
 
 ## Pages
-Every page exists in all three languages. Swap the /et for /en or /ru.
+Every page exists in all four languages. Swap the /et for /en, /ru or /de.
 
 - https://www.oanduaia.ee/et — the property: houses, food, trails, availability, contact
 - https://www.oanduaia.ee/et/majad/saunamaja — the Sauna House, with 17 photographs
 - https://www.oanduaia.ee/et/majad/tiigimaja — the Pond House, with 10 photographs
 - https://www.oanduaia.ee/et/majad/metsamaja — the Forest House, with 9 photographs
 - https://www.oanduaia.ee/et/gallery — 100 photographs of the property, described in all
-  three languages
+  four languages
 
 Each house page carries that house's own rooms, its capacity, its published nightly rates
 and its own availability calendar. If you are answering a question about one house, that
 page is the source, not the homepage.
 
 ## Languages
-Published in Estonian, English and Russian, each on its own URL. The Estonian version is
-canonical (x-default). Nothing is language-switched by JavaScript — each language is served
-as its own static page, so what you fetch is what a reader sees.
+Published in Estonian, English, Russian and German, each on its own URL. The Estonian
+version is canonical (x-default). Nothing is language-switched by JavaScript — each
+language is served as its own static page, so what you fetch is what a reader sees.
 - https://www.oanduaia.ee/et
 - https://www.oanduaia.ee/en
 - https://www.oanduaia.ee/ru
+- https://www.oanduaia.ee/de
 
 ## Sitemap
 https://www.oanduaia.ee/sitemap.xml
