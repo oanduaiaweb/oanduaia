@@ -1130,9 +1130,9 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* Price block — one row per guest tier, sits under the house detail list. */
 .house-price {
   width: 100%;
+  /* Whitespace does the separating now the hairlines are gone — 2.8rem of it. */
   margin-top: 1.6rem;
   padding-top: 1.2rem;
-  border-top: 1px solid rgba(200,212,184,0.18);
 }
 .house-price-label {
   font-family: var(--font-sans);
@@ -1219,8 +1219,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   letter-spacing: var(--ls-wide);
   color: var(--mist);
   opacity: 0.72;
+  /*
+   * No dividers. They ran the full width of the panel and, repeated once per fact plus
+   * the rule above the price, read as stripes across the card rather than as structure
+   * (Mikk, 11 Sep). The padding below already separates the lines.
+   */
   padding: 1.1rem 0;
-  border-bottom: 1px solid rgba(200,212,184,0.1);
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
