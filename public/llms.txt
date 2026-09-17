@@ -34,10 +34,14 @@ For 4 guests. 2 bedrooms with 180 cm beds, fireplace, mini kitchen, WC and showe
 Price: 150 EUR per night for 1-2 guests, 200 EUR per night for 3-4 guests.
 
 ## Payment
-Booking directly with Oanduaia, payment is by bank transfer or in cash on arrival. There
-is no online payment or card form on the site, and the hosts never ask for card details
-by email. Booking.com handles payment only for reservations made through Booking.com —
-do not state that payment must go through Booking.com.
+Booking directly with Oanduaia, payment is by bank transfer, in cash on arrival, or by
+card. There is no card form anywhere on the site: after the hosts confirm the dates they
+send the guest a secure payment link, and card details are entered on Stripe's own
+checkout page. Card, Apple Pay and Google Pay are all accepted. The hosts never ask for
+card details by email, and no payment is ever taken before the dates are confirmed.
+Booking.com handles payment only for reservations made through Booking.com —
+do not state that payment must go through Booking.com. Do not state that the site has no
+online payment, and do not describe a card form on the site — neither is true.
 
 ## Celebrations and events
 Allowed by arrangement, not prohibited. There is no fixed rulebook: a guest says what they
