@@ -311,7 +311,7 @@ export const T = {
         },
         sleeps: 4,
         compare: {
-          bedrooms: { et: '2 magamistuba, 180 cm voodid', en: '2 bedrooms, 180 cm beds', ru: '2 спальни, кровати 180 см', de: '2 Schlafzimmer, 180-cm-Betten' },
+          bedrooms: { et: '2 magamistuba', en: '2 bedrooms', ru: '2 спальни', de: '2 Schlafzimmer' },
           sauna:    { et: 'Ei sisaldu · küsi', en: 'Not included · ask us', ru: 'Не входит · спросите', de: 'Nicht enthalten · fragen' },
           kitchen:  { et: 'Miniköök', en: 'Mini kitchen', ru: 'Мини-кухня', de: 'Miniküche' },
           winter:   { et: 'Suletud dets–märts', en: 'Closed Dec–Mar', ru: 'Закрыт дек–март', de: 'Dez–März geschlossen' },
@@ -321,10 +321,10 @@ export const T = {
         seoKind: { et: 'palkmaja metsa serval', en: 'forest cabin', ru: 'дом среди елей', de: 'Ferienhaus im Wald' },
         body: [
           {
-            et: 'Metsamaja seisab kõrgete kuuskede vahel, muru serval. Kaks magamistuba 180 cm voodiga, kamin, miniköök, WC ja dušš. Elutoas on tepitud diivan lambanahkade all, ruuduline vaip ja rippkiik akna all; magamistoa palkseinte vahel valgustatud pullipea voodi kohal.',
-            en: 'The Forest House stands among tall spruce at the edge of the lawn. Two bedrooms with 180 cm beds, a fireplace, a mini kitchen, a WC and a shower. In the living room a buttoned sofa under sheepskins, a checked rug and a hanging chair at the window; in the bedroom, between log walls, a lit bull’s head above the bed.',
-            ru: 'Лесной дом стоит среди высоких елей на краю газона. Две спальни с кроватями 180 см, камин, мини-кухня, санузел с душем. В гостиной стёганый диван под овчинами, клетчатый ковёр и подвесное кресло у окна; в спальне между бревенчатыми стенами — подсвеченная голова быка над кроватью.',
-            de: 'Das Waldhaus steht zwischen hohen Fichten am Rand der Wiese. Zwei Schlafzimmer mit 180-cm-Betten, ein Kamin, eine Miniküche, WC und Dusche. Im Wohnraum ein Chesterfield-Sofa unter Schaffellen, ein karierter Teppich und ein Hängesessel am Fenster; im Schlafzimmer, zwischen Blockwänden, ein beleuchteter Stierkopf über dem Bett.',
+            et: 'Metsamaja seisab kõrgete kuuskede vahel, muru serval. Kaks magamistuba, kamin, miniköök, WC ja dušš. Elutoas on tepitud diivan lambanahkade all, ruuduline vaip ja rippkiik akna all; magamistoa palkseinte vahel valgustatud pullipea voodi kohal.',
+            en: 'The Forest House stands among tall spruce at the edge of the lawn. Two bedrooms, a fireplace, a mini kitchen, a WC and a shower. In the living room a buttoned sofa under sheepskins, a checked rug and a hanging chair at the window; in the bedroom, between log walls, a lit bull’s head above the bed.',
+            ru: 'Лесной дом стоит среди высоких елей на краю газона. Две спальни, камин, мини-кухня, санузел с душем. В гостиной стёганый диван под овчинами, клетчатый ковёр и подвесное кресло у окна; в спальне между бревенчатыми стенами — подсвеченная голова быка над кроватью.',
+            de: 'Das Waldhaus steht zwischen hohen Fichten am Rand der Wiese. Zwei Schlafzimmer, ein Kamin, eine Miniküche, WC und Dusche. Im Wohnraum ein Chesterfield-Sofa unter Schaffellen, ein karierter Teppich und ein Hängesessel am Fenster; im Schlafzimmer, zwischen Blockwänden, ein beleuchteter Stierkopf über dem Bett.',
           },
           {
             et: 'See on neljale ja sobib perele või kahele paarile: kaks eraldi magamistuba, oma kamin ja mets akna taga. Maja renditakse tervikuna.',
@@ -342,7 +342,7 @@ export const T = {
         name: { et: 'Metsamaja', en: 'Forest House', ru: 'Лесной дом', de: 'Waldhaus' },
         tag:  { et: 'Neli inimest. Kaks tuba. Üks mets.', en: 'Four people. Two rooms. One forest.', ru: 'Четыре человека. Две комнаты. Один лес.', de: 'Vier Personen. Zwei Zimmer. Ein Wald.' },
         items: [
-          { et: 'Neljale · 2 magamistuba (180 cm voodid)', en: 'For four · 2 bedrooms (180 cm beds)', ru: 'На четверых · 2 спальни (кровати 180 см)', de: 'Für vier · 2 Schlafzimmer (180-cm-Betten)' },
+          { et: 'Neljale · 2 magamistuba', en: 'For four · 2 bedrooms', ru: 'На четверых · 2 спальни', de: 'Für vier · 2 Schlafzimmer' },
           { et: 'Kamin, mini köök, WC ja dušš', en: 'Fireplace, mini kitchen, WC and shower', ru: 'Камин, мини-кухня, туалет и душ', de: 'Kamin, Miniküche, WC und Dusche' },
         ],
         prices: [
@@ -853,10 +853,10 @@ export const T = {
         de: 'Sie schreiben direkt an die Gastgeber – ein Zusatzbett, eine späte Anreise, ein Hund, ein Geburtstag.',
       },
       {
-        et: 'Makse pangaülekandega, sularahas kohapeal või kaardiga – saadame makselingi.',
-        en: 'Payment by bank transfer, in cash on arrival, or by card — we send a payment link.',
-        ru: 'Оплата переводом, наличными на месте или картой — пришлём ссылку на оплату.',
-        de: 'Zahlung per Überweisung, bar bei der Anreise oder per Karte – wir senden einen Zahlungslink.',
+        et: 'Makse sularahas kohapeal või kaardiga – saadame makselingi.',
+        en: 'Payment in cash on arrival or by card — we send a payment link.',
+        ru: 'Оплата наличными на месте или картой — пришлём ссылку на оплату.',
+        de: 'Zahlung bar bei der Anreise oder per Karte – wir senden einen Zahlungslink.',
       },
     ],
     lNimi:   { et: 'Nimi', en: 'Name', ru: 'Имя', de: 'Name' },
