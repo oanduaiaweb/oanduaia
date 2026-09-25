@@ -15,7 +15,14 @@ import { randomBytes, randomUUID } from 'node:crypto'
 const PATH = 'payments/log.json'
 const MAX = 500
 
-export type PaymentStatus = 'unpaid' | 'paid' | 'cancelled'
+/**
+ * `expired` is its own status, not a flavour of `cancelled`.
+ *
+ * Cancelled means a person decided; expired means the 4-day deadline ran out and the nights
+ * were put back on sale automatically. Keeping them apart is the difference between "we let
+ * this one go" and "the guest never paid" when the same dates come up in conversation later.
+ */
+export type PaymentStatus = 'unpaid' | 'paid' | 'cancelled' | 'expired'
 
 export type Payment = {
   /** Also the URL token. Random, never sequential — a guessable id would expose other guests. */
@@ -34,6 +41,25 @@ export type Payment = {
   /** Kept so a payment can be traced in the Stripe dashboard without guesswork. */
   sessionId?: string
   paymentIntentId?: string
+
+  /*
+   * The stay this link is for.
+   *
+   * `reference` is prose for the guest and always was; these are the machine-readable facts,
+   * and they exist so two things can happen without a human: the deadline can be computed
+   * from the arrival date, and the nights can be handed back if nobody pays.
+   */
+  house?: string
+  checkIn?: string
+  checkOut?: string
+  /** When the money is due. Unpaid past this and the link expires. */
+  dueAt?: string
+  /** The calendar block held for these nights, so expiry can release exactly that one. */
+  blockId?: string
+  /** Set when the deadline passed and the nights were released. */
+  expiredAt?: string
+  /** Whether the guest was actually e-mailed the link, and when. */
+  mailedAt?: string
 }
 
 export type PaymentStore = { version: 1; payments: Payment[] }

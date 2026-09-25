@@ -4,6 +4,21 @@ import { SESSION_COOKIE, verifySession } from '@/lib/adminAuth'
 import { addPayment, eurosToCents, readPayments, updatePayment } from '@/lib/payments'
 import { stripeConfigured, stripeLive } from '@/lib/stripe'
 import { LOCALES } from '@/lib/i18n'
+import { Resend } from 'resend'
+import { randomUUID } from 'node:crypto'
+import { dueDate, linkLetter } from '@/lib/paymentEmail'
+import { overlaps, readBookings, validateBlock, writeBookings, type Block } from '@/lib/bookings'
+import { type HouseSlug } from '@/lib/availability'
+
+const SITE = 'https://www.oanduaia.ee'
+
+// Per request, never at module scope: module-scope construction runs during the build's
+// page-data collection and throws wherever the key is not set.
+function getResend() {
+  const key = process.env.RESEND_API_KEY
+  if (!key) throw new Error('RESEND_API_KEY is not configured')
+  return new Resend(key)
+}
 
 export const dynamic = 'force-dynamic'
 
@@ -38,6 +53,38 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'That amount is not a euro figure (minimum 0.50).' }, { status: 400 })
   }
 
+  const { house, checkIn, checkOut, send } = body
+  const wantsStay = Boolean(house && checkIn && checkOut)
+
+  /*
+   * Holding the nights is the whole point of sending a link, in Mikk's words: "nobody can book
+   * after i sent the link". The block is what makes that true beyond this site — our iCal feed
+   * publishes it as CLOSED, so Booking.com stops selling the same night.
+   *
+   * It is created BEFORE the record, so a clash fails without leaving a link behind.
+   */
+  let blockId: string | undefined
+  if (wantsStay) {
+    const problem = validateBlock(String(house), String(checkIn), String(checkOut))
+    if (problem) return NextResponse.json({ error: problem }, { status: 400 })
+    const bookings = await readBookings()
+    if (overlaps(bookings, house as HouseSlug, checkIn, checkOut)) {
+      return NextResponse.json({ error: 'Those nights are already held.' }, { status: 409 })
+    }
+    const block: Block = {
+      id: randomUUID(),
+      from: String(checkIn),
+      to: String(checkOut),
+      guest: String(name).slice(0, 80),
+      note: 'Held for a payment link',
+      created: new Date().toISOString(),
+    }
+    bookings.blocks[house as HouseSlug] = [...(bookings.blocks[house as HouseSlug] ?? []), block]
+    await writeBookings(bookings)
+    blockId = block.id
+  }
+
+  const today = new Date().toISOString().slice(0, 10)
   const record = await addPayment({
     name: String(name).slice(0, 120),
     email: String(email).slice(0, 200),
@@ -45,8 +92,48 @@ export async function POST(req: Request) {
     lang: (LOCALES as readonly string[]).includes(String(lang)) ? String(lang) : 'et',
     amount: cents,
     currency: 'eur',
+    ...(wantsStay ? {
+      house: String(house),
+      checkIn: String(checkIn),
+      checkOut: String(checkOut),
+      dueAt: dueDate(today, String(checkIn)),
+      blockId,
+    } : {}),
   })
-  return NextResponse.json({ ok: true, payment: record })
+
+  /*
+   * The letter goes last, and a failure here is reported without losing the link: the record
+   * and the block already exist, and the admin can copy the URL by hand. Silence would be the
+   * worse outcome — that is exactly how Janine ended up waiting a fortnight for a link that
+   * was promised and never sent.
+   */
+  let mailError: string | undefined
+  if (send) {
+    try {
+      const letter = linkLetter({
+        guest: record.name,
+        reference: record.reference,
+        amountCents: record.amount,
+        payUrl: `${SITE}/${record.lang}/pay/${record.id}`,
+        dueAt: record.dueAt ?? today,
+        lang: record.lang,
+      })
+      await getResend().emails.send({
+        from: 'Oanduaia <info@oanduaia.ee>',
+        to: record.email,
+        replyTo: 'info@oanduaia.ee',
+        subject: letter.subject,
+        text: letter.text,
+      })
+      await updatePayment(record.id, p => { p.mailedAt = new Date().toISOString() })
+      record.mailedAt = new Date().toISOString()
+    } catch (error) {
+      console.error('[payments] link e-mail failed:', error)
+      mailError = 'The link was created but the e-mail did not go out.'
+    }
+  }
+
+  return NextResponse.json({ ok: true, payment: record, ...(mailError ? { mailError } : {}) })
 }
 
 /** Cancels a link that has not been paid. Never touches one that has. */

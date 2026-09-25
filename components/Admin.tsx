@@ -26,7 +26,10 @@ export default function Admin() {
   const [enquiries, setEnquiries] = useState<Enquiry[] | null>(null)
   const [payments, setPayments] = useState<Payment[] | null>(null)
   const [stripe, setStripe] = useState<{ configured: boolean; live: boolean } | null>(null)
-  const [pay, setPay] = useState({ name: '', email: '', reference: '', amount: '', lang: 'et' })
+  const [pay, setPay] = useState({
+    name: '', email: '', reference: '', amount: '', lang: 'et',
+    house: '', checkIn: '', checkOut: '', send: true,
+  })
   const [payError, setPayError] = useState('')
   const [copied, setCopied] = useState('')
   const [busy, setBusy] = useState(false)
@@ -127,7 +130,8 @@ export default function Admin() {
     const data = await res.json().catch(() => ({}))
     setBusy(false)
     if (!res.ok) { setPayError(data.error ?? 'Could not create that link.'); return }
-    setPay(prev => ({ ...prev, reference: '', amount: '' }))
+    setPay(prev => ({ ...prev, reference: '', amount: '', checkIn: '', checkOut: '' }))
+    if (data.mailError) setPayError(data.mailError)
     loadPayments()
     // Straight to the clipboard: the next thing that happens is always pasting it into a reply.
     navigator.clipboard?.writeText(payLink(data.payment)).then(() => setCopied(data.payment.id)).catch(() => {})
@@ -152,6 +156,7 @@ export default function Admin() {
       reference: [e.dates, e.message].filter(Boolean).join('\n').slice(0, 400),
       amount: '',
       lang: e.lang && ['et', 'en', 'ru', 'de'].includes(e.lang) ? e.lang : 'et',
+      house: '', checkIn: '', checkOut: '', send: true,
     })
     document.getElementById('pay-amount')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     setTimeout(() => (document.getElementById('pay-amount') as HTMLInputElement | null)?.focus(), 400)
@@ -342,9 +347,36 @@ export default function Admin() {
               placeholder="Saunamaja, 7&ndash;10 September 2026, 3 nights, breakfast for 2"
               onChange={e => setPay(p => ({ ...p, reference: e.target.value }))} />
           </div>
+          <div className="adm-field">
+            <label className="adm-label" htmlFor="pay-house">House &mdash; holds the nights</label>
+            <select id="pay-house" className="adm-input" value={pay.house}
+              onChange={e => setPay(p => ({ ...p, house: e.target.value }))}>
+              <option value="">Do not hold any nights</option>
+              <option value="saunamaja">Saunamaja</option>
+              <option value="metsamaja">Metsamaja</option>
+              <option value="tiigimaja">Tiigimaja</option>
+            </select>
+          </div>
+          <div className="adm-field">
+            <label className="adm-label" htmlFor="pay-in">Arrival</label>
+            <input id="pay-in" className="adm-input" type="date" value={pay.checkIn}
+              onChange={e => setPay(p => ({ ...p, checkIn: e.target.value }))} />
+          </div>
+          <div className="adm-field">
+            <label className="adm-label" htmlFor="pay-out">Departure</label>
+            <input id="pay-out" className="adm-input" type="date" value={pay.checkOut}
+              onChange={e => setPay(p => ({ ...p, checkOut: e.target.value }))} />
+          </div>
+          <div className="adm-field adm-field--wide">
+            <label className="adm-label" htmlFor="pay-send">
+              <input id="pay-send" type="checkbox" checked={pay.send}
+                onChange={e => setPay(p => ({ ...p, send: e.target.checked }))} />
+              {' '}E-mail the link to the guest now
+            </label>
+          </div>
           <div className="adm-field adm-field--submit">
             <button className="adm-btn" type="submit" disabled={busy}>
-              {busy ? 'Creating\u2026' : 'Create link'}
+              {busy ? 'Working\u2026' : pay.send ? 'Confirm and send' : 'Create link'}
             </button>
           </div>
         </form>
@@ -363,6 +395,13 @@ export default function Admin() {
                   <span className="adm-nights">{` \u00b7 ${p.status}${p.paidAt ? ' ' + new Date(p.paidAt).toLocaleDateString('et-EE') : ''}`}</span>
                 </span>
                 <span className="adm-who">{p.name} &mdash; {p.reference}</span>
+                {(p.dueAt || p.mailedAt) && (
+                  <span className="adm-muted">
+                    {p.dueAt ? `Pay by ${p.dueAt}` : ''}
+                    {p.dueAt && p.mailedAt ? ' \u00b7 ' : ''}
+                    {p.mailedAt ? 'e-mailed' : p.dueAt ? 'not e-mailed' : ''}
+                  </span>
+                )}
                 <span className="adm-pay-actions">
                   <button className="adm-link" type="button"
                     onClick={() => { navigator.clipboard?.writeText(payLink(p)); setCopied(p.id) }}>
