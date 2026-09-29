@@ -308,7 +308,7 @@ export function jsonLd(lang: Lang) {
     url: `${SITE}/${lang}`,
     description: META[lang].description,
     email: 'info@oanduaia.ee',
-    image: [`${SITE}/images/tiik.jpg`, `${SITE}/images/saunamaja.jpg`, `${SITE}/images/metsamaja.jpg`],
+    image: [`${SITE}/images/og.jpg`, `${SITE}/images/saunamaja.jpg`, `${SITE}/images/metsamaja.jpg`],
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Oandu',

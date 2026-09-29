@@ -148,6 +148,46 @@ export async function PATCH(req: Request) {
   if (found.status === 'paid') {
     return NextResponse.json({ error: 'That one is already paid — refund it in Stripe instead.' }, { status: 409 })
   }
+  /*
+   * Re-send an existing link, optionally with a note of our own above the standard letter.
+   *
+   * Added because the letter had to go out while Gmail was locked behind a "verify it's you"
+   * prompt, and recreating the link to get it sent would have minted a new URL and disturbed
+   * the calendar hold. "Send that one again" is wanted often enough on its own: a guest who
+   * lost the mail, or a deadline worth repeating.
+   */
+  if (body.resend) {
+    if (found.status !== 'unpaid') {
+      return NextResponse.json({ error: 'Only an unpaid link can be sent again.' }, { status: 409 })
+    }
+    const today = new Date().toISOString().slice(0, 10)
+    const letter = linkLetter({
+      guest: found.name,
+      reference: found.reference,
+      amountCents: found.amount,
+      payUrl: `${SITE}/${found.lang}/pay/${found.id}`,
+      dueAt: found.dueAt ?? today,
+      lang: found.lang,
+    })
+    const note = typeof body.note === 'string' && body.note.trim()
+      ? `${body.note.trim()}\n\n`
+      : ''
+    try {
+      await getResend().emails.send({
+        from: 'Oanduaia <info@oanduaia.ee>',
+        to: found.email,
+        replyTo: 'info@oanduaia.ee',
+        subject: letter.subject,
+        text: note + letter.text,
+      })
+    } catch (error) {
+      console.error('[payments] resend failed:', error)
+      return NextResponse.json({ error: 'The e-mail did not go out.' }, { status: 502 })
+    }
+    const sent = await updatePayment(body.id, p => { p.mailedAt = new Date().toISOString() })
+    return NextResponse.json({ ok: true, payment: sent, mailed: true })
+  }
+
   const updated = await updatePayment(body.id, p => { p.status = body.cancel ? 'cancelled' : 'unpaid' })
   return NextResponse.json({ ok: true, payment: updated })
 }

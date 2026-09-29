@@ -62,13 +62,13 @@ export async function generateMetadata({
       description: m.description,
       url: `${SITE}/${lang}`,
       locale: m.ogLocale,
-      images: [{ url: '/images/tiik.jpg', width: 1200, height: 630, alt: 'Oanduaia' }],
+      images: [{ url: '/images/og.jpg', width: 1200, height: 630, alt: 'Oanduaia' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: m.title,
       description: m.description,
-      images: ['/images/tiik.jpg'],
+      images: ['/images/og.jpg'],
     },
     robots: { index: true, follow: true },
   }

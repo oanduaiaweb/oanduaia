@@ -26,7 +26,7 @@ export async function generateMetadata({
       title: m.title,
       description: m.description,
       url: `${SITE}/${lang}/gallery`,
-      images: [{ url: '/images/tiik.jpg', width: 1200, height: 630, alt: 'Oanduaia' }],
+      images: [{ url: '/images/og.jpg', width: 1200, height: 630, alt: 'Oanduaia' }],
     },
   }
 }
