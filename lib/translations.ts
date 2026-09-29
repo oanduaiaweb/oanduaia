@@ -893,6 +893,13 @@ export const T = {
     matkad:  { et: 'Loodus', en: 'Nature', ru: 'Природа', de: 'Natur' },
     broneeri:{ et: 'Broneeri', en: 'Book', ru: 'Бронь', de: 'Buchen' },
     maps:    { et: 'Google Maps', en: 'Google Maps', ru: 'Google Карты', de: 'Google Maps' },
+    /*
+     * The footer used to link only to anchors on this page, which left the landing page and
+     * the gallery reachable from the sitemap but from no page on the site. An orphan is the
+     * weakest page there is, however good its content — so the two real pages go here.
+     */
+    landing: { et: 'Majutus Lahemaal', en: 'Lahemaa accommodation', ru: 'Жильё в Лахемаа', de: 'Unterkunft in Lahemaa' },
+    galerii: { et: 'Galerii', en: 'Gallery', ru: 'Галерея', de: 'Galerie' },
     contH:   { et: 'Kontakt', en: 'Contact', ru: 'Контакт', de: 'Kontakt' },
     copy:    { et: '© 2026 Oanduaia. Kõik õigused kaitstud.', en: '© 2026 Oanduaia. All rights reserved.', ru: '© 2026 Oanduaia. Все права защищены.', de: '© 2026 Oanduaia. Alle Rechte vorbehalten.' },
     loc:     { et: 'Lahemaa rahvuspark · Estonia', en: 'Lahemaa National Park · Estonia', ru: 'Нац. парк Лахемаа · Эстония', de: 'Nationalpark Lahemaa · Estland' },

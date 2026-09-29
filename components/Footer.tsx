@@ -5,10 +5,13 @@ import { track } from '@/lib/analytics'
 import { T } from '@/lib/translations'
 import SocialRow from '@/components/SocialRow'
 import { SOCIAL, EMAIL } from '@/lib/social'
+import { LANDINGS } from '@/lib/landing'
 
 export default function Footer() {
   const { lang } = useLanguage()
   const t = T.footer
+  // Per-locale slug: the landing page is /en/lahemaa-accommodation but /et/majutus-lahemaal.
+  const landing = LANDINGS[0]
   return (
     <footer>
       <div>
@@ -27,6 +30,8 @@ export default function Footer() {
           <li><a href="#toit">{t.teenused[lang]}</a></li>
           <li><a href="#loodus">{t.matkad[lang]}</a></li>
           <li><a href="#broneeri">{t.broneeri[lang]}</a></li>
+          <li><a href={`/${lang}/${landing.slug[lang]}`}>{t.landing[lang]}</a></li>
+          <li><a href={`/${lang}/gallery`}>{t.galerii[lang]}</a></li>
         </ul>
       </div>
       <div>
