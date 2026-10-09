@@ -6,6 +6,28 @@ import type { HouseSlug } from './availability'
 export const PET_FEE_EUR = 20
 /** 20 € per person, per morning — and the guest chooses which mornings. */
 export const BREAKFAST_EUR = 20
+/** 28 € per person, per evening. Pre-ordered: the kitchen cooks to a number, not to a maybe. */
+export const DINNER_EUR = 28
+
+/**
+ * The meals arranged for one booking.
+ *
+ * Kept as dates and headcounts rather than a sentence, because the kitchen cooks off this and
+ * "breakfast for 2" buried in a paragraph cannot be counted, sorted or totalled. Declared here
+ * rather than beside the payment record on purpose: `payments.ts` pulls in `@vercel/blob`, and
+ * the admin that edits these is a client component.
+ */
+export type Meals = {
+  /** Mornings breakfast is wanted, ISO dates. */
+  breakfastDates?: string[]
+  /** How many eat it — not always everyone in the house. */
+  breakfastPeople?: number
+  /** Evenings dinner is wanted, ISO dates. */
+  dinnerDates?: string[]
+  dinnerPeople?: number
+  /** Settled at the house on arrival instead of being included in the card amount. */
+  atHouse?: boolean
+}
 
 export type House = (typeof T.feature.houses)[number]
 
@@ -59,6 +81,34 @@ export type Quote = {
 export function breakfastMornings(checkIn: DateStr, checkOut: DateStr): DateStr[] {
   const n = nightsBetween(checkIn, checkOut)
   return Array.from({ length: Math.max(0, n) }, (_, i) => addDays(checkIn, i + 1))
+}
+
+/**
+ * The evenings a guest could actually eat dinner on this stay.
+ *
+ * The mirror image of the mornings: arrival is from 2 pm so there IS dinner on the day you come,
+ * and departure is at noon so there is none on the day you leave. That makes it the check-in day
+ * through the last night — as many evenings as there are nights, shifted one day earlier than
+ * the breakfasts.
+ */
+export function dinnerEvenings(checkIn: DateStr, checkOut: DateStr): DateStr[] {
+  const n = nightsBetween(checkIn, checkOut)
+  return Array.from({ length: Math.max(0, n) }, (_, i) => addDays(checkIn, i))
+}
+
+/** What the arranged meals come to, split so a line can show where the money is. */
+export function mealsCost(m: Meals | undefined): {
+  breakfast: number; dinner: number; total: number
+} {
+  const eaters = (n: number | undefined) => Math.max(0, Math.floor(n ?? 0))
+  const breakfast = (m?.breakfastDates?.length ?? 0) * eaters(m?.breakfastPeople) * BREAKFAST_EUR
+  const dinner = (m?.dinnerDates?.length ?? 0) * eaters(m?.dinnerPeople) * DINNER_EUR
+  return { breakfast, dinner, total: breakfast + dinner }
+}
+
+/** Whether anything is actually being cooked — an empty `meals` object is not a meal. */
+export function hasMeals(m: Meals | undefined): boolean {
+  return mealsCost(m).total > 0
 }
 
 export function quote(

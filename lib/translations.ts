@@ -526,6 +526,15 @@ export const T = {
       ru: 'Не удалось открыть оплату. Попробуйте ещё раз или напишите на info@oanduaia.ee.',
       de: 'Beim Öffnen der Zahlung ist etwas schiefgegangen. Versuchen Sie es erneut oder schreiben Sie an info@oanduaia.ee.',
     },
+    // Shown when the stay was arranged to be settled in cash at the house. There is no card
+    // payment to offer, so the page says so plainly rather than presenting a button that fails.
+    cashH: { et: 'Maksad kohapeal', en: 'You pay at the house', ru: 'Оплата на месте', de: 'Sie zahlen vor Ort' },
+    cashBody: {
+      et: 'Leppisime kokku, et tasud sularahas kohale jõudes. Veebis ei ole midagi maksta. Kui midagi muutus, kirjuta info@oanduaia.ee.',
+      en: 'We agreed you will pay in cash when you arrive. There is nothing to pay online. If anything has changed, write to info@oanduaia.ee.',
+      ru: 'Мы договорились, что вы оплатите наличными по приезде. Онлайн платить ничего не нужно. Если что-то изменилось, напишите на info@oanduaia.ee.',
+      de: 'Wir haben vereinbart, dass Sie bei der Ankunft bar bezahlen. Online ist nichts zu bezahlen. Falls sich etwas geändert hat, schreiben Sie an info@oanduaia.ee.',
+    },
   },
 
   availability: {

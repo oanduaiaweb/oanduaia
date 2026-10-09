@@ -1,5 +1,6 @@
 import { put, get, BlobNotFoundError } from '@vercel/blob'
 import { randomBytes, randomUUID } from 'node:crypto'
+import type { Meals } from './pricing'
 
 /**
  * Card payments, on our side.
@@ -60,6 +61,24 @@ export type Payment = {
   expiredAt?: string
   /** Whether the guest was actually e-mailed the link, and when. */
   mailedAt?: string
+
+  /**
+   * How the guest pays. Absent means card: every record written before cash existed is a card
+   * one, so this stays optional and nothing has to be migrated.
+   *
+   * A cash booking holds the nights exactly as a link does, but there is nothing to pay online —
+   * no Stripe session, and deliberately no `dueAt`, because the expiry job releases nights on
+   * anything unpaid past its deadline and a cash booking never becomes paid on its own.
+   */
+  method?: 'card' | 'cash'
+
+  /**
+   * Breakfasts and dinners arranged for this stay, with the dates and headcounts the kitchen
+   * needs. `meals.atHouse` says the food is settled on arrival rather than being part of the
+   * amount above — the two are tracked apart because a guest can pay the room by card and hand
+   * over cash for the meals.
+   */
+  meals?: Meals
 }
 
 export type PaymentStore = { version: 1; payments: Payment[] }

@@ -7,6 +7,10 @@ import { nightsBetween } from '@/lib/ical'
 import type { Block } from '@/lib/bookings'
 import type { Enquiry } from '@/lib/enquiries'
 import type { Payment } from '@/lib/payments'
+import {
+  BREAKFAST_EUR, DINNER_EUR, breakfastMornings, dinnerEvenings, hasMeals, mealsCost,
+  type Meals,
+} from '@/lib/pricing'
 
 type Payload = {
   blocks: Record<string, Block[]>
@@ -28,9 +32,12 @@ export default function Admin() {
   const [stripe, setStripe] = useState<{ configured: boolean; live: boolean } | null>(null)
   const [pay, setPay] = useState({
     name: '', email: '', reference: '', amount: '', lang: 'et',
-    house: '', checkIn: '', checkOut: '', send: true,
+    house: '', checkIn: '', checkOut: '', send: true, cash: false,
+    bDates: [] as string[], bPeople: 2, dDates: [] as string[], dPeople: 2, mealsAtHouse: false,
   })
   const [payError, setPayError] = useState('')
+  const [payFilter, setPayFilter] = useState<'all' | 'paid' | 'unpaid' | 'meals'>('all')
+  const [showHandled, setShowHandled] = useState(false)
   const [copied, setCopied] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -119,13 +126,36 @@ export default function Admin() {
 
   const payLink = (p: Payment) => `${location.origin}/${p.lang}/pay/${p.id}`
 
+  /*
+   * Paid and unpaid used to sit in one undivided list, which is why "who has actually paid" was
+   * hard to read off the page at a glance.
+   */
+  const allPayments = payments ?? []
+  const paidPayments = allPayments.filter(p => p.status === 'paid')
+  const waitingPayments = allPayments.filter(p => p.status === 'unpaid')
+  const mealPayments = allPayments.filter(p => hasMeals(p.meals))
+  const shownPayments =
+    payFilter === 'paid' ? paidPayments
+      : payFilter === 'unpaid' ? waitingPayments
+        : payFilter === 'meals' ? mealPayments
+          : allPayments
+  const paidTotal = paidPayments.reduce((sum, p) => sum + p.amount, 0)
+
   const createPayment = async (e: FormEvent) => {
     e.preventDefault()
     setPayError(''); setBusy(true)
     const res = await fetch('/api/admin/payments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(pay),
+      body: JSON.stringify({
+        ...pay,
+        method: pay.cash ? 'cash' : 'card',
+        meals: {
+          breakfastDates: pay.bDates, breakfastPeople: pay.bPeople,
+          dinnerDates: pay.dDates, dinnerPeople: pay.dPeople,
+          atHouse: pay.mealsAtHouse,
+        },
+      }),
     })
     const data = await res.json().catch(() => ({}))
     setBusy(false)
@@ -148,6 +178,42 @@ export default function Admin() {
     loadPayments()
   }
 
+  /** `2026-10-14` → `14. okt`, short enough to sit in a chip. */
+  const dayLabel = (d: string) =>
+    new Intl.DateTimeFormat('et-EE', { day: 'numeric', month: 'short', timeZone: 'UTC' })
+      .format(new Date(`${d}T12:00:00Z`))
+
+  const toggleDate = (key: 'bDates' | 'dDates', d: string) =>
+    setPay(p => ({
+      ...p,
+      [key]: p[key].includes(d) ? p[key].filter(x => x !== d) : [...p[key], d].sort(),
+    }))
+
+  /** What is being cooked, for whom, and where the money for it sits. */
+  const mealsSummary = (m: Meals) => {
+    const cost = mealsCost(m)
+    const parts: string[] = []
+    if (m.breakfastDates?.length && m.breakfastPeople) {
+      parts.push(`breakfast ${m.breakfastPeople}×${m.breakfastDates.length}`)
+    }
+    if (m.dinnerDates?.length && m.dinnerPeople) {
+      parts.push(`dinner ${m.dinnerPeople}×${m.dinnerDates.length}`)
+    }
+    return `${parts.join(' · ')} — ${cost.total} € ${m.atHouse ? 'at the house' : 'in the amount'}`
+  }
+
+  /** Cash handed over at the house. Only ever offered on a cash booking. */
+  const markCashPaid = async (id: string) => {
+    if (!confirm('Mark this booking as paid in cash?')) return
+    const res = await fetch('/api/admin/payments', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, markPaid: true }),
+    })
+    if (!res.ok) { const d = await res.json().catch(() => ({})); setError(d.error ?? 'Could not mark that paid.'); return }
+    loadPayments()
+  }
+
   /** Fills the form straight from an enquiry, so the details are never retyped or mistyped. */
   const chargeFor = (e: Enquiry) => {
     setPay({
@@ -156,7 +222,8 @@ export default function Admin() {
       reference: [e.dates, e.message].filter(Boolean).join('\n').slice(0, 400),
       amount: '',
       lang: e.lang && ['et', 'en', 'ru', 'de'].includes(e.lang) ? e.lang : 'et',
-      house: '', checkIn: '', checkOut: '', send: true,
+      house: '', checkIn: '', checkOut: '', send: true, cash: false,
+      bDates: [], bPeople: 2, dDates: [], dPeople: 2, mealsAtHouse: false,
     })
     document.getElementById('pay-amount')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     setTimeout(() => (document.getElementById('pay-amount') as HTMLInputElement | null)?.focus(), 400)
@@ -214,6 +281,14 @@ export default function Admin() {
   const nights = from && to ? nightsBetween(from, to) : 0
   const waiting = enquiries?.filter(e => !e.handled).length ?? 0
 
+  /*
+   * Dealt-with enquiries are kept but not shown. Nothing is deleted — the record of who wrote
+   * in still matters months later — but the list should only hold what still needs answering.
+   */
+  const allEnquiries = enquiries ?? []
+  const handledCount = allEnquiries.filter(e => e.handled).length
+  const shownEnquiries = showHandled ? allEnquiries : allEnquiries.filter(e => !e.handled)
+
   return (
     <main className="adm">
       <header className="adm-head">
@@ -230,6 +305,13 @@ export default function Admin() {
         <h2 className="adm-h2">
           Enquiries
           {waiting > 0 && <span className="adm-badge">{waiting} waiting</span>}
+          {handledCount > 0 && (
+            <button type="button"
+              className={`adm-chip${showHandled ? ' is-on' : ''}`}
+              onClick={() => setShowHandled(v => !v)}>
+              {showHandled ? 'Hide dealt with' : `Dealt with (${handledCount})`}
+            </button>
+          )}
         </h2>
 
         {enquiries === null ? (
@@ -241,7 +323,7 @@ export default function Admin() {
           </p>
         ) : (
           <ul className="adm-enq-list">
-            {enquiries.map(e => (
+            {shownEnquiries.map(e => (
               <li className={`adm-enq${e.handled ? ' is-done' : ''}`} key={e.id}>
                 <div className="adm-enq-head">
                   <span className="adm-enq-who">
@@ -367,16 +449,80 @@ export default function Admin() {
             <input id="pay-out" className="adm-input" type="date" value={pay.checkOut}
               onChange={e => setPay(p => ({ ...p, checkOut: e.target.value }))} />
           </div>
+          {/*
+            Only once the dates are known: which mornings and evenings even exist follows from
+            the stay, and offering meal days before that would be guessing at them.
+          */}
+          {pay.checkIn && pay.checkOut && (
+            <div className="adm-field adm-field--wide">
+              <span className="adm-label">Meals &mdash; who eats, and which days</span>
+
+              <div className="adm-meal-row">
+                <span className="adm-meal-name">Breakfast &middot; {BREAKFAST_EUR}&nbsp;&euro; pp</span>
+                <input className="adm-input adm-input--n" type="number" min={0} max={40}
+                  aria-label="How many eat breakfast" value={pay.bPeople}
+                  onChange={e => setPay(p => ({ ...p, bPeople: Math.max(0, Number(e.target.value) || 0) }))} />
+                <span className="adm-filter">
+                  {breakfastMornings(pay.checkIn, pay.checkOut).map(d => (
+                    <button key={d} type="button"
+                      className={`adm-chip${pay.bDates.includes(d) ? ' is-on' : ''}`}
+                      onClick={() => toggleDate('bDates', d)}>{dayLabel(d)}</button>
+                  ))}
+                </span>
+              </div>
+
+              <div className="adm-meal-row">
+                <span className="adm-meal-name">Dinner &middot; {DINNER_EUR}&nbsp;&euro; pp</span>
+                <input className="adm-input adm-input--n" type="number" min={0} max={40}
+                  aria-label="How many eat dinner" value={pay.dPeople}
+                  onChange={e => setPay(p => ({ ...p, dPeople: Math.max(0, Number(e.target.value) || 0) }))} />
+                <span className="adm-filter">
+                  {dinnerEvenings(pay.checkIn, pay.checkOut).map(d => (
+                    <button key={d} type="button"
+                      className={`adm-chip${pay.dDates.includes(d) ? ' is-on' : ''}`}
+                      onClick={() => toggleDate('dDates', d)}>{dayLabel(d)}</button>
+                  ))}
+                </span>
+              </div>
+
+              {mealsCost({
+                breakfastDates: pay.bDates, breakfastPeople: pay.bPeople,
+                dinnerDates: pay.dDates, dinnerPeople: pay.dPeople,
+              }).total > 0 && (
+                <label className="adm-label adm-meal-total">
+                  <input type="checkbox" checked={pay.mealsAtHouse}
+                    onChange={e => setPay(p => ({ ...p, mealsAtHouse: e.target.checked }))} />
+                  {' '}Food paid at the house &mdash;{' '}
+                  {mealsCost({
+                    breakfastDates: pay.bDates, breakfastPeople: pay.bPeople,
+                    dinnerDates: pay.dDates, dinnerPeople: pay.dPeople,
+                  }).total}&nbsp;&euro; NOT included in the amount above
+                </label>
+              )}
+            </div>
+          )}
+
           <div className="adm-field adm-field--wide">
-            <label className="adm-label" htmlFor="pay-send">
-              <input id="pay-send" type="checkbox" checked={pay.send}
-                onChange={e => setPay(p => ({ ...p, send: e.target.checked }))} />
-              {' '}E-mail the link to the guest now
+            <label className="adm-label" htmlFor="pay-cash">
+              <input id="pay-cash" type="checkbox" checked={pay.cash}
+                onChange={e => setPay(p => ({ ...p, cash: e.target.checked }))} />
+              {' '}Paying cash at the house &mdash; holds the nights, no card link
             </label>
           </div>
+          {!pay.cash && (
+            <div className="adm-field adm-field--wide">
+              <label className="adm-label" htmlFor="pay-send">
+                <input id="pay-send" type="checkbox" checked={pay.send}
+                  onChange={e => setPay(p => ({ ...p, send: e.target.checked }))} />
+                {' '}E-mail the link to the guest now
+              </label>
+            </div>
+          )}
           <div className="adm-field adm-field--submit">
             <button className="adm-btn" type="submit" disabled={busy}>
-              {busy ? 'Working\u2026' : pay.send ? 'Confirm and send' : 'Create link'}
+              {busy ? 'Working\u2026'
+                : pay.cash ? 'Save cash booking'
+                  : pay.send ? 'Confirm and send' : 'Create link'}
             </button>
           </div>
         </form>
@@ -387,34 +533,87 @@ export default function Admin() {
         ) : payments.length === 0 ? (
           <p className="adm-muted">No payment links yet.</p>
         ) : (
-          <ul className="adm-list">
-            {payments.map(p => (
-              <li className={`adm-item adm-pay adm-pay--${p.status}`} key={p.id}>
-                <span className="adm-dates">
-                  {(p.amount / 100).toFixed(2)} &euro;
-                  <span className="adm-nights">{` \u00b7 ${p.status}${p.paidAt ? ' ' + new Date(p.paidAt).toLocaleDateString('et-EE') : ''}`}</span>
+          <>
+            <div className="adm-filter">
+              {([
+                ['all', `All (${allPayments.length})`],
+                ['paid', `Paid (${paidPayments.length})`],
+                ['unpaid', `Waiting (${waitingPayments.length})`],
+                ['meals', `Meals (${mealPayments.length})`],
+              ] as const).map(([key, label]) => (
+                <button key={key} type="button"
+                  className={`adm-chip${payFilter === key ? ' is-on' : ''}`}
+                  onClick={() => setPayFilter(key)}>{label}</button>
+              ))}
+              {paidPayments.length > 0 && (
+                <span className="adm-muted adm-filter-sum">
+                  {(paidTotal / 100).toFixed(2)} &euro; received
                 </span>
-                <span className="adm-who">{p.name} &mdash; {p.reference}</span>
-                {(p.dueAt || p.mailedAt) && (
-                  <span className="adm-muted">
-                    {p.dueAt ? `Pay by ${p.dueAt}` : ''}
-                    {p.dueAt && p.mailedAt ? ' \u00b7 ' : ''}
-                    {p.mailedAt ? 'e-mailed' : p.dueAt ? 'not e-mailed' : ''}
-                  </span>
-                )}
-                <span className="adm-pay-actions">
-                  <button className="adm-link" type="button"
-                    onClick={() => { navigator.clipboard?.writeText(payLink(p)); setCopied(p.id) }}>
-                    {copied === p.id ? 'Copied' : 'Copy link'}
-                  </button>
-                  {p.status === 'unpaid' && (
-                    <button className="adm-link adm-link--danger" type="button"
-                      onClick={() => cancelPayment(p.id)}>Cancel</button>
-                  )}
-                </span>
-              </li>
-            ))}
-          </ul>
+              )}
+            </div>
+
+            {shownPayments.length === 0 ? (
+              <p className="adm-muted">Nothing under that filter.</p>
+            ) : (
+              <ul className="adm-list">
+                {shownPayments.map(p => (
+                  <li className={`adm-item adm-pay adm-pay--${p.status}`} key={p.id}>
+                    <span className="adm-dates">
+                      {(p.amount / 100).toFixed(2)} &euro;
+                      <span className="adm-nights">{` \u00b7 ${p.method === 'cash' ? 'cash \u00b7 ' : ''}${p.status}${p.paidAt ? ' ' + new Date(p.paidAt).toLocaleDateString('et-EE') : ''}`}</span>
+                    </span>
+                    {/*
+                      Everything about the guest stays inside this one cell. The row is a
+                      three-column grid, so a fourth sibling silently wraps onto a second line
+                      and drags the buttons under the amount with it.
+                    */}
+                    <span className="adm-who">
+                      {p.name} &mdash; {p.reference}
+                      <br />
+                      <span className="adm-nights">{p.email}</span>
+                      {hasMeals(p.meals) && (
+                        <>
+                          <br />
+                          <span className="adm-nights adm-meals-line">{mealsSummary(p.meals!)}</span>
+                        </>
+                      )}
+                      {p.status !== 'paid' && (p.dueAt || p.mailedAt) && (
+                        <>
+                          <br />
+                          <span className="adm-nights">
+                            {p.dueAt ? `Pay by ${p.dueAt}` : ''}
+                            {p.dueAt && p.mailedAt ? ' \u00b7 ' : ''}
+                            {p.mailedAt ? 'e-mailed' : p.dueAt ? 'not e-mailed' : ''}
+                          </span>
+                        </>
+                      )}
+                    </span>
+                    <span className="adm-pay-actions">
+                      {p.status === 'paid' && (
+                        <a className="adm-link" href={`/api/admin/invoice/${p.id}`}
+                          target="_blank" rel="noopener noreferrer">Invoice</a>
+                      )}
+                      {p.status === 'unpaid' && p.method === 'cash' && (
+                        <button className="adm-link" type="button"
+                          onClick={() => markCashPaid(p.id)}>Cash received</button>
+                      )}
+                      {/* There is no link to copy on a cash booking. */}
+                      {p.method !== 'cash' && (
+                        <button className="adm-link" type="button"
+                          onClick={() => { navigator.clipboard?.writeText(payLink(p)); setCopied(p.id) }}>
+                          {copied === p.id ? 'Copied' : 'Copy link'}
+                        </button>
+                      )}
+                      {p.status === 'unpaid' && (
+                        <button className="adm-link adm-link--danger" type="button"
+                          onClick={() => cancelPayment(p.id)}>Cancel</button>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
         )}
       </section>
 

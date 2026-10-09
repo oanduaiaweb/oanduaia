@@ -36,7 +36,10 @@ export async function GET(req: Request) {
   const store = await readPayments()
 
   const due = store.payments.filter(
-    p => p.status === 'unpaid' && p.dueAt && p.dueAt < today,
+    // A cash booking is confirmed, not owed. It stays `unpaid` until the money arrives at the
+    // house, so expiring it would cancel a real guest and put their nights back on sale. It is
+    // written without a `dueAt` for the same reason — this is the second lock on that door.
+    p => p.status === 'unpaid' && p.method !== 'cash' && p.dueAt && p.dueAt < today,
   )
   if (due.length === 0) {
     return NextResponse.json({ ok: true, expired: 0, released: 0, checked: today })

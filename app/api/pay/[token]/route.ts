@@ -21,6 +21,9 @@ export async function POST(_req: Request, ctx: { params: Promise<{ token: string
   if (!payment) return NextResponse.json({ error: 'not_found' }, { status: 404 })
   if (payment.status === 'paid') return NextResponse.json({ error: 'already_paid' }, { status: 409 })
   if (payment.status === 'cancelled') return NextResponse.json({ error: 'cancelled' }, { status: 409 })
+  // Arranged to be settled at the house. The pay page is reachable by anyone holding the URL,
+  // so this is refused here rather than only left out of the admin.
+  if (payment.method === 'cash') return NextResponse.json({ error: 'cash_booking' }, { status: 409 })
 
   const stripe = getStripe()
   if (!stripe) return NextResponse.json({ error: 'not_configured' }, { status: 503 })

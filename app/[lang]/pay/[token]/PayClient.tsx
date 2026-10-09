@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { T, type Lang } from '@/lib/translations'
 
-type View = { name: string; reference: string; amount: string; status: string }
+type View = { name: string; reference: string; amount: string; status: string; method?: string }
 
 export default function PayClient({
   lang, token, payment,
@@ -39,6 +39,27 @@ export default function PayClient({
           <p className="pay-eyebrow">{t.eyebrow[lang]}</p>
           <h1 className="pay-h1">{t.paidH[lang]}</h1>
           <p className="pay-note">{t.paidBody[lang]}</p>
+          <dl className="pay-rows">
+            <div><dt>{t.what[lang]}</dt><dd>{payment.reference}</dd></div>
+            <div><dt>{t.amount[lang]}</dt><dd className="pay-amount">{payment.amount} €</dd></div>
+          </dl>
+        </div>
+      </main>
+    )
+  }
+
+  /*
+   * Settled at the house. Deliberately below the paid and cancelled branches: a cash booking
+   * that has been marked paid should read "paid", not "you pay on arrival". The API refuses a
+   * checkout for these too — this only stops a guest being shown a button that cannot work.
+   */
+  if (payment.method === 'cash') {
+    return (
+      <main className="pay">
+        <div className="pay-card">
+          <p className="pay-eyebrow">{t.eyebrow[lang]}</p>
+          <h1 className="pay-h1">{t.cashH[lang]}</h1>
+          <p className="pay-note">{t.cashBody[lang]}</p>
           <dl className="pay-rows">
             <div><dt>{t.what[lang]}</dt><dd>{payment.reference}</dd></div>
             <div><dt>{t.amount[lang]}</dt><dd className="pay-amount">{payment.amount} €</dd></div>

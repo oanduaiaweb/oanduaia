@@ -7,6 +7,7 @@ import { LOCALES } from '@/lib/i18n'
 import { Resend } from 'resend'
 import { randomUUID } from 'node:crypto'
 import { dueDate, linkLetter } from '@/lib/paymentEmail'
+import { hasMeals } from '@/lib/pricing'
 import { overlaps, readBookings, validateBlock, writeBookings, type Block } from '@/lib/bookings'
 import { type HouseSlug } from '@/lib/availability'
 
@@ -53,7 +54,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'That amount is not a euro figure (minimum 0.50).' }, { status: 400 })
   }
 
-  const { house, checkIn, checkOut, send } = body
+  const { house, checkIn, checkOut, send, method } = body
+  const isCash = method === 'cash'
   const wantsStay = Boolean(house && checkIn && checkOut)
 
   /*
@@ -84,6 +86,24 @@ export async function POST(req: Request) {
     blockId = block.id
   }
 
+  /*
+   * The meals, sanitised rather than trusted. Everything here arrives in a request body, so the
+   * dates are checked against a real date shape before being stored and the headcounts are
+   * clamped — a kitchen order for -3 people is a bug, not an instruction.
+   */
+  const rawMeals = body.meals
+  const isDate = (d: unknown) => typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d)
+  const count = (n: unknown) => Math.min(40, Math.max(0, Math.floor(Number(n) || 0)))
+  const meals = rawMeals && typeof rawMeals === 'object' ? {
+    breakfastDates: Array.isArray(rawMeals.breakfastDates)
+      ? rawMeals.breakfastDates.filter(isDate).slice(0, 60) : [],
+    breakfastPeople: count(rawMeals.breakfastPeople),
+    dinnerDates: Array.isArray(rawMeals.dinnerDates)
+      ? rawMeals.dinnerDates.filter(isDate).slice(0, 60) : [],
+    dinnerPeople: count(rawMeals.dinnerPeople),
+    atHouse: Boolean(rawMeals.atHouse),
+  } : undefined
+
   const today = new Date().toISOString().slice(0, 10)
   const record = await addPayment({
     name: String(name).slice(0, 120),
@@ -92,11 +112,15 @@ export async function POST(req: Request) {
     lang: (LOCALES as readonly string[]).includes(String(lang)) ? String(lang) : 'et',
     amount: cents,
     currency: 'eur',
+    ...(isCash ? { method: 'cash' as const } : {}),
+    ...(hasMeals(meals) ? { meals } : {}),
     ...(wantsStay ? {
       house: String(house),
       checkIn: String(checkIn),
       checkOut: String(checkOut),
-      dueAt: dueDate(today, String(checkIn)),
+      // No deadline on a cash booking: there is nothing to pay online, and a `dueAt` here is
+      // exactly what would make the expiry job hand a confirmed guest's nights back.
+      ...(isCash ? {} : { dueAt: dueDate(today, String(checkIn)) }),
       blockId,
     } : {}),
   })
@@ -108,7 +132,9 @@ export async function POST(req: Request) {
    * was promised and never sent.
    */
   let mailError: string | undefined
-  if (send) {
+  // The standard letter is a pay-link letter. A cash guest has no link to follow, so sending it
+  // would tell them to go and pay online for something they arranged to settle at the house.
+  if (send && !isCash) {
     try {
       const letter = linkLetter({
         guest: record.name,
@@ -186,6 +212,26 @@ export async function PATCH(req: Request) {
     }
     const sent = await updatePayment(body.id, p => { p.mailedAt = new Date().toISOString() })
     return NextResponse.json({ ok: true, payment: sent, mailed: true })
+  }
+
+  /*
+   * Cash handed over at the house.
+   *
+   * Restricted to cash bookings on purpose: a card link is marked paid by the Stripe webhook,
+   * and allowing it to be ticked off by hand would mean a record claiming money that no payment
+   * processor ever saw. The already-paid guard above stops this being applied twice.
+   */
+  if (body.markPaid) {
+    if (found.method !== 'cash') {
+      return NextResponse.json(
+        { error: 'Only a cash booking can be marked paid by hand.' }, { status: 409 },
+      )
+    }
+    const paid = await updatePayment(body.id, p => {
+      p.status = 'paid'
+      p.paidAt = new Date().toISOString()
+    })
+    return NextResponse.json({ ok: true, payment: paid })
   }
 
   const updated = await updatePayment(body.id, p => { p.status = body.cancel ? 'cancelled' : 'unpaid' })

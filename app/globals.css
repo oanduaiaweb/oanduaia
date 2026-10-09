@@ -3827,6 +3827,50 @@ a.feature-house-name:hover { color: var(--mist); }
 .adm-pay--cancelled { opacity: 0.5; }
 .adm-pay--cancelled .adm-dates { text-decoration: line-through; }
 .adm-enq-actions .adm-live { margin-bottom: 0; }
+.adm-pay--expired { opacity: 0.55; }
+.adm-pay--expired .adm-dates { text-decoration: line-through; }
+
+.adm-filter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1.4rem 0 0.4rem;
+}
+.adm-chip {
+  font: inherit;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fern);
+  background: none;
+  border: 1px solid rgba(90,110,80,0.28);
+  border-radius: 2rem;
+  padding: 0.3rem 0.85rem;
+  cursor: pointer;
+}
+.adm-chip:hover { border-color: var(--moss); }
+.adm-chip.is-on { background: var(--moss); border-color: var(--moss); color: #fff; }
+.adm-filter-sum { margin-left: auto; }
+
+.adm-meal-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+.adm-meal-name {
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fern);
+  min-width: 9.5rem;
+}
+.adm-input--n { width: 4.2rem; text-align: center; }
+.adm-meal-row .adm-filter { margin: 0; }
+.adm-meal-total { display: block; margin-top: 0.5rem; text-transform: none; letter-spacing: 0; }
+.adm-meals-line { color: var(--moss); }
 
 .adm-list { list-style: none; }
 .adm-item {
