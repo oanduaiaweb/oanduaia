@@ -640,9 +640,15 @@ export function trailMeta(lang: Lang, slug: string) {
   }
   // Cyrillic takes the Cyrillic unit; "4,7 km" in a Russian title is half-translated.
   const unit: Record<Lang, string> = { et: 'km', en: 'km', ru: 'км', de: 'km' }
+  // Google cuts titles near 60 characters and descriptions near 155, mid-word. The park name
+  // goes first when a long trail name leaves no room for it; the description ends on a word.
+  const base = `${t.name[lang]} — ${trailKm(t, lang)} ${unit[lang]}`
+  const withPark = `${base}, ${PARK_NAME[lang]} | Oanduaia`
+  const full = `${lead[lang]} ${t.body[0][lang]}`
+  const cut = full.length <= 155 ? full : `${full.slice(0, 154).replace(/[\s,;:.—–-]+\S*$/, '')}…`
   return {
-    title: `${t.name[lang]} — ${trailKm(t, lang)} ${unit[lang]}, ${PARK_NAME[lang]} | Oanduaia`,
-    description: `${lead[lang]} ${t.body[0][lang].slice(0, 150)}`.slice(0, 300),
+    title: withPark.length <= 60 ? withPark : `${base} | Oanduaia`,
+    description: cut,
   }
 }
 
