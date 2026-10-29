@@ -6,7 +6,7 @@ import Availability from '@/components/Availability'
 import Booking from '@/components/Booking'
 import Footer from '@/components/Footer'
 import ScrollRevealInit from '@/components/ScrollReveal'
-import { LOCALES, SITE, alternates, breadcrumbJsonLd, houseJsonLd, houseMeta, isLocale } from '@/lib/i18n'
+import { LOCALES, SITE, alternates, breadcrumbJsonLd, houseJsonLd, houseMeta, isLocale, META } from '@/lib/i18n'
 import { HOUSE_SLUGS, type HouseSlug } from '@/lib/availability'
 import { HOUSE_IMAGES } from '@/lib/houses'
 
@@ -33,6 +33,8 @@ export async function generateMetadata({
     openGraph: {
       type: 'website',
       siteName: 'Oanduaia',
+      locale: META[lang].ogLocale,
+      alternateLocale: LOCALES.filter(l => l !== lang).map(l => META[l].ogLocale),
       title: m.title,
       description: m.description,
       url: `${SITE}/${lang}/majad/${slug}`,

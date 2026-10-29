@@ -45,7 +45,7 @@ export async function POST(_req: Request, ctx: { params: Promise<{ token: string
       }],
       success_url: `${base}?paid=1`,
       cancel_url: base,
-      locale: payment.lang === 'et' ? 'et' : payment.lang === 'ru' ? 'ru' : payment.lang === 'de' ? 'de' : 'en',
+      locale: payment.lang === 'et' ? 'et' : payment.lang === 'ru' ? 'ru' : payment.lang === 'de' ? 'de' : payment.lang === 'es' ? 'es' : payment.lang === 'sv' ? 'sv' : payment.lang === 'fi' ? 'fi' : payment.lang === 'lv' ? 'lv' : 'en',
       metadata: { token: payment.id, name: payment.name },
     })
     await updatePayment(payment.id, p => { p.sessionId = session.id })

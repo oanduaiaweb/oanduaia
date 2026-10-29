@@ -12,6 +12,7 @@ export default function Services() {
   const t = T.services
   const cards = [t.s1, t.s2]
   return (
+    <div className="food-wrap">
     <section className="services-section" id="toit">
       <p className="section-label">{t.label[lang]}</p>
       <div className="services-grid services-grid--two">
@@ -53,5 +54,6 @@ export default function Services() {
         <PhotoStrip photos={FOOD_STRIP} reverse variant="plain" />
       </div>
     </section>
+    </div>
   )
 }

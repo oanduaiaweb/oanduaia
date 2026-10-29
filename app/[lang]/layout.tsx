@@ -9,7 +9,7 @@ import StickyBook from '@/components/StickyBook'
 import { LOCALES, META, SITE, alternates, isLocale, jsonLd, siteJsonLd } from '@/lib/i18n'
 
 const cormorant = Cormorant_Garamond({
-  subsets: ['latin', 'cyrillic'],
+  subsets: ['latin', 'latin-ext', 'cyrillic'],
   // 500 exists for the small UI text that used to be Jost — a 300-weight Garamond at 11px
   // is a hairline, and the browser would otherwise synthesise the bolder weight.
   // 600 was declared here and used NOWHERE: grepping font-weight across globals.css and
@@ -22,7 +22,7 @@ const cormorant = Cormorant_Garamond({
 })
 
 const jost = Jost({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   weight: ['300', '400', '500'],
   variable: '--font-jost',
   display: 'swap',
@@ -62,6 +62,7 @@ export async function generateMetadata({
       description: m.description,
       url: `${SITE}/${lang}`,
       locale: m.ogLocale,
+      alternateLocale: LOCALES.filter(l => l !== lang).map(l => META[l].ogLocale),
       images: [{ url: '/images/og.jpg', width: 1200, height: 630, alt: 'Oanduaia' }],
     },
     twitter: {
@@ -103,6 +104,13 @@ export default async function LocaleLayout({
         `}</Script>
       </head>
       <body>
+        {/*
+          Section background photographs (booking, food) are switched on only after the
+          page has loaded, so they never compete with the hero image — see .bg-ready.
+        */}
+        <script
+          dangerouslySetInnerHTML={{ __html: "addEventListener('load',function(){document.documentElement.classList.add('bg-ready')})" }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd(lang), siteJsonLd(lang)]) }}

@@ -7,7 +7,7 @@ import { CLOSED_SEASONS } from './season'
 import type { HouseSlug } from './availability'
 import { SOCIAL } from './social'
 
-export const LOCALES: Lang[] = ['et', 'en', 'ru', 'de']
+export const LOCALES: Lang[] = ['et', 'en', 'ru', 'de', 'es', 'sv', 'fi', 'lv']
 export const DEFAULT_LOCALE: Lang = 'et'
 
 export const SITE = 'https://www.oanduaia.ee'
@@ -18,6 +18,10 @@ export const HREFLANG: Record<Lang, string> = {
   en: 'en',
   ru: 'ru',
   de: 'de',
+  es: 'es',
+  sv: 'sv',
+  fi: 'fi',
+  lv: 'lv',
 }
 
 export function isLocale(v: string | undefined): v is Lang {
@@ -52,19 +56,19 @@ export const META: Record<Lang, { title: string; description: string; ogLocale: 
   et: {
     title: 'Oanduaia — saunaga puhkemajad ja majutus Lahemaal',
     description:
-      'Kolm eraldi palkmaja puuküttega sauna ja tiigiga Lahemaa rahvuspargis. Terve maja ainult sinule, Oandu külas. Hinnad alates 150 € öö.',
+      'Kolm eraldi palkmaja puuküttega sauna ja tiigiga Lahemaa rahvuspargis. Terve maja ainult sinule, Oandu külas. Hinnad alates 100 € öö.',
     ogLocale: 'et_EE',
   },
   en: {
     title: 'Oanduaia — sauna and forest cabins in Lahemaa, Estonia',
     description:
-      'Three private log cabins with a wood-fired sauna and pond in Lahemaa National Park, Estonia. Rent the whole house. Oandu village, from 150 € a night.',
+      'Three private log cabins with a wood-fired sauna and pond in Lahemaa National Park, Estonia. Rent the whole house. Oandu village, from 100 € a night.',
     ogLocale: 'en_GB',
   },
   ru: {
     title: 'Oanduaia — баня и лесные дома в Лахемаа, Эстония',
     description:
-      'Три отдельных дома с дровяной баней и прудом в парке Лахемаа, Эстония. Весь дом только для вас, деревня Оанду. От 150 € за ночь.',
+      'Три отдельных дома с дровяной баней и прудом в парке Лахемаа, Эстония. Весь дом только для вас, деревня Оанду. От 100 € за ночь.',
     ogLocale: 'ru_RU',
   },
   /*
@@ -75,8 +79,40 @@ export const META: Record<Lang, { title: string; description: string; ogLocale: 
   de: {
     title: 'Oanduaia — Ferienhäuser mit Sauna in Lahemaa, Estland',
     description:
-      'Drei Blockhäuser mit Holzsauna und Teich im Nationalpark Lahemaa, Estland. Das ganze Haus für sich, Dorf Oandu. Ab 150 € pro Nacht.',
+      'Drei Blockhäuser mit Holzsauna und Teich im Nationalpark Lahemaa, Estland. Das ganze Haus für sich, Dorf Oandu. Ab 100 € pro Nacht.',
     ogLocale: 'de_DE',
+  },
+  /*
+   * Spanish: "cabañas" is what a Spanish speaker searches for a log house in the woods, and
+   * "sauna de leña" says wood-fired without needing an explanation.
+   */
+  es: {
+    title: 'Oanduaia — cabañas con sauna en Lahemaa, Estonia',
+    description:
+      'Tres cabañas de troncos con sauna de leña y estanque en el Parque Nacional de Lahemaa, Estonia. La casa entera para ti. Desde 100 € la noche.',
+    ogLocale: 'es_ES',
+  },
+  /*
+   * Swedish "stuga" is the word for a rented cabin; "vedeldad bastu" says wood-fired. Finnish
+   * "mökki" and "puusauna" are what Finns type; Latvian "brīvdienu māja ar pirti" likewise.
+   */
+  sv: {
+    title: 'Oanduaia — stugor med bastu i Lahemaa, Estland',
+    description:
+      'Tre timmerstugor med vedeldad bastu och damm i Lahemaa nationalpark, Estland. Hela huset för dig, byn Oandu. Från 100 € per natt.',
+    ogLocale: 'sv_SE',
+  },
+  fi: {
+    title: 'Oanduaia — mökit saunalla Lahemaalla, Virossa',
+    description:
+      'Kolme hirsimökkiä puusaunalla ja lammella Lahemaan kansallispuistossa, Virossa. Koko talo vain sinulle, Oandun kylä. Alkaen 100 € yö.',
+    ogLocale: 'fi_FI',
+  },
+  lv: {
+    title: 'Oanduaia — brīvdienu mājas ar pirti Lahemā, Igaunijā',
+    description:
+      'Trīs guļbaļķu mājas ar malkas pirti un dīķi Lahemā nacionālajā parkā, Igaunijā. Visa māja tikai jums, Oandu ciemā. No 100 € par nakti.',
+    ogLocale: 'lv_LV',
   },
 }
 
@@ -89,7 +125,7 @@ export const GALLERY_META: Record<Lang, { title: string; description: string }> 
   en: {
     title: 'Photo gallery — sauna and forest cabins in Lahemaa | Oanduaia',
     description:
-      'Over a hundred photographs of the three Oanduaia log cabins, the wood-fired sauna, the pond and Lahemaa National Park — summer through winter, in Oandu village, Estonia.',
+      'Over a hundred photographs of the three Oanduaia log cabins, the wood-fired sauna, the pond and Lahemaa National Park, Estonia — summer through winter.',
   },
   ru: {
     title: 'Галерея — дома с баней в Лахемаа, Эстония | Oanduaia',
@@ -99,15 +135,44 @@ export const GALLERY_META: Record<Lang, { title: string; description: string }> 
   de: {
     title: 'Bildergalerie — Ferienhäuser mit Sauna in Lahemaa | Oanduaia',
     description:
-      'Über hundert Fotografien der drei Blockhäuser von Oanduaia, der Holzsauna, des Teichs und des Nationalparks Lahemaa — vom Sommer bis in den Winter, im Dorf Oandu, Estland.',
+      'Über hundert Fotos der drei Blockhäuser von Oanduaia, der Holzsauna, des Teichs und des Nationalparks Lahemaa in Estland — vom Sommer bis zum Winter.',
   },
+  es: {
+    title: 'Galería de fotos — cabañas con sauna en Lahemaa | Oanduaia',
+    description:
+      'Más de cien fotos de las tres cabañas de Oanduaia, la sauna de leña, el estanque y el Parque Nacional de Lahemaa, Estonia — del verano al invierno.',
+  },
+  sv: {
+    title: 'Bildgalleri — stugor med bastu i Lahemaa | Oanduaia',
+    description:
+      'Över hundra fotografier av Oanduaias tre timmerstugor, den vedeldade bastun, dammen och Lahemaa nationalpark — från sommar till vinter, i byn Oandu, Estland.',
+  },
+  fi: {
+    title: 'Kuvagalleria — mökit saunalla Lahemaalla | Oanduaia',
+    description:
+      'Yli sata valokuvaa Oanduaian kolmesta hirsimökistä, puusaunasta, lammesta ja Lahemaan kansallispuistosta — kesästä talveen, Oandun kylässä, Virossa.',
+  },
+  lv: {
+    title: 'Fotogalerija — brīvdienu mājas ar pirti Lahemā | Oanduaia',
+    description:
+      'Vairāk nekā simts fotogrāfiju ar Oanduaia trim guļbaļķu mājām, malkas pirti, dīķi un Lahemā nacionālo parku — no vasaras līdz ziemai, Oandu ciemā, Igaunijā.',
+  },
+}
+
+/**
+ * The bare domain is the x-default for the homepage: it redirects each visitor to their own
+ * language, which is what x-default means. Pointing it at /et instead made Google treat
+ * /en as a duplicate of "/" (Search Console, 26 Oct 2026), since "/" 307s to /en for Googlebot.
+ */
+export function xDefault(suffix = '') {
+  return suffix ? `${SITE}/${DEFAULT_LOCALE}${suffix}` : `${SITE}/`
 }
 
 /** Builds the canonical + hreflang alternates block for a given path suffix ('' or '/gallery'). */
 export function alternates(lang: Lang, suffix = '') {
   const languages: Record<string, string> = {}
   for (const l of LOCALES) languages[HREFLANG[l]] = `${SITE}/${l}${suffix}`
-  languages['x-default'] = `${SITE}/${DEFAULT_LOCALE}${suffix}`
+  languages['x-default'] = xDefault(suffix)
   return { canonical: `${SITE}/${lang}${suffix}`, languages }
 }
 
@@ -129,9 +194,11 @@ export function houseMeta(lang: Lang, slug: string) {
    * cabin — which is both the difference between them and the phrase people search.
    */
   const kind = h.seoKind ? h.seoKind[lang] : null
+  // Google cuts near 60 characters; the longer languages drop the country rather than the kind.
+  const full = kind ? `${h.name[lang]} — ${kind}, ${p.titlePlace[lang]}, ${p.titleCountry[lang]} | Oanduaia` : ''
   return {
     title: kind
-      ? `${h.name[lang]} — ${kind}, ${p.titlePlace[lang]}, ${p.titleCountry[lang]} | Oanduaia`
+      ? (full.length <= 60 ? full : `${h.name[lang]} — ${kind}, ${p.titlePlace[lang]} | Oanduaia`)
       : `${h.name[lang]} — ${p.titleSuffix[lang]}`,
     /*
      * No tagline here any more. That is a gain, not a loss: "Saun, köök, seltskond — kõik
@@ -156,6 +223,10 @@ export const PARK_NAME: Record<Lang, string> = {
   en: 'Lahemaa National Park',
   ru: 'Национальный парк Лахемаа',
   de: 'Nationalpark Lahemaa',
+  es: 'Parque Nacional de Lahemaa',
+  sv: 'Lahemaa nationalpark',
+  fi: 'Lahemaan kansallispuisto',
+  lv: 'Lahemā nacionālais parks',
 }
 
 /**
@@ -171,11 +242,16 @@ const HOUSE_AMENITIES: Record<Lang, string[]> = {
   en: ['Pond', 'Forest', 'Hiking trails'],
   ru: ['Пруд', 'Лес', 'Туристические тропы'],
   de: ['Teich', 'Wald', 'Wanderwege'],
+  es: ['Estanque', 'Bosque', 'Senderos'],
+  sv: ['Damm', 'Skog', 'Vandringsleder'],
+  fi: ['Lampi', 'Metsä', 'Retkeilyreitit'],
+  lv: ['Dīķis', 'Mežs', 'Pārgājienu takas'],
 }
 
 /** The one house that actually has it. */
 const SAUNA_AMENITY: Record<Lang, string> = {
-  et: 'Saun', en: 'Sauna', ru: 'Сауна', de: 'Sauna',
+  et: 'Saun', en: 'Sauna', ru: 'Сауна', de: 'Sauna', es: 'Sauna',
+  sv: 'Bastu', fi: 'Sauna', lv: 'Pirts',
 }
 
 export function houseJsonLd(lang: Lang, slug: string) {
@@ -280,12 +356,20 @@ export function jsonLd(lang: Lang) {
     en: ['Sauna House', 'Pond House', 'Forest House'],
     ru: ['Банный дом', 'Прудовой дом', 'Лесной дом'],
     de: ['Saunahaus', 'Teichhaus', 'Waldhaus'],
+    es: ['Casa de la Sauna', 'Casa del Estanque', 'Casa del Bosque'],
+    sv: ['Bastuhuset', 'Dammhuset', 'Skogshuset'],
+    fi: ['Saunatalo', 'Lampitalo', 'Metsätalo'],
+    lv: ['Pirts māja', 'Dīķa māja', 'Meža māja'],
   }
   const amenities: Record<Lang, string[]> = {
     et: ['Saun', 'Tiik', 'Mets', 'Matkarajad'],
     en: ['Sauna', 'Pond', 'Forest', 'Hiking trails'],
     ru: ['Сауна', 'Пруд', 'Лес', 'Туристические тропы'],
     de: ['Sauna', 'Teich', 'Wald', 'Wanderwege'],
+    es: ['Sauna', 'Estanque', 'Bosque', 'Senderos'],
+    sv: ['Bastu', 'Damm', 'Skog', 'Vandringsleder'],
+    fi: ['Sauna', 'Lampi', 'Metsä', 'Retkeilyreitit'],
+    lv: ['Pirts', 'Dīķis', 'Mežs', 'Pārgājienu takas'],
   }
   /*
    * Parking true and WiFi FALSE. Marking an absent amenity `false` is the point of the
@@ -298,6 +382,10 @@ export function jsonLd(lang: Lang) {
     en: [['Free parking', true], ['WiFi', false], ['Mobile data coverage', true]],
     ru: [['Бесплатная парковка', true], ['Wi-Fi', false], ['Мобильная связь', true]],
     de: [['Kostenlose Parkplätze', true], ['WLAN', false], ['Mobilfunkempfang', true]],
+    es: [['Aparcamiento gratuito', true], ['WiFi', false], ['Cobertura móvil', true]],
+    sv: [['Gratis parkering', true], ['WiFi', false], ['Mobiltäckning', true]],
+    fi: [['Ilmainen pysäköinti', true], ['WiFi', false], ['Mobiiliverkon kuuluvuus', true]],
+    lv: [['Bezmaksas autostāvvieta', true], ['WiFi', false], ['Mobilo sakaru pārklājums', true]],
   }
 
   return {
@@ -312,6 +400,7 @@ export function jsonLd(lang: Lang) {
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Oandu',
+      postalCode: '45432',
       addressRegion: 'Lääne-Virumaa',
       addressCountry: 'EE',
     },
@@ -323,9 +412,9 @@ export function jsonLd(lang: Lang) {
     numberOfRooms: 3,
     // 4 + 2 + 4. A child's extra bed can be added to any house but is not a standing place.
     maximumAttendeeCapacity: 10,
-    // Published nightly rates for the whole house: 150 € (Tiigimaja, Metsamaja 1–2)
+    // Published nightly rates for the whole house: 100 € (Metsamaja 1–2)
     // to 300 € (Saunamaja 3–4). Nothing inferred beyond the numbers on the page.
-    priceRange: '€150–€300',
+    priceRange: '€100–€300',
     currenciesAccepted: 'EUR',
     checkinTime: '14:00',
     checkoutTime: '12:00',
@@ -410,16 +499,18 @@ export function siteJsonLd(lang: Lang) {
  * Oanduaia" has to find that sentence somewhere; a FAQPage node states it as a fact tied
  * to this business rather than leaving it as a line of body copy to be inferred from.
  *
- * Every answer here must stay traceable to something on the page. Nothing about deposits,
- * cancellation or cleaning fees — none of that is published, and inventing it in schema
- * would be worse than silence.
+ * Every answer here must stay traceable to something on the page. Nothing about deposits or
+ * cleaning fees — none of that is published, and inventing it in schema would be worse than
+ * silence. Cancellation IS published (Mikk, 23 Oct 2026): free up to 7 days before arrival,
+ * no refund after; it also appears under the booking intro, on the pay page and in the
+ * payment-link letter.
  */
 export const FAQ: Record<Lang, [string, string][]> = {
   et: [
     ['Kui palju maju ja kohti on?',
      'Kolm eraldi maja kokku 10 külalisele: Saunamaja 4, Metsamaja 4 ja Tiigimaja 2 inimesele. Igasse majja saab lisaks lapse lisavoodi.'],
     ['Kui palju öömaja maksab?',
-     'Hinnad on terve maja kohta öö kohta: Tiigimaja ja Metsamaja alates 150 €, Saunamaja alates 200 €. Kõrghooajal, pühade ajal ja pikemate broneeringute puhul võivad hinnad erineda — küsi pakkumist.'],
+     'Hinnad on terve maja kohta öö kohta: Metsamaja alates 100 €, Tiigimaja alates 150 €, Saunamaja alates 200 €. Kõrghooajal, pühade ajal ja pikemate broneeringute puhul võivad hinnad erineda — küsi pakkumist.'],
     ['Kas ma rendin toa või terve maja?',
      'Terve maja. Iga maja renditakse tervikuna – ühiseid koridore ega teisi külalisi majas ei ole.'],
     ['Millises majas on saun?',
@@ -432,6 +523,8 @@ export const FAQ: Record<Lang, [string, string][]> = {
      'Saabumine alates kell 14.00, lahkumine kell 12.00. Lühim broneering on üks öö.'],
     ['Kuidas maksta?',
      'Otse broneerides saab maksta sularahas kohapeal või kaardiga. Kaardivormi sellel lehel endiselt ei ole: kui oleme kuupäevad kinnitanud, saadame turvalise makselingi ja kaardiandmed sisestatakse Stripe\u2019i enda lehel – mitte meie omal ja mitte kunagi e-postiga. Toimivad kaart, Apple Pay ja Google Pay. Booking.com-i kaudu broneerides võtab makse vastu Booking.com – otse meiega on see meie vahel. Makse tuleb tasuda 14 päeva enne saabumist; makselink kehtib 4 päeva ja tasumata kuupäevad vabastatakse uuesti.'],
+    ['Mis saab, kui pean broneeringu tühistama?',
+     'Tühistamine on tasuta kuni 7 päeva enne saabumist – siis tagastame makstud summa täies ulatuses. Hiljem tühistades raha ei tagastata. Tühistamiseks kirjuta info@oanduaia.ee. Booking.comi kaudu tehtud broneeringutele kehtivad Booking.comi tingimused.'],
     ['Kas hommikusööki saab?',
      'Jah. Hommikusöök on 20 € inimese kohta hommikus — munad, peekon, puder, kohv. Lõuna, õhtusöök ja pidulik pikk laud tellitakse ette; küsi menüüd e-postiga.'],
     ['Kas lemmikloomad on lubatud?',
@@ -463,7 +556,7 @@ export const FAQ: Record<Lang, [string, string][]> = {
     ['How many houses are there, and for how many guests?',
      'Three separate houses for 10 guests in total: the Sauna House sleeps 4, the Forest House 4 and the Pond House 2. An extra bed for a child can be added in any of them.'],
     ['What does a night cost?',
-     'Prices are for the whole house, per night: the Pond House and Forest House from €150, the Sauna House from €200. Rates can differ in high season, over holidays and for longer stays — ask for an offer.'],
+     'Prices are for the whole house, per night: the Forest House from €100, the Pond House from €150, the Sauna House from €200. Rates can differ in high season, over holidays and for longer stays — ask for an offer.'],
     ['Do I rent a room or the whole house?',
      'The whole house. Each house is rented whole — no shared corridors and no other guests inside.'],
     ['Which house has the sauna?',
@@ -476,6 +569,8 @@ export const FAQ: Record<Lang, [string, string][]> = {
      'Check-in is from 2 pm and check-out is at 12 noon. The minimum stay is one night.'],
     ['How do I pay?',
      'Booking directly, you can pay in cash on arrival or by card. There is still no card form on this site: once we have confirmed your dates we send you a secure payment link, and the card details are entered on Stripe\u2019s own page — never on ours, and never by e-mail. Card, Apple Pay and Google Pay all work. If you book through Booking.com, Booking.com takes the payment; booking with us directly, it stays between us. Payment is due 14 days before arrival; the link is valid for 4 days, and unpaid dates are released again.'],
+    ['What if I need to cancel?',
+     'Cancellation is free up to 7 days before arrival, and we refund what you paid in full. After that, there is no refund. To cancel, write to info@oanduaia.ee. Bookings made through Booking.com follow Booking.com\u2019s terms.'],
     ['Is breakfast available?',
      'Yes. Breakfast is €20 per person per morning — eggs, bacon, porridge and coffee. Lunch, dinner and the festive long table are pre-ordered; ask for the menu by e-mail.'],
     ['Are pets allowed?',
@@ -507,7 +602,7 @@ export const FAQ: Record<Lang, [string, string][]> = {
     ['Сколько домов и на сколько гостей?',
      'Три отдельных дома всего на 10 гостей: Банный дом — 4, Лесной — 4, Прудовой — 2 человека. В любой из них можно добавить детскую кровать.'],
     ['Сколько стоит ночь?',
-     'Цены указаны за весь дом за ночь: Прудовой и Лесной дом от 150 €, Банный дом от 200 €. В высокий сезон, в праздники и при длительном проживании цены могут отличаться — запросите предложение.'],
+     'Цены указаны за весь дом за ночь: Лесной дом от 100 €, Прудовой дом от 150 €, Банный дом от 200 €. В высокий сезон, в праздники и при длительном проживании цены могут отличаться — запросите предложение.'],
     ['Я снимаю комнату или весь дом?',
      'Весь дом. Каждый дом сдаётся целиком — общих коридоров и других гостей внутри нет.'],
     ['В каком доме есть баня?',
@@ -520,6 +615,8 @@ export const FAQ: Record<Lang, [string, string][]> = {
      'Заезд с 14.00, выезд до 12.00. Минимальный срок — одна ночь.'],
     ['Как оплатить?',
      'При прямом бронировании оплатить можно наличными на месте или картой. Формы карты на этом сайте по-прежнему нет: после подтверждения дат мы отправляем защищённую ссылку на оплату, и данные карты вводятся на странице самого Stripe — не на нашей и никогда по электронной почте. Работают карта, Apple Pay и Google Pay. При бронировании через Booking.com оплату принимает Booking.com; напрямую у нас — это остаётся между нами. Оплата вносится за 14 дней до заезда; ссылка действительна 4 дня, неоплаченные даты снова освобождаются.'],
+    ['Что если нужно отменить бронирование?',
+     'Отмена бесплатна не позднее чем за 7 дней до заезда — тогда мы полностью возвращаем оплату. При более поздней отмене деньги не возвращаются. Чтобы отменить, напишите на info@oanduaia.ee. Для бронирований через Booking.com действуют условия Booking.com.'],
     ['Есть ли завтрак?',
      'Да. Завтрак — 20 € с человека за утро: яйца, бекон, каша, кофе. Обед, ужин и праздничный стол заказываются заранее — запросите меню по электронной почте.'],
     ['Можно ли с питомцами?',
@@ -551,7 +648,7 @@ export const FAQ: Record<Lang, [string, string][]> = {
     ['Wie viele Häuser gibt es, und für wie viele Gäste?',
      'Drei separate Häuser für insgesamt 10 Gäste: das Saunahaus bietet 4 Personen Platz, das Waldhaus 4 und das Teichhaus 2. In jedem von ihnen kann ein Zusatzbett für ein Kind aufgestellt werden.'],
     ['Was kostet eine Nacht?',
-     'Die Preise gelten für das ganze Haus pro Nacht: Teichhaus und Waldhaus ab 150 €, das Saunahaus ab 200 €. In der Hochsaison, an Feiertagen und bei längeren Aufenthalten können die Preise abweichen – fragen Sie nach einem Angebot.'],
+     'Die Preise gelten für das ganze Haus pro Nacht: Waldhaus ab 100 €, Teichhaus ab 150 €, das Saunahaus ab 200 €. In der Hochsaison, an Feiertagen und bei längeren Aufenthalten können die Preise abweichen – fragen Sie nach einem Angebot.'],
     ['Miete ich ein Zimmer oder das ganze Haus?',
      'Das ganze Haus. Jedes Haus wird als Ganzes vermietet — keine gemeinsamen Flure und keine anderen Gäste im Haus.'],
     ['In welchem Haus ist die Sauna?',
@@ -564,6 +661,8 @@ export const FAQ: Record<Lang, [string, string][]> = {
      'Anreise ab 14.00 Uhr, Abreise bis 12.00 Uhr. Die Mindestaufenthaltsdauer beträgt eine Nacht.'],
     ['Wie wird bezahlt?',
      'Bei einer Direktbuchung können Sie bar bei der Anreise oder mit Karte zahlen. Ein Kartenformular gibt es auf dieser Website weiterhin nicht: Sobald wir Ihren Aufenthalt bestätigt haben, senden wir Ihnen einen sicheren Zahlungslink, und die Kartendaten werden auf der Seite von Stripe eingegeben – nicht auf unserer und niemals per E-Mail. Karte, Apple Pay und Google Pay funktionieren. Buchen Sie über Booking.com, wickelt Booking.com die Zahlung ab; buchen Sie direkt bei uns, bleibt es zwischen uns. Die Zahlung ist 14 Tage vor der Anreise fällig; der Link gilt 4 Tage, unbezahlte Termine werden wieder freigegeben.'],
+    ['Was ist, wenn ich stornieren muss?',
+     'Die Stornierung ist bis 7 Tage vor der Anreise kostenlos – dann erstatten wir den gezahlten Betrag vollständig. Danach gibt es keine Erstattung. Zum Stornieren schreiben Sie an info@oanduaia.ee. Für Buchungen über Booking.com gelten die Bedingungen von Booking.com.'],
     ['Gibt es Frühstück?',
      'Ja. Das Frühstück kostet 20 € pro Person und Morgen – Eier, Speck, Porridge und Kaffee. Mittag- und Abendessen sowie die festliche lange Tafel werden vorbestellt; fragen Sie die Karte per E-Mail an.'],
     ['Sind Haustiere erlaubt?',
@@ -591,6 +690,190 @@ export const FAQ: Record<Lang, [string, string][]> = {
     ['Wie erreiche ich Sie?',
      'Schreiben Sie an info@oanduaia.ee oder rufen Sie +372 5202 044 an. Wir antworten innerhalb von 24 Stunden.'],
   ],
+  es: [
+    ['¿Cuántas casas hay y para cuántas personas?',
+     'Tres casas independientes para 10 huéspedes en total: la Casa de la Sauna para 4, la Casa del Bosque para 4 y la Casa del Estanque para 2. En cualquiera de ellas se puede añadir una cama supletoria para un niño.'],
+    ['¿Cuánto cuesta una noche?',
+     'Los precios son por la casa entera y por noche: la Casa del Bosque desde 100 €, la Casa del Estanque desde 150 € y la Casa de la Sauna desde 200 €. En temporada alta, en festivos y en estancias largas los precios pueden variar — pide un presupuesto.'],
+    ['¿Alquilo una habitación o la casa entera?',
+     'La casa entera. Cada casa se alquila completa — sin pasillos compartidos ni otros huéspedes dentro.'],
+    ['¿Qué casa tiene sauna?',
+     'Solo la Casa de la Sauna tiene sauna, y está incluida en el precio de esa casa. No está incluida con la Casa del Estanque ni con la Casa del Bosque. Si te alojas en una de ellas y quieres usarla, escríbenos y te diremos qué es posible. El estanque está a diez pasos, y en invierno se abre un agujero en el hielo.'],
+    ['¿Cómo reservo?',
+     'No hay reserva instantánea en línea. Consulta el calendario de disponibilidad, envía una solicitud con el formulario o escribe a info@oanduaia.ee — respondemos en 24 horas. También estamos en Booking.com.'],
+    ['¿Qué casa es para una pareja y cuál para una familia?',
+     'La Casa del Estanque es para dos — la más tranquila de las tres, a orillas de su propio estanque. La Casa del Bosque es para una familia o dos parejas: dos dormitorios separados, cuatro plazas. La Casa de la Sauna es para un grupo, cuatro plazas — y es la única de las tres con sauna.'],
+    ['¿A qué hora son la entrada y la salida?',
+     'La entrada es a partir de las 14:00 y la salida a las 12:00. La estancia mínima es de una noche.'],
+    ['¿Cómo se paga?',
+     'Reservando directamente, puedes pagar en efectivo a la llegada o con tarjeta. En esta web no hay formulario de tarjeta: cuando confirmamos tus fechas te enviamos un enlace de pago seguro, y los datos de la tarjeta se introducen en la propia página de Stripe — nunca en la nuestra ni por correo. Funcionan tarjeta, Apple Pay y Google Pay. Si reservas por Booking.com, el pago lo gestiona Booking.com; reservando directamente con nosotros, queda entre nosotros. El pago vence 14 días antes de la llegada; el enlace es válido 4 días y las fechas sin pagar vuelven a quedar libres.'],
+    ['¿Y si necesito cancelar?',
+     'La cancelación es gratuita hasta 7 días antes de la llegada, y te devolvemos íntegramente lo pagado. Después no hay reembolso. Para cancelar, escribe a info@oanduaia.ee. Las reservas hechas por Booking.com siguen las condiciones de Booking.com.'],
+    ['¿Hay desayuno?',
+     'Sí. El desayuno cuesta 20 € por persona y mañana — huevos, beicon, gachas y café. La comida, la cena y la mesa larga de celebración se encargan con antelación; pide el menú por correo.'],
+    ['¿Se admiten mascotas?',
+     'Sí. La tarifa por mascota es de 20 € por estancia, no por noche. Si hay otros huéspedes en la finca al mismo tiempo, los perros deben ir con correa.'],
+    ['¿Están todas las casas abiertas en invierno?',
+     'La Casa de la Sauna abre todo el año. La Casa del Estanque y la Casa del Bosque cierran en invierno, del 1 de diciembre al 31 de marzo; su primera noche de la nueva temporada es el 1 de abril.'],
+    ['¿Hay WiFi?',
+     'No — no hay WiFi en ninguna de las casas. La cobertura móvil es buena, así que el teléfono funciona. El aparcamiento es gratuito.'],
+    ['¿De qué están hechas las casas?',
+     'Muros macizos de troncos gruesos, con madera de los bosques de Estonia. No hay pladur en ninguna. Varios de los edificios tienen tejado de junco.'],
+    ['¿Se puede nadar en el estanque?',
+     'Sí, en verano. En invierno se abre un agujero en el hielo junto a la sauna.'],
+    ['¿Hay dónde comer cerca?',
+     'Las casas señoriales de Palmse, Sagadi y Vihula y la taberna de Altja están a poca distancia en coche. Aquí, la anfitriona prepara desayuno, comida o una mesa larga de celebración — todo por encargo.'],
+    ['¿Dónde empiezan los senderos?',
+     'En el centro de visitantes RMK de Oandu, a un paseo de distancia. Allí empiezan seis senderos señalizados, entre ellos la ruta Oandu–Aegviidu–Ikla de 370 km.'],
+    ['¿Podemos celebrar una fiesta o un evento aquí?',
+     'Sí, previo acuerdo. No hay reglas fijas — cuéntanos lo que tienes en mente y te diremos si encaja. La medida es sencilla: que no moleste a los demás huéspedes ni dañe el lugar. La mesa larga de celebración se prepara por encargo para dos a diez personas, y en verano hasta veinte en la cocina exterior. Escribe a info@oanduaia.ee.'],
+    ['¿Se pueden añadir camas supletorias?',
+     'Sí. En cualquiera de las tres casas se puede añadir una cama supletoria para un niño, previo acuerdo al reservar. Las plazas de adulto son cuatro en la Casa de la Sauna, cuatro en la Casa del Bosque y dos en la Casa del Estanque. Escribe a info@oanduaia.ee.'],
+    ['¿A qué distancia está Tallin?',
+     'Unos 90 kilómetros, algo más de una hora en coche. Desde Tallin se va en dirección a Narva y en Viitna se gira al norte hacia Lahemaa. En transporte público es complicado — la mayoría de los huéspedes llega en coche.'],
+    ['¿Dónde está Oanduaia?',
+     'En el pueblo de Oandu, en Lääne-Virumaa, dentro del Parque Nacional de Lahemaa en Estonia — entre el bosque y el mar, entre tres casas señoriales: Palmse, Sagadi y Vihula.'],
+    ['¿Cómo os contacto?',
+     'Escribe a info@oanduaia.ee o llama al +372 5202 044. Respondemos en 24 horas.'],
+  ],
+  sv: [
+    ['Hur många hus finns det, och för hur många gäster?',
+     'Tre separata hus för totalt 10 gäster: Bastuhuset har plats för 4, Skogshuset för 4 och Dammhuset för 2. En extrasäng för ett barn kan ställas in i vilket som helst av dem.'],
+    ['Vad kostar en natt?',
+     'Priserna gäller hela huset per natt: Skogshuset från 100 €, Dammhuset från 150 €, Bastuhuset från 200 €. Under högsäsong, helgdagar och vid längre vistelser kan priserna skilja sig — be om en offert.'],
+    ['Hyr jag ett rum eller hela huset?',
+     'Hela huset. Varje hus hyrs ut i sin helhet — inga delade korridorer och inga andra gäster inne i huset.'],
+    ['Vilket hus har bastu?',
+     'Bara Bastuhuset har bastu, och den ingår i det husets pris. Den ingår inte i Dammhuset eller Skogshuset. Om du bor i något av dem och vill använda bastun, skriv till oss så berättar vi vad som är möjligt. Dammen ligger tio steg bort, och på vintern huggs en vak i isen.'],
+    ['Hur bokar jag?',
+     'Det finns ingen direktbokning online. Kolla tillgänglighetskalendern, skicka en förfrågan via formuläret eller skriv till info@oanduaia.ee — vi svarar inom 24 timmar. Vi finns också på Booking.com.'],
+    ['Vilket hus passar ett par, och vilket en familj?',
+     'Dammhuset är för två — det lugnaste av de tre, på stranden av sin egen damm. Skogshuset passar en familj eller två par: två separata sovrum, fyra platser. Bastuhuset är för ett sällskap, fyra platser — och det är det enda av de tre med bastu.'],
+    ['När är incheckning och utcheckning?',
+     'Incheckning från kl. 14.00 och utcheckning kl. 12.00. Kortaste vistelse är en natt.'],
+    ['Hur betalar jag?',
+     'Bokar du direkt kan du betala kontant vid ankomst eller med kort. Det finns fortfarande inget kortformulär på den här webbplatsen: när vi har bekräftat dina datum skickar vi en säker betalningslänk, och kortuppgifterna anges på Stripes egen sida — aldrig på vår och aldrig via e-post. Kort, Apple Pay och Google Pay fungerar. Bokar du via Booking.com tar Booking.com emot betalningen; bokar du direkt hos oss stannar det mellan oss. Betalningen ska vara gjord 14 dagar före ankomst; länken gäller i 4 dagar, och obetalda datum släpps igen.'],
+    ['Vad händer om jag måste avboka?',
+     'Avbokning är kostnadsfri fram till 7 dagar före ankomst, och då återbetalar vi hela beloppet. Därefter sker ingen återbetalning. Skriv till info@oanduaia.ee för att avboka. För bokningar via Booking.com gäller Booking.coms villkor.'],
+    ['Serveras frukost?',
+     'Ja. Frukost kostar 20 € per person och morgon — ägg, bacon, gröt och kaffe. Lunch, middag och det festliga långbordet beställs i förväg; be om menyn via e-post.'],
+    ['Är husdjur tillåtna?',
+     'Ja. Avgiften för husdjur är 20 € per vistelse, inte per natt. Om andra gäster finns på gården samtidigt ska hundar hållas kopplade.'],
+    ['Är alla hus öppna på vintern?',
+     'Bastuhuset är öppet året runt. Dammhuset och Skogshuset stänger för vintern, från 1 december till 31 mars; deras första natt för den nya säsongen är 1 april.'],
+    ['Finns det WiFi?',
+     'Nej — det finns inget WiFi i något av husen. Mobiltäckningen är god, så telefonen fungerar. Parkeringen är gratis.'],
+    ['Vad är husen byggda av?',
+     'Massiva väggar av grova, tunga timmerstockar, virket från estnisk skog. Det finns inga gipsskivor i något av dem. Flera av byggnaderna har vasstak.'],
+    ['Kan man bada i dammen?',
+     'Ja, på sommaren. På vintern huggs en vak i isen bredvid bastun.'],
+    ['Finns det någonstans att äta i närheten?',
+     'Herrgårdarna Palmse, Sagadi och Vihula och värdshuset i Altja ligger en kort bilresa bort. Här lagar värdinnan frukost, lunch eller ett festligt långbord — allt beställs i förväg.'],
+    ['Var börjar vandringslederna?',
+     'Vid RMK:s besökscentrum i Oandu, som ligger på gångavstånd. Där börjar sex markerade leder, bland dem den 370 km långa leden Oandu–Aegviidu–Ikla.'],
+    ['Kan vi ha en fest eller ett evenemang här?',
+     'Ja, efter överenskommelse. Det finns inget fast regelverk — berätta vad du har i tankarna så säger vi om det fungerar. Måttstocken är enkel: att det varken stör de andra gästerna på gården eller själva platsen. Det festliga långbordet dukas på beställning för två till tio personer, och på sommaren för upp till tjugo i utomhusköket. Skriv till info@oanduaia.ee.'],
+    ['Kan ni ställa in extrasängar?',
+     'Ja. En extrasäng för ett barn kan ställas in i vilket som helst av de tre husen, efter överenskommelse när du bokar. Platserna för vuxna är fyra i Bastuhuset, fyra i Skogshuset och två i Dammhuset. Skriv till info@oanduaia.ee.'],
+    ['Hur långt är det till Tallinn?',
+     'Omkring 90 kilometer, drygt en timme med bil. Från Tallinn kör du mot Narva och svänger norrut in i Lahemaa vid Viitna. Kollektivtrafiken är krånglig — de flesta gäster kommer med bil.'],
+    ['Var ligger Oanduaia?',
+     'I byn Oandu i Lääne-Virumaa, i Lahemaa nationalpark i Estland — mellan skog och hav, bland tre herrgårdar: Palmse, Sagadi och Vihula.'],
+    ['Hur når jag er?',
+     'Skriv till info@oanduaia.ee eller ring +372 5202 044. Vi svarar inom 24 timmar.'],
+  ],
+  fi: [
+    ['Montako taloa on ja kuinka monelle vieraalle?',
+     'Kolme erillistä taloa yhteensä 10 vieraalle: Saunatalossa on tilaa 4:lle, Metsätalossa 4:lle ja Lampitalossa 2:lle. Mihin tahansa niistä voi lisätä lapselle lisävuoteen.'],
+    ['Mitä yö maksaa?',
+     'Hinnat ovat koko talosta yöltä: Metsätalo alkaen 100 €, Lampitalo alkaen 150 €, Saunatalo alkaen 200 €. Sesonkiaikana, pyhinä ja pidemmillä majoituksilla hinnat voivat poiketa — pyydä tarjous.'],
+    ['Vuokraanko huoneen vai koko talon?',
+     'Koko talon. Jokainen talo vuokrataan kokonaan — ei yhteisiä käytäviä eikä muita vieraita talossa.'],
+    ['Missä talossa on sauna?',
+     'Sauna on vain Saunatalossa, ja se sisältyy kyseisen talon hintaan. Lampitalon ja Metsätalon hintaan sauna ei sisälly. Jos majoitut jommassakummassa ja haluaisit käyttää saunaa, kirjoita meille, niin kerromme, mikä on mahdollista. Lampi on kymmenen askeleen päässä, ja talvella jäähän hakataan avanto.'],
+    ['Miten varaan?',
+     'Välitöntä verkkovarausta ei ole. Katso saatavuus kalenterista ja lähetä tiedustelu lomakkeella tai kirjoita osoitteeseen info@oanduaia.ee — vastaamme 24 tunnin kuluessa. Löydät meidät myös Booking.comista.'],
+    ['Mikä talo sopii pariskunnalle, mikä perheelle?',
+     'Lampitalo on kahdelle — kolmesta rauhallisin, oman lampensa rannalla. Metsätalo sopii perheelle tai kahdelle pariskunnalle: kaksi erillistä makuuhuonetta, neljä paikkaa. Saunatalo on seurueelle, neljä paikkaa — ja se on kolmesta ainoa, jossa on sauna.'],
+    ['Mihin aikaan on tulo ja lähtö?',
+     'Tulo klo 14.00 alkaen ja lähtö klo 12.00. Lyhin varaus on yksi yö.'],
+    ['Miten maksan?',
+     'Suoraan varatessasi voit maksaa käteisellä paikan päällä tai kortilla. Tällä sivustolla ei edelleenkään ole korttilomaketta: kun olemme vahvistaneet päivämääräsi, lähetämme sinulle turvallisen maksulinkin, ja kortin tiedot syötetään Stripen omalla sivulla — ei koskaan meidän sivullamme eikä sähköpostitse. Kortti, Apple Pay ja Google Pay toimivat. Jos varaat Booking.comin kautta, maksun ottaa vastaan Booking.com; suoraan meiltä varatessasi se jää meidän välillemme. Maksu erääntyy 14 päivää ennen saapumista; linkki on voimassa 4 päivää, ja maksamattomat päivät vapautetaan uudelleen.'],
+    ['Entä jos minun täytyy perua varaus?',
+     'Peruutus on maksuton 7 päivään asti ennen saapumista, ja palautamme maksamasi summan kokonaan. Sen jälkeen rahoja ei palauteta. Peruaksesi kirjoita osoitteeseen info@oanduaia.ee. Booking.comin kautta tehtyihin varauksiin sovelletaan Booking.comin ehtoja.'],
+    ['Saako aamiaista?',
+     'Kyllä. Aamiainen maksaa 20 € hengeltä aamua kohden — munia, pekonia, puuroa ja kahvia. Lounas, illallinen ja juhlava pitkä pöytä tilataan etukäteen; pyydä ruokalista sähköpostitse.'],
+    ['Ovatko lemmikit sallittuja?',
+     'Kyllä. Lemmikkimaksu on 20 € majoitusta kohden, ei yötä kohden. Jos alueella on samaan aikaan muita vieraita, koirat on pidettävä kytkettyinä.'],
+    ['Ovatko kaikki talot auki talvella?',
+     'Saunatalo on auki ympäri vuoden. Lampitalo ja Metsätalo ovat talven kiinni 1. joulukuuta–31. maaliskuuta; uuden kauden ensimmäinen yö on 1. huhtikuuta.'],
+    ['Onko taloissa WiFi?',
+     'Ei — missään talossa ei ole WiFiä. Mobiiliverkko kuuluu hyvin, joten puhelin toimii. Pysäköinti on ilmainen.'],
+    ['Mistä talot on rakennettu?',
+     'Massiiviset seinät paksuista, raskaista hirsistä, puu virolaisesta metsästä. Kipsilevyä ei ole yhdessäkään niistä. Useassa rakennuksessa on ruokokatto.'],
+    ['Voiko lammessa uida?',
+     'Kyllä, kesällä. Talvella saunan viereen hakataan jäähän avanto.'],
+    ['Missä lähistöllä voi syödä?',
+     'Palmsen, Sagadin ja Vihulan kartanot sekä Altjan kievari ovat lyhyen ajomatkan päässä. Paikan päällä emäntä valmistaa aamiaisen, lounaan tai juhlavan pitkän pöydän — kaikki ennakkotilauksesta.'],
+    ['Mistä retkeilyreitit alkavat?',
+     'RMK:n Oandun luontokeskukselta, jonne on kävelymatka. Sieltä alkaa kuusi merkittyä reittiä, niiden joukossa 370 km pitkä Oandu–Aegviidu–Ikla-reitti.'],
+    ['Voimmeko järjestää täällä juhlat tai tapahtuman?',
+     'Kyllä, sopimuksen mukaan. Kiinteitä sääntöjä ei ole — kerro, mitä sinulla on mielessä, niin kerromme, sopiiko se. Mittapuu on yksinkertainen: ettei se häiritse muita alueen vieraita eikä itse paikkaa. Juhlava pitkä pöytä katetaan tilauksesta kahdesta kymmeneen hengelle, ja kesällä ulkokeittiöön jopa kahdellekymmenelle. Kirjoita osoitteeseen info@oanduaia.ee.'],
+    ['Voiko lisävuoteita saada?',
+     'Kyllä. Mihin tahansa kolmesta talosta voi lisätä lapselle lisävuoteen, kun siitä sovitaan varauksen yhteydessä. Aikuisten paikkoja on neljä Saunatalossa, neljä Metsätalossa ja kaksi Lampitalossa. Kirjoita osoitteeseen info@oanduaia.ee.'],
+    ['Kuinka kaukana Tallinna on?',
+     'Noin 90 kilometriä, vähän yli tunti autolla. Tallinnasta ajetaan Narvan suuntaan ja Viitnan kohdalla käännytään pohjoiseen Lahemaalle. Julkisilla kulkuneuvoilla matka on hankala — useimmat vieraat tulevat autolla.'],
+    ['Missä Oanduaia sijaitsee?',
+     'Oandun kylässä Länsi-Virumaalla, Lahemaan kansallispuistossa Virossa — metsän ja meren välissä, kolmen kartanon, Palmsen, Sagadin ja Vihulan, keskellä.'],
+    ['Miten tavoitan teidät?',
+     'Kirjoita osoitteeseen info@oanduaia.ee tai soita +372 5202 044. Vastaamme 24 tunnin kuluessa.'],
+  ],
+  lv: [
+    ['Cik ir māju un cik viesiem?',
+     'Trīs atsevišķas mājas kopā 10 viesiem: Pirts mājā ir vieta 4, Meža mājā 4 un Dīķa mājā 2 cilvēkiem. Jebkurā no tām var pievienot papildu gultu bērnam.'],
+    ['Cik maksā nakts?',
+     'Cenas ir par visu māju par nakti: Meža māja no 100 €, Dīķa māja no 150 €, Pirts māja no 200 €. Augstajā sezonā, svētku laikā un ilgākai uzturēšanās reizei cenas var atšķirties — pieprasiet piedāvājumu.'],
+    ['Vai es īrēju istabu vai visu māju?',
+     'Visu māju. Katra māja tiek izīrēta pilnībā — nav kopīgu gaiteņu un nav citu viesu mājā.'],
+    ['Kurā mājā ir pirts?',
+     'Pirts ir tikai Pirts mājā, un tā ir iekļauta šīs mājas cenā. Dīķa mājas un Meža mājas cenā pirts nav iekļauta. Ja apmetaties kādā no tām un vēlaties izmantot pirti, uzrakstiet mums — pastāstīsim, kas ir iespējams. Dīķis ir desmit soļu attālumā, un ziemā ledū izcērt āliņģi.'],
+    ['Kā rezervēt?',
+     'Tūlītējas tiešsaistes rezervācijas nav. Apskatiet pieejamības kalendāru, nosūtiet pieprasījumu ar veidlapu vai rakstiet uz info@oanduaia.ee — atbildam 24 stundu laikā. Mūs var atrast arī Booking.com.'],
+    ['Kura māja piemērota pārim un kura ģimenei?',
+     'Dīķa māja ir diviem — klusākā no trim, sava dīķa krastā. Meža māja piemērota ģimenei vai diviem pāriem: divas atsevišķas guļamistabas, četras vietas. Pirts māja ir kompānijai, četras vietas — un tā ir vienīgā no trim ar pirti.'],
+    ['Cikos ir ierašanās un izbraukšana?',
+     'Ierašanās no plkst. 14.00, izbraukšana plkst. 12.00. Īsākā uzturēšanās ir viena nakts.'],
+    ['Kā samaksāt?',
+     'Rezervējot tieši, varat maksāt skaidrā naudā uz vietas vai ar karti. Kartes veidlapas šajā vietnē joprojām nav: kad esam apstiprinājuši jūsu datumus, nosūtām jums drošu maksājuma saiti, un kartes dati tiek ievadīti pašā Stripe lapā — nekad ne mūsējā un nekad pa e-pastu. Darbojas karte, Apple Pay un Google Pay. Ja rezervējat caur Booking.com, maksājumu pieņem Booking.com; rezervējot tieši pie mums, tas paliek starp mums. Maksājums jāveic 14 dienas pirms ierašanās; saite ir derīga 4 dienas, un neapmaksātie datumi atkal tiek atbrīvoti.'],
+    ['Ko darīt, ja jāatceļ rezervācija?',
+     'Atcelšana ir bez maksas līdz 7 dienām pirms ierašanās, un mēs pilnībā atmaksājam samaksāto summu. Vēlāk atceļot, nauda netiek atmaksāta. Lai atceltu, rakstiet uz info@oanduaia.ee. Rezervācijām, kas veiktas caur Booking.com, piemēro Booking.com noteikumus.'],
+    ['Vai ir pieejamas brokastis?',
+     'Jā. Brokastis maksā 20 € vienai personai par rītu — olas, bekons, putra un kafija. Pusdienas, vakariņas un svētku garais galds jāpasūta iepriekš; ēdienkarti pieprasiet pa e-pastu.'],
+    ['Vai drīkst ņemt līdzi mājdzīvniekus?',
+     'Jā. Maksa par mājdzīvnieku ir 20 € par uzturēšanos, nevis par nakti. Ja teritorijā vienlaikus ir arī citi viesi, suņi jātur pie pavadas.'],
+    ['Vai ziemā visas mājas ir atvērtas?',
+     'Pirts māja ir atvērta visu gadu. Dīķa māja un Meža māja ziemā ir slēgtas no 1. decembra līdz 31. martam; jaunās sezonas pirmā nakts ir 1. aprīlis.'],
+    ['Vai ir WiFi?',
+     'Nē — nevienā no mājām nav WiFi. Mobilo sakaru pārklājums ir labs, tāpēc telefons darbojas. Autostāvvieta ir bez maksas.'],
+    ['No kā mājas ir uzceltas?',
+     'Masīvas sienas no resniem, smagiem baļķiem, koks no Igaunijas mežiem. Ģipškartona nav nevienā no tām. Vairākām ēkām ir niedru jumts.'],
+    ['Vai dīķī var peldēties?',
+     'Jā, vasarā. Ziemā blakus pirtij ledū izcērt āliņģi.'],
+    ['Vai tuvumā var paēst?',
+     'Palmses, Sagadi un Vihulas muižas un Altjas krogs ir neliela brauciena attālumā. Uz vietas saimniece gatavo brokastis, pusdienas vai svētku garo galdu — viss pēc iepriekšēja pasūtījuma.'],
+    ['Kur sākas pārgājienu takas?',
+     'Pie RMK Oandu apmeklētāju centra, līdz kuram var aiziet kājām. Tur sākas sešas marķētas takas, to vidū 370 km garais maršruts Oandu–Aegviidu–Ikla.'],
+    ['Vai šeit var rīkot svinības vai pasākumu?',
+     'Jā, pēc vienošanās. Stingru noteikumu nav — pastāstiet, ko esat iecerējuši, un mēs pateiksim, vai tas ir iespējams. Kritērijs ir vienkāršs: lai tas netraucētu citiem viesiem teritorijā un nekaitētu pašai vietai. Svētku garo galdu klāj pēc pasūtījuma no diviem līdz desmit cilvēkiem, bet vasarā āra virtuvē līdz divdesmit. Rakstiet uz info@oanduaia.ee.'],
+    ['Vai var pievienot papildu gultas?',
+     'Jā. Jebkurā no trim mājām pēc vienošanās, rezervējot, var pievienot papildu gultu bērnam. Pieaugušo vietas ir četras Pirts mājā, četras Meža mājā un divas Dīķa mājā. Rakstiet uz info@oanduaia.ee.'],
+    ['Cik tālu ir Tallina?',
+     'Apmēram 90 kilometri, nedaudz vairāk par stundu ar automašīnu. No Tallinas jābrauc Narvas virzienā un pie Viitnas jānogriežas uz ziemeļiem, Lahemā. Ar sabiedrisko transportu nokļūt ir neērti — lielākā daļa viesu ierodas ar automašīnu.'],
+    ['Kur atrodas Oanduaia?',
+     'Oandu ciemā, Lääne-Virumaa apriņķī, Lahemā nacionālajā parkā Igaunijā — starp mežu un jūru, trīs muižu — Palmses, Sagadi un Vihulas — vidū.'],
+    ['Kā ar jums sazināties?',
+     'Rakstiet uz info@oanduaia.ee vai zvaniet +372 5202 044. Mēs atbildam 24 stundu laikā.'],
+  ],
 }
 
 export function faqJsonLd(lang: Lang) {
@@ -612,7 +895,7 @@ export function faqJsonLd(lang: Lang) {
 export function breadcrumbJsonLd(lang: Lang, slug: string) {
   const h = T.feature.houses.find(x => x.slug === slug)
   if (!h) return null
-  const majad: Record<Lang, string> = { et: 'Majad', en: 'Houses', ru: 'Дома', de: 'Häuser' }
+  const majad: Record<Lang, string> = { et: 'Majad', en: 'Houses', ru: 'Дома', de: 'Häuser', es: 'Casas', sv: 'Hus', fi: 'Talot', lv: 'Mājas' }
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -637,9 +920,13 @@ export function trailMeta(lang: Lang, slug: string) {
     en: `${trailKm(t, 'en')} km, ${t.difficulty.en.toLowerCase()}. Starts at ${t.start.en}.`,
     ru: `${t.km} км, ${t.difficulty.ru.toLowerCase()}. Начало: ${t.start.ru}.`,
     de: `${trailKm(t, 'de')} km, ${t.difficulty.de.toLowerCase()}. Start: ${t.start.de}.`,
+    es: `${trailKm(t, 'es')} km, ${t.difficulty.es.toLowerCase()}. Inicio: ${t.start.es}.`,
+    sv: `${trailKm(t, 'sv')} km, ${t.difficulty.sv.toLowerCase()}. Start: ${t.start.sv}.`,
+    fi: `${trailKm(t, 'fi')} km, ${t.difficulty.fi.toLowerCase()}. Lähtö: ${t.start.fi}.`,
+    lv: `${trailKm(t, 'lv')} km, ${t.difficulty.lv.toLowerCase()}. Sākums: ${t.start.lv}.`,
   }
   // Cyrillic takes the Cyrillic unit; "4,7 km" in a Russian title is half-translated.
-  const unit: Record<Lang, string> = { et: 'km', en: 'km', ru: 'км', de: 'km' }
+  const unit: Record<Lang, string> = { et: 'km', en: 'km', ru: 'км', de: 'km', es: 'km', sv: 'km', fi: 'km', lv: 'km' }
   // Google cuts titles near 60 characters and descriptions near 155, mid-word. The park name
   // goes first when a long trail name leaves no room for it; the description ends on a word.
   const base = `${t.name[lang]} — ${trailKm(t, lang)} ${unit[lang]}`
@@ -686,7 +973,7 @@ export function trailJsonLd(lang: Lang, slug: string) {
 export function trailBreadcrumb(lang: Lang, slug: string) {
   const t = TRAILS.find(x => x.slug === slug)
   if (!t) return null
-  const nature: Record<Lang, string> = { et: 'Loodus', en: 'Nature', ru: 'Природа', de: 'Natur' }
+  const nature: Record<Lang, string> = { et: 'Loodus', en: 'Nature', ru: 'Природа', de: 'Natur', es: 'Naturaleza', sv: 'Natur', fi: 'Luonto', lv: 'Daba' }
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

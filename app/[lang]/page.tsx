@@ -1,5 +1,6 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
+import LastChance from '@/components/LastChance'
 import Intro from '@/components/Intro'
 import Services from '@/components/Services'
 import Feature from '@/components/Feature'
@@ -12,6 +13,7 @@ import Availability from '@/components/Availability'
 import Booking from '@/components/Booking'
 import Footer from '@/components/Footer'
 import ScrollRevealInit from '@/components/ScrollReveal'
+import HashLanding from '@/components/HashLanding'
 import { faqJsonLd, isLocale } from '@/lib/i18n'
 
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
@@ -32,11 +34,24 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
         />
       )}
       <ScrollRevealInit />
+      <HashLanding />
       <Nav />
       <Hero />
+      {/*
+        Before the houses, for the two months before the Pond House and the Forest House
+        close for winter (Mikk, 29 Oct: promote them first). Takes itself down after.
+      */}
+      <LastChance />
       <Feature />
       {/*
-        Reviews sit immediately after the houses, not near the bottom. Someone who has just
+        The calendar and enquiry form straight after the three houses (Mikk, 24 Oct): the
+        moment someone has picked a house is the moment to show its free dates, not after
+        the story, the food and the trails.
+      */}
+      <Availability />
+      <Booking />
+      {/*
+        Reviews follow the houses and the calendar, not near the bottom. Someone who has just
         read what the three houses are is deciding whether to believe us; that is the moment
         other people's word is worth most. Lower down it was decoration.
       */}
@@ -51,10 +66,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <Services />
       <Trails />
       <Stats />
-      {/* Questions answered immediately before the enquiry form, not after it. */}
       <Faq />
-      <Availability />
-      <Booking />
       <Footer />
     </>
   )

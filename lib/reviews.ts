@@ -78,6 +78,10 @@ export function reviewCount(n: number, lang: Lang): string {
   if (lang === 'et') return `${n} arvustust`
   if (lang === 'en') return `${n} ${n === 1 ? 'review' : 'reviews'}`
   if (lang === 'de') return `${n} ${n === 1 ? 'Bewertung' : 'Bewertungen'}`
+  if (lang === 'es') return `${n} ${n === 1 ? 'reseña' : 'reseñas'}`
+  if (lang === 'sv') return `${n} ${n === 1 ? 'recension' : 'recensioner'}`
+  if (lang === 'fi') return `${n} ${n === 1 ? 'arvio' : 'arviota'}`
+  if (lang === 'lv') return `${n} ${n % 10 === 1 && n % 100 !== 11 ? 'atsauksme' : 'atsauksmes'}`
   const mod10 = n % 10
   const mod100 = n % 100
   const word =
@@ -127,36 +131,48 @@ export const REVIEW_QUOTES: ReviewQuote[] = [
     id: 'rainis',
     author: 'Rainis Venta',
     originalLang: 'en',
-    when: { et: 'kuu tagasi', en: 'a month ago', ru: 'месяц назад', de: 'vor einem Monat' },
+    when: { et: 'kuu tagasi', en: 'a month ago', ru: 'месяц назад', de: 'vor einem Monat', es: 'hace un mes', sv: 'för en månad sedan', fi: 'kuukausi sitten', lv: 'pirms mēneša' },
     text: {
       en: 'Amazing place! Third time here, and again amazed! This time bookes the Forest House (Metsamaja). The evening warmth, the morning mist, the supercool atmosphere inside the cottage. That is just amazing. Wish I could live like that!',
       et: 'Hämmastav koht! Kolmandat korda siin ja jälle hämmastunud! Seekord broneerisin Metsamaja. Õhtune soojus, hommikune udu, ülilahe õhkkond majas. See on lihtsalt hämmastav. Soovin, et saaksin nii elada!',
       ru: 'Потрясающее место! Третий раз здесь и снова в восторге! На этот раз забронировал Лесной дом (Metsamaja). Вечернее тепло, утренний туман, потрясающая атмосфера внутри дома. Это просто потрясающе. Хотел бы я так жить!',
       de: 'Fantastischer Ort! Zum dritten Mal hier und wieder begeistert! Diesmal das Waldhaus (Metsamaja) gebucht. Die Wärme am Abend, der Nebel am Morgen, die großartige Atmosphäre im Haus. Das ist einfach fantastisch. Ich wünschte, ich könnte so leben!',
+      es: '¡Un sitio increíble! Es la tercera vez que vengo y otra vez me ha encantado. Esta vez reservé la Casa del Bosque (Metsamaja). La calidez de la tarde, la niebla de la mañana, el ambiente genial dentro de la casa. Es sencillamente increíble. ¡Ojalá pudiera vivir así!',
+      sv: 'Fantastiskt ställe! Tredje gången här och lika förtjust igen! Den här gången bokade jag Skogshuset (Metsamaja). Kvällsvärmen, morgondimman, den supercoola stämningen inne i stugan. Det är helt enkelt fantastiskt. Önskar att jag kunde leva så!',
+      fi: 'Upea paikka! Kolmatta kertaa täällä ja taas haltioissani! Tällä kertaa varasin Metsätalon (Metsamaja). Illan lämpö, aamun usva, huikea tunnelma mökin sisällä. Se on yksinkertaisesti upeaa. Kunpa voisin elää noin!',
+      lv: 'Brīnišķīga vieta! Jau trešo reizi šeit, un atkal sajūsmā! Šoreiz rezervēju Meža māju (Metsamaja). Vakara siltums, rīta migla, lieliskā atmosfēra mājiņā. Tas ir vienkārši brīnišķīgi. Kaut es varētu tā dzīvot!',
     },
   },
   {
     id: 'janek',
     originalLang: 'et',
     author: 'Janek Hamidzanov',
-    when: { et: 'aasta tagasi', en: 'a year ago', ru: 'год назад', de: 'vor einem Jahr' },
+    when: { et: 'aasta tagasi', en: 'a year ago', ru: 'год назад', de: 'vor einem Jahr', es: 'hace un año', sv: 'för ett år sedan', fi: 'vuosi sitten', lv: 'pirms gada' },
     text: {
       et: 'Peale lahke pererahva on ka koht suurepärane. Vaikne, maalähedane ja maitsekalt sisustatud puhkemajad. Ühesõnaga kui vajad linnakärast puhkust on just see koht, mida külastada. Piirkonnas on vaatamisväärsusi ja terviseradu.',
       en: 'Besides the kind hosts, the place itself is wonderful. Quiet, rural and tastefully furnished houses. In a word, if you need a rest from the noise of the city, this is the place to visit. There are sights and trails in the area.',
       ru: 'Помимо приветливых хозяев, и само место прекрасное. Тихие, деревенские и со вкусом обставленные дома. Одним словом, если нужен отдых от городского шума — это то самое место. В округе есть достопримечательности и тропы.',
       de: 'Neben den freundlichen Gastgebern ist auch der Ort selbst großartig. Ruhige, ländliche und geschmackvoll eingerichtete Häuser. Kurz gesagt: Wer Ruhe vom Lärm der Stadt braucht, sollte genau hierher kommen. In der Umgebung gibt es Sehenswürdigkeiten und Wanderwege.',
+      es: 'Además de los amables anfitriones, el sitio en sí es estupendo. Casas tranquilas, rurales y decoradas con gusto. En una palabra: si necesitas descansar del ruido de la ciudad, este es el lugar que visitar. En la zona hay lugares de interés y senderos.',
+      sv: 'Förutom de vänliga värdarna är själva stället underbart. Lugna, lantliga och smakfullt inredda stugor. Kort sagt: behöver du vila från stadens buller är det just hit du ska åka. I området finns sevärdheter och motionsspår.',
+      fi: 'Ystävällisten isäntien lisäksi itse paikka on upea. Hiljaisia, maalaisia ja tyylikkäästi sisustettuja lomataloja. Sanalla sanoen: jos kaipaat lepoa kaupungin melusta, tämä on juuri oikea paikka. Alueella on nähtävyyksiä ja kuntopolkuja.',
+      lv: 'Bez laipnajiem saimniekiem arī pati vieta ir lieliska. Klusas, lauku noskaņas un gaumīgi iekārtotas brīvdienu mājas. Vārdu sakot, ja jums vajag atpūtu no pilsētas trokšņa, šī ir īstā vieta, kur doties. Apkārtnē ir apskates objekti un veselības takas.',
     },
   },
   {
     id: 'heti-helen',
     originalLang: 'et',
     author: 'Heti-Helen Rohtla',
-    when: { et: '2 aastat tagasi', en: '2 years ago', ru: '2 года назад', de: 'vor 2 Jahren' },
+    when: { et: '2 aastat tagasi', en: '2 years ago', ru: '2 года назад', de: 'vor 2 Jahren', es: 'hace 2 años', sv: 'för 2 år sedan', fi: '2 vuotta sitten', lv: 'pirms 2 gadiem' },
     text: {
       et: 'Ideaalne koht, kus võtta aeg maha ja lihtsalt olla. Toidud on maitsvad, hoolega tehtud ja imeilusti serveeritud!',
       en: 'An ideal place to slow down and simply be. The food is delicious, made with care and beautifully served!',
       ru: 'Идеальное место, чтобы сбавить темп и просто быть. Еда вкусная, приготовлена с заботой и красиво подана!',
       de: 'Ein idealer Ort, um herunterzukommen und einfach zu sein. Das Essen ist köstlich, mit Sorgfalt zubereitet und wunderschön angerichtet!',
+      es: 'Un lugar ideal para bajar el ritmo y simplemente estar. ¡La comida es deliciosa, hecha con cariño y servida de maravilla!',
+      sv: 'En perfekt plats att varva ner och bara vara. Maten är god, lagad med omsorg och vackert serverad!',
+      fi: 'Ihanteellinen paikka hidastaa ja vain olla. Ruoka on herkullista, huolella tehtyä ja kauniisti tarjoiltua!',
+      lv: 'Ideāla vieta, kur piebremzēt un vienkārši būt. Ēdiens ir garšīgs, gatavots ar rūpību un brīnišķīgi pasniegts!',
     },
   },
   {
@@ -171,12 +187,16 @@ export const REVIEW_QUOTES: ReviewQuote[] = [
     id: 'aleksandra',
     author: 'Aleksandra Kryzhanovskaya',
     originalLang: 'ru',
-    when: { et: '3 aastat tagasi', en: '3 years ago', ru: '3 года назад', de: 'vor 3 Jahren' },
+    when: { et: '3 aastat tagasi', en: '3 years ago', ru: '3 года назад', de: 'vor 3 Jahren', es: 'hace 3 años', sv: 'för 3 år sedan', fi: '3 vuotta sitten', lv: 'pirms 3 gadiem' },
     text: {
       ru: 'В Эстонии мало мест, где обслуживание такое теплое и трепетное, видно, что люди делают свою работу от всего сердца. Спасибо большое, это самый лучший отдых для души!',
       et: 'Eestis on vähe kohti, kus teenindus on nii soe ja hoolik – on näha, et inimesed teevad oma tööd kogu südamest. Suur aitäh, see on hingele parim puhkus!',
       en: 'There are few places in Estonia where the service is this warm and attentive — you can see that these people do their work with all their heart. Thank you so much, this is the best rest there is for the soul!',
       de: 'In Estland gibt es nur wenige Orte, an denen der Service so herzlich und aufmerksam ist – man sieht, dass diese Menschen ihre Arbeit mit ganzem Herzen tun. Vielen Dank, das ist die beste Erholung für die Seele!',
+      es: 'En Estonia hay pocos sitios donde el trato sea tan cálido y atento: se nota que esta gente hace su trabajo con todo el corazón. ¡Muchísimas gracias, es el mejor descanso para el alma!',
+      sv: 'Det finns få ställen i Estland där servicen är så varm och omtänksam – man ser att de här människorna gör sitt arbete av hela sitt hjärta. Stort tack, det här är den bästa vilan för själen!',
+      fi: 'Virossa on vähän paikkoja, joissa palvelu on näin lämmintä ja huomaavaista – näkee, että nämä ihmiset tekevät työtään koko sydämestään. Suuri kiitos, tämä on parasta lepoa sielulle!',
+      lv: 'Igaunijā ir maz vietu, kur apkalpošana ir tik sirsnīga un gādīga – var redzēt, ka šie cilvēki savu darbu dara no visas sirds. Liels paldies, šī ir labākā atpūta dvēselei!',
     },
   },
   {
@@ -189,24 +209,32 @@ export const REVIEW_QUOTES: ReviewQuote[] = [
     id: 'ero',
     author: 'Ero Kukk',
     originalLang: 'et',
-    when: { et: '3 aastat tagasi', en: '3 years ago', ru: '3 года назад', de: 'vor 3 Jahren' },
+    when: { et: '3 aastat tagasi', en: '3 years ago', ru: '3 года назад', de: 'vor 3 Jahren', es: 'hace 3 años', sv: 'för 3 år sedan', fi: '3 vuotta sitten', lv: 'pirms 3 gadiem' },
     text: {
       et: 'Super rahul, väga vaikne, ilus, rahulik koht. Perenaine väga külalislahke. Sobib nii tööalasteks kokkusaamisteks kui ka lihtsalt linnajamast puhkamiseks.',
       en: 'Very happy — a very quiet, beautiful, peaceful place. The hostess is very welcoming. It suits work gatherings just as well as simply resting away from the city.',
       ru: 'Очень доволен — очень тихое, красивое, спокойное место. Хозяйка очень гостеприимна. Подходит и для рабочих встреч, и просто для отдыха от городской суеты.',
       de: 'Sehr zufrieden — ein sehr ruhiger, schöner, friedlicher Ort. Die Gastgeberin ist überaus gastfreundlich. Geeignet für Arbeitstreffen ebenso wie zum Ausruhen fern der Stadt.',
+      es: 'Muy contento: un lugar muy tranquilo, bonito y apacible. La anfitriona es muy acogedora. Sirve tanto para reuniones de trabajo como para descansar sin más del ajetreo de la ciudad.',
+      sv: 'Supernöjd – ett väldigt lugnt, vackert och fridfullt ställe. Värdinnan är mycket gästvänlig. Passar lika bra för arbetsträffar som för att bara vila från stadens jäkt.',
+      fi: 'Todella tyytyväinen – hyvin hiljainen, kaunis ja rauhallinen paikka. Emäntä on erittäin vieraanvarainen. Sopii yhtä hyvin työtapaamisiin kuin pelkkään lepoon kaupungin hälinästä.',
+      lv: 'Ļoti apmierināts – ļoti klusa, skaista, mierīga vieta. Saimniece ir ļoti viesmīlīga. Der gan darba tikšanās reizēm, gan vienkārši atpūtai no pilsētas burzmas.',
     },
   },
   {
     id: 'julia',
     originalLang: 'et',
     author: 'Julia Kudrjavtseva',
-    when: { et: '6 aastat tagasi', en: '6 years ago', ru: '6 лет назад', de: 'vor 6 Jahren' },
+    when: { et: '6 aastat tagasi', en: '6 years ago', ru: '6 лет назад', de: 'vor 6 Jahren', es: 'hace 6 años', sv: 'för 6 år sedan', fi: '6 vuotta sitten', lv: 'pirms 6 gadiem' },
     text: {
       et: 'Parimat kohta pole olemas. Saunaga maja on meie pere lemmik. Hubane, puhas. Maitsev ja nii ilusasti serveeritud hommikusöök. Südamest soovitan!',
       en: 'There is no better place. The house with the sauna is our family favourite. Cosy, clean. Delicious and so beautifully served breakfast. I recommend it wholeheartedly!',
       ru: 'Лучшего места нет. Дом с баней — любимец нашей семьи. Уютно, чисто. Вкусный и так красиво поданный завтрак. Рекомендую от всего сердца!',
       de: 'Einen besseren Ort gibt es nicht. Das Haus mit der Sauna ist der Liebling unserer Familie. Gemütlich, sauber. Köstliches und so schön angerichtetes Frühstück. Ich empfehle es von Herzen!',
+      es: 'No hay un sitio mejor. La casa con sauna es la favorita de nuestra familia. Acogedora, limpia. Un desayuno delicioso y servido con tanto mimo. ¡Lo recomiendo de corazón!',
+      sv: 'Det finns inget bättre ställe. Huset med bastun är vår familjs favorit. Mysigt, rent. Läcker och så vackert serverad frukost. Jag rekommenderar det av hela mitt hjärta!',
+      fi: 'Parempaa paikkaa ei ole. Saunallinen talo on perheemme suosikki. Viihtyisä, siisti. Herkullinen ja niin kauniisti tarjoiltu aamiainen. Suosittelen koko sydämestäni!',
+      lv: 'Labākas vietas nav. Māja ar pirti ir mūsu ģimenes mīļākā. Mājīga, tīra. Garšīgas un tik skaisti pasniegtas brokastis. No sirds iesaku!',
     },
   },
 ]
@@ -218,10 +246,14 @@ export const REVIEW_QUOTES: ReviewQuote[] = [
  * always Estonian and a fallback branch would quietly mislabel the one review that is not.
  */
 const LANGUAGE_NAME: Record<Lang, Record<Lang, string>> = {
-  et: { et: 'eesti keelest', en: 'Estonian', ru: 'эстонского', de: 'dem Estnischen' },
-  en: { et: 'inglise keelest', en: 'English', ru: 'английского', de: 'dem Englischen' },
-  ru: { et: 'vene keelest', en: 'Russian', ru: 'русского', de: 'dem Russischen' },
-  de: { et: 'saksa keelest', en: 'German', ru: 'немецкого', de: 'dem Deutschen' },
+  et: { et: 'eesti keelest', en: 'Estonian', ru: 'эстонского', de: 'dem Estnischen', es: 'estonio', sv: 'estniska', fi: 'virosta', lv: 'igauņu valodas' },
+  en: { et: 'inglise keelest', en: 'English', ru: 'английского', de: 'dem Englischen', es: 'inglés', sv: 'engelska', fi: 'englannista', lv: 'angļu valodas' },
+  ru: { et: 'vene keelest', en: 'Russian', ru: 'русского', de: 'dem Russischen', es: 'ruso', sv: 'ryska', fi: 'venäjästä', lv: 'krievu valodas' },
+  de: { et: 'saksa keelest', en: 'German', ru: 'немецкого', de: 'dem Deutschen', es: 'alemán', sv: 'tyska', fi: 'saksasta', lv: 'vācu valodas' },
+  es: { et: 'hispaania keelest', en: 'Spanish', ru: 'испанского', de: 'dem Spanischen', es: 'español', sv: 'spanska', fi: 'espanjasta', lv: 'spāņu valodas' },
+  sv: { et: 'rootsi keelest', en: 'Swedish', ru: 'шведского', de: 'dem Schwedischen', es: 'sueco', sv: 'svenska', fi: 'ruotsista', lv: 'zviedru valodas' },
+  fi: { et: 'soome keelest', en: 'Finnish', ru: 'финского', de: 'dem Finnischen', es: 'finés', sv: 'finska', fi: 'suomesta', lv: 'somu valodas' },
+  lv: { et: 'läti keelest', en: 'Latvian', ru: 'латышского', de: 'dem Lettischen', es: 'letón', sv: 'lettiska', fi: 'latviasta', lv: 'latviešu valodas' },
 }
 
 const TRANSLATED_TEMPLATE: Record<Lang, (name: string) => string> = {
@@ -229,6 +261,10 @@ const TRANSLATED_TEMPLATE: Record<Lang, (name: string) => string> = {
   en: n => `Translated from ${n}`,
   ru: n => `Перевод с ${n}`,
   de: n => `Aus ${n} übersetzt`,
+  es: n => `Traducido del ${n}`,
+  sv: n => `Översatt från ${n}`,
+  fi: n => `Käännetty ${n}`,
+  lv: n => `Tulkots no ${n}`,
 }
 
 /** Empty when the reader is seeing the guest's own words. */

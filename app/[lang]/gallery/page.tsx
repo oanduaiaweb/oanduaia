@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import GalleryClient from '@/components/GalleryClient'
-import { LOCALES, GALLERY_META, SITE, alternates, isLocale } from '@/lib/i18n'
+import { LOCALES, GALLERY_META, SITE, alternates, isLocale, META } from '@/lib/i18n'
 
 export function generateStaticParams() {
   return LOCALES.map(lang => ({ lang }))
@@ -23,6 +23,8 @@ export async function generateMetadata({
     openGraph: {
       type: 'website',
       siteName: 'Oanduaia',
+      locale: META[lang].ogLocale,
+      alternateLocale: LOCALES.filter(l => l !== lang).map(l => META[l].ogLocale),
       title: m.title,
       description: m.description,
       url: `${SITE}/${lang}/gallery`,

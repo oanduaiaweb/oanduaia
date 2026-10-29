@@ -12,6 +12,7 @@ export default function Footer() {
   const t = T.footer
   // Per-locale slug: the landing page is /en/lahemaa-accommodation but /et/majutus-lahemaal.
   const landing = LANDINGS[0]
+  const winter = LANDINGS.find(l => l.id === 'winter-sauna') ?? LANDINGS[0]
   return (
     <footer>
       <div>
@@ -25,12 +26,17 @@ export default function Footer() {
       <div>
         <p className="footer-heading">{t.navH[lang]}</p>
         <ul className="footer-links">
-          <li><a href="#lugu">{t.lugu[lang]}</a></li>
-          <li><a href="#majad">{t.majutus[lang]}</a></li>
-          <li><a href="#toit">{t.teenused[lang]}</a></li>
-          <li><a href="#loodus">{t.matkad[lang]}</a></li>
-          <li><a href="#broneeri">{t.broneeri[lang]}</a></li>
+          {/*
+            Homepage sections, so the path is spelled out: the footer is on every page, and a
+            bare "#lugu" on a house or trail page pointed at nothing (Mikk, 29 Oct).
+          */}
+          <li><a href={`/${lang}#lugu`}>{t.lugu[lang]}</a></li>
+          <li><a href={`/${lang}#majad`}>{t.majutus[lang]}</a></li>
+          <li><a href={`/${lang}#toit`}>{t.teenused[lang]}</a></li>
+          <li><a href={`/${lang}#loodus`}>{t.matkad[lang]}</a></li>
+          <li><a href={`/${lang}#broneeri`}>{t.broneeri[lang]}</a></li>
           <li><a href={`/${lang}/${landing.slug[lang]}`}>{t.landing[lang]}</a></li>
+          <li><a href={`/${lang}/${winter.slug[lang]}`}>{t.landingWinter[lang]}</a></li>
           <li><a href={`/${lang}/gallery`}>{t.galerii[lang]}</a></li>
         </ul>
       </div>

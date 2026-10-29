@@ -221,7 +221,7 @@ export default function Admin() {
       email: e.email,
       reference: [e.dates, e.message].filter(Boolean).join('\n').slice(0, 400),
       amount: '',
-      lang: e.lang && ['et', 'en', 'ru', 'de'].includes(e.lang) ? e.lang : 'et',
+      lang: e.lang && ['et', 'en', 'ru', 'de', 'es', 'sv', 'fi', 'lv'].includes(e.lang) ? e.lang : 'et',
       house: '', checkIn: '', checkOut: '', send: true, cash: false,
       bDates: [], bPeople: 2, dDates: [], dPeople: 2, mealsAtHouse: false,
     })
@@ -420,7 +420,7 @@ export default function Admin() {
             <select id="pay-lang" className="adm-input" value={pay.lang}
               onChange={e => setPay(p => ({ ...p, lang: e.target.value }))}>
               <option value="et">Eesti</option><option value="en">English</option>
-              <option value="ru">Русский</option><option value="de">Deutsch</option>
+              <option value="ru">Русский</option><option value="de">Deutsch</option><option value="es">Español</option><option value="sv">Svenska</option><option value="fi">Suomi</option><option value="lv">Latviešu</option>
             </select>
           </div>
           <div className="adm-field adm-field--wide">

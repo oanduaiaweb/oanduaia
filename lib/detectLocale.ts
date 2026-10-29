@@ -9,7 +9,7 @@ import type { Lang } from '@/lib/translations'
  * below makes TypeScript name any locale added to `Lang` but forgotten here, so the two lists
  * cannot drift apart silently.
  */
-const SUPPORTED = ['et', 'en', 'ru', 'de'] as const
+const SUPPORTED = ['et', 'en', 'ru', 'de', 'es', 'sv', 'fi', 'lv'] as const
 type Missing = Exclude<Lang, (typeof SUPPORTED)[number]>
 const _exhaustive: [Missing] extends [never] ? true : ['locale missing from SUPPORTED', Missing] = true
 void _exhaustive
@@ -26,6 +26,10 @@ export const COUNTRY_LANG: Record<string, Lang> = {
   EE: 'et',
   RU: 'ru',
   DE: 'de', AT: 'de', CH: 'de',
+  ES: 'es', MX: 'es', AR: 'es', CO: 'es', CL: 'es', PE: 'es', UY: 'es',
+  SE: 'sv', AX: 'sv', FI: 'fi',
+  // LV deliberately absent: a large share of Latvia browses in Russian, so the browser
+  // language below decides there — Latvian browsers get /lv, Russian ones /ru.
 }
 
 function isLocale(v: string | undefined | null): v is Lang {

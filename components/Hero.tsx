@@ -32,7 +32,14 @@ export default function Hero() {
   const [reached, setReached] = useState(0)
 
   useEffect(() => {
-    setMounted(true)
+    /*
+     * The second slide waits for the page's load event, not just first paint: on a phone
+     * the hero photograph was still downloading when slide two started competing with it,
+     * and the measured LCP was 8.5 s (Lighthouse, 24 Oct).
+     */
+    const reveal = () => setMounted(true)
+    if (document.readyState === 'complete') reveal()
+    else window.addEventListener('load', reveal, { once: true })
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
     if (reduced.matches || HERO_SLIDES.length < 2) return
@@ -41,7 +48,7 @@ export default function Hero() {
       () => setIndex(i => (i + 1) % HERO_SLIDES.length),
       HERO_HOLD + HERO_FADE
     )
-    return () => clearInterval(id)
+    return () => { clearInterval(id); window.removeEventListener('load', reveal) }
   }, [])
 
   useEffect(() => { setReached(r => Math.max(r, index)) }, [index])

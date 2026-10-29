@@ -15,7 +15,7 @@
  */
 export const HOUSE_STRIP: string[] = [
   '/galerii/saunamaja-veepealt.jpeg',
-  '/images/metsamaja.jpg',
+  '/galerii/metsamaja-paikeses.jpeg',
   '/galerii/tiigimaja-veepealt.jpeg',
   '/galerii/saunamaja/ohtuvalgus.jpeg',
   '/galerii/metsamaja-kaugelt.jpeg',

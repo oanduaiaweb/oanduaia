@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { LOCALES, SITE, HREFLANG, DEFAULT_LOCALE } from '@/lib/i18n'
+import { LOCALES, SITE, HREFLANG, DEFAULT_LOCALE, xDefault } from '@/lib/i18n'
 import { ALL_PHOTOS } from '@/lib/gallery'
 import { HERO_SLIDES } from '@/lib/hero'
 import { HOUSE_SLUGS } from '@/lib/availability'
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const suffix of PAGES) {
     const languages: Record<string, string> = {}
     for (const l of LOCALES) languages[HREFLANG[l]] = `${SITE}/${l}${suffix}`
-    languages['x-default'] = `${SITE}/${DEFAULT_LOCALE}${suffix}`
+    languages['x-default'] = xDefault(suffix)
 
     for (const lang of LOCALES) {
       // Declaring the images lets them be indexed by image search, which matters

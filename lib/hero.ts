@@ -39,6 +39,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'The Lahemaa forest around Oanduaia',
       ru: 'Лес Лахемаа вокруг Oanduaia',
       de: 'Der Wald von Lahemaa rund um Oanduaia',
+      es: 'El bosque de Lahemaa alrededor de Oanduaia',
+      sv: 'Skogen i Lahemaa runt Oanduaia',
+      fi: 'Lahemaan metsä Oanduaian ympärillä',
+      lv: 'Lahemā mežs ap Oanduaia',
     },
   },
   {
@@ -51,6 +55,26 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'The long thatched log house in summer sun',
       ru: 'Длинный дом из бруса с камышовой крышей на летнем солнце',
       de: 'Das lange Blockhaus mit Reetdach in der Sommersonne',
+      es: 'La larga casa de troncos con tejado de junco bajo el sol de verano',
+      sv: 'Det långa timmerhuset med vasstak i sommarsolen',
+      fi: 'Pitkä ruokokattoinen hirsitalo kesäauringossa',
+      lv: 'Garā guļbūves māja ar niedru jumtu vasaras saulē',
+    },
+  },
+  {
+    src: '/galerii/sugispaike-muru.jpeg',
+    w: 1536,
+    h: 2048,
+    focus: { desktop: '50% 47%', mobile: '50% 50%' },
+    alt: {
+      et: 'Madal sügispäike paistab üle muru ja roogkatuste, esiplaanil lillepott terrassi serval',
+      en: 'Low autumn sun over the lawn and the thatched roofs, a pot of flowers at the edge of the deck',
+      ru: 'Низкое осеннее солнце над лужайкой и камышовыми крышами, на краю террасы горшок с цветами',
+      de: 'Tiefe Herbstsonne über dem Rasen und den Reetdächern, ein Blumentopf am Rand der Terrasse',
+      es: 'El sol bajo de otoño sobre el césped y los tejados de junco, una maceta con flores al borde de la terraza',
+      sv: 'Låg höstsol över gräsmattan och vasstaken, en blomkruka vid terrasskanten',
+      fi: 'Matala syysaurinko nurmikon ja ruokokattojen yllä, kukkaruukku terassin reunalla',
+      lv: 'Zema rudens saule pār zālienu un niedru jumtiem, terases malā puķu pods',
     },
   },
   {
@@ -63,6 +87,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'A round thatched building beside the pond',
       ru: 'Круглое строение с камышовой крышей у пруда',
       de: 'Das runde reetgedeckte Gebäude am Teich',
+      es: 'Una construcción redonda con tejado de junco junto al estanque',
+      sv: 'En rund byggnad med vasstak vid dammen',
+      fi: 'Pyöreä ruokokattoinen rakennus lammen rannalla',
+      lv: 'Apaļa ēka ar niedru jumtu pie dīķa',
     },
   },
   {
@@ -75,6 +103,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'The thatched house by the pond in early spring',
       ru: 'Дом с камышовой крышей у пруда ранней весной',
       de: 'Das reetgedeckte Haus am Teich im zeitigen Frühling',
+      es: 'La casa con tejado de junco junto al estanque a principios de primavera',
+      sv: 'Huset med vasstak vid dammen tidigt på våren',
+      fi: 'Ruokokattoinen talo lammen rannalla varhain keväällä',
+      lv: 'Māja ar niedru jumtu pie dīķa agrā pavasarī',
     },
   },
   {
@@ -87,6 +119,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'Three buildings mirrored in the still pond',
       ru: 'Три строения отражаются в спокойном пруду',
       de: 'Drei Gebäude spiegeln sich im stillen Teich',
+      es: 'Tres edificios reflejados en el estanque en calma',
+      sv: 'Tre byggnader som speglar sig i den stilla dammen',
+      fi: 'Kolme rakennusta heijastuu tyyneen lampeen',
+      lv: 'Trīs ēkas atspoguļojas mierīgajā dīķī',
     },
   },
   {
@@ -99,6 +135,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'Open lawn before the main house under high cloud',
       ru: 'Открытый газон перед главным домом под облаками',
       de: 'Die offene Wiese vor dem Haupthaus unter Wolken',
+      es: 'El amplio césped frente a la casa principal bajo nubes altas',
+      sv: 'Den öppna gräsmattan framför huvudbyggnaden under höga moln',
+      fi: 'Avara nurmikko päärakennuksen edessä korkeiden pilvien alla',
+      lv: 'Plašs zāliens pie galvenās mājas zem augstiem mākoņiem',
     },
   },
   {
@@ -111,6 +151,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'Two timber hammocks slung between birches before the house',
       ru: 'Два деревянных гамака между берёзами перед домом',
       de: 'Zwei Holzschaukeln zwischen Birken vor dem Haus',
+      es: 'Dos hamacas de madera colgadas entre abedules frente a la casa',
+      sv: 'Två hängmattor av trä mellan björkar framför huset',
+      fi: 'Kaksi puista riippukeinua koivujen välissä talon edessä',
+      lv: 'Divi koka šūpuļtīkli starp bērziem pie mājas',
     },
   },
   {
@@ -123,6 +167,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'The sauna house across the water, forest mirrored in the pond',
       ru: 'Банный дом через воду, лес отражается в пруду',
       de: 'Das Saunahaus über dem Wasser, der Wald spiegelt sich im Teich',
+      es: 'La casa de la sauna al otro lado del agua, con el bosque reflejado en el estanque',
+      sv: 'Bastuhuset på andra sidan vattnet, med skogen speglad i dammen',
+      fi: 'Saunarakennus veden takana, metsä heijastuu lampeen',
+      lv: 'Pirts māja ūdens otrā krastā, mežs atspoguļojas dīķī',
     },
   },
   {
@@ -135,6 +183,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'Evening sun through the trees above the pond',
       ru: 'Вечернее солнце сквозь деревья над прудом',
       de: 'Abendsonne durch die Bäume über dem Teich',
+      es: 'Sol de tarde entre los árboles sobre el estanque',
+      sv: 'Kvällssol genom träden ovanför dammen',
+      fi: 'Ilta-aurinko puiden läpi lammen yllä',
+      lv: 'Vakara saule caur kokiem virs dīķa',
     },
   },
 ]
@@ -155,6 +207,12 @@ export function slideSizes(slide: HeroSlide): string {
   // The phone hero is 76svh tall; ~0.63 is what that works out to across common handsets.
   const HERO_ASPECT_MOBILE = 0.63
   if (aspect <= HERO_ASPECT_MOBILE) return '100vw'
+  /*
+   * Capped in CSS pixels, not vw. A landscape photo cropped to a phone is ~240vw wide, and on
+   * a 2.75x screen that asked for the 3840 px file — measured LCP 8.2 s on a throttled Pixel 5
+   * (24 Oct). 600px × DPR lands on the 1080–1920 files: sharp on every phone, a fraction of
+   * the bytes.
+   */
   const overflow = Math.min(Math.round((aspect / HERO_ASPECT_MOBILE) * 100), 300)
-  return `(max-width: 700px) ${overflow}vw, 100vw`
+  return `(max-width: 700px) min(${overflow}vw, 600px), 100vw`
 }

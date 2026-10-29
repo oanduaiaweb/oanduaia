@@ -160,7 +160,7 @@ nav.nav-scrolled .nav-logo { text-shadow: none; }
   opacity: 0;
   animation: fadeUp 1.2s var(--ease-expo) 0.55s forwards;
 }
-.nav-mark:hover svg { opacity: 1; transform: translateY(-1px); }
+@media (hover: hover) { .nav-mark:hover svg { opacity: 1; transform: translateY(-1px); } }
 /* The logo carries a text-shadow over the photograph; the mark needs the same lift. */
 .nav-mark svg {
   display: block;
@@ -176,6 +176,8 @@ nav.nav-scrolled .nav-logo { text-shadow: none; }
 nav.nav-scrolled .nav-mark svg { opacity: 0; }
 /* Faded out means gone, not merely invisible — an unseen click target is a trap. */
 nav.nav-scrolled .nav-mark { pointer-events: none; }
+/* Never over the open menu: the panel is its own screen, and the mark sat on top of HOUSES (Mikk, 29 Oct). */
+nav.nav-menu-open .nav-mark { display: none; }
 
 /*
  * The gap is smaller than it looks: every item now carries the box's padding whether
@@ -204,7 +206,7 @@ nav.nav-scrolled .nav-mark { pointer-events: none; }
   padding: 0.38rem 0.85rem;
 }
 nav.nav-scrolled .nav-links a { text-shadow: none; opacity: 0.72; }
-.nav-links a:hover { opacity: 1 !important; }
+@media (hover: hover) { .nav-links a:hover { opacity: 1 !important; } }
 
 /*
  * The box marks where you are, and nothing else. It used to sit permanently around
@@ -246,7 +248,7 @@ nav.nav-scrolled .nav-links a { text-shadow: none; opacity: 0.72; }
   text-shadow: 0 1px 10px rgba(0,0,0,0.7);
 }
 nav.nav-scrolled .nav-gallery-btn { text-shadow: none; }
-.nav-gallery-btn:hover { opacity: 1 !important; }
+@media (hover: hover) { .nav-gallery-btn:hover { opacity: 1 !important; } }
 
 /* Social icons */
 .nav-socials {
@@ -262,7 +264,7 @@ nav.nav-scrolled .nav-gallery-btn { text-shadow: none; }
   transition: opacity 0.2s;
   text-shadow: 0 1px 10px rgba(0,0,0,0.7);
 }
-.nav-social:hover { opacity: 1; }
+@media (hover: hover) { .nav-social:hover { opacity: 1; } }
 nav.nav-scrolled .nav-social { text-shadow: none; }
 
 /* Language switcher */
@@ -285,7 +287,7 @@ nav.nav-scrolled .nav-social { text-shadow: none; }
   white-space: nowrap;
 }
 nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
-.nav-lang-trigger:hover { opacity: 1; }
+@media (hover: hover) { .nav-lang-trigger:hover { opacity: 1; } }
 .nav-lang-arrow { font-size: var(--fs-2xs); opacity: 0.6; transition: transform 0.3s; }
 .nav-lang-arrow.open { transform: rotate(180deg); }
 .nav-lang-dropdown {
@@ -320,7 +322,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   width: 100%;
   text-align: left;
 }
-.nav-lang-option:hover { opacity: 1; background: rgba(200,212,184,0.08); }
+@media (hover: hover) { .nav-lang-option:hover { opacity: 1; background: rgba(200,212,184,0.08); } }
 
 /* Mobile overlay language buttons */
 /*
@@ -328,18 +330,22 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
  * 1.5rem gap came to roughly 350px, so DE was cut off the right edge on a 390px
  * phone and worse on a 320 — visible in Mikk's own screenshot.
  */
+/*
+ * A grid of four equal columns (Mikk, 29 Oct: "make all the words even"). As wrapping
+ * flex, each button was its own width, so the two rows came out different lengths and
+ * neither lined up with the other.
+ */
 .nav-overlay-langs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.55rem;
   margin-top: 2.2rem;
-  padding-inline: 1rem;
-  max-width: 100%;
+  width: min(100% - 2rem, 23rem);
 }
 .nav-overlay-lang {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: none;
   border: 1px solid rgba(200,212,184,0.2);
@@ -349,12 +355,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   letter-spacing: var(--ls-wide);
   color: var(--mist);
   opacity: 0.6;
-  padding: 0.6rem 1.1rem;
+  padding: 0.6rem 0;
   transition: opacity 0.2s, border-color 0.2s;
   border-radius: 2px;
 }
-.nav-overlay-lang:hover,
 .nav-overlay-lang.active { opacity: 1; border-color: rgba(200,212,184,0.5); }
+@media (hover: hover) { .nav-overlay-lang:hover { opacity: 1; border-color: rgba(200,212,184,0.5); } }
 
 /*
  * Overlay social links — a two-column grid, not a wrapping flex row.
@@ -368,13 +374,14 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .nav-overlay-socials {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-items: center;
   align-items: center;
   gap: 1rem 1.6rem;
   margin-top: 1.6rem;
-  width: min(100%, 24rem);
+  width: min(100% - 2rem, 23rem);
   box-sizing: border-box;
-  padding: 0 1.5rem;
+  /* Left-aligned in their columns so the icons stand in two straight lines; the inset
+     pulls the pair in toward the middle so the block still reads as centred. */
+  padding-left: clamp(0.3rem, 7vw - 1.1rem, 1.6rem);
 }
 .nav-overlay-socials a { white-space: nowrap; }
 .nav-overlay-socials a {
@@ -389,7 +396,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   opacity: 0.6;
   transition: opacity 0.2s;
 }
-.nav-overlay-socials a:hover { opacity: 1; }
+@media (hover: hover) { .nav-overlay-socials a:hover { opacity: 1; } }
 
 /* Burger button — hidden on desktop, shown ≤768px */
 .nav-burger {
@@ -493,7 +500,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-decoration: none;
   transition: color 0.3s;
 }
-.nav-overlay-links a:hover { color: var(--mist); }
+@media (hover: hover) { .nav-overlay-links a:hover { color: var(--mist); } }
 
 /* ══════════════════════════════
    HERO
@@ -553,6 +560,23 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
     rgba(28,38,20,0.28) 50%,
     rgba(38,50,28,0.60) 100%
   );
+}
+
+/*
+ * The photograph dissolves into the houses section instead of stopping on a straight
+ * line (Mikk, 28 Oct: the seam read as two blocks stacked, not one page). Under the copy
+ * and above the grain, so the button never sits in the fade's darkest part.
+ */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 26%;
+  background: linear-gradient(to bottom,
+    rgb(56 64 44 / 0) 0%,
+    rgb(56 64 44 / 0.55) 55%,
+    var(--bark) 100%);
+  pointer-events: none;
 }
 
 .hero-grain {
@@ -680,11 +704,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   white-space: nowrap;
   transition: background 0.35s, color 0.35s, transform 0.3s var(--ease-smooth);
 }
-.btn-primary:hover {
+@media (hover: hover) { .btn-primary:hover {
   background: linear-gradient(160deg, var(--fern) 0%, var(--moss) 100%);
   color: var(--linen);
   transform: translateY(-2px);
-}
+} }
 
 /* Solid dark button — for use on light section backgrounds */
 .btn-dark {
@@ -704,10 +728,10 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   width: 100%;
   transition: background 0.35s, transform 0.3s var(--ease-smooth);
 }
-.btn-dark:hover {
+@media (hover: hover) { .btn-dark:hover {
   background: linear-gradient(160deg, var(--moss) 0%, var(--fern) 100%);
   transform: translateY(-2px);
-}
+} }
 
 .btn-ghost {
   font-family: var(--font-sans);
@@ -724,12 +748,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   white-space: nowrap;
   transition: background 0.35s, color 0.35s, border-color 0.35s, transform 0.3s var(--ease-smooth);
 }
-.btn-ghost:hover {
+@media (hover: hover) { .btn-ghost:hover {
   background: linear-gradient(160deg, var(--fern) 0%, var(--moss) 100%);
   color: var(--linen);
   border-color: var(--fern);
   transform: translateY(-2px);
-}
+} }
 
 /* ══════════════════════════════
    SECTION LABELS — unified style, consistent gap
@@ -806,7 +830,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   margin-bottom: 2.6rem;
 }
 .service-card > :not(.service-image) { margin-left: 2.8rem; margin-right: 2.8rem; }
-.service-card:hover { background: var(--linen); }
+@media (hover: hover) { .service-card:hover { background: var(--linen); } }
 .service-num {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
@@ -877,10 +901,10 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-decoration: none;
   transition: letter-spacing 0.3s, color 0.3s;
 }
-.service-card:hover .service-arrow {
+@media (hover: hover) { .service-card:hover .service-arrow {
   letter-spacing: var(--ls-widest);
   color: var(--moss);
-}
+} }
 
 /* ══════════════════════════════
    FEATURE — dark, same tone as footer
@@ -930,6 +954,16 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   max-width: 560px;
   min-width: 260px;
   height: 100%;
+  /*
+   * Each frame slides under the edge of the one before it and fades in across the
+   * overlap, so one photograph dissolves into the next rather than meeting it on a
+   * vertical seam. Every frame gives up the same width, so the two copies stay exactly
+   * half the track apart and the -50% loop is still seamless.
+   */
+  --blend: clamp(80px, 9vw, 170px);
+  margin-left: calc(-1 * var(--blend));
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--blend));
+  mask-image: linear-gradient(90deg, transparent 0, #000 var(--blend));
 }
 @keyframes photoStrip {
   from { transform: translateX(-50%); }
@@ -947,13 +981,13 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   background:
     linear-gradient(90deg,
       var(--bark) 0%,
-      rgba(42,48,32,0) 22%,
-      rgba(42,48,32,0) 78%,
+      rgba(56,64,44,0) 22%,
+      rgba(56,64,44,0) 78%,
       var(--bark) 100%),
     linear-gradient(180deg,
       var(--bark) 0%,
-      rgba(42,48,32,0.72) 22%,
-      rgba(42,48,32,0.72) 78%,
+      rgba(56,64,44,0.72) 22%,
+      rgba(56,64,44,0.72) 78%,
       var(--bark) 100%);
 }
 /* Right to left, for the strip that runs against the one below it. */
@@ -1097,8 +1131,6 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .house-band-overlay {
   position: absolute; inset: 0;
   background:
-    /* atmosphere, unchanged */
-    linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%),
     /* the seam against the text column */
     linear-gradient(to right,
       rgba(56,64,44,0) calc(100% - 132px),
@@ -1107,20 +1139,23 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
       var(--bark) 100%),
     /* top and bottom, where the band meets the one above and below */
     linear-gradient(to bottom, var(--bark) 0, rgba(56,64,44,0) 58px),
-    linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0) 58px);
+    linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0) 58px),
+    /* atmosphere, painted under the fades so it cannot darken the edge past --bark */
+    linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%);
   z-index: 1;
 }
 /* Mirrored: on a reversed band the text column is on the left. */
 .house-band--reversed .house-band-overlay {
   background:
-    linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%),
     linear-gradient(to left,
       rgba(56,64,44,0) calc(100% - 132px),
       rgba(56,64,44,0.30) calc(100% - 74px),
       rgba(56,64,44,0.72) calc(100% - 30px),
       var(--bark) 100%),
     linear-gradient(to bottom, var(--bark) 0, rgba(56,64,44,0) 58px),
-    linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0) 58px);
+    linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0) 58px),
+    /* atmosphere, painted under the fades so it cannot darken the edge past --bark */
+    linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%);
   z-index: 1;
 }
 .house-band-content {
@@ -1231,14 +1266,13 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
    * the rule above the price, read as stripes across the card rather than as structure
    * (Mikk, 11 Sep). The padding below already separates the lines.
    */
-  padding: 1.1rem 0;
+  padding: 0.55rem 0;
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
   transition: opacity 0.3s;
 }
-.feature-list li:hover { opacity: 1; }
-.feature-list li::before { content: '↗'; color: var(--sage); font-size: var(--fs-xs); flex-shrink: 0; margin-top: 0.1em; }
+/* No arrow bullets and no hover lift: these are facts, not links, and an arrow that leads nowhere read as fake (Mikk, 29 Oct). */
 /* Feature house groups */
 .feature-houses { margin-bottom: 0; }
 .feature-house { margin-bottom: 0.2rem; }
@@ -1279,11 +1313,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   transition: opacity 0.3s, border-color 0.3s, background 0.3s;
   opacity: 0.6;
 }
-.feature-gallery-link:hover {
+@media (hover: hover) { .feature-gallery-link:hover {
   opacity: 1;
   border-color: rgba(200,212,184,0.5);
   background: rgba(200,212,184,0.08);
-}
+} }
 
 .feature-cta {
   margin-top: 3.5rem;
@@ -1301,11 +1335,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   align-self: flex-start;
   transition: background 0.35s, color 0.35s, transform 0.3s var(--ease-smooth);
 }
-.feature-cta:hover {
+@media (hover: hover) { .feature-cta:hover {
   background: linear-gradient(160deg, var(--fern) 0%, var(--moss) 100%);
   color: var(--linen);
   transform: translateY(-2px);
-}
+} }
 
 /* ══════════════════════════════
    TRAILS — dark bark, full-bleed
@@ -1342,8 +1376,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   inset: 0;
   background: linear-gradient(180deg,
     var(--bark) 0%,
-    rgba(42,48,32,0.88) 26%,
-    rgba(42,48,32,0.88) 74%,
+    rgba(56,64,44,0.88) 26%,
+    rgba(56,64,44,0.88) 74%,
     var(--bark) 100%);
 }
 /*
@@ -1460,7 +1494,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   background: var(--linen);
   border-color: rgba(58,74,53,0.18);
 }
-.trails-map .leaflet-control-zoom a:hover { background: #fff; }
+@media (hover: hover) { .trails-map .leaflet-control-zoom a:hover { background: #fff; } }
 /* The marker: an open ring, so it circles the property rather than covering it. */
 .trails-map .oa-map-pin {
   border: 3px solid var(--moss);
@@ -1499,10 +1533,10 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-decoration: none;
   transition: border-color 0.3s, background 0.3s;
 }
-.trail-link:hover {
+@media (hover: hover) { .trail-link:hover {
   border-color: rgba(200,212,184,0.6);
   background: rgba(200,212,184,0.08);
-}
+} }
 .trail-link-meta {
   letter-spacing: var(--ls-wide);
   color: var(--mist);
@@ -1664,7 +1698,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   padding: 0.95rem 2rem;
   transition: background 0.3s;
 }
-.landing-cta:hover { background: #fff; }
+@media (hover: hover) { .landing-cta:hover { background: #fff; } }
 
 .landing-qa { background: var(--cream); }
 .landing-qa-inner {
@@ -1681,8 +1715,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .landing-qa .faq-q { color: var(--moss); font-size: 1.08rem; }
 .landing-qa .faq-q::before,
 .landing-qa .faq-q::after { background: var(--sage); }
-.landing-qa .faq-item[open] .faq-q,
-.landing-qa .faq-q:hover { color: var(--fern); }
+.landing-qa .faq-item[open] .faq-q { color: var(--fern); }
+@media (hover: hover) { .landing-qa .faq-q:hover { color: var(--fern); } }
 .landing-qa .faq-a { color: var(--ink); opacity: 1; }
 @media (max-width: 700px) {
   .landing-hero { height: 40vh; min-height: 260px; }
@@ -1736,7 +1770,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   padding-bottom: 0.8rem;
 }
 .compare-table thead th a { color: inherit; text-decoration: none; transition: color 0.3s; }
-.compare-table thead th a:hover { color: var(--gold); }
+@media (hover: hover) { .compare-table thead th a:hover { color: var(--gold); } }
 .compare-table tbody th {
   font-weight: 300;
   font-size: var(--fs-2xs);
@@ -1831,7 +1865,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .trail-main p + p { margin-top: 1.4rem; }
 .trail-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2.4rem; }
 .trail-links .trail-link { margin-top: 0; border-color: rgba(58,74,53,0.28); color: var(--moss); }
-.trail-links .trail-link:hover { border-color: rgba(58,74,53,0.6); background: rgba(58,74,53,0.06); }
+@media (hover: hover) { .trail-links .trail-link:hover { border-color: rgba(58,74,53,0.6); background: rgba(58,74,53,0.06); } }
 .trail-links .trail-link-meta { color: var(--fern); opacity: 0.7; }
 
 /* The facts panel: RMK's numbers, and one of ours marked as ours. */
@@ -1900,7 +1934,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   padding: 0.95rem 2rem;
   transition: background 0.3s;
 }
-.trail-stay-cta:hover { background: #fff; }
+@media (hover: hover) { .trail-stay-cta:hover { background: #fff; } }
 
 .trail-others {
   max-width: var(--max-w);
@@ -1925,7 +1959,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   gap: 0.4rem;
   transition: background 0.3s;
 }
-.trail-others-link:hover { background: var(--cream); }
+@media (hover: hover) { .trail-others-link:hover { background: var(--cream); } }
 .trail-others-km {
   font-family: var(--font-sans);
   font-size: var(--fs-2xs);
@@ -1942,11 +1976,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   color: var(--fern);
   text-decoration: none;
 }
-.trail-back:hover { color: var(--moss); }
+@media (hover: hover) { .trail-back:hover { color: var(--moss); } }
 
 /* The trail names in the home-page list are links now. */
 .trail-name a { color: inherit; text-decoration: none; transition: color 0.3s; }
-.trail-name a:hover { color: var(--gold); }
+@media (hover: hover) { .trail-name a:hover { color: var(--gold); } }
 
 @media (max-width: 900px) {
   .trail-body { grid-template-columns: 1fr; gap: 2.8rem; }
@@ -2105,7 +2139,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .faq-q::after { transform: rotate(90deg); }
 .faq-item[open] .faq-q::after { transform: rotate(0deg); }
 .faq-item[open] .faq-q { color: var(--sage); }
-.faq-q:hover { color: var(--sage); }
+@media (hover: hover) { .faq-q:hover { color: var(--sage); } }
 .faq-a {
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
@@ -2138,7 +2172,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   border-color: var(--linen);
   color: var(--bark);
 }
-.trail-link--solid:hover { background: #fff; border-color: #fff; }
+@media (hover: hover) { .trail-link--solid:hover { background: #fff; border-color: #fff; } }
 
 /* ══════════════════════════════
    STATS STRIP — light divider between dark sections
@@ -2155,7 +2189,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-align: center;
   transition: background 0.3s;
 }
-.stat-item:hover { background: var(--linen); }
+@media (hover: hover) { .stat-item:hover { background: var(--linen); } }
 .stat-num {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 4.5vw, 4.5rem);
@@ -2253,11 +2287,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   transition: border-color 0.35s var(--ease-smooth), background 0.35s var(--ease-smooth),
               transform 0.35s var(--ease-smooth);
 }
-.review-card:hover {
+@media (hover: hover) { .review-card:hover {
   border-color: rgba(200,212,184,0.42);
   background: rgba(200,212,184,0.06);
   transform: translateY(-3px);
-}
+} }
 /* Two lines' worth whether or not the channel names a house, so the scores line up. */
 .review-channel {
   min-height: 2.7em;
@@ -2344,7 +2378,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   transition: opacity 0.3s;
 }
 .review-go::after { content: ' →'; }
-.review-card:hover .review-go { opacity: 1; }
+@media (hover: hover) { .review-card:hover .review-go { opacity: 1; } }
 
 /* Asking for one, which is the half the old quote block never did. */
 .reviews-write {
@@ -2383,11 +2417,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   text-decoration: none;
   transition: background 0.3s, color 0.3s, transform 0.3s var(--ease-smooth);
 }
-.reviews-write-btn:hover {
+@media (hover: hover) { .reviews-write-btn:hover {
   background: transparent;
   color: var(--linen);
   transform: translateY(-2px);
-}
+} }
 
 @media (max-width: 760px) {
   .reviews-grid { grid-template-columns: 1fr; gap: 0.7rem; }
@@ -2554,14 +2588,16 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   -webkit-appearance: none;
   border-radius: 0;
 }
-.form-input:-webkit-autofill,
-.form-input:-webkit-autofill:hover,
-.form-input:-webkit-autofill:focus,
-.form-textarea:-webkit-autofill {
+.form-input:-webkit-autofill, .form-input:-webkit-autofill:focus, .form-textarea:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px var(--linen) inset;
   -webkit-text-fill-color: var(--bark);
   transition: background-color 5000s ease-in-out 0s;
 }
+@media (hover: hover) { .form-input:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0 1000px var(--linen) inset;
+  -webkit-text-fill-color: var(--bark);
+  transition: background-color 5000s ease-in-out 0s;
+} }
 .form-input::placeholder,
 .form-textarea::placeholder {
   color: rgba(58,74,53,0.28);
@@ -2584,8 +2620,31 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: var(--cream);
+  /*
+   * The pond and ferns behind the whole booking block, so a wide screen shows forest either
+   * side of the panel instead of bare cream (Mikk, 23 Oct). Veiled dark green: the panel is
+   * dark, and the intro type above it turns light to sit on this ground.
+   */
+  --sect-veil: linear-gradient(180deg, rgba(24,30,17,0.86) 0%, rgba(30,38,22,0.80) 40%, rgba(20,26,14,0.90) 100%);
+  background: var(--sect-veil), var(--bark-deep);
+  background-position: center 62%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+/* The photograph arrives only after load (html.bg-ready), phone-sized on phones. */
+.bg-ready .avail-section {
+  background-image: var(--sect-veil), url('/_next/image?url=%2Fimages%2Ftiik.jpg&w=1920&q=60');
+}
+@media (max-width: 700px) {
+  .bg-ready .avail-section {
+    background-image: var(--sect-veil), url('/_next/image?url=%2Fimages%2Ftiik.jpg&w=828&q=60');
+  }
+}
+.avail-section .avail-eyebrow { color: rgba(226,234,214,0.72); }
+.avail-section .booking-heading { color: #f0ebe0; }
+.avail-section .booking-heading em { color: #c9d6b6; }
+.avail-section .booking-sub { color: rgba(240,235,224,0.86); }
+.avail-section .booking-times { color: rgba(226,234,214,0.85); opacity: 1; }
 .avail-eyebrow {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
@@ -2728,11 +2787,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
               border-color 0.25s var(--ease-smooth), transform 0.25s var(--ease-smooth),
               box-shadow 0.25s var(--ease-smooth);
 }
-.avail-house:hover {
+@media (hover: hover) { .avail-house:hover {
   border-color: rgba(200,212,184,0.4);
   transform: translateY(-1px);
   box-shadow: inset 0 1px 0 rgba(240,235,224,0.24), 0 3px 7px rgba(0,0,0,0.36);
-}
+} }
 /* The chosen house is the lit one — light fill, dark type, standing off the panel. */
 .avail-house.is-on {
   background: linear-gradient(180deg, #e6edd9 0%, #c3d0b0 100%);
@@ -2819,11 +2878,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   transition: border-color 0.25s var(--ease-smooth), opacity 0.25s,
               transform 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth);
 }
-.avail-arrow:hover:not(:disabled) {
+@media (hover: hover) { .avail-arrow:hover:not(:disabled) {
   border-color: rgba(200,212,184,0.42);
   transform: translateY(-1px);
   box-shadow: inset 0 1px 0 rgba(240,235,224,0.24), 0 3px 7px rgba(0,0,0,0.36);
-}
+} }
 .avail-arrow:active:not(:disabled) {
   transform: translateY(0);
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
@@ -2846,10 +2905,12 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .avail-week-heads,
 .avail-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  /* minmax(0, …): a long label must never widen a column and push the weekend off the panel. */
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 2px;
 }
 .avail-week-heads span {
+  overflow: hidden;
   font-family: var(--font-sans);
   font-size: var(--fs-2xs);
   letter-spacing: var(--ls-wide);
@@ -2897,14 +2958,14 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 /* Hover lifts the tile rather than repainting it. Days already in the stay are excluded:
    repainting one of them with the faint hover wash would punch a hole in the block. */
-.avail-day:hover:not(:disabled):not(.is-picked):not(.is-range):not(.is-taken) {
+@media (hover: hover) { .avail-day:hover:not(:disabled):not(.is-picked):not(.is-range):not(.is-taken) {
   background: linear-gradient(180deg, rgba(240,235,224,0.2), rgba(240,235,224,0.1));
   transform: translateY(-1px);
   box-shadow:
     inset 0 1px 0 rgba(240,235,224,0.3),
     inset 0 -1px 0 rgba(0,0,0,0.25),
     0 3px 6px rgba(0,0,0,0.38);
-}
+} }
 /* A gone day is pressed into the well: no lit edge, shadow on the inside. */
 .avail-day.is-past {
   cursor: default;
@@ -3145,7 +3206,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   cursor: default;
   background: var(--fern);
 }
-.avail-cta:disabled:hover { transform: none; background: var(--fern); }
+@media (hover: hover) { .avail-cta:disabled:hover { transform: none; background: var(--fern); } }
 
 /*
  * The panel's ink, inverted.
@@ -3369,7 +3430,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .house-hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(42,48,32,0.82) 0%, rgba(42,48,32,0.34) 45%, rgba(42,48,32,0.12) 100%);
+  background: linear-gradient(to top, rgba(56,64,44,0.82) 0%, rgba(56,64,44,0.34) 45%, rgba(56,64,44,0.12) 100%);
 }
 .house-hero-text {
   position: relative;
@@ -3525,7 +3586,34 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   line-height: 0;
 }
 .house-photo img { display: block; transition: transform 0.7s var(--ease-expo); }
-.house-photo:hover img { transform: scale(1.03); }
+@media (hover: hover) { .house-photo:hover img { transform: scale(1.03); } }
+.house-video { display: block; width: 100%; height: auto; background: var(--bark); }
+.house-video-wrap { position: relative; }
+.house-video-open {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  display: grid;
+  place-items: center;
+}
+.house-video-play {
+  position: relative;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 1px solid rgba(250,247,240,0.7);
+  background: rgba(38,44,29,0.55);
+  color: var(--cream);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s, transform 0.3s;
+}
+@media (hover: hover) { .house-video-open:hover .house-video-play { background: rgba(38,44,29,0.75); transform: scale(1.05); } }
+.house-video-play svg { margin-left: 4px; }
 
 @media (max-width: 1100px) { .house-photos-grid { column-count: 2; } }
 @media (max-width: 700px)  { .house-photos-grid { column-count: 1; } }
@@ -3553,7 +3641,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   padding: 1.05rem 1.4rem;
   transition: border-color 0.3s, background 0.3s;
 }
-.house-others-link:hover { border-color: var(--fern); background: var(--linen); }
+@media (hover: hover) { .house-others-link:hover { border-color: var(--fern); background: var(--linen); } }
 .house-others-name {
   display: block;
   font-family: var(--font-display);
@@ -3574,11 +3662,11 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   opacity: 0.75;
   transition: opacity 0.3s;
 }
-.house-back:hover { opacity: 1; }
+@media (hover: hover) { .house-back:hover { opacity: 1; } }
 
 /* The homepage band's house name is now a link to that house's page. */
 a.feature-house-name { text-decoration: none; transition: color 0.3s; }
-a.feature-house-name:hover { color: var(--mist); }
+@media (hover: hover) { a.feature-house-name:hover { color: var(--mist); } }
 .house-band-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.6rem; }
 .house-band-content .house-band-links .feature-gallery-link { margin-top: 0; }
 .feature-house-link {
@@ -3594,7 +3682,7 @@ a.feature-house-name:hover { color: var(--mist); }
   padding: 0.45rem 0.9rem;
   transition: opacity 0.3s, background 0.3s;
 }
-.feature-house-link:hover { background: var(--linen); border-color: var(--linen); }
+@media (hover: hover) { .feature-house-link:hover { background: var(--linen); border-color: var(--linen); } }
 
 @media (max-width: 900px) {
   .house-hero { height: min(60vh, 460px); }
@@ -3671,7 +3759,7 @@ a.feature-house-name:hover { color: var(--mist); }
   cursor: pointer;
   transition: background 0.25s;
 }
-.adm-btn:hover:not(:disabled) { background: var(--fern); }
+@media (hover: hover) { .adm-btn:hover:not(:disabled) { background: var(--fern); } }
 .adm-btn:disabled { opacity: 0.4; cursor: default; }
 .adm-login { display: grid; gap: 0.5rem; margin-top: 1.5rem; }
 .adm-login .adm-btn { margin-top: 0.6rem; }
@@ -3849,7 +3937,7 @@ a.feature-house-name:hover { color: var(--mist); }
   padding: 0.3rem 0.85rem;
   cursor: pointer;
 }
-.adm-chip:hover { border-color: var(--moss); }
+@media (hover: hover) { .adm-chip:hover { border-color: var(--moss); } }
 .adm-chip.is-on { background: var(--moss); border-color: var(--moss); color: #fff; }
 .adm-filter-sum { margin-left: auto; }
 
@@ -3945,7 +4033,7 @@ footer {
   opacity: 0.62;
   transition: opacity 0.3s;
 }
-.footer-links a:hover { opacity: 1; }
+@media (hover: hover) { .footer-links a:hover { opacity: 1; } }
 .footer-bottom {
   grid-column: 1 / -1;
   margin-top: 2.5rem;
@@ -3998,7 +4086,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   margin-bottom: 1.5rem;
   transition: opacity 0.3s;
 }
-.gallery-back:hover { opacity: 0.9; }
+@media (hover: hover) { .gallery-back:hover { opacity: 0.9; } }
 .gallery-title {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 5vw, 5rem);
@@ -4024,7 +4112,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   scroll-margin-top: 6rem;
 }
 .gallery-item img { transition: transform 0.6s var(--ease-expo); }
-.gallery-item:hover img { transform: scale(1.04); }
+@media (hover: hover) { .gallery-item:hover img { transform: scale(1.04); } }
 .gallery-item-label {
   position: absolute;
   bottom: 1.5rem;
@@ -4107,10 +4195,12 @@ body.gallery-page .nav-social { text-shadow: none; }
   .house-band-overlay,
   .house-band--reversed .house-band-overlay {
     background:
-      linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%),
-      linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0) 84px),
-      linear-gradient(to bottom, var(--bark) 0, rgba(56,64,44,0) 40px);
+      linear-gradient(to top,    var(--bark) 0, rgba(56,64,44,0.55) 48px, rgba(56,64,44,0) 120px),
+      linear-gradient(to bottom, var(--bark) 0, rgba(56,64,44,0.5) 30px, rgba(56,64,44,0) 90px),
+      linear-gradient(180deg, rgba(26,32,16,0.06) 0%, rgba(26,32,16,0.22) 100%);
   }
+  /* The photographs now dissolve at both ends, so the hairline between bands only cut them. */
+  .house-band { border-top: 0; }
   .house-band-content { padding: 4rem 2.5rem; }
   .feature-intro { padding: var(--section-v) 2.5rem 2.5rem; }
   .feature-outro { padding: 2.5rem 2.5rem var(--section-v); }
@@ -4292,7 +4382,8 @@ body.gallery-page .nav-social { text-shadow: none; }
   border: 1px solid rgba(255,255,255,0.16); border-radius: 50%;
   cursor: pointer; transition: background 0.2s ease;
 }
-.lb-close:hover { background: rgba(255,255,255,0.16); }
+@media (hover: hover) { .lb-close:hover { background: rgba(255,255,255,0.16); } }
+.lb-video { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 .lb-nav {
   position: absolute; top: 50%; transform: translateY(-50%);
@@ -4302,7 +4393,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   border: 1px solid rgba(255,255,255,0.16); border-radius: 50%;
   cursor: pointer; transition: background 0.2s ease;
 }
-.lb-nav:hover { background: rgba(255,255,255,0.16); }
+@media (hover: hover) { .lb-nav:hover { background: rgba(255,255,255,0.16); } }
 .lb-prev { left: 20px; }
 .lb-next { right: 20px; }
 
@@ -4326,7 +4417,7 @@ body.gallery-page .nav-social { text-shadow: none; }
 }
 
 .footer-loc-link { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.22); transition: opacity 0.2s ease; }
-.footer-loc-link:hover { opacity: 0.75; }
+@media (hover: hover) { .footer-loc-link:hover { opacity: 0.75; } }
 
 /* Users who ask for less motion get a still hero. */
 @media (prefers-reduced-motion: reduce) {
@@ -4346,7 +4437,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   transition: opacity 0.3s;
   display: inline-flex;
 }
-.footer-social:hover { opacity: 1; }
+@media (hover: hover) { .footer-social:hover { opacity: 1; } }
 
 /* ─────────────────────────────────────────────────────────────
    The booking button that follows the page
@@ -4397,9 +4488,9 @@ body.gallery-page .nav-social { text-shadow: none; }
   transform: none;
   pointer-events: auto;
 }
-.sticky-book:hover {
+@media (hover: hover) { .sticky-book:hover {
   background: linear-gradient(160deg, var(--moss) 0%, var(--fern) 100%);
-}
+} }
 .sticky-book:focus-visible { outline: 2px solid var(--linen); outline-offset: 3px; }
 
 @media (max-width: 600px) {
@@ -4487,7 +4578,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   border-bottom: 1px solid rgba(200, 212, 184, 0.35);
   padding-bottom: 2px;
 }
-.quotes-source:hover { color: var(--linen); border-bottom-color: var(--linen); }
+@media (hover: hover) { .quotes-source:hover { color: var(--linen); border-bottom-color: var(--linen); } }
 
 @media (max-width: 900px) {
   .quotes { grid-template-columns: 1fr; gap: 2rem; margin-top: 2.4rem; }
@@ -4549,7 +4640,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   transition: transform 0.25s var(--ease-smooth);
 }
 .faq-more[open] .faq-more-q::after { transform: rotate(-135deg) translate(-2px, -2px); }
-.faq-more-q:hover { opacity: 1; }
+@media (hover: hover) { .faq-more-q:hover { opacity: 1; } }
 .faq-more[open] .faq-more-q { opacity: 1; }
 
 /* — which mornings breakfast is wanted on — */
@@ -4585,7 +4676,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   cursor: pointer;
   transition: opacity 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth);
 }
-.avail-bulk:hover:not(:disabled) { border-color: var(--panel-ink); }
+@media (hover: hover) { .avail-bulk:hover:not(:disabled) { border-color: var(--panel-ink); } }
 .avail-bulk:disabled { opacity: 0.3; cursor: default; border-color: transparent; }
 
 .avail-mornings-label {
@@ -4621,7 +4712,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   transition: background 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth),
               color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth);
 }
-.avail-morning:hover { border-color: rgba(200,212,184,0.42); transform: translateY(-1px); }
+@media (hover: hover) { .avail-morning:hover { border-color: rgba(200,212,184,0.42); transform: translateY(-1px); } }
 /* Chosen mornings are lit, the same way the chosen house is, and carry a tick. */
 .avail-morning.is-on {
   opacity: 1;
@@ -4635,3 +4726,173 @@ body.gallery-page .nav-social { text-shadow: none; }
 .avail-morning-tick { visibility: hidden; font-size: 0.9em; }
 .avail-morning.is-on .avail-morning-tick { visibility: visible; }
 .avail-morning:focus-visible { outline: 2px solid var(--panel-ink); outline-offset: 2px; }
+
+/* House-page photographs open in the shared lightbox. */
+.house-photo-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+.house-photo-open:focus-visible { outline: 2px solid #cddcc0; outline-offset: 3px; }
+
+/*
+ * The food section on the pergola photograph instead of bare cream (Mikk, 24 Oct), veiled
+ * in the same dark green as the booking block. The cards keep their cream ground, so they
+ * now read as plates set on the table; the section label turns light, and the food ribbon
+ * fades into the veil instead of into linen.
+ */
+.food-wrap {
+  /* Ends on --bark itself, so the photograph runs out into the trails section below instead of stopping on a line. */
+  --sect-veil: linear-gradient(180deg, rgba(24,30,17,0.88) 0%, rgba(30,38,22,0.82) 45%, rgba(20,26,14,0.9) 86%, var(--bark) 100%);
+  background: var(--sect-veil), var(--bark-deep);
+  background-position: center 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.bg-ready .food-wrap {
+  background-image: var(--sect-veil), url('/_next/image?url=%2Fgalerii%2Ftoit%2Fpergolalaud.jpeg&w=1920&q=60');
+}
+@media (max-width: 700px) {
+  .bg-ready .food-wrap {
+    background-image: var(--sect-veil), url('/_next/image?url=%2Fgalerii%2Ftoit%2Fpergolalaud.jpeg&w=828&q=60');
+  }
+}
+.food-wrap .section-label { color: rgba(226,234,214,0.72); }
+.food-wrap .services-grid { background: transparent; gap: 2px; }
+.food-wrap .service-card { box-shadow: 0 24px 50px -24px rgba(10,14,7,0.6); }
+/* The ribbon fades out top and bottom too, rather than sitting on the photograph as a cut-out strip. */
+.food-wrap .food-band {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
+}
+.food-wrap .photo-strip--plain .photo-strip-scrim {
+  background: linear-gradient(90deg,
+    rgba(22,28,15,0.95) 0%,
+    rgba(22,28,15,0) 10%,
+    rgba(22,28,15,0) 90%,
+    rgba(22,28,15,0.95) 100%);
+}
+
+/* ══════════════════════════════
+   BEFORE WINTER — the Pond House and the Forest House's last autumn nights.
+   On --bark, so the hero's fade runs straight into it and it into the houses below.
+══════════════════════════════ */
+.lastchance {
+  background: var(--bark);
+  color: var(--linen);
+  padding: 4rem max(var(--section-h), calc((100% - var(--max-w)) / 2)) 5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  grid-template-areas: "head cards" "cta cards";
+  grid-template-rows: auto 1fr;
+  gap: 2rem 4rem;
+  align-items: start;
+}
+.lastchance-head { grid-area: head; }
+.lastchance-cards { grid-area: cards; }
+.lastchance-cta { grid-area: cta; justify-self: start; align-self: start; }
+.lastchance-label { color: var(--sage); margin-bottom: 1.2rem; }
+.lastchance-h {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 1.4rem;
+}
+.lastchance-h em { font-style: italic; color: var(--mist); }
+.lastchance-text {
+  color: rgba(240,235,224,0.8);
+  line-height: 1.75;
+  max-width: 34rem;
+}
+.lastchance-count {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+  min-height: 3.4rem;
+}
+.lastchance-count-n {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--linen);
+}
+.lastchance-count-l {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--sage);
+}
+.lastchance-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.lastchance-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.lastchance-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.lastchance-photo img { transition: transform 0.9s var(--ease-expo); }
+@media (hover: hover) { .lastchance-card:hover .lastchance-photo img { transform: scale(1.04); } }
+.lastchance-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-top: 0.9rem;
+}
+.lastchance-name {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+.lastchance-meta {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--mist);
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .lastchance {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "head" "cards" "cta";
+    grid-template-rows: auto;
+    gap: 2rem;
+    padding: 3rem 1.5rem 4rem;
+  }
+  .lastchance-cards { gap: 0.75rem; }
+  .lastchance-name { font-size: 1.15rem; }
+  .lastchance-count { margin-top: 1.2rem; }
+}
+
+/* The same news, one line, on the Pond House and Forest House pages. */
+.lastchance-notice {
+  max-width: calc(var(--max-w) - 2 * var(--section-h));
+  margin: 2.2rem auto 0;
+  width: calc(100% - 2 * var(--section-h));
+  padding: 1rem 1.25rem;
+  border-left: 2px solid var(--fern);
+  background: rgba(138,158,122,0.14);
+  color: var(--moss);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  line-height: 1.6;
+}
+.lastchance-notice strong { font-weight: 500; white-space: nowrap; }
+@media (max-width: 700px) {
+  .lastchance-notice { width: calc(100% - 3rem); margin-top: 1.6rem; }
+}

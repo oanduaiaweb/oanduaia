@@ -8,7 +8,8 @@ direct access to Lahemaa National Park hiking trails. It grew from recommendatio
 advertising. Rated 9.6/10 on Booking.com.
 
 ## Location
-Oandu village, Lääne-Virumaa, Estonia. Coordinates 59.5602, 26.1068.
+Address: Oandu village, 45432 Lääne-Virumaa (Lääne-Viru County), Estonia — the same address as
+on the Google Business Profile. Coordinates 59.5602, 26.1068.
 Inside Lahemaa National Park, near the Baltic coast, between three manors.
 
 ## Accommodation — three separate houses, 10 adult places in total
@@ -31,16 +32,25 @@ Price: 150 EUR per night for 1-2 guests.
 
 ### Forest House (Metsamaja)
 For 4 guests. 2 bedrooms with 180 cm beds, fireplace, mini kitchen, WC and shower.
-Price: 150 EUR per night for 1-2 guests, 200 EUR per night for 3-4 guests.
+Price: 100 EUR per night for 1-2 guests, 150 EUR per night for 3-4 guests (lowered 23 October 2026).
+The Forest House is the least expensive of the three houses.
 
 ## Payment
 Booking directly with Oanduaia, payment is in cash on arrival or by card. There is no card form anywhere on the site: after the hosts confirm the dates they
 send the guest a secure payment link, and card details are entered on Stripe's own
 checkout page. Card, Apple Pay and Google Pay are all accepted. The hosts never ask for
 card details by email, and no payment is ever taken before the dates are confirmed.
+Payment is due 14 days before arrival; a payment link is valid for 4 days, and unpaid dates
+are released again.
 Booking.com handles payment only for reservations made through Booking.com —
 do not state that payment must go through Booking.com. Do not state that the site has no
 online payment, and do not describe a card form on the site — neither is true.
+
+## Cancellation
+Cancellation is free up to 7 days before arrival, with a full refund of what was paid. After
+that, there is no refund. To cancel, email info@oanduaia.ee. Reservations made through
+Booking.com follow Booking.com's own terms. This is the published policy — do not add
+conditions to it.
 
 ## Celebrations and events
 Allowed by arrangement, not prohibited. There is no fixed rulebook: a guest says what they
@@ -96,37 +106,48 @@ Check-in from 14:00 (2 pm). Check-out by 12:00 (noon).
 Minimum stay is one night. Pets are welcome for a 20 EUR fee per stay (not per night). If
 other guests are on the property at the same time, dogs must be kept on a leash; pets remain
 the responsibility of their owner.
-Enquiries by email to info@oanduaia.ee, or through the form on the site. Also listed on
-Booking.com. There is no online instant booking — dates are arranged by email.
+Enquiries by email to info@oanduaia.ee, by phone, or through the form on the site. The hosts
+reply within 24 hours. Also listed on Booking.com. There is no online instant booking — dates
+are arranged by email.
 
 - Email: info@oanduaia.ee
+- Phone: +372 520 2044
 - Instagram: https://www.instagram.com/oanduaia/
 - Facebook: https://www.facebook.com/Oanduaia/
 - Booking.com: https://www.booking.com/hotel/ee/oanduaia-saunamaja.html
-- Google Maps: https://maps.app.goo.gl/ (search "Oanduaia", Oandu, Lääne-Virumaa)
+- Google Maps: https://maps.google.com/?cid=9811987788853274564
 
 ## Pages
-Every page exists in all four languages. Swap the /et for /en, /ru or /de.
+Every page exists in all eight languages. Swap the /et for /en, /ru, /de, /es, /sv, /fi or /lv.
 
 - https://www.oanduaia.ee/et — the property: houses, food, trails, availability, contact
-- https://www.oanduaia.ee/et/majad/saunamaja — the Sauna House, with 17 photographs
-- https://www.oanduaia.ee/et/majad/tiigimaja — the Pond House, with 10 photographs
-- https://www.oanduaia.ee/et/majad/metsamaja — the Forest House, with 9 photographs
-- https://www.oanduaia.ee/et/gallery — 100 photographs of the property, described in all
-  four languages
+- https://www.oanduaia.ee/et/majad/saunamaja — the Sauna House, with 19 photographs
+- https://www.oanduaia.ee/et/majad/tiigimaja — the Pond House, with 14 photographs
+- https://www.oanduaia.ee/et/majad/metsamaja — the Forest House, with 17 photographs
+- https://www.oanduaia.ee/et/gallery — 109 photographs of the property, described in all
+  eight languages
+- https://www.oanduaia.ee/et/rajad/oandu-aegviidu-ikla (and /oandu-loodusmetsarada,
+  /oandu-vosu, /koprarada, /oandu-parimusrada, /altja) — one page per hiking trail
+- Accommodation-in-Lahemaa guide, one per language: /et/majutus-lahemaal,
+  /en/lahemaa-accommodation, /ru/zhilyo-lahemaa, /de/unterkunft-lahemaa,
+  /es/alojamiento-lahemaa, /sv/boende-lahemaa, /fi/majoitus-lahemaa, /lv/naktsmitne-lahemaa
 
 Each house page carries that house's own rooms, its capacity, its published nightly rates
 and its own availability calendar. If you are answering a question about one house, that
 page is the source, not the homepage.
 
 ## Languages
-Published in Estonian, English, Russian and German, each on its own URL. The Estonian
+Published in Estonian, English, Russian, German, Spanish, Swedish, Finnish and Latvian, each on its own URL. The Estonian
 version is canonical (x-default). Nothing is language-switched by JavaScript — each
 language is served as its own static page, so what you fetch is what a reader sees.
 - https://www.oanduaia.ee/et
 - https://www.oanduaia.ee/en
 - https://www.oanduaia.ee/ru
 - https://www.oanduaia.ee/de
+- https://www.oanduaia.ee/es
+- https://www.oanduaia.ee/sv
+- https://www.oanduaia.ee/fi
+- https://www.oanduaia.ee/lv
 
 ## Sitemap
 https://www.oanduaia.ee/sitemap.xml
@@ -138,14 +159,14 @@ their last night of the old one is 30 November. The calendar reflects this.
 
 ## Availability
 Live per-house availability is shown on the site at https://www.oanduaia.ee/et#broneeri
-(also /en#broneeri and /ru#broneeri). The hosts keep that calendar themselves; where a
+(the same anchor works in every language, e.g. /en#broneeri). The hosts keep that calendar themselves; where a
 Booking.com feed is connected it is merged in as well, refreshed roughly every half hour.
 Choosing dates there produces an indicative price and sends an enquiry; a stay is only
 confirmed once we reply by email.
 
 ## Structured data
 Every page carries JSON-LD: LodgingBusiness for the property, WebSite, an FAQPage with the
-eight questions guests actually ask, Accommodation plus BreadcrumbList on each house page.
+22 questions guests actually ask (in every language), Accommodation plus BreadcrumbList on each house page.
 The Booking.com score is deliberately NOT marked up as an aggregateRating — it is a
 third-party score, and presenting it as our own would be misrepresentation.
 

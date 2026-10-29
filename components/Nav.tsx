@@ -16,6 +16,10 @@ const LANGS: { code: Lang; flag: string; label: string }[] = [
   { code: 'en', flag: '🇬🇧', label: 'EN' },
   { code: 'ru', flag: '🇷🇺', label: 'RU' },
   { code: 'de', flag: '🇩🇪', label: 'DE' },
+  { code: 'es', flag: '🇪🇸', label: 'ES' },
+  { code: 'sv', flag: '🇸🇪', label: 'SV' },
+  { code: 'fi', flag: '🇫🇮', label: 'FI' },
+  { code: 'lv', flag: '🇱🇻', label: 'LV' },
 ]
 
 /**
@@ -130,7 +134,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className={`site-nav${scrolled ? ' nav-scrolled' : ''}`}>
+      <nav className={`site-nav${scrolled ? ' nav-scrolled' : ''}${menuOpen ? ' nav-menu-open' : ''}`}>
         {/*
           The wordmark and, under it, Estonia. A sibling of the logo link rather than a
           child of it, so it can be a link in its own right, and absolutely positioned so

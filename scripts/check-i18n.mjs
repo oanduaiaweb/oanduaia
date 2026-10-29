@@ -14,7 +14,7 @@
  */
 import { readFileSync } from 'node:fs'
 
-const LOCALES = ['et', 'en', 'ru', 'de']
+const LOCALES = ['et', 'en', 'ru', 'de', 'es', 'sv', 'fi', 'lv']
 
 const DATA_FILES = [
   'lib/translations.ts', 'lib/trails.ts', 'lib/landing.ts', 'lib/hero.ts',
@@ -29,7 +29,7 @@ const DATA_FILES = [
  */
 const SAME_IS_FINE = new Set([
   'Sauna', 'km', 'Name', 'Navigation', 'Google Maps', 'Lahemaa', 'Estonia',
-  'Oandu · Lahemaa · 59°26′N', 'Oanduaia', 'E-mail', 'Email', 'WiFi',
+  'Oandu · Lahemaa · 59°26′N', 'Oanduaia', 'E-mail', 'Email', 'WiFi', 'Extra', 'Total', 'Lunch',
 ])
 
 const errors = []
@@ -40,7 +40,7 @@ for (const file of DATA_FILES) {
   const src = readFileSync(file, 'utf8')
   // Both quote styles: one English string uses double quotes because it contains an
   // apostrophe, and a single-quote-only scan silently misreads that group as malformed.
-  const toks = [...src.matchAll(/\b(et|en|ru|de): (?:'((?:[^'\\]|\\.)*)'|"((?:[^"\\]|\\.)*)")/g)]
+  const toks = [...src.matchAll(new RegExp(`\\b(${LOCALES.join('|')}): (?:'((?:[^'\\\\]|\\\\.)*)'|"((?:[^"\\\\]|\\\\.)*)")`, 'g'))]
     .map(m => ({ key: m[1], value: m[2] ?? m[3], index: m.index }))
 
   let i = 0
@@ -153,7 +153,7 @@ for (const file of ['lib/pricing.ts', 'lib/reviews.ts', 'lib/trails.ts', 'lib/i1
 if (errors.length) {
   console.error(`\n✗ i18n check failed — ${errors.length} problem${errors.length > 1 ? 's' : ''}:\n`)
   for (const e of errors) console.error('  ' + e)
-  console.error('\nEvery user-facing string must exist in all four languages: ' + LOCALES.join(', ') + '\n')
+  console.error('\nEvery user-facing string must exist in every language: ' + LOCALES.join(', ') + '\n')
   process.exit(1)
 }
 console.log(`✓ i18n check passed — ${LOCALES.join(', ')} complete across ${DATA_FILES.length} files`)

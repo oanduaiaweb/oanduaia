@@ -21,6 +21,10 @@ export const SERVICE_IMAGES: ServiceImage[] = [
       en: 'The host behind the laid buffet in the outdoor kitchen, cakes and berry desserts to the front',
       ru: 'Хозяйка за накрытым столом в летней кухне, торты и ягодные десерты впереди',
       de: 'Die Gastgeberin hinter dem gedeckten Buffet in der Außenküche, Kuchen und Beerendesserts im Vordergrund',
+      es: 'La anfitriona tras el bufé servido en la cocina exterior, con tartas y postres de frutos rojos delante',
+      sv: 'Värdinnan bakom den dukade bufféen i utomhusköket, med kakor och bärdesserter längst fram',
+      fi: 'Emäntä katetun noutopöydän takana ulkokeittiössä, edessä kakkuja ja marjajälkiruokia',
+      lv: 'Saimniece aiz klātā bufetes galda āra virtuvē, priekšplānā kūkas un ogu deserti',
     },
   },
   {
@@ -41,6 +45,10 @@ export const SERVICE_IMAGES: ServiceImage[] = [
       en: 'The long table by candlelight, with brass napkin rings and jars of jasmine',
       ru: 'Длинный стол при свечах, латунные кольца для салфеток и букеты жасмина',
       de: 'Die lange Tafel bei Kerzenschein, mit Serviettenringen aus Messing und Gläsern voll Jasmin',
+      es: 'La mesa larga a la luz de las velas, con servilleteros de latón y tarros de jazmín',
+      sv: 'Det långa bordet i levande ljus, med servettringar i mässing och burkar med jasmin',
+      fi: 'Pitkä pöytä kynttilänvalossa, messinkiset lautasliinarenkaat ja jasmiinikimput',
+      lv: 'Garais galds sveču gaismā ar misiņa salvešu gredzeniem un jasmīnu pušķiem',
     },
   },
 ]

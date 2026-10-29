@@ -18,7 +18,7 @@ import {
 } from '@/lib/pricing'
 import { HOUSE_IMAGES } from '@/lib/houses'
 
-const LOCALE: Record<Lang, string> = { et: 'et', en: 'en-GB', ru: 'ru', de: 'de-DE' }
+const LOCALE: Record<Lang, string> = { et: 'et', en: 'en-GB', ru: 'ru', de: 'de-DE', es: 'es-ES', sv: 'sv-SE', fi: 'fi-FI', lv: 'lv-LV' }
 
 const pad = (n: number) => String(n).padStart(2, '0')
 const key = (y: number, m: number, d: number): DateStr => `${y}-${pad(m + 1)}-${pad(d)}`
@@ -27,13 +27,19 @@ const key = (y: number, m: number, d: number): DateStr => `${y}-${pad(m + 1)}-${
 const mondayIndex = (jsDay: number) => (jsDay + 6) % 7
 
 function monthLabel(y: number, m: number, lang: Lang) {
-  const s = new Intl.DateTimeFormat(LOCALE[lang], { month: 'long', year: 'numeric', timeZone: 'UTC' })
+  // Month name and year are joined here rather than by Intl: Latvian formats a month with its
+  // year as "2026. g. novembris", Spanish as "noviembre de 2026", Russian adds "г.".
+  const s = new Intl.DateTimeFormat(LOCALE[lang], { month: 'long', timeZone: 'UTC' })
     .format(new Date(Date.UTC(y, m, 1)))
-    .replace(/\s*г\.$/, '')
-  return s.charAt(0).toUpperCase() + s.slice(1)
+  return `${s.charAt(0).toUpperCase()}${s.slice(1)} ${y}`
 }
 
+/** Intl's short Latvian weekdays are whole words ("Ceturtd.") and pushed Sat–Sun off the panel. */
+const WEEKDAYS: Partial<Record<Lang, string[]>> = { lv: ['P', 'O', 'T', 'C', 'Pk', 'S', 'Sv'] }
+
 function weekdayInitials(lang: Lang) {
+  const fixed = WEEKDAYS[lang]
+  if (fixed) return fixed
   const fmt = new Intl.DateTimeFormat(LOCALE[lang], { weekday: 'short', timeZone: 'UTC' })
   // 5 Jan 2026 is a Monday.
   return Array.from({ length: 7 }, (_, i) => fmt.format(new Date(Date.UTC(2026, 0, 5 + i))))
@@ -325,6 +331,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
       <p className="booking-times reveal reveal-delay-1">
         {b.times[lang]}
         <span className="booking-terms">{b.terms[lang]}</span>
+        <span className="booking-terms">{b.cancel[lang]}</span>
         <span className="booking-terms">{b.practical[lang]}</span>
         <span className="booking-pets">{b.pets[lang]}</span>
       </p>
@@ -449,8 +456,13 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
                               aria-disabled={taken && !asCheckout}
                               aria-label={formatDate(date, lang)}
                               aria-pressed={isIn || isOut}
-                              onMouseEnter={() => setHovered(date)}
-                              onMouseLeave={() => setHovered(null)}
+                              /*
+                               * Mouse only. On a phone the hover preview redrew the calendar
+                               * on the first tap, and iOS then waited for a second tap to
+                               * pick the day (Mikk, 29 Oct: "I need to click two times").
+                               */
+                              onPointerEnter={e => { if (e.pointerType === 'mouse') setHovered(date) }}
+                              onPointerLeave={e => { if (e.pointerType === 'mouse') setHovered(null) }}
                               onClick={() => pickDay(date)}
                             >
                               {d}
