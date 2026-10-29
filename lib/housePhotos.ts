@@ -252,19 +252,6 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
         lv: 'Divguļamā gulta starp baļķu sienām, rakstains gultas pārklājs un naktslampiņa uz koka ripas',
       },
     },
-    {
-      src: '/galerii/saunamaja/saunamaja-elutuba-koogisaar.jpeg',
-      alt: {
-        et: 'Saunamaja elutuba – diivan, paeplaatidest põrand ja köögisaar, kohal sepistatud tammelehtedega lühter',
-        en: 'The Sauna House living room — sofa, flagstone floor and the kitchen island beyond, the forged oak-leaf chandelier overhead',
-        ru: 'Гостиная Банного дома — диван, каменный пол и кухонный остров за ним, сверху кованая люстра из дубовых листьев',
-        de: 'Der Wohnraum des Saunahauses — Sofa, Steinplattenboden und dahinter die Kücheninsel, darüber der geschmiedete Eichenlaub-Leuchter',
-        es: 'El salón de la Casa de la Sauna: sofá, suelo de losas de piedra y la isla de cocina al fondo, con la lámpara de forja de hojas de roble encima',
-        sv: 'Bastuhusets vardagsrum — soffa, golv av stenplattor och köksön bortom, den smidda ljuskronan med eklöv ovanför',
-        fi: 'Saunatalon olohuone — sohva, kivilaattalattia ja keittiösaareke taempana, yläpuolella taottu tammenlehtikattokruunu',
-        lv: 'Pirts mājas dzīvojamā istaba — dīvāns, akmens plākšņu grīda un tālāk virtuves sala, augšā kalta ozollapu lustra',
-      },
-    },
   ],
   tiigimaja: [
     {

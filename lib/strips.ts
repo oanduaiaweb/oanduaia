@@ -49,7 +49,6 @@ export const DETAIL_STRIP: string[] = [
   '/galerii/saunamaja/vahuvein.jpeg',
   '/galerii/kokteil.jpeg',
   '/galerii/saunamaja/saun.webp',
-  '/galerii/084.jpeg',
   '/galerii/089.jpeg',
 ]
 
