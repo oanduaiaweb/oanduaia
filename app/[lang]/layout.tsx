@@ -6,6 +6,7 @@ import '../globals.css'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { BookingDraftProvider } from '@/contexts/BookingDraftContext'
 import StickyBook from '@/components/StickyBook'
+import ScrollMemory from '@/components/ScrollMemory'
 import { LOCALES, META, SITE, alternates, isLocale, jsonLd, siteJsonLd } from '@/lib/i18n'
 
 const cormorant = Cormorant_Garamond({
@@ -117,6 +118,7 @@ export default async function LocaleLayout({
         />
         <LanguageProvider lang={lang}>
           <BookingDraftProvider>
+            <ScrollMemory />
             {children}
             {/* Every locale page gets the following booking button; /admin has its own layout. */}
             <StickyBook />

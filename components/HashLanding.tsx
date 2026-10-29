@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { restoring } from '@/components/ScrollMemory'
 
 /**
  * Arriving on the homepage at a section ("/et#loodus", from the footer or the menu on any
@@ -13,10 +14,13 @@ export default function HashLanding() {
   useEffect(() => {
     const id = decodeURIComponent(window.location.hash.slice(1))
     if (!id) return
+    // Coming back to this URL: ScrollMemory puts the visitor where they were, not at the section.
+    const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined
+    if (nav?.type === 'back_forward' || restoring.active) return
     let stopped = false
     const stop = () => { stopped = true }
     const align = () => {
-      if (stopped) return
+      if (stopped || restoring.active) return
       const el = document.getElementById(id)
       if (!el) return
       const off = el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0)
