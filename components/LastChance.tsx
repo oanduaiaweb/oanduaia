@@ -7,7 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import { scrollToId } from '@/lib/scrollToId'
 import { track } from '@/lib/analytics'
-import { LAST_CHANCE_HOUSES, nightsBeforeWinter } from '@/lib/lastChance'
+import { LAST_CHANCE_HOUSES, nightsBeforeWinter, nightsLeftLabel } from '@/lib/lastChance'
 
 const PHOTO: Record<string, string> = {
   tiigimaja: '/galerii/tiigimaja/elutuba-kamin-tiik.jpeg',
@@ -45,7 +45,7 @@ export default function LastChance() {
           {nights !== null && (
             <>
               <span className="lastchance-count-n">{nights}</span>
-              <span className="lastchance-count-l">{t.nightsLeft[lang]}</span>
+              <span className="lastchance-count-l">{nightsLeftLabel(nights, lang).replace(/^\d+ /, '')}</span>
             </>
           )}
         </p>
@@ -107,7 +107,7 @@ export function LastChanceNotice({ slug }: { slug: string }) {
   return (
     <p className="lastchance-notice">
       <span>{T.lastChance.notice[lang]}</span>
-      {nights !== null && <strong>{T.lastChance.nightsLeft[lang]}: {nights}</strong>}
+      {nights !== null && <strong>{nightsLeftLabel(nights, lang)}</strong>}
     </p>
   )
 }

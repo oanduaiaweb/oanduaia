@@ -609,7 +609,14 @@ export const T = {
       fi: 'Lampitalo ja Metsätalo suljetaan talveksi 1. joulukuuta ja avataan taas 1. huhtikuuta. Viimeinen yö on 30. marraskuuta – takka lämpiää, metsä on hiljainen ja polut kauneimmillaan.',
       lv: 'Dīķa māja un Meža māja uz ziemu slēdzas 1. decembrī un atkal atveras 1. aprīlī. Pēdējā nakts ir 30. novembris – kamīnā deg uguns, mežs ir kluss un takas visskaistākās.',
     },
-    nightsLeft: { et: 'Öid jäänud', en: 'Nights left', ru: 'Осталось ночей', de: 'Verbleibende Nächte', es: 'Noches restantes', sv: 'Nätter kvar', fi: 'Öitä jäljellä', lv: 'Atlikušās naktis' },
+    /*
+     * Follows the number ("33 ööd jäänud"), so each language needs the form its grammar
+     * puts after a numeral: Estonian and Finnish take the partitive singular (ööd, yötä —
+     * Mikk caught "33 öid"), Russian has a third form for 2–4 (33 ночи), kept in
+     * lib/lastChance.ts. Picked by Intl.PluralRules in nightsLeftLabel().
+     */
+    nightsOne:   { et: 'öö jäänud', en: 'night left', ru: 'ночь осталась', de: 'Nacht übrig', es: 'noche restante', sv: 'natt kvar', fi: 'yö jäljellä', lv: 'nakts atlikusi' },
+    nightsOther: { et: 'ööd jäänud', en: 'nights left', ru: 'ночей осталось', de: 'Nächte übrig', es: 'noches restantes', sv: 'nätter kvar', fi: 'yötä jäljellä', lv: 'naktis atlikušas' },
     /** {p} is the house's lowest published nightly price. */
     from: { et: 'alates {p} € öö', en: 'from €{p} a night', ru: 'от {p} € за ночь', de: 'ab {p} € pro Nacht', es: 'desde {p} € la noche', sv: 'från {p} € per natt', fi: '{p} €/yö alkaen', lv: 'no {p} € naktī' },
     forTiigimaja: { et: 'kahele', en: 'for two', ru: 'для двоих', de: 'für zwei', es: 'para dos', sv: 'för två', fi: 'kahdelle', lv: 'diviem' },

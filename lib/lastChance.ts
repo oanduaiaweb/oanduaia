@@ -1,5 +1,7 @@
 import { CLOSED_SEASONS } from './season'
 import type { HouseSlug } from './availability'
+import type { Lang } from './translations'
+import { T } from './translations'
 
 /** The houses that shut for winter, in the order they are promoted. */
 export const LAST_CHANCE_HOUSES = Object.keys(CLOSED_SEASONS) as HouseSlug[]
@@ -27,4 +29,15 @@ export function nightsBeforeWinter(now = new Date()): number | null {
   if (close <= today) close = new Date(Date.UTC(today.getUTCFullYear() + 1, m - 1, d))
   const nights = Math.round((close.getTime() - today.getTime()) / 86_400_000)
   return nights <= LEAD_DAYS ? nights : null
+}
+
+/** Russian's form for numbers ending in 2–4 (but not 12–14): "33 ночи осталось". */
+const RU_FEW = 'ночи осталось'
+
+/** "33 ööd jäänud", "21 ночь осталась", "1 night left" — the word agrees with the number. */
+export function nightsLeftLabel(n: number, lang: Lang): string {
+  const cat = new Intl.PluralRules(lang).select(n)
+  const t = T.lastChance
+  const word = lang === 'ru' && cat === 'few' ? RU_FEW : cat === 'one' ? t.nightsOne[lang] : t.nightsOther[lang]
+  return `${n} ${word}`
 }
