@@ -29,7 +29,11 @@ export default function Feature() {
         <PhotoStrip photos={HOUSE_STRIP} />
         <p className="section-label">{t.label[lang]}</p>
         <HouseJump />
-        <h2 className="feature-heading">
+        {/*
+          Off screen, not deleted (Mikk, 29 Oct: take the word away). The three house buttons
+          now say what the section is; the heading stays for screen readers and the outline.
+        */}
+        <h2 className="feature-heading sr-only">
           {t.h1[lang]}
           {t.h2[lang] && <><br /><em>{t.h2[lang]}</em></>}
         </h2>
