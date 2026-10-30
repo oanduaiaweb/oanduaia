@@ -4984,3 +4984,35 @@ body.gallery-page .nav-social { text-shadow: none; }
 @media (max-width: 700px) {
   .lastchance-notice { width: calc(100% - 3rem); margin-top: 1.6rem; }
 }
+
+/* The three houses as buttons over the "Majad" heading, each jumping to its band. */
+.feature-intro > .house-jump { position: relative; z-index: 2; }
+.house-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: -0.4rem 0 1.6rem;
+}
+.house-jump-btn {
+  display: inline-block;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid rgba(200,212,184,0.45);
+  border-radius: 999px;
+  background: rgba(38,44,29,0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--linen);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  text-decoration: none;
+  white-space: nowrap;
+  will-change: transform;
+  transition: background 0.3s, border-color 0.3s;
+}
+@media (hover: hover) { .house-jump-btn:hover { background: rgba(200,212,184,0.16); border-color: rgba(200,212,184,0.8); } }
+.house-band { scroll-margin-top: 4.5rem; }
+@media (max-width: 600px) {
+  .house-jump { gap: 0.45rem; margin-bottom: 1.2rem; }
+  .house-jump-btn { padding: 0.55rem 0.85rem; letter-spacing: 0.06em; }
+}

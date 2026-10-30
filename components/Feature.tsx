@@ -9,6 +9,7 @@ import { HOUSE_IMAGES } from '@/lib/houses'
 import { HOUSE_GALLERIES } from '@/lib/housePhotos'
 import PhotoStrip from '@/components/PhotoStrip'
 import HouseCompare from '@/components/HouseCompare'
+import HouseJump from '@/components/HouseJump'
 import { HOUSE_STRIP } from '@/lib/strips'
 
 function scrollTo(id: string) {
@@ -27,6 +28,7 @@ export default function Feature() {
       <div className="feature-intro">
         <PhotoStrip photos={HOUSE_STRIP} />
         <p className="section-label">{t.label[lang]}</p>
+        <HouseJump />
         <h2 className="feature-heading">
           {t.h1[lang]}
           {t.h2[lang] && <><br /><em>{t.h2[lang]}</em></>}
@@ -38,6 +40,7 @@ export default function Feature() {
         return (
           <article
             key={house.slug}
+            id={`maja-${house.slug}`}
             className={`house-band${i % 2 === 1 ? ' house-band--reversed' : ''}`}
           >
             <div className="house-band-image">
