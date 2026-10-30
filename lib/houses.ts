@@ -36,8 +36,8 @@ export const HOUSE_IMAGES: Record<string, HouseImage> = {
     alt: {
       et: 'Tiigimaja üle vee, mets ja maja peegeldumas tiigis',
       en: 'The Pond House across the water, house and forest mirrored in the pond',
-      ru: 'Прудовой дом через воду, дом и лес отражаются в пруду',
-      de: 'Das Teichhaus über dem Wasser, Haus und Wald spiegeln sich im Teich',
+      ru: 'Прудовой дом за прудом, дом и лес отражаются в пруду',
+      de: 'Das Teichhaus jenseits des Teichs, Haus und Wald spiegeln sich im Teich',
       es: 'La Casa del Estanque al otro lado del agua, con la casa y el bosque reflejados en el estanque',
       sv: 'Dammhuset sett över vattnet, huset och skogen speglas i dammen',
       fi: 'Lampitalo veden takana, talo ja metsä heijastuvat lampeen',
