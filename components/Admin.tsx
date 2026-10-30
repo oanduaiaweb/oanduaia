@@ -337,6 +337,7 @@ export default function Admin() {
                 </div>
 
                 {e.dates && <p className="adm-enq-dates">{e.dates}</p>}
+                {e.phone && <p className="adm-enq-dates">{e.phone}</p>}
                 <pre className="adm-enq-body">{e.message}</pre>
 
                 {/* The one thing the inbox cannot tell you. */}

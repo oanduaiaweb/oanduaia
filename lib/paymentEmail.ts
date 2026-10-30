@@ -27,13 +27,17 @@ export type LinkLetter = {
 const DAYS_TO_PAY = 4
 
 type Copy = {
-  subject: string
+  /**
+   * Names the booking, not the payment. "Payment link" from a young domain is the exact shape
+   * of a phishing mail, and Yahoo and Outlook filed ours with the spam.
+   */
+  subject: (v: { reference: string }) => string
   body: (v: { guest: string; reference: string; amount: string; url: string; due: string }) => string
 }
 
 const COPY: Record<string, Copy> = {
   et: {
-    subject: 'Oanduaia — makselink',
+    subject: v => `Teie broneering: ${v.reference}`,
     body: v => `Tere ${v.guest},
 
 Aitäh! Kinnitame teie broneeringu:
@@ -57,7 +61,7 @@ Parimate soovidega
 Oanduaia`,
   },
   en: {
-    subject: 'Oanduaia — payment link',
+    subject: v => `Your booking: ${v.reference}`,
     body: v => `Hello ${v.guest},
 
 Thank you — your stay is confirmed:
@@ -81,7 +85,7 @@ Best regards,
 Oanduaia`,
   },
   ru: {
-    subject: 'Oanduaia — ссылка на оплату',
+    subject: v => `Ваше бронирование: ${v.reference}`,
     body: v => `Здравствуйте, ${v.guest}!
 
 Спасибо — ваше бронирование подтверждено:
@@ -105,7 +109,7 @@ ${v.url}
 Oanduaia`,
   },
   de: {
-    subject: 'Oanduaia — Zahlungslink',
+    subject: v => `Ihre Buchung: ${v.reference}`,
     body: v => `Hallo ${v.guest},
 
 vielen Dank — Ihr Aufenthalt ist bestätigt:
@@ -129,7 +133,7 @@ Mit freundlichen Grüßen
 Oanduaia`,
   },
   es: {
-    subject: 'Oanduaia — enlace de pago',
+    subject: v => `Tu reserva: ${v.reference}`,
     body: v => `Hola, ${v.guest}:
 
 Muchas gracias — su estancia está confirmada:
@@ -153,7 +157,7 @@ Un cordial saludo,
 Oanduaia`,
   },
   sv: {
-    subject: 'Oanduaia — betalningslänk',
+    subject: v => `Din bokning: ${v.reference}`,
     body: v => `Hej ${v.guest},
 
 Tack! Din vistelse är bekräftad:
@@ -177,7 +181,7 @@ Vänliga hälsningar
 Oanduaia`,
   },
   fi: {
-    subject: 'Oanduaia — maksulinkki',
+    subject: v => `Varauksesi: ${v.reference}`,
     body: v => `Hei ${v.guest},
 
 Kiitos! Varauksenne on vahvistettu:
@@ -201,7 +205,7 @@ Ystävällisin terveisin
 Oanduaia`,
   },
   lv: {
-    subject: 'Oanduaia — maksājuma saite',
+    subject: v => `Jūsu rezervācija: ${v.reference}`,
     body: v => `Labdien, ${v.guest}!
 
 Paldies! Jūsu uzturēšanās ir apstiprināta:
@@ -243,7 +247,7 @@ export function dueDate(today: DateStr, checkIn: DateStr): DateStr {
 export function linkLetter(v: LinkLetter): { subject: string; text: string } {
   const copy = COPY[v.lang] ?? COPY.en
   return {
-    subject: copy.subject,
+    subject: copy.subject({ reference: v.reference }).slice(0, 140),
     text: copy.body({
       guest: v.guest,
       reference: v.reference,

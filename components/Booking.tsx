@@ -10,7 +10,7 @@ export default function Booking() {
   const { lang } = useLanguage()
   const t = T.booking
   const { draft } = useBookingDraft()
-  const [form, setForm] = useState({ nimi: '', email: '', kuupaevad: '', sonum: '' })
+  const [form, setForm] = useState({ nimi: '', email: '', telefon: '', kuupaevad: '', sonum: '', company: '' })
   /**
    * What the calendar picked, kept apart from whatever the guest types. Mixing the two into
    * the textarea means a second trip through the calendar either duplicates the summary or
@@ -42,11 +42,13 @@ export default function Booking() {
         body: JSON.stringify({
           name: form.nimi,
           email: form.email,
+          phone: form.telefon,
           dates: form.kuupaevad,
           message: [summary, form.sonum].filter(Boolean).join('\n'),
           subject: t.eSubj[lang],
           // So the admin list shows which language to answer in, without guessing from the text.
           lang,
+          company: form.company,
         }),
       })
       if (!res.ok) throw new Error()
@@ -86,6 +88,7 @@ export default function Booking() {
         <div className="booking-success">
           <h3 className="booking-success-title">{t.success[lang]}</h3>
           <p className="booking-success-sub">{t.successSub[lang]}</p>
+          <p className="booking-success-sub booking-success-spam">{t.successSpam[lang].replace('{email}', form.email)}</p>
         </div>
       ) : (
         <form className="booking-form reveal reveal-delay-2" onSubmit={submit} noValidate>
@@ -99,10 +102,20 @@ export default function Booking() {
             <input className="form-input" id="email" name="email" type="email"
               placeholder={t.pEmail[lang]} value={form.email} onChange={handle} required />
           </div>
-          <div className="form-field form-field--full">
+          <div className="form-field">
+            <label className="form-label" htmlFor="telefon">{t.lPhone[lang]}</label>
+            <input className="form-input" id="telefon" name="telefon" type="tel" autoComplete="tel"
+              placeholder={t.pPhone[lang]} value={form.telefon} onChange={handle} />
+          </div>
+          <div className="form-field">
             <label className="form-label" htmlFor="kuupaevad">{t.lKuup[lang]}</label>
             <input className="form-input" id="kuupaevad" name="kuupaevad" type="text"
               placeholder={t.pKuup[lang]} value={form.kuupaevad} onChange={handle} />
+          </div>
+          <div className="form-hp" aria-hidden="true">
+            <label htmlFor="company">Company</label>
+            <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off"
+              value={form.company} onChange={handle} />
           </div>
           {summary && (
             <div className="form-field form-field--full">

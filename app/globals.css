@@ -5036,3 +5036,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   opacity: 1;
 }
 .booking-direct li, .why-sub, .house-rates dt { color: var(--moss); opacity: 1; }
+
+/* The bot trap in the booking form: present for scripts, out of sight and reach for people. */
+.form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.booking-success-spam { margin-top: 1.2rem; }

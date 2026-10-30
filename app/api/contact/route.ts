@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
 import { Resend } from 'resend'
 import { recordEnquiry } from '@/lib/enquiries'
+import { receiptLetter } from '@/lib/enquiryEmail'
 
 // Instantiated per request, not at module scope — module-scope construction runs
 // during the build's page-data collection and fails wherever the key isn't set.
@@ -26,7 +27,10 @@ function getResend() {
  *   · both failed             → and only then does the guest hear that it did not go through.
  */
 export async function POST(req: Request) {
-  const { name, email, dates, message, subject, lang } = await req.json().catch(() => ({}))
+  const { name, email, phone, dates, message, subject, lang, company } = await req.json().catch(() => ({}))
+
+  // A field no person can see. Filled in means a bot; it is told it worked and nothing happens.
+  if (company) return NextResponse.json({ ok: true })
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -38,6 +42,7 @@ export async function POST(req: Request) {
     name: String(name).slice(0, 120),
     email: String(email).slice(0, 200),
     dates: dates ? String(dates).slice(0, 200) : undefined,
+    phone: phone ? String(phone).slice(0, 40) : undefined,
     message: String(message).slice(0, 4000),
     lang: lang ? String(lang).slice(0, 5) : undefined,
   }
@@ -52,6 +57,7 @@ export async function POST(req: Request) {
       text: [
         `Name: ${enquiry.name}`,
         `Email: ${enquiry.email}`,
+        enquiry.phone ? `Phone: ${enquiry.phone}` : '',
         enquiry.dates ? `Dates: ${enquiry.dates}` : '',
         '',
         enquiry.message,
@@ -63,6 +69,25 @@ export async function POST(req: Request) {
   }
 
   const logged = await recordEnquiry({ ...enquiry, mailed })
+
+  /*
+   * The guest's receipt, from info@ itself. Last and best-effort: a guest whose enquiry reached
+   * us must not be told it failed because their own copy did not go out.
+   */
+  if ((mailed || logged) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(enquiry.email)) {
+    try {
+      const letter = receiptLetter(enquiry.name, enquiry.lang)
+      await getResend().emails.send({
+        from: 'Oanduaia <info@oanduaia.ee>',
+        to: enquiry.email,
+        replyTo: 'info@oanduaia.ee',
+        subject: letter.subject,
+        text: letter.text,
+      })
+    } catch (error) {
+      console.error('Contact form — receipt failed:', error)
+    }
+  }
 
   if (!mailed && !logged) {
     return NextResponse.json({ error: 'Failed to send message' }, { status: 500 })

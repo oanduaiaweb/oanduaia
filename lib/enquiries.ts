@@ -22,6 +22,8 @@ export type Enquiry = {
   name: string
   email: string
   dates?: string
+  /** Phone or WhatsApp — the way to reach a guest whose mail filters swallow ours. */
+  phone?: string
   message: string
   /** Which language the site was in — tells us who to answer in. */
   lang?: string
