@@ -40,6 +40,8 @@ const links = [
 function smoothScroll(id: string, then?: () => void) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
+    // A mouse click leaves no focus ring behind; the box alone says where you are.
+    if (e.detail > 0) e.currentTarget.blur()
     scrollToId(id)
     then?.()
   }
@@ -80,10 +82,18 @@ export default function Nav() {
       setScrolled(window.scrollY > 60)
       if (!isHome) return
       const line = window.scrollY + window.innerHeight * 0.45
+      /*
+       * The passed section that starts LOWEST on the page — not the last one in menu order.
+       * The menu lists Broneeri last but the booking block sits above the story and the
+       * food, so it kept the box all the way down the page (Mikk, 29 Oct).
+       */
       let current: string | null = null
+      let best = -Infinity
       for (const l of links) {
         const el = document.getElementById(l.id)
-        if (el && el.getBoundingClientRect().top + window.scrollY <= line) current = l.id
+        if (!el) continue
+        const top = el.getBoundingClientRect().top + window.scrollY
+        if (top <= line && top > best) { best = top; current = l.id }
       }
       setActiveId(current)
     }

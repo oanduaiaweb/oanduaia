@@ -63,7 +63,12 @@
  * on /et#broneeri left you at the top of the homepage, which is the link llms.txt hands to
  * assistants. In-page clicks get their smooth scroll from scrollToId instead.
  */
-html { font-size: 16px; overflow-x: hidden; }
+/*
+ * clip, not hidden: `hidden` turns html/body into scroll containers, and a position:sticky
+ * child then sticks to a box that never scrolls — the gallery's section bar slid away with
+ * the page. `hidden` stays as the fallback for browsers without clip.
+ */
+html { font-size: 16px; overflow-x: hidden; overflow-x: clip; }
 body {
   background: var(--cream);
   color: var(--bark);
@@ -76,6 +81,7 @@ body {
    */
   font-variant-numeric: lining-nums;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Scroll offset so section headings aren't hidden under sticky nav */
@@ -4054,7 +4060,7 @@ footer {
    GALLERY PAGE
 ══════════════════════════════ */
 /* Force nav into scrolled (dark) state on gallery page */
-body.gallery-page nav {
+body.gallery-page nav.site-nav {
   background: rgba(38, 44, 29, 0.96);   /* --bark-deep; the nav sits deeper than the sections */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -4062,12 +4068,18 @@ body.gallery-page nav {
   pointer-events: all;
 }
 body.gallery-page .nav-logo { text-shadow: none; }
+/* The Estonia mark belongs over the hero photograph; here it sat on the Back link. */
+body.gallery-page .nav-mark { display: none; }
 body.gallery-page .nav-links a { text-shadow: none; opacity: 0.72; }
 body.gallery-page .nav-gallery-btn { text-shadow: none; }
 body.gallery-page .nav-social { text-shadow: none; }
 
 .gallery-photos {
-  background: var(--cream);
+  /*
+   * A warm sand rather than the near-white cream (Mikk, 29 Oct: "darker"). Photographs
+   * read richer on a tone than on white, and the page no longer glares on a phone at night.
+   */
+  background: #e6dfcf;
   padding: 7rem var(--section-h) var(--section-v);
 }
 .gallery-header {
@@ -4099,14 +4111,74 @@ body.gallery-page .nav-social { text-shadow: none; }
   max-width: var(--max-w);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
 }
 .gallery-item {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--linen);
+  background: #d9d1bf;
+  border-radius: 2px;
+}
+
+/* The bar of sections. Sticks under the fixed header; scrolls sideways on a phone. */
+.gallery-bar {
+  position: sticky;
+  top: var(--gallery-nav-h, 64px);
+  z-index: 20;
+  max-width: var(--max-w);
+  margin: 0 auto 1rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0.85rem 0;
+  background: #e6dfcf;
+  box-shadow: 0 10px 18px -16px rgba(38,44,29,0.5);
+}
+.gallery-bar::-webkit-scrollbar { display: none; }
+.gallery-chip {
+  flex: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(58,74,53,0.28);
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--moss);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.gallery-chip-n { font-size: 0.8em; opacity: 0.55; }
+.gallery-chip.is-current { background: var(--bark); border-color: var(--bark); color: var(--linen); }
+@media (hover: hover) { .gallery-chip:hover:not(.is-current) { border-color: var(--moss); background: rgba(58,74,53,0.06); } }
+
+.gallery-section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-top: 2.4rem;
+  scroll-margin-top: calc(var(--gallery-nav-h, 64px) + 3.6rem);
+}
+.gallery-section-h {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  color: var(--bark);
+  margin-bottom: 1.1rem;
+}
+.gallery-section-n {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--fern);
 }
 .gallery-item {
   scroll-margin-top: 6rem;
@@ -4128,13 +4200,20 @@ body.gallery-page .nav-social { text-shadow: none; }
   pointer-events: none;
 }
 
+@media (max-width: 1100px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 900px) {
   .gallery-photos { padding: 6rem var(--section-h) 4rem; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
-  .gallery-photos { padding: 5rem var(--section-h) 3rem; }
-  .gallery-grid { grid-template-columns: 1fr; gap: 2px; }
+  .gallery-photos { padding: 5rem 0 3rem; }
+  .gallery-header, .gallery-section-h { padding-inline: 1.25rem; }
+  .gallery-bar { padding: 0.75rem 1.25rem; margin-bottom: 0.5rem; }
+  .gallery-section { padding-top: 1.8rem; }
+  /* Two across on a phone: a section reads as a set, not as one long column. */
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 3px; }
+  .gallery-item { aspect-ratio: 1 / 1; border-radius: 0; }
 }
 
 /* ══════════════════════════════

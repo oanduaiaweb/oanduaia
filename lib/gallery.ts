@@ -1,4 +1,5 @@
 import type { Lang } from './translations'
+import { HOUSE_GALLERIES } from './housePhotos'
 
 export type GalleryPhoto = {
   src: string
@@ -210,3 +211,111 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [...RAW_LATEST, ...RAW_TOIT, ...RA
 }))
 
 export const ALL_PHOTOS: GalleryPhoto[] = [...HOUSE_PHOTOS, ...GALLERY_PHOTOS]
+
+/* ───────────── Sections (Mikk, 29 Oct: "make it more systemised") ───────────── */
+
+
+export type GallerySectionId =
+  | 'saunamaja' | 'tiigimaja' | 'metsamaja' | 'valikook' | 'toit' | 'loodus' | 'ou'
+
+export type GallerySection = {
+  id: GallerySectionId
+  label: Record<Lang, string>
+  photos: GalleryPhoto[]
+}
+
+const SECTION_LABELS: Record<GallerySectionId, Record<Lang, string>> = {
+  saunamaja: HOUSE_PHOTOS[0].label!,
+  tiigimaja: HOUSE_PHOTOS[1].label!,
+  metsamaja: HOUSE_PHOTOS[2].label!,
+  valikook: { et: 'Väliköök ja lava', en: 'Outdoor kitchen & stage', ru: 'Летняя кухня и сцена', de: 'Außenküche & Bühne', es: 'Cocina exterior y escenario', sv: 'Utekök & scen', fi: 'Ulkokeittiö ja lava', lv: 'Āra virtuve un skatuve' },
+  toit: { et: 'Toit', en: 'Food', ru: 'Еда', de: 'Essen', es: 'Comida', sv: 'Mat', fi: 'Ruoka', lv: 'Ēdiens' },
+  loodus: { et: 'Loodus', en: 'Nature', ru: 'Природа', de: 'Natur', es: 'Naturaleza', sv: 'Naturen', fi: 'Luonto', lv: 'Daba' },
+  ou: { et: 'Õu ja teised hooned', en: 'The grounds & other buildings', ru: 'Усадьба и другие постройки', de: 'Das Gelände & weitere Gebäude', es: 'La finca y otros edificios', sv: 'Gården & övriga byggnader', fi: 'Piha ja muut rakennukset', lv: 'Sēta un citas ēkas' },
+}
+
+/**
+ * Which section each gallery photograph belongs to — decided by looking at every frame,
+ * not from the file names (they were shifted once before; see feedback_trust_the_image).
+ * The round thatched house by the pond is the Sauna House; the glass-walled one the Pond
+ * House; the long log house with the OANDUAIA sign the main house, which is not rented
+ * and so sits under the grounds. A photo missing here falls into the grounds.
+ */
+const SECTION_OF: Record<string, GallerySectionId> = {
+  '033': 'ou', '034': 'loodus', '035': 'ou', '036': 'loodus', '038': 'loodus', '039': 'ou',
+  '040': 'ou', '041': 'saunamaja', '042': 'loodus', '043': 'loodus', '044': 'valikook',
+  '045': 'ou', '046': 'loodus', '047': 'loodus', '048': 'loodus', '051': 'saunamaja',
+  '052': 'ou', '053': 'ou', '054': 'loodus', '055': 'ou', '056': 'loodus', '057': 'ou',
+  '058': 'saunamaja', '059': 'loodus', '060': 'loodus', '061': 'loodus', '062': 'tiigimaja',
+  '063': 'toit', '064': 'ou', '065': 'toit', '066': 'toit', '067': 'toit', '068': 'tiigimaja',
+  '069': 'toit', '070': 'tiigimaja', '071': 'tiigimaja', '072': 'metsamaja', '073': 'loodus',
+  '074': 'ou', '075': 'tiigimaja', '076': 'tiigimaja', '077': 'tiigimaja', '078': 'tiigimaja',
+  '079': 'tiigimaja', '080': 'loodus', '081': 'saunamaja', '082': 'tiigimaja', '083': 'loodus',
+  '086': 'loodus', '087': 'saunamaja', '088': 'loodus', '089': 'toit', '090': 'loodus',
+  '091': 'loodus', '092': 'loodus', '093': 'loodus', '094': 'loodus',
+  'kolm-hoonet': 'ou', 'peamajast-ulevalt': 'ou', 'kiigud': 'tiigimaja',
+  'saunamaja-veepealt': 'saunamaja', 'oja': 'loodus', 'peamaja-eeshoov': 'ou',
+  'paadiaer': 'loodus', 'tiigimaja-veepealt': 'tiigimaja', 'metsarada': 'loodus',
+  'ilus-tiik': 'loodus', 'puu-ja-majad': 'ou', 'kivid-ja-tiik': 'ou', 'tiik-selge-vesi': 'loodus',
+  'ait-ja-saun': 'ou', 'metsamaja-kaugelt': 'metsamaja', 'metsamaja-tagant': 'metsamaja',
+  'saun-ja-tiigimaja': 'ou', 'saunamaja-ja-peamaja': 'ou', 'peamaja': 'ou', 'muru-ja-majad': 'ou',
+  'kasvuhoone-valikook': 'valikook', 'valikook-istumine': 'valikook', 'valikook': 'valikook',
+  'kokteil': 'toit', 'lilled': 'ou', 'istumine-taevas': 'valikook',
+  'metsamaja-paikeses': 'metsamaja', 'toit/valikook-ohtul': 'valikook',
+  'saunamaja/jaaauk-talvel.webp': 'saunamaja',
+}
+
+const ORDER: GallerySectionId[] = ['saunamaja', 'tiigimaja', 'metsamaja', 'valikook', 'toit', 'loodus', 'ou']
+
+function sectionOf(raw: string): GallerySectionId {
+  if (SECTION_OF[raw]) return SECTION_OF[raw]
+  if (raw.startsWith('metsamaja/')) return 'metsamaja'
+  if (raw.startsWith('saunamaja/')) return 'saunamaja'
+  if (raw.startsWith('tiigimaja/')) return 'tiigimaja'
+  if (raw.startsWith('toit/')) return 'toit'
+  return 'ou'
+}
+
+const RAW_ALL = [...RAW_LATEST, ...RAW_TOIT, ...RAW_2026, ...RAW]
+
+/**
+ * Look-alikes left out of the gallery, the weaker of each pair (Mikk, 29 Oct: "if there
+ * are similar pictures, leave the better one"). Chosen side by side, by eye; the file
+ * that stays is named after each. Only the gallery skips them — strips and house pages
+ * that use one keep it.
+ */
+const GALLERY_SKIP = new Set([
+  '/galerii/036.jpeg',                 // 043, the same jetty, wider and sharper
+  '/galerii/060.jpeg',                 // 059, the same dusk pond, more sky
+  '/galerii/063.jpeg',                 // 065, the same place setting, brighter
+  '/galerii/067.jpeg',                 // 066, the same floral table
+  '/galerii/istumine-taevas.jpeg',     // valikook-istumine, the same seats
+  '/galerii/045.jpeg',                 // 055, the same roses and houses
+  '/galerii/068.jpeg',                 // 076, the Pond House front, brighter
+  '/galerii/078.jpeg',                 // tiigimaja/elutuba-kamin-tiik, same corner in autumn light
+  '/galerii/075.jpeg',                 // tiigimaja/vannituba
+  '/galerii/079.jpeg',                 // tiigimaja/vannituba, near-identical frame
+  '/galerii/041.jpeg',                 // saunamaja-veepealt, the Sauna House over the pond
+  '/galerii/088.jpeg',                 // metsarada, the same forest path
+  '/galerii/lilled.jpeg',              // saunamaja-ja-peamaja, the same petunias
+  '/images/metsamaja.jpg',             // metsamaja-paikeses, the Forest House in sun
+  '/galerii/tiigimaja/magamistuba.jpeg', // tiigimaja/magamistuba-sugisel, same bed, newer
+])
+
+/**
+ * The gallery in sections. A house section is its cover, then the photographs from its
+ * own page (lib/housePhotos.ts), then any general photograph of it not already there —
+ * each picture once, wherever it was listed first.
+ */
+export const GALLERY_SECTIONS: GallerySection[] = ORDER.map(id => {
+  const seen = new Set<string>()
+  const photos: GalleryPhoto[] = []
+  const add = (p: GalleryPhoto) => { if (!seen.has(p.src) && !GALLERY_SKIP.has(p.src)) { seen.add(p.src); photos.push(p) } }
+  const cover = HOUSE_PHOTOS.find(h => h.id === id)
+  if (cover) add({ src: cover.src, alt: cover.alt })
+  if (id === 'saunamaja' || id === 'tiigimaja' || id === 'metsamaja') {
+    for (const p of HOUSE_GALLERIES[id] ?? []) add({ src: p.src, alt: p.alt })
+  }
+  RAW_ALL.forEach(([n], i) => { if (sectionOf(n) === id) add(GALLERY_PHOTOS[i]) })
+  return { id, label: SECTION_LABELS[id], photos }
+})
