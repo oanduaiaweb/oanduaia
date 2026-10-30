@@ -11,9 +11,9 @@
    * only backgrounds move to these. --page for the main ground, --page-alt for a section
    * that needs to read as a separate band, --page-deep for the photo gallery.
    */
-  --page:      #e3dac6;
-  --page-alt:  #d9ceb6;
-  --page-deep: #c9bda3;
+  --page:      #d4c9b1;
+  --page-alt:  #c9bca2;
+  --page-deep: #b9ab8f;
   /*
    * The dark ground under the nav, the footer and every dark section.
    *
@@ -1028,13 +1028,13 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   background:
     linear-gradient(90deg,
       var(--page) 0%,
-      rgba(227,218,198,0) 22%,
-      rgba(227,218,198,0) 78%,
+      rgba(212,201,177,0) 22%,
+      rgba(212,201,177,0) 78%,
       var(--page) 100%),
     linear-gradient(180deg,
       var(--page) 0%,
-      rgba(227,218,198,0.82) 20%,
-      rgba(227,218,198,0.82) 80%,
+      rgba(212,201,177,0.82) 20%,
+      rgba(212,201,177,0.82) 80%,
       var(--page) 100%);
 }
 
@@ -1047,13 +1047,13 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
     background:
       linear-gradient(90deg,
         var(--page) 0%,
-        rgba(227,218,198,0) 14%,
-        rgba(227,218,198,0) 86%,
+        rgba(212,201,177,0) 14%,
+        rgba(212,201,177,0) 86%,
         var(--page) 100%),
       linear-gradient(180deg,
         var(--page) 0%,
-        rgba(227,218,198,0.80) 16%,
-        rgba(227,218,198,0.80) 84%,
+        rgba(212,201,177,0.80) 16%,
+        rgba(212,201,177,0.80) 84%,
         var(--page) 100%);
   }
 }
@@ -2028,8 +2028,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   inset: 0;
   background: linear-gradient(180deg,
     var(--page-alt) 0%,
-    rgba(217,206,182,0.86) 18%,
-    rgba(217,206,182,0.86) 82%,
+    rgba(201,188,162,0.86) 18%,
+    rgba(201,188,162,0.86) 82%,
     var(--page-alt) 100%);
 }
 .why-inner {
@@ -2095,8 +2095,8 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   .why-scrim {
     background: linear-gradient(180deg,
       var(--page-alt) 0%,
-      rgba(217,206,182,0.80) 12%,
-      rgba(217,206,182,0.80) 88%,
+      rgba(201,188,162,0.80) 12%,
+      rgba(201,188,162,0.80) 88%,
       var(--page-alt) 100%);
   }
   .why-inner { padding: var(--section-v) 1.5rem; }
@@ -4127,7 +4127,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #b9ad93;
+  background: #a89a7e;
   border-radius: 2px;
 }
 
@@ -5021,3 +5021,18 @@ body.gallery-page .nav-social { text-shadow: none; }
    cancels the tracking after the last letter, so the word sits on the true centre. */
 .feature-intro > .section-label { text-align: center; text-indent: var(--ls-widest); }
 .feature-intro > .house-jump { justify-content: center; }
+
+/*
+ * Small labels and notes on the light grounds. Their sage/fern at 0.4–0.7 opacity was
+ * set against near-white; on the darker --page tones (Mikk, 29 Oct) it fell under 2:1 and
+ * the labels all but vanished. Full opacity, one step darker.
+ */
+:root { --label-ink: #4a5640; }
+.booking-direct-label, .form-label, .stat-label, .house-facts-label, .house-photos-label,
+.hp-label, .hp-unit, .hp-note, .hp-extra, .trail-facts dt, .trail-facts-note,
+.gallery-back, .gallery-section-n, .intro-number,
+.why-section .section-label, .landing .section-label, .landing-qa .section-label {
+  color: var(--label-ink);
+  opacity: 1;
+}
+.booking-direct li, .why-sub, .house-rates dt { color: var(--moss); opacity: 1; }
