@@ -56,7 +56,7 @@ export const LANDINGS: Landing[] = [
     },
     description: {
       et: 'Kus Lahemaal ööbida: mida rahvuspark pakub, kuidas külamajutus hotellist erineb, ja kolm eraldi maja Oandu külas 2 või 4 inimesele, alates 100 € öö.',
-      en: 'Where to stay in Lahemaa National Park: what the park offers, how a village house differs from a hotel, and three private cabins in Oandu village for 2 or 4, from €100 a night.',
+      en: 'Where to stay in Lahemaa National Park: what the park offers, village house or hotel, and three private cabins in Oandu for 2 or 4, from €100 a night.',
       ru: 'Где остановиться в Лахемаа: варианты в парке, деревенский дом или отель, и три отдельных дома в деревне Оанду на 2 или 4 человека, от 100 € за ночь.',
       de: 'Übernachten im Nationalpark Lahemaa: die Möglichkeiten im Park, Dorfhaus oder Hotel, und drei Ferienhäuser im Dorf Oandu für 2 oder 4 Personen, ab 100 € pro Nacht.',
       es: 'Dónde dormir en el Parque Nacional de Lahemaa: opciones, casa rural u hotel, y tres cabañas privadas en el pueblo de Oandu para 2 o 4 personas, desde 100 €/noche.',
