@@ -12,6 +12,7 @@ import {
   type Meals,
 } from '@/lib/pricing'
 import AdminStats from '@/components/AdminStats'
+import { parseStay } from '@/lib/stayDates'
 
 type Payload = {
   blocks: Record<string, Block[]>
@@ -32,6 +33,15 @@ function summaryField(message: string, labels: string[]): string {
   }
   return ''
 }
+
+/** The stay an enquiry is about: stored dates first, otherwise read out of its text. */
+const stayOf = (e: Enquiry) =>
+  e.checkIn || e.checkOut ? { checkIn: e.checkIn, checkOut: e.checkOut ?? e.checkIn } : parseStay(e.dates ?? e.message, e.received)
+
+const todayTallinn = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Tallinn' })
+
+const etDate = (d: string) =>
+  new Date(`${d}T12:00:00Z`).toLocaleDateString('et-EE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 
 const whenShort = (iso: string) =>
   new Date(iso).toLocaleString('et-EE', { timeZone: 'Europe/Tallinn', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
@@ -55,7 +65,7 @@ export default function Admin() {
   const [showHandled, setShowHandled] = useState(false)
   const [openEnq, setOpenEnq] = useState<string | null>(null)
   const [adding, setAdding] = useState(false)
-  const [manual, setManual] = useState({ name: '', email: '', phone: '', dates: '', message: '' })
+  const [manual, setManual] = useState({ name: '', email: '', phone: '', checkIn: '', checkOut: '', message: '' })
   const [copied, setCopied] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -305,16 +315,30 @@ export default function Admin() {
    */
   const allEnquiries = enquiries ?? []
   const handledCount = allEnquiries.filter(e => e.handled).length
+  const setStay = async (id: string, checkIn: string, checkOut: string) => {
+    const res = await fetch('/api/admin/enquiries', {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, checkIn: checkIn || null, checkOut: checkOut || null }),
+    })
+    if (!res.ok) setError('Could not save the dates.')
+    loadEnquiries()
+  }
+  const today = todayTallinn()
+
   const shownEnquiries = (showHandled ? allEnquiries : allEnquiries.filter(e => !e.handled))
     .slice().sort((a, b) => b.received.localeCompare(a.received))
 
   const addManual = async (ev: FormEvent) => {
     ev.preventDefault()
     const res = await fetch('/api/admin/enquiries', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(manual),
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...manual,
+        dates: manual.checkIn ? `${etDate(manual.checkIn)} – ${etDate(manual.checkOut || manual.checkIn)}` : '',
+      }),
     })
     if (!res.ok) { setError('Could not save that enquiry.'); return }
-    setManual({ name: '', email: '', phone: '', dates: '', message: '' })
+    setManual({ name: '', email: '', phone: '', checkIn: '', checkOut: '', message: '' })
     setAdding(false)
     loadEnquiries()
   }
@@ -350,11 +374,12 @@ export default function Admin() {
         {adding && (
           <form className="adm-form adm-enq-add" onSubmit={addManual}>
             {([
-              ['name', 'Name', true], ['email', 'E-mail', false], ['phone', 'Phone', false], ['dates', 'Dates', false],
-            ] as const).map(([k, label, req]) => (
+              ['name', 'Name', true, 'text'], ['email', 'E-mail', false, 'email'], ['phone', 'Phone', false, 'tel'],
+              ['checkIn', 'Arrival', false, 'date'], ['checkOut', 'Departure', false, 'date'],
+            ] as const).map(([k, label, req, type]) => (
               <div className="adm-field" key={k}>
                 <label className="adm-label" htmlFor={`man-${k}`}>{label}</label>
-                <input id={`man-${k}`} className="adm-input" required={req} value={manual[k]}
+                <input id={`man-${k}`} className="adm-input" type={type} required={req} value={manual[k]}
                   onChange={ev => setManual(m => ({ ...m, [k]: ev.target.value }))} />
               </div>
             ))}
@@ -380,8 +405,11 @@ export default function Admin() {
               const open = openEnq === e.id
               const house = summaryField(e.message, HOUSE_LABELS)
               const guests = summaryField(e.message, GUEST_LABELS)
+              const stay = stayOf(e)
+              // Green while the stay is still ahead or under way; white once the departure day has passed.
+              const coming = !!stay.checkOut && stay.checkOut >= today
               return (
-              <li className={`adm-enq${e.handled ? ' is-done' : ''}${open ? ' is-open' : ''}`} key={e.id}>
+              <li className={`adm-enq${e.handled ? ' is-done' : ''}${coming ? ' is-coming' : ''}${open ? ' is-open' : ''}`} key={e.id}>
                 <button type="button" className="adm-enq-row" aria-expanded={open}
                   onClick={() => setOpenEnq(open ? null : e.id)}>
                   <span className="adm-enq-row-when">{whenShort(e.received)}</span>
@@ -411,6 +439,19 @@ export default function Admin() {
                 </div>
 
                 {e.dates && <p className="adm-enq-dates">{e.dates}</p>}
+                <form className="adm-enq-stay" key={`${stay.checkIn}-${stay.checkOut}`}
+                  onSubmit={ev => {
+                    ev.preventDefault()
+                    const f = new FormData(ev.currentTarget)
+                    setStay(e.id, String(f.get('in') ?? ''), String(f.get('out') ?? ''))
+                  }}>
+                  <span className="adm-label">Stay</span>
+                  <input className="adm-input" type="date" name="in" defaultValue={stay.checkIn ?? ''} aria-label="Arrival" />
+                  <span>–</span>
+                  <input className="adm-input" type="date" name="out" defaultValue={stay.checkOut ?? ''} aria-label="Departure" />
+                  <button className="adm-link" type="submit">Save dates</button>
+                  {!stay.checkOut && <span className="adm-muted">Dates not readable — set them to colour this one.</span>}
+                </form>
                 <pre className="adm-enq-body">{e.message}</pre>
 
                 {/* The one thing the inbox cannot tell you. */}

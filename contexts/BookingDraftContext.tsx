@@ -9,7 +9,7 @@ import { createContext, useContext, useState, type ReactNode } from 'react'
  * through here rather than through props or a DOM event. `stamp` changes on every request
  * so that pressing the button twice still refills the form.
  */
-export type BookingDraft = { dates: string; message: string; stamp: number }
+export type BookingDraft = { dates: string; message: string; checkIn?: string; checkOut?: string; stamp: number }
 
 type Ctx = { draft: BookingDraft | null; request: (d: Omit<BookingDraft, 'stamp'>) => void }
 

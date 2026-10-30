@@ -3899,6 +3899,12 @@ a.feature-house-name { text-decoration: none; transition: color 0.3s; }
 .adm-enq-row-what { font-size: var(--fs-sm); color: var(--moss); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .adm-enq-row-arrow { text-align: right; color: var(--fern); }
 .adm-enq-detail { padding: 0.2rem 1.1rem 0.9rem; border-top: 1px solid rgba(90,110,80,0.12); padding-top: 0.8rem; }
+/* Guests still to come: green until the departure day has passed. */
+.adm-enq.is-coming { background: #e3eedb; border-left-color: #3f7a3a; }
+@media (hover: hover) { .adm-enq.is-coming .adm-enq-row:hover { background: rgba(63,122,58,0.08); } }
+.adm-enq-stay { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.7rem; margin: 0.2rem 0 0.7rem; }
+.adm-enq-stay .adm-input { width: auto; padding: 0.3rem 0.5rem; }
+.adm-enq-stay .adm-label { margin: 0; }
 .adm-enq-lang.adm-enq-warn { color: #a33; opacity: 1; }
 .adm-enq-add { margin-bottom: 1rem; }
 @media (max-width: 640px) {

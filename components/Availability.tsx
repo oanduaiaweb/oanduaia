@@ -288,7 +288,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
       value: q.total,
       currency: 'EUR',
     })
-    request({ dates, message })
+    request({ dates, message, checkIn, checkOut })
     document.getElementById('vorm')?.scrollIntoView({ behavior: 'smooth' })
   }
 

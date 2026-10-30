@@ -26,8 +26,10 @@ function getResend() {
  *   · log written, mail failed → we still have the enquiry, in the admin, flagged `mailed: false`.
  *   · both failed             → and only then does the guest hear that it did not go through.
  */
+const isDay = (v: unknown): v is string => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v)
+
 export async function POST(req: Request) {
-  const { name, email, phone, dates, message, subject, lang, company } = await req.json().catch(() => ({}))
+  const { name, email, phone, dates, message, subject, lang, company, checkIn, checkOut } = await req.json().catch(() => ({}))
 
   // A field no person can see. Filled in means a bot; it is told it worked and nothing happens.
   if (company) return NextResponse.json({ ok: true })
@@ -43,6 +45,8 @@ export async function POST(req: Request) {
     email: String(email).slice(0, 200),
     dates: dates ? String(dates).slice(0, 200) : undefined,
     phone: phone ? String(phone).slice(0, 40) : undefined,
+    checkIn: isDay(checkIn) ? checkIn : undefined,
+    checkOut: isDay(checkOut) ? checkOut : undefined,
     message: String(message).slice(0, 4000),
     lang: lang ? String(lang).slice(0, 5) : undefined,
   }

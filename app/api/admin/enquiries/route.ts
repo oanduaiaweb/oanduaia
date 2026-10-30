@@ -18,6 +18,8 @@ export async function GET() {
   return NextResponse.json({ enquiries: store.enquiries })
 }
 
+const isDay = (v: unknown): v is string => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v)
+
 /** A request that came by e-mail or phone, typed in so every booking request lives in one list. */
 export async function POST(req: Request) {
   if (!await authed()) return denied()
@@ -31,6 +33,8 @@ export async function POST(req: Request) {
     email: cut(b.email, 200) ?? '',
     phone: cut(b.phone, 40),
     dates: cut(b.dates, 200),
+    checkIn: isDay(b.checkIn) ? b.checkIn : undefined,
+    checkOut: isDay(b.checkOut) ? b.checkOut : undefined,
     message: cut(b.message, 4000) ?? '',
     lang: cut(b.lang, 5),
     mailed: true,
@@ -50,7 +54,10 @@ export async function PATCH(req: Request) {
   const found = store.enquiries.find(e => e.id === body.id)
   if (!found) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 
-  found.handled = !!body.handled
+  if ('handled' in body) found.handled = !!body.handled
+  // Stay dates set by hand, for requests whose text the parser cannot read.
+  if ('checkIn' in body) found.checkIn = isDay(body.checkIn) ? body.checkIn : undefined
+  if ('checkOut' in body) found.checkOut = isDay(body.checkOut) ? body.checkOut : undefined
   await writeEnquiries(store)
   return NextResponse.json({ ok: true })
 }

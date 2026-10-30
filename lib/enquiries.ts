@@ -22,6 +22,9 @@ export type Enquiry = {
   name: string
   email: string
   dates?: string
+  /** Arrival and departure as YYYY-MM-DD — from the calendar, or set by hand in /admin. */
+  checkIn?: string
+  checkOut?: string
   /** Phone or WhatsApp — the way to reach a guest whose mail filters swallow ours. */
   phone?: string
   message: string

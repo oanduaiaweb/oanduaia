@@ -43,6 +43,8 @@ export default function Booking() {
           name: form.nimi,
           email: form.email,
           phone: form.telefon,
+          // Only while the typed dates are still the calendar's own; edited by hand, they are text.
+          ...(draft && form.kuupaevad === draft.dates ? { checkIn: draft.checkIn, checkOut: draft.checkOut } : {}),
           dates: form.kuupaevad,
           message: [summary, form.sonum].filter(Boolean).join('\n'),
           subject: t.eSubj[lang],
