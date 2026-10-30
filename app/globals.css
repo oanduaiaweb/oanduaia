@@ -5040,3 +5040,23 @@ body.gallery-page .nav-social { text-shadow: none; }
 /* The bot trap in the booking form: present for scripts, out of sight and reach for people. */
 .form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .booking-success-spam { margin-top: 1.2rem; }
+
+/* /admin website statistics */
+.adm-stat-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.6rem; margin-bottom: 1rem; }
+.adm-stat-tile { background: rgba(90,110,80,0.08); border-radius: 8px; padding: 0.8rem 0.9rem; display: flex; flex-direction: column; gap: 0.2rem; }
+.adm-stat-tile b { font-size: 1.6rem; font-weight: 500; color: var(--moss); line-height: 1.1; }
+.adm-stat-tile span { font-size: 0.8rem; opacity: 0.75; }
+.adm-stat-tile.is-key { background: var(--moss); }
+.adm-stat-tile.is-key b, .adm-stat-tile.is-key span { color: #fff; opacity: 1; }
+.adm-stat-tile.is-live b::before { content: ''; display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #3fa34d; margin-right: 0.4rem; vertical-align: middle; }
+.adm-stat-daily { display: flex; align-items: flex-end; gap: 2px; height: 70px; margin: 0.4rem 0 1.4rem; border-bottom: 1px solid rgba(90,110,80,0.2); }
+.adm-stat-daily span { flex: 1; background: rgba(90,110,80,0.45); border-radius: 2px 2px 0 0; min-width: 2px; }
+.adm-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem 2rem; }
+.adm-stat-h3 { font-size: 0.95rem; font-weight: 500; margin: 0 0 0.5rem; color: var(--moss); }
+.adm-stat-list ul { list-style: none; margin: 0; padding: 0; }
+.adm-stat-list li { position: relative; display: flex; justify-content: space-between; gap: 0.8rem; padding: 0.3rem 0.4rem; font-size: 0.88rem; }
+.adm-stat-bar { position: absolute; left: 0; top: 2px; bottom: 2px; background: rgba(90,110,80,0.12); border-radius: 3px; z-index: 0; }
+.adm-stat-label, .adm-stat-num { position: relative; z-index: 1; }
+.adm-stat-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adm-stat-num { font-variant-numeric: tabular-nums; }
+.adm-stat-note { font-size: 0.78rem; opacity: 0.65; margin-top: 0.5rem; }

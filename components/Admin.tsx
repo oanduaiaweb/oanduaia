@@ -11,6 +11,7 @@ import {
   BREAKFAST_EUR, DINNER_EUR, breakfastMornings, dinnerEvenings, hasMeals, mealsCost,
   type Meals,
 } from '@/lib/pricing'
+import AdminStats from '@/components/AdminStats'
 
 type Payload = {
   blocks: Record<string, Block[]>
@@ -370,6 +371,8 @@ export default function Admin() {
           </ul>
         )}
       </section>
+
+      <AdminStats />
 
       <section className="adm-section">
         <h2 className="adm-h2">
