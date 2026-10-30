@@ -3873,13 +3873,40 @@ a.feature-house-name { text-decoration: none; transition: color 0.3s; }
   border-radius: 999px;
   padding: 0.2rem 0.65rem;
 }
-.adm-enq-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+.adm-enq-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
 .adm-enq {
   border: 1px solid rgba(90,110,80,0.2);
   border-left: 3px solid var(--moss);
   border-radius: 5px;
-  padding: 0.9rem 1.1rem;
   background: #fff;
+}
+/* One line per request; the whole line opens it. */
+.adm-enq-row {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 6.6rem minmax(8rem, 13rem) 1fr 1.2rem;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.6rem 1rem;
+}
+.adm-enq-row:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+@media (hover: hover) { .adm-enq-row:hover { background: rgba(90,110,80,0.06); } }
+.adm-enq-row-when { font-family: var(--font-sans); font-size: var(--fs-2xs); color: var(--fern); font-variant-numeric: tabular-nums; }
+.adm-enq-row-who { color: var(--bark); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adm-enq-row-what { font-size: var(--fs-sm); color: var(--moss); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adm-enq-row-arrow { text-align: right; color: var(--fern); }
+.adm-enq-detail { padding: 0.2rem 1.1rem 0.9rem; border-top: 1px solid rgba(90,110,80,0.12); padding-top: 0.8rem; }
+.adm-enq-lang.adm-enq-warn { color: #a33; opacity: 1; }
+.adm-enq-add { margin-bottom: 1rem; }
+@media (max-width: 640px) {
+  .adm-enq-row { grid-template-columns: 1fr 1.2rem; gap: 0.15rem 0.6rem; }
+  .adm-enq-row-when { grid-column: 1; grid-row: 1; }
+  .adm-enq-row-who { grid-column: 1; grid-row: 2; }
+  .adm-enq-row-what { grid-column: 1; grid-row: 3; white-space: normal; }
+  .adm-enq-row-arrow { grid-column: 2; grid-row: 1 / 4; align-self: center; }
 }
 /* Answered ones recede rather than disappear — the record is the point. */
 .adm-enq.is-done { opacity: 0.55; border-left-color: rgba(90,110,80,0.3); }

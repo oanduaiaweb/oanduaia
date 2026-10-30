@@ -22,6 +22,20 @@ type Payload = {
 const houseName = (slug: string) =>
   T.feature.houses.find(h => h.slug === slug)?.name.et ?? slug
 
+const HOUSE_LABELS = Object.values(T.availability.lHouse)
+const GUEST_LABELS = Object.values(T.availability.lGuests)
+
+/** Reads "Maja: Metsamaja" / "House: Forest House" … out of the calendar summary in a message. */
+function summaryField(message: string, labels: string[]): string {
+  for (const line of message.split('\n')) {
+    for (const l of labels) if (line.startsWith(`${l}:`)) return line.slice(l.length + 1).trim()
+  }
+  return ''
+}
+
+const whenShort = (iso: string) =>
+  new Date(iso).toLocaleString('et-EE', { timeZone: 'Europe/Tallinn', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+
 export default function Admin() {
   const [ready, setReady] = useState(false)
   const [authed, setAuthed] = useState(false)
@@ -39,6 +53,9 @@ export default function Admin() {
   const [payError, setPayError] = useState('')
   const [payFilter, setPayFilter] = useState<'all' | 'paid' | 'unpaid' | 'meals'>('all')
   const [showHandled, setShowHandled] = useState(false)
+  const [openEnq, setOpenEnq] = useState<string | null>(null)
+  const [adding, setAdding] = useState(false)
+  const [manual, setManual] = useState({ name: '', email: '', phone: '', dates: '', message: '' })
   const [copied, setCopied] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -288,7 +305,19 @@ export default function Admin() {
    */
   const allEnquiries = enquiries ?? []
   const handledCount = allEnquiries.filter(e => e.handled).length
-  const shownEnquiries = showHandled ? allEnquiries : allEnquiries.filter(e => !e.handled)
+  const shownEnquiries = (showHandled ? allEnquiries : allEnquiries.filter(e => !e.handled))
+    .slice().sort((a, b) => b.received.localeCompare(a.received))
+
+  const addManual = async (ev: FormEvent) => {
+    ev.preventDefault()
+    const res = await fetch('/api/admin/enquiries', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(manual),
+    })
+    if (!res.ok) { setError('Could not save that enquiry.'); return }
+    setManual({ name: '', email: '', phone: '', dates: '', message: '' })
+    setAdding(false)
+    loadEnquiries()
+  }
 
   return (
     <main className="adm">
@@ -313,7 +342,30 @@ export default function Admin() {
               {showHandled ? 'Hide dealt with' : `Dealt with (${handledCount})`}
             </button>
           )}
+          <button type="button" className={`adm-chip${adding ? ' is-on' : ''}`} onClick={() => setAdding(v => !v)}>
+            + Add e-mail / phone request
+          </button>
         </h2>
+
+        {adding && (
+          <form className="adm-form adm-enq-add" onSubmit={addManual}>
+            {([
+              ['name', 'Name', true], ['email', 'E-mail', false], ['phone', 'Phone', false], ['dates', 'Dates', false],
+            ] as const).map(([k, label, req]) => (
+              <div className="adm-field" key={k}>
+                <label className="adm-label" htmlFor={`man-${k}`}>{label}</label>
+                <input id={`man-${k}`} className="adm-input" required={req} value={manual[k]}
+                  onChange={ev => setManual(m => ({ ...m, [k]: ev.target.value }))} />
+              </div>
+            ))}
+            <div className="adm-field adm-field--wide">
+              <label className="adm-label" htmlFor="man-message">House, guests, notes</label>
+              <textarea id="man-message" className="adm-input" rows={3} value={manual.message}
+                onChange={ev => setManual(m => ({ ...m, message: ev.target.value }))} />
+            </div>
+            <button className="adm-btn" type="submit">Save request</button>
+          </form>
+        )}
 
         {enquiries === null ? (
           <p className="adm-muted">Loading…</p>
@@ -324,21 +376,41 @@ export default function Admin() {
           </p>
         ) : (
           <ul className="adm-enq-list">
-            {shownEnquiries.map(e => (
-              <li className={`adm-enq${e.handled ? ' is-done' : ''}`} key={e.id}>
+            {shownEnquiries.map(e => {
+              const open = openEnq === e.id
+              const house = summaryField(e.message, HOUSE_LABELS)
+              const guests = summaryField(e.message, GUEST_LABELS)
+              return (
+              <li className={`adm-enq${e.handled ? ' is-done' : ''}${open ? ' is-open' : ''}`} key={e.id}>
+                <button type="button" className="adm-enq-row" aria-expanded={open}
+                  onClick={() => setOpenEnq(open ? null : e.id)}>
+                  <span className="adm-enq-row-when">{whenShort(e.received)}</span>
+                  <span className="adm-enq-row-who">
+                    {e.name}
+                    {e.manual && <span className="adm-enq-lang">E-MAIL/PHONE</span>}
+                    {!e.mailed && <span className="adm-enq-lang adm-enq-warn">NOT IN INBOX</span>}
+                  </span>
+                  <span className="adm-enq-row-what">
+                    {[house, e.dates, guests && `${guests} pers`].filter(Boolean).join(' · ') || e.message.split('\n')[0].slice(0, 60)}
+                  </span>
+                  <span className="adm-enq-row-arrow" aria-hidden="true">{open ? '−' : '+'}</span>
+                </button>
+
+                {open && (
+                <div className="adm-enq-detail">
                 <div className="adm-enq-head">
                   <span className="adm-enq-who">
                     {e.name}
                     {e.lang && <span className="adm-enq-lang">{e.lang.toUpperCase()}</span>}
                   </span>
-                  <a className="adm-link" href={`mailto:${e.email}`}>{e.email}</a>
+                  {e.email && <a className="adm-link" href={`mailto:${e.email}`}>{e.email}</a>}
+                  {e.phone && <a className="adm-link" href={`tel:${e.phone.replace(/[^+\d]/g, '')}`}>{e.phone}</a>}
                   <span className="adm-enq-when">
                     {new Date(e.received).toLocaleString('et-EE', { timeZone: 'Europe/Tallinn' })}
                   </span>
                 </div>
 
                 {e.dates && <p className="adm-enq-dates">{e.dates}</p>}
-                {e.phone && <p className="adm-enq-dates">{e.phone}</p>}
                 <pre className="adm-enq-body">{e.message}</pre>
 
                 {/* The one thing the inbox cannot tell you. */}
@@ -366,8 +438,11 @@ export default function Admin() {
                     Delete
                   </button>
                 </div>
+                </div>
+                )}
               </li>
-            ))}
+              )
+            })}
           </ul>
         )}
       </section>

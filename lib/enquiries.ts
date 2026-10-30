@@ -33,6 +33,8 @@ export type Enquiry = {
    * thing this store can tell us, and invisible before it existed.
    */
   mailed: boolean
+  /** Typed in by hand in /admin — an e-mail or phone request that never went through the form. */
+  manual?: boolean
   /** Ticked off in the admin once it has been dealt with. */
   handled?: boolean
 }

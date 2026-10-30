@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { SESSION_COOKIE, verifySession } from '@/lib/adminAuth'
-import { readEnquiries, writeEnquiries } from '@/lib/enquiries'
+import { randomUUID } from 'node:crypto'
+import { readEnquiries, recordEnquiry, writeEnquiries } from '@/lib/enquiries'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,6 +16,27 @@ export async function GET() {
   if (!await authed()) return denied()
   const store = await readEnquiries()
   return NextResponse.json({ enquiries: store.enquiries })
+}
+
+/** A request that came by e-mail or phone, typed in so every booking request lives in one list. */
+export async function POST(req: Request) {
+  if (!await authed()) return denied()
+  const b = await req.json().catch(() => null)
+  if (!b?.name) return NextResponse.json({ error: 'Missing name' }, { status: 400 })
+  const cut = (v: unknown, n: number) => (v ? String(v).slice(0, n) : undefined)
+  const ok = await recordEnquiry({
+    id: randomUUID(),
+    received: b.received ? new Date(b.received).toISOString() : new Date().toISOString(),
+    name: String(b.name).slice(0, 120),
+    email: cut(b.email, 200) ?? '',
+    phone: cut(b.phone, 40),
+    dates: cut(b.dates, 200),
+    message: cut(b.message, 4000) ?? '',
+    lang: cut(b.lang, 5),
+    mailed: true,
+    manual: true,
+  })
+  return ok ? NextResponse.json({ ok: true }) : NextResponse.json({ error: 'Could not save' }, { status: 500 })
 }
 
 /** Ticks one off, or puts it back. */
