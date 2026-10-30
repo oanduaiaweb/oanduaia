@@ -6,6 +6,15 @@
   --linen:   #f0ebe0;
   --parch:   #e8e0cc;
   /*
+   * Page grounds, a few steps down from the old near-white (Mikk, 29 Oct: "too bright
+   * white", "a lot darker"). Light TYPE on dark sections still uses --linen and --cream;
+   * only backgrounds move to these. --page for the main ground, --page-alt for a section
+   * that needs to read as a separate band, --page-deep for the photo gallery.
+   */
+  --page:      #e3dac6;
+  --page-alt:  #d9ceb6;
+  --page-deep: #c9bda3;
+  /*
    * The dark ground under the nav, the footer and every dark section.
    *
    * 6 Sep 2026: lifted from #2a3020. The old value was not cold so much as SEVERE —
@@ -70,7 +79,7 @@
  */
 html { font-size: 16px; overflow-x: hidden; overflow-x: clip; }
 body {
-  background: var(--cream);
+  background: var(--page);
   color: var(--bark);
   font-family: var(--font-display);
   /*
@@ -1018,15 +1027,15 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 .photo-strip--light .photo-strip-scrim {
   background:
     linear-gradient(90deg,
-      var(--linen) 0%,
-      rgba(240,235,224,0) 22%,
-      rgba(240,235,224,0) 78%,
-      var(--linen) 100%),
+      var(--page) 0%,
+      rgba(227,218,198,0) 22%,
+      rgba(227,218,198,0) 78%,
+      var(--page) 100%),
     linear-gradient(180deg,
-      var(--linen) 0%,
-      rgba(240,235,224,0.82) 20%,
-      rgba(240,235,224,0.82) 80%,
-      var(--linen) 100%);
+      var(--page) 0%,
+      rgba(227,218,198,0.82) 20%,
+      rgba(227,218,198,0.82) 80%,
+      var(--page) 100%);
 }
 
 /*
@@ -1037,15 +1046,15 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   .photo-strip--light .photo-strip-scrim {
     background:
       linear-gradient(90deg,
-        var(--linen) 0%,
-        rgba(240,235,224,0) 14%,
-        rgba(240,235,224,0) 86%,
-        var(--linen) 100%),
+        var(--page) 0%,
+        rgba(227,218,198,0) 14%,
+        rgba(227,218,198,0) 86%,
+        var(--page) 100%),
       linear-gradient(180deg,
-        var(--linen) 0%,
-        rgba(240,235,224,0.80) 16%,
-        rgba(240,235,224,0.80) 84%,
-        var(--linen) 100%);
+        var(--page) 0%,
+        rgba(227,218,198,0.80) 16%,
+        rgba(227,218,198,0.80) 84%,
+        var(--page) 100%);
   }
 }
 
@@ -1625,7 +1634,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* ══════════════════════════════
    LANDING PAGES — topic doors into the site
 ══════════════════════════════ */
-.landing { background: var(--linen); }
+.landing { background: var(--page); }
 .landing-hero {
   position: relative;
   height: 52vh;
@@ -1706,7 +1715,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 @media (hover: hover) { .landing-cta:hover { background: #fff; } }
 
-.landing-qa { background: var(--cream); }
+.landing-qa { background: var(--page-alt); }
 .landing-qa-inner {
   max-width: 74ch;
   margin: 0 auto;
@@ -1810,7 +1819,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* ══════════════════════════════
    TRAIL PAGE — one page per trail
 ══════════════════════════════ */
-.trail-page { background: var(--linen); }
+.trail-page { background: var(--page); }
 .trail-hero {
   position: relative;
   height: 58vh;
@@ -1876,7 +1885,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 
 /* The facts panel: RMK's numbers, and one of ours marked as ours. */
 .trail-facts {
-  background: var(--cream);
+  background: var(--page-alt);
   padding: 2.4rem 2.2rem;
   border: 1px solid var(--parch);
 }
@@ -1957,7 +1966,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 .trail-others-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--parch); }
 .trail-others-link {
-  background: var(--linen);
+  background: var(--page);
   padding: 1.6rem 1.4rem;
   text-decoration: none;
   display: flex;
@@ -1965,7 +1974,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   gap: 0.4rem;
   transition: background 0.3s;
 }
-@media (hover: hover) { .trail-others-link:hover { background: var(--cream); } }
+@media (hover: hover) { .trail-others-link:hover { background: var(--page-alt); } }
 .trail-others-km {
   font-family: var(--font-sans);
   font-size: var(--fs-2xs);
@@ -2003,7 +2012,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
    WHY STAY — six reasons, scannable
 ══════════════════════════════ */
 .why-section {
-  background: var(--linen);
+  background: var(--page-alt);
   position: relative;
   overflow: hidden;
 }
@@ -2018,10 +2027,10 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    var(--linen) 0%,
-    rgba(240,235,224,0.86) 18%,
-    rgba(240,235,224,0.86) 82%,
-    var(--linen) 100%);
+    var(--page-alt) 0%,
+    rgba(217,206,182,0.86) 18%,
+    rgba(217,206,182,0.86) 82%,
+    var(--page-alt) 100%);
 }
 .why-inner {
   position: relative;
@@ -2085,10 +2094,10 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
    */
   .why-scrim {
     background: linear-gradient(180deg,
-      var(--linen) 0%,
-      rgba(240,235,224,0.80) 12%,
-      rgba(240,235,224,0.80) 88%,
-      var(--linen) 100%);
+      var(--page-alt) 0%,
+      rgba(217,206,182,0.80) 12%,
+      rgba(217,206,182,0.80) 88%,
+      var(--page-alt) 100%);
   }
   .why-inner { padding: var(--section-v) 1.5rem; }
   .why-grid { grid-template-columns: 1fr; gap: 2.6rem; }
@@ -2187,15 +2196,15 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: var(--parch);
+  background: var(--page-deep);
 }
 .stat-item {
-  background: var(--cream);
+  background: var(--page);
   padding: 3.5rem 2.5rem;
   text-align: center;
   transition: background 0.3s;
 }
-@media (hover: hover) { .stat-item:hover { background: var(--linen); } }
+@media (hover: hover) { .stat-item:hover { background: var(--page-alt); } }
 .stat-num {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 4.5vw, 4.5rem);
@@ -2462,7 +2471,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: var(--linen);
+  background: var(--page-alt);
 }
 .booking-section--form { padding-top: calc(var(--section-v) * 0.42); }
 .booking-eyebrow {
@@ -3342,7 +3351,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 ══════════════════════════════ */
 .pay {
   min-height: 100svh;
-  background: var(--cream);
+  background: var(--page);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3424,7 +3433,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
    One page per house. Same facts as the homepage band, given room to breathe
    and somewhere of its own to rank.
 ══════════════════════════════ */
-.house-page { background: var(--cream); }
+.house-page { background: var(--page); }
 
 .house-hero {
   position: relative;
@@ -3507,7 +3516,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 /* Rates, on linen rather than the dark band — the .house-price-* rules are for the
    homepage bands and read as invisible on a light ground. */
 .house-rates {
-  background: var(--linen);
+  background: var(--page-alt);
   border: 1px solid rgba(90,110,80,0.14);
   padding: 1.8rem;
   position: sticky;
@@ -3647,7 +3656,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
   padding: 1.05rem 1.4rem;
   transition: border-color 0.3s, background 0.3s;
 }
-@media (hover: hover) { .house-others-link:hover { border-color: var(--fern); background: var(--linen); } }
+@media (hover: hover) { .house-others-link:hover { border-color: var(--fern); background: var(--page-alt); } }
 .house-others-name {
   display: block;
   font-family: var(--font-display);
@@ -4079,7 +4088,7 @@ body.gallery-page .nav-social { text-shadow: none; }
    * A warm sand rather than the near-white cream (Mikk, 29 Oct: "darker"). Photographs
    * read richer on a tone than on white, and the page no longer glares on a phone at night.
    */
-  background: #e6dfcf;
+  background: var(--page-deep);
   padding: 7rem var(--section-h) var(--section-v);
 }
 .gallery-header {
@@ -4118,7 +4127,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #d9d1bf;
+  background: #b9ad93;
   border-radius: 2px;
 }
 
@@ -4134,7 +4143,7 @@ body.gallery-page .nav-social { text-shadow: none; }
   overflow-x: auto;
   scrollbar-width: none;
   padding: 0.85rem 0;
-  background: #e6dfcf;
+  background: var(--page-deep);
   box-shadow: 0 10px 18px -16px rgba(38,44,29,0.5);
 }
 .gallery-bar::-webkit-scrollbar { display: none; }
