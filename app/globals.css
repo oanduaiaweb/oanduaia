@@ -5016,3 +5016,8 @@ body.gallery-page .nav-social { text-shadow: none; }
   .house-jump { gap: 0.45rem; margin-bottom: 1.2rem; }
   .house-jump-btn { padding: 0.55rem 0.85rem; letter-spacing: 0.06em; }
 }
+
+/* "MAJAD" and the three house buttons centred over the strip (Mikk, 29 Oct). The indent
+   cancels the tracking after the last letter, so the word sits on the true centre. */
+.feature-intro > .section-label { text-align: center; text-indent: var(--ls-widest); }
+.feature-intro > .house-jump { justify-content: center; }
