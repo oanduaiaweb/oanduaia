@@ -87,7 +87,6 @@ export default function Gallery() {
         <div className="gallery-header">
           <Link href={`/${lang}`} className="gallery-back">{t.back[lang]}</Link>
           <h1 className="gallery-title">{t.title[lang]}</h1>
-          <p className="gallery-intro">{T.gallery.intro[lang]}</p>
         </div>
 
         <nav className="gallery-bar" ref={bar} aria-label={t.title[lang]}>
