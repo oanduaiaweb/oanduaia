@@ -221,7 +221,7 @@ export const T = {
           kitchen:  { et: 'Täisvarustatud', en: 'Fully equipped', ru: 'Полностью оборудована', de: 'Voll ausgestattet', es: 'Totalmente equipada', sv: 'Fullt utrustat', fi: 'Täysin varusteltu', lv: 'Pilnībā aprīkota' },
           winter:   { et: 'Avatud', en: 'Open', ru: 'Открыт', de: 'Geöffnet', es: 'Abierta', sv: 'Öppet', fi: 'Auki', lv: 'Atvērta' },
           bestFor:  { et: 'Seltskond, väike tähistamine', en: 'A group, a small celebration', ru: 'Компания, небольшой праздник', de: 'Eine Gruppe, eine kleine Feier', es: 'Un grupo, una pequeña celebración', sv: 'Ett sällskap, en liten fest', fi: 'Porukka, pienet juhlat', lv: 'Kompānijai, nelielām svinībām' },
-          extra:    { et: 'Lisavoodi lapsele', en: 'Extra bed for a child', ru: 'Детская доп. кровать', de: 'Zusatzbett für ein Kind', es: 'Cama supletoria para un niño', sv: 'Extrasäng för ett barn', fi: 'Lisävuode lapselle', lv: 'Papildu gulta bērnam' },
+          extra:    { et: 'Lisamagamiskoht lastele', en: 'Extra sleeping place for children', ru: 'Доп. спальное место для детей', de: 'Zusätzlicher Schlafplatz für Kinder', es: 'Plaza extra para dormir para niños', sv: 'Extra sovplats för barn', fi: 'Lisämakuupaikka lapsille', lv: 'Papildu guļvieta bērniem' },
         },
         /*
          * Prose for the house page. The three cabins had 220-250 indexable words each
@@ -313,7 +313,7 @@ export const T = {
           kitchen:  { et: 'Kööginurk', en: 'Kitchenette', ru: 'Кухонный уголок', de: 'Küchenzeile', es: 'Rincón de cocina', sv: 'Pentry', fi: 'Keittonurkkaus', lv: 'Virtuves stūrītis' },
           winter:   { et: 'Suletud dets–märts', en: 'Closed Dec–Mar', ru: 'Закрыт дек–март', de: 'Dez–März geschlossen', es: 'Cerrada dic–mar', sv: 'Stängt dec–mars', fi: 'Suljettu joulukuu–maaliskuu', lv: 'Slēgta dec.–marts' },
           bestFor:  { et: 'Paar', en: 'A couple', ru: 'Пара', de: 'Ein Paar', es: 'Una pareja', sv: 'Ett par', fi: 'Pariskunta', lv: 'Pārim' },
-          extra:    { et: 'Lisavoodi lapsele', en: 'Extra bed for a child', ru: 'Детская доп. кровать', de: 'Zusatzbett für ein Kind', es: 'Cama supletoria para un niño', sv: 'Extrasäng för ett barn', fi: 'Lisävuode lapselle', lv: 'Papildu gulta bērnam' },
+          extra:    { et: 'Lisamagamiskoht lastele', en: 'Extra sleeping place for children', ru: 'Доп. спальное место для детей', de: 'Zusätzlicher Schlafplatz für Kinder', es: 'Plaza extra para dormir para niños', sv: 'Extra sovplats för barn', fi: 'Lisämakuupaikka lapsille', lv: 'Papildu guļvieta bērniem' },
         },
         seoKind: { et: 'majake tiigi ääres', en: 'waterside cabin', ru: 'домик на берегу пруда', de: 'Ferienhaus am Wasser', es: 'cabaña junto al agua', sv: 'stuga vid vattnet', fi: 'mökki veden äärellä', lv: 'namiņš pie ūdens' },
         body: [
@@ -396,7 +396,7 @@ export const T = {
           kitchen:  { et: 'Miniköök', en: 'Mini kitchen', ru: 'Мини-кухня', de: 'Miniküche', es: 'Minicocina', sv: 'Minikök', fi: 'Minikeittiö', lv: 'Mini virtuve' },
           winter:   { et: 'Suletud dets–märts', en: 'Closed Dec–Mar', ru: 'Закрыт дек–март', de: 'Dez–März geschlossen', es: 'Cerrada dic–mar', sv: 'Stängt dec–mars', fi: 'Suljettu joulukuu–maaliskuu', lv: 'Slēgta dec.–marts' },
           bestFor:  { et: 'Pere või kaks paari', en: 'A family or two couples', ru: 'Семья или две пары', de: 'Eine Familie oder zwei Paare', es: 'Una familia o dos parejas', sv: 'En familj eller två par', fi: 'Perhe tai kaksi pariskuntaa', lv: 'Ģimenei vai diviem pāriem' },
-          extra:    { et: 'Lisavoodi lapsele', en: 'Extra bed for a child', ru: 'Детская доп. кровать', de: 'Zusatzbett für ein Kind', es: 'Cama supletoria para un niño', sv: 'Extrasäng för ett barn', fi: 'Lisävuode lapselle', lv: 'Papildu gulta bērnam' },
+          extra:    { et: 'Lisamagamiskoht lastele', en: 'Extra sleeping place for children', ru: 'Доп. спальное место для детей', de: 'Zusätzlicher Schlafplatz für Kinder', es: 'Plaza extra para dormir para niños', sv: 'Extra sovplats för barn', fi: 'Lisämakuupaikka lapsille', lv: 'Papildu guļvieta bērniem' },
         },
         seoKind: { et: 'palkmaja metsa serval', en: 'forest cabin', ru: 'дом среди елей', de: 'Ferienhaus im Wald', es: 'cabaña en el bosque', sv: 'stuga i skogen', fi: 'metsämökki', lv: 'namiņš mežā' },
         body: [
