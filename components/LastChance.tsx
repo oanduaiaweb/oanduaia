@@ -22,13 +22,20 @@ function CardVideo({ src, poster }: { src: string; poster: string }) {
     if (!v) return
     v.muted = true
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    /*
+     * Only once the page has loaded and the card is actually on screen: on a phone this card
+     * sits right under the hero, and a 4 MB clip fetched at once took the homepage from 87
+     * to 57 in Lighthouse by competing with the hero photograph.
+     */
     const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) return
       io.disconnect()
       v.play().catch(() => {})
-    }, { rootMargin: '200px 0px' })
-    io.observe(v)
-    return () => io.disconnect()
+    }, { threshold: 0.25 })
+    const watch = () => io.observe(v)
+    if (document.readyState === 'complete') watch()
+    else window.addEventListener('load', watch, { once: true })
+    return () => { io.disconnect(); window.removeEventListener('load', watch) }
   }, [])
   return (
     <video ref={ref} className="lastchance-video" src={src} poster={poster}
