@@ -17,6 +17,7 @@ import { HOUSE_VIDEOS } from '@/lib/housePhotos'
  */
 function CardVideo({ src, poster }: { src: string; poster: string }) {
   const ref = useRef<HTMLVideoElement>(null)
+  const [playing, setPlaying] = useState(false)
   useEffect(() => {
     const v = ref.current
     if (!v) return
@@ -37,9 +38,13 @@ function CardVideo({ src, poster }: { src: string; poster: string }) {
     else window.addEventListener('load', watch, { once: true })
     return () => { io.disconnect(); window.removeEventListener('load', watch) }
   }, [])
+  // The still is an optimised, lazy image underneath; the clip fades in over it once it runs.
   return (
-    <video ref={ref} className="lastchance-video" src={src} poster={poster}
-      muted loop playsInline preload="none" aria-hidden="true" />
+    <>
+      <Image src={poster} alt="" fill sizes="(max-width: 700px) 92vw, 40vw" quality={72} style={{ objectFit: 'cover' }} />
+      <video ref={ref} className={`lastchance-video${playing ? ' is-playing' : ''}`} src={src}
+        muted loop playsInline preload="none" aria-hidden="true" onPlaying={() => setPlaying(true)} />
+    </>
   )
 }
 
