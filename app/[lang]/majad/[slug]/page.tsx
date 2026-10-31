@@ -63,10 +63,12 @@ export default async function HousePage({
       />
       <ScrollRevealInit />
       <Nav />
-      <House slug={slug} />
-      {/* The guest arrived asking about this house, so its calendar opens on it. */}
-      <Availability initialHouse={slug as HouseSlug} />
-      <Booking />
+      <main id="main">
+        <House slug={slug} />
+        {/* The guest arrived asking about this house, so its calendar opens on it. */}
+        <Availability initialHouse={slug as HouseSlug} />
+        <Booking />
+      </main>
       <Footer />
     </>
   )

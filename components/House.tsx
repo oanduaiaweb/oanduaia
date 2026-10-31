@@ -48,6 +48,7 @@ export default function House({ slug }: { slug: string }) {
             alt={img.alt[lang]}
             fill
             priority
+            fetchPriority="high"
             sizes="100vw"
             quality={80}
             style={{ objectFit: 'cover', objectPosition: img.focus ?? 'center' }}

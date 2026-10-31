@@ -5093,3 +5093,31 @@ body.gallery-page .nav-social { text-shadow: none; }
 .adm-stat-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .adm-stat-num { font-variant-numeric: tabular-nums; }
 .adm-stat-note { font-size: 0.78rem; opacity: 0.65; margin-top: 0.5rem; }
+
+/*
+ * Contrast pass (31 Oct, Lighthouse): small labels on the dark sections were sage at 40–70%
+ * opacity, 2.0–3.7:1 against bark. Mist at 80% keeps them quiet but readable (5.1:1); on the
+ * light pages fern body text (3.4:1) becomes moss (5.8:1).
+ */
+.lastchance .section-label,
+.lastchance-count-l,
+.house-price-label,
+.house-price-extra,
+.footer-tagline,
+.footer-heading,
+.footer-copy { color: var(--mist); opacity: 0.8; }
+.house-price-unit,
+.feature-price-note,
+.feature-gallery-link,
+.footer-links a { opacity: 0.8; }
+.reviews-eyebrow { opacity: 1; }
+.house-build,
+.house-body-copy p { color: var(--moss); }
+.hp-label,
+.hp-unit,
+.hp-extra,
+.hp-note,
+.house-others-label,
+.house-back { color: var(--moss); opacity: 1; }
+.lastchance-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease-expo); }
+@media (hover: hover) { .lastchance-card:hover .lastchance-video { transform: scale(1.04); } }

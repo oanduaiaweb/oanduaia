@@ -79,6 +79,7 @@ export default function Hero() {
                 alt={i === index ? slide.alt[lang] : ''}
                 fill
                 priority={i === 0}
+                fetchPriority={i === 0 ? 'high' : 'low'}
                 sizes={slideSizes(slide)}
                 /*
                  * 75, not 88. The hero is a full-bleed photograph behind a scrim and

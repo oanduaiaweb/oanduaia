@@ -79,8 +79,10 @@ export default async function Page({
       />
       <ScrollRevealInit />
       <Nav />
-      <LandingPage id={l.id} />
-      <Booking />
+      <main id="main">
+        <LandingPage id={l.id} />
+        <Booking />
+      </main>
       <Footer />
     </>
   )

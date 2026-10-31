@@ -2,12 +2,39 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
 import { scrollToId } from '@/lib/scrollToId'
 import { track } from '@/lib/analytics'
 import { LAST_CHANCE_HOUSES, nightsBeforeWinter, nightsLeftLabel } from '@/lib/lastChance'
+import { HOUSE_VIDEOS } from '@/lib/housePhotos'
+
+/**
+ * The Pond House clip in its card (Mikk, 31 Oct), playing on a loop like on the house page.
+ * Nothing loads until the card is near the screen; a phone that refuses autoplay simply shows
+ * the poster, and the card stays one link to the house.
+ */
+function CardVideo({ src, poster }: { src: string; poster: string }) {
+  const ref = useRef<HTMLVideoElement>(null)
+  useEffect(() => {
+    const v = ref.current
+    if (!v) return
+    v.muted = true
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return
+      io.disconnect()
+      v.play().catch(() => {})
+    }, { rootMargin: '200px 0px' })
+    io.observe(v)
+    return () => io.disconnect()
+  }, [])
+  return (
+    <video ref={ref} className="lastchance-video" src={src} poster={poster}
+      muted loop playsInline preload="none" aria-hidden="true" />
+  )
+}
 
 const PHOTO: Record<string, string> = {
   tiigimaja: '/galerii/tiigimaja/elutuba-kamin-tiik.jpeg',
@@ -57,6 +84,7 @@ export default function LastChance() {
           if (!house) return null
           const from = Math.min(...house.prices.map(p => p.eur))
           const who = slug === 'tiigimaja' ? t.forTiigimaja : t.forMetsamaja
+          const clip = HOUSE_VIDEOS[slug as keyof typeof HOUSE_VIDEOS]
           return (
             <Link
               key={slug}
@@ -65,7 +93,9 @@ export default function LastChance() {
               onClick={() => track('lastchance_house', { house: slug, lang })}
             >
               <div className="lastchance-photo">
-                <Image src={PHOTO[slug]} alt="" fill sizes="(max-width: 700px) 92vw, 40vw" quality={72} style={{ objectFit: 'cover' }} />
+                {clip
+                  ? <CardVideo src={clip.src} poster={clip.poster} />
+                  : <Image src={PHOTO[slug]} alt="" fill sizes="(max-width: 700px) 92vw, 40vw" quality={72} style={{ objectFit: 'cover' }} />}
               </div>
               <div className="lastchance-card-body">
                 <span className="lastchance-name">{house.name[lang]}</span>

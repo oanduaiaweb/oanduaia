@@ -83,7 +83,7 @@ export default function Gallery() {
   return (
     <>
       <Nav />
-      <div className="gallery-photos">
+      <main id="main" className="gallery-photos">
         <div className="gallery-header">
           <Link href={`/${lang}`} className="gallery-back">{t.back[lang]}</Link>
           <h1 className="gallery-title">{t.title[lang]}</h1>
@@ -132,7 +132,7 @@ export default function Gallery() {
             </div>
           </section>
         ))}
-      </div>
+      </main>
 
       {open !== null && (
         <Lightbox

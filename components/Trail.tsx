@@ -33,6 +33,7 @@ export default function Trail({ slug }: { slug: string }) {
           alt={trail.photoAlt[lang]}
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           quality={78}
           style={{ objectFit: 'cover' }}

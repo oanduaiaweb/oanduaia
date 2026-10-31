@@ -61,8 +61,10 @@ export default async function TrailPage({
       />
       <ScrollRevealInit />
       <Nav />
-      <Trail slug={slug} />
-      <Booking />
+      <main id="main">
+        <Trail slug={slug} />
+        <Booking />
+      </main>
       <Footer />
     </>
   )

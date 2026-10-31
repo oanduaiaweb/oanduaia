@@ -24,7 +24,7 @@ export default function LandingPage({ id }: { id: string }) {
   return (
     <article className="landing">
       <header className="landing-hero">
-        <Image src={l.photo} alt={l.photoAlt[lang]} fill priority sizes="100vw" quality={78}
+        <Image src={l.photo} alt={l.photoAlt[lang]} fill priority fetchPriority="high" sizes="100vw" quality={78}
           style={{ objectFit: 'cover' }} />
         <div className="landing-hero-scrim" aria-hidden="true" />
         <div className="landing-hero-text">
