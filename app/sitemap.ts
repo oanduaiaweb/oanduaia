@@ -8,7 +8,7 @@ import { HOUSE_GALLERIES } from '@/lib/housePhotos'
 import { TRAILS } from '@/lib/trails'
 import { LANDINGS } from '@/lib/landing'
 
-const PAGES = ['', '/gallery']
+const PAGES = ['', '/gallery', '/gift']
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = []

@@ -8,6 +8,7 @@ import Trails from '@/components/Trails'
 import Why from '@/components/Why'
 import Faq from '@/components/Faq'
 import Stats from '@/components/Stats'
+import GiftTeaser from '@/components/GiftTeaser'
 import Reviews from '@/components/Reviews'
 import Availability from '@/components/Availability'
 import Booking from '@/components/Booking'
@@ -57,6 +58,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
           other people's word is worth most. Lower down it was decoration.
         */}
         <Reviews />
+        <GiftTeaser />
         {/*
           The story sits between the houses and the reasons, not above them. Someone landing
           here wants to see what they can rent before they are told what the place is like;

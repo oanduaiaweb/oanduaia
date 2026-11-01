@@ -5134,3 +5134,92 @@ iframe.trails-map { display: block; width: 100%; border: 1px solid rgba(200,212,
 .form-submit .trust-line { color: var(--label-ink); }
 .avail-panel .trust-line { color: var(--linen); }
 .avail-panel .trust-points { opacity: 0.85; }
+
+/* ---------- Gift vouchers ---------- */
+.gift {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  min-height: 100svh;
+  background: var(--page);
+}
+.gift-photo { position: relative; min-height: 22rem; }
+.gift-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 60%, var(--page) 100%); }
+.gift-body { padding: 8rem clamp(1.5rem, 5vw, 5rem) 5rem; max-width: 40rem; }
+.gift-title { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; color: var(--moss); line-height: 1.05; margin: 0.6rem 0 1.2rem; }
+.gift-lead { color: var(--moss); line-height: 1.7; margin-bottom: 2.2rem; }
+.gift-form { display: flex; flex-direction: column; gap: 0.55rem; }
+.gift-form .form-label { margin-top: 0.9rem; color: var(--label-ink); }
+.gift-amounts { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.gift-amounts legend { margin-bottom: 0.7rem; }
+.gift-amount {
+  font: inherit; font-size: 1.05rem; color: var(--moss); background: transparent;
+  border: 1px solid rgba(58,74,53,0.35); border-radius: 3px; padding: 0.7rem 1.2rem; cursor: pointer;
+}
+.gift-amount.is-on { background: var(--moss); color: var(--linen); border-color: var(--moss); }
+.gift-other { width: 9rem; }
+.gift-hint { flex-basis: 100%; font-size: var(--fs-sm); color: var(--label-ink); margin-top: 0.4rem; }
+.gift-submit { margin-top: 1.6rem; align-self: flex-start; }
+.gift-submit:disabled { opacity: 0.4; cursor: default; }
+.gift-note { font-family: var(--font-sans); font-size: var(--fs-2xs); color: var(--label-ink); line-height: 1.6; margin-top: 0.8rem; }
+@media (max-width: 900px) {
+  .gift { grid-template-columns: 1fr; }
+  .gift-photo { min-height: 46vh; }
+  .gift-photo::after { background: linear-gradient(180deg, transparent 55%, var(--page) 100%); }
+  .gift-body { padding: 1rem 1.25rem 4rem; }
+}
+
+.voucher-page { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem; padding: 3rem 1rem; background: var(--bark); }
+.voucher-wait { color: var(--linen); max-width: 32rem; text-align: center; line-height: 1.7; }
+.voucher {
+  width: min(100%, 38rem); background: var(--cream); color: var(--moss); text-align: center;
+  padding: 3rem 2.4rem; border: 1px solid rgba(58,74,53,0.25); outline: 1px solid rgba(58,74,53,0.18); outline-offset: -12px;
+}
+.voucher-brand { letter-spacing: 0.5em; font-size: 1.3rem; margin-bottom: 0.4rem; }
+.voucher-kind { font-family: var(--font-sans); font-size: var(--fs-2xs); letter-spacing: var(--ls-widest); text-transform: uppercase; color: var(--label-ink); }
+.voucher-value { font-size: 4rem; font-weight: 300; margin: 1.2rem 0 1.4rem; }
+.voucher-line { display: flex; justify-content: center; gap: 0.7rem; font-size: 1.1rem; }
+.voucher-line span, .voucher-facts span { font-family: var(--font-sans); font-size: var(--fs-2xs); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--label-ink); align-self: center; }
+.voucher-message { font-style: italic; margin: 1.2rem auto 0; max-width: 26rem; line-height: 1.6; }
+.voucher-facts { display: flex; justify-content: center; gap: 2.4rem; margin: 2rem 0 1.4rem; padding-top: 1.4rem; border-top: 1px solid rgba(58,74,53,0.2); }
+.voucher-facts p { display: flex; flex-direction: column; gap: 0.3rem; }
+.voucher-facts b { font-weight: 500; font-size: 1.1rem; letter-spacing: 0.06em; }
+.voucher-how { font-size: var(--fs-sm); line-height: 1.6; color: var(--moss); }
+.voucher-site { font-family: var(--font-sans); font-size: var(--fs-2xs); letter-spacing: var(--ls-wide); color: var(--label-ink); margin-top: 1.2rem; }
+@media print {
+  body * { visibility: hidden; }
+  .voucher, .voucher * { visibility: visible; }
+  .voucher { position: absolute; left: 50%; top: 2cm; transform: translateX(-50%); border-color: #999; }
+  .voucher-page { background: none; }
+}
+
+/* WhatsApp to Aigi: a round button stacked above the floating booking button. */
+.sticky-wa {
+  position: fixed;
+  right: 1.25rem;
+  bottom: calc(1.25rem + 3.9rem + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  width: 3.1rem; height: 3.1rem; border-radius: 50%;
+  display: grid; place-items: center;
+  color: #fff; background: #1f8f4e;
+  border: 1px solid rgba(240,235,224,0.42);
+  box-shadow: 0 10px 26px -8px rgba(8,11,5,0.7), 0 2px 8px rgba(8,11,5,0.35);
+  opacity: 0; visibility: hidden; transform: translateY(12px); pointer-events: none;
+  transition: opacity 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth), visibility 0.35s;
+}
+.sticky-wa.is-on { opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
+@media (hover: hover) { .sticky-wa:hover { background: #197a42; } }
+@media (max-width: 600px) { .sticky-wa { right: 1rem; bottom: calc(1rem + 3.6rem + env(safe-area-inset-bottom, 0px)); } }
+@media (prefers-reduced-motion: reduce) { .sticky-wa { transform: none; } }
+.gift-teaser {
+  background: var(--bark);
+  color: var(--linen);
+  padding: 4.5rem max(var(--section-h), calc((100% - var(--max-w)) / 2));
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem 4rem; flex-wrap: wrap;
+}
+.gift-teaser .section-label { color: var(--mist); opacity: 0.8; }
+.gift-teaser-h { font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; margin: 0.5rem 0 0.8rem; }
+.gift-teaser-text { max-width: 36rem; line-height: 1.7; opacity: 0.85; }
+.gift-form .form-input, .gift-form .form-textarea { border-bottom: 1.5px solid rgba(58,74,53,0.3); padding: 0.45rem 0 0.55rem; }
+.gift-form .form-input:focus, .gift-form .form-textarea:focus { border-bottom-color: var(--moss); }
+.gift-other { border: 1px solid rgba(58,74,53,0.35) !important; border-radius: 3px; padding: 0.55rem 0.8rem !important; width: 9rem; }
+.voucher-print { width: auto; padding-inline: 2.4rem; }

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import type Stripe from 'stripe'
 import { updatePayment } from '@/lib/payments'
+import { giftValidUntil } from '@/lib/gift'
+import { sendGiftVoucher } from '@/lib/giftEmail'
 import { getStripe } from '@/lib/stripe'
 
 export const dynamic = 'force-dynamic'
@@ -45,8 +47,18 @@ export async function POST(req: Request) {
         p.paidAt = new Date().toISOString()
         p.sessionId = session.id
         p.paymentIntentId = typeof session.payment_intent === 'string' ? session.payment_intent : undefined
+        if (p.voucher && !p.voucher.validUntil) p.voucher.validUntil = giftValidUntil(new Date())
       })
       if (!updated) console.error('[stripe webhook] paid session for an unknown token:', token)
+      // Once only: Stripe retries webhooks, and a buyer should get one voucher, not three.
+      if (updated?.voucher && !updated.voucher.sentAt) {
+        try {
+          await sendGiftVoucher(updated)
+          await updatePayment(updated.id, p => { if (p.voucher) p.voucher.sentAt = new Date().toISOString() })
+        } catch (err) {
+          console.error('[stripe webhook] voucher e-mail failed:', err)
+        }
+      }
     }
   }
 

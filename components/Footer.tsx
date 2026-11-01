@@ -6,6 +6,7 @@ import { T } from '@/lib/translations'
 import SocialRow from '@/components/SocialRow'
 import { SOCIAL, EMAIL } from '@/lib/social'
 import { LANDINGS } from '@/lib/landing'
+import { G } from '@/lib/gift'
 
 export default function Footer() {
   const { lang } = useLanguage()
@@ -38,6 +39,7 @@ export default function Footer() {
           <li><a href={`/${lang}/${landing.slug[lang]}`}>{t.landing[lang]}</a></li>
           <li><a href={`/${lang}/${winter.slug[lang]}`}>{t.landingWinter[lang]}</a></li>
           <li><a href={`/${lang}/gallery`}>{t.galerii[lang]}</a></li>
+          <li><a href={`/${lang}/gift`}>{G.name[lang]}</a></li>
         </ul>
       </div>
       <div>
@@ -49,6 +51,10 @@ export default function Footer() {
             <a href={SOCIAL.phoneHref} onClick={() => track('phone_click', { lang })}>
               {SOCIAL.phone}
             </a>
+          </li>
+          <li>
+            <a href={SOCIAL.whatsapp} target="_blank" rel="noopener noreferrer"
+              onClick={() => track('whatsapp_click', { location: 'footer', lang })}>WhatsApp</a>
           </li>
           <li>
             <a href={SOCIAL.booking} target="_blank" rel="noopener noreferrer">Booking.com</a>

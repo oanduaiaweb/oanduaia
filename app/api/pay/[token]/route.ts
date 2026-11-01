@@ -40,10 +40,14 @@ export async function POST(_req: Request, ctx: { params: Promise<{ token: string
         price_data: {
           currency: payment.currency,
           unit_amount: payment.amount,
-          product_data: { name: 'Oanduaia', description: payment.reference.slice(0, 500) },
+          product_data: {
+            name: payment.voucher ? 'Oanduaia – kinkekaart / gift voucher' : 'Oanduaia',
+            description: payment.reference.slice(0, 500),
+          },
         },
       }],
-      success_url: `${base}?paid=1`,
+      // A voucher lands on the voucher itself, ready to print; a stay on its own pay page.
+      success_url: payment.voucher ? `${SITE}/${payment.lang}/gift/${payment.id}?paid=1` : `${base}?paid=1`,
       cancel_url: base,
       locale: payment.lang === 'et' ? 'et' : payment.lang === 'ru' ? 'ru' : payment.lang === 'de' ? 'de' : payment.lang === 'es' ? 'es' : payment.lang === 'sv' ? 'sv' : payment.lang === 'fi' ? 'fi' : payment.lang === 'lv' ? 'lv' : 'en',
       metadata: { token: payment.id, name: payment.name },

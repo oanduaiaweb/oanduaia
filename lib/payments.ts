@@ -79,6 +79,17 @@ export type Payment = {
    * over cash for the meals.
    */
   meals?: Meals
+
+  /** Set when this record is a gift voucher bought on /gift rather than a stay. */
+  voucher?: {
+    code: string
+    recipient?: string
+    message?: string
+    /** YYYY-MM-DD, filled in when the payment lands. */
+    validUntil?: string
+    /** When the voucher e-mail went out, so a retried webhook does not send it twice. */
+    sentAt?: string
+  }
 }
 
 export type PaymentStore = { version: 1; payments: Payment[] }

@@ -10,6 +10,8 @@ export const SOCIAL = {
   /** The host's number. Displayed grouped, dialled in E.164. */
   phone: '+372 5202 044',
   phoneHref: 'tel:+3725202044',
+  /** Aigi, the hostess — same number as the phone (Mikk, 1 Nov). */
+  whatsapp: 'https://wa.me/3725202044',
   instagram: 'https://www.instagram.com/oanduaia/',
   facebook: 'https://www.facebook.com/Oanduaia/',
   booking: 'https://www.booking.com/hotel/ee/oanduaia-saunamaja.html',
