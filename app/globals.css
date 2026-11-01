@@ -5253,3 +5253,59 @@ iframe.trails-map { display: block; width: 100%; border: 1px solid rgba(200,212,
   .house-band-links .feature-gallery-link:hover { border-color: var(--linen); background: rgba(240,235,224,0.14); }
   .house-band-links .feature-house-link:hover { transform: translateY(-1px); }
 }
+
+/* Admin: red = the guest is waiting for us. */
+.adm-badge--red { background: #b3261e; }
+.adm-enq.is-red { background: #fbe9e7; border-left-color: #b3261e; }
+@media (hover: hover) { .adm-enq.is-red .adm-enq-row:hover { background: rgba(179,38,30,0.06); } }
+.adm-enq-state { font-family: var(--font-sans); font-size: var(--fs-2xs); color: var(--moss); }
+.adm-enq-state.is-red { color: #b3261e; font-weight: 600; }
+
+/* Admin calendar */
+.adm-cal-title { font-size: 1rem; text-transform: capitalize; min-width: 9rem; text-align: center; }
+.adm-cal-legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; font-family: var(--font-sans); font-size: var(--fs-2xs); color: var(--moss); margin: 0 0 0.8rem; }
+.adm-cal-key { display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 2px; vertical-align: -0.1rem; margin-right: 0.3rem; }
+.adm-cal-key.is-own, .adm-cal-bars i.is-own { background: #3f7a3a; color: #fff; }
+.adm-cal-key.is-channel, .adm-cal-bars i.is-channel { background: #2a5ea8; color: #fff; }
+.adm-cal-key.is-req { background: #b3261e; border-radius: 50%; }
+.adm-cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+.adm-cal-wd { font-family: var(--font-sans); font-size: var(--fs-2xs); color: var(--fern); text-align: center; padding-bottom: 0.2rem; }
+.adm-cal-day {
+  all: unset; box-sizing: border-box; cursor: pointer;
+  display: flex; flex-direction: column; gap: 0.2rem;
+  min-height: 5.4rem; padding: 0.3rem; overflow: hidden;
+  background: #fff; border: 1px solid rgba(90,110,80,0.18); border-radius: 5px;
+}
+.adm-cal-day.is-past { opacity: 0.55; }
+.adm-cal-day.is-today { border-color: var(--moss); box-shadow: inset 0 0 0 1px var(--moss); }
+.adm-cal-day.is-picked { background: #f3f0e6; border-color: var(--bark); box-shadow: inset 0 0 0 1px var(--bark); }
+.adm-cal-day:focus-visible { outline: 2px solid var(--moss); }
+@media (hover: hover) { .adm-cal-day:hover { background: #f7f5ee; } }
+.adm-cal-num { font-family: var(--font-sans); font-size: var(--fs-xs); color: var(--bark); }
+.adm-cal-bars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.adm-cal-bars i {
+  font-style: normal; font-family: var(--font-sans); font-size: 0.6rem; line-height: 1.1rem; text-align: center;
+  border-radius: 2px; background: rgba(90,110,80,0.08); color: rgba(90,110,80,0.5);
+}
+.adm-cal-arr { font-family: var(--font-sans); font-size: 0.66rem; line-height: 1.25; color: #2f5e2b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.adm-cal-arr.is-channel { color: #2a5ea8; }
+.adm-cal-arr.is-req { color: #b3261e; }
+.adm-cal-detail { margin-top: 1rem; padding: 1rem 1.1rem; background: #fff; border: 1px solid rgba(90,110,80,0.2); border-radius: 6px; }
+.adm-cal-detail .adm-stat-h3 { text-transform: capitalize; }
+.adm-cal-house { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.6rem 0; border-top: 1px solid rgba(90,110,80,0.1); }
+.adm-cal-house:first-of-type { border-top: none; }
+.adm-cal-stay { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.45rem 0.7rem; border-left: 3px solid #3f7a3a; background: #e3eedb; border-radius: 4px; }
+.adm-cal-stay.is-channel { border-left-color: #2a5ea8; background: #e6eef9; }
+.adm-cal-stay.is-req { border-left-color: rgba(90,110,80,0.4); background: #f5f3ec; }
+.adm-cal-stay.is-red { border-left-color: #b3261e; background: #fbe9e7; }
+.adm-cal-who em { font-style: normal; font-family: var(--font-sans); font-size: var(--fs-2xs); color: var(--moss); }
+.adm-cal-contact { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; align-items: baseline; }
+.adm-cal-pay { font-family: var(--font-sans); font-size: var(--fs-2xs); color: #b3261e; }
+.adm-cal-pay.is-paid { color: #2f5e2b; }
+@media (max-width: 640px) {
+  .adm-cal-day { min-height: 4.2rem; padding: 0.2rem; }
+  .adm-cal-arr { font-size: 0.58rem; }
+  .adm-cal-bars i { font-size: 0; line-height: 0.45rem; }
+}
+.adm-cal-key.is-closed, .adm-cal-bars i.is-closed { background: #c9c4b6; color: #fff; }
+.adm-cal-stay.is-closed { border-left-color: #c9c4b6; background: #f3f1ec; }

@@ -12,7 +12,8 @@ import {
   type Meals,
 } from '@/lib/pricing'
 import AdminStats from '@/components/AdminStats'
-import { parseStay } from '@/lib/stayDates'
+import AdminCalendar from '@/components/AdminCalendar'
+import { bookingFor, gmailLink, needsReply, stayOf, todayTallinn } from '@/lib/enquiryStatus'
 
 type Payload = {
   blocks: Record<string, Block[]>
@@ -33,12 +34,6 @@ function summaryField(message: string, labels: string[]): string {
   }
   return ''
 }
-
-/** The stay an enquiry is about: stored dates first, otherwise read out of its text. */
-const stayOf = (e: Enquiry) =>
-  e.checkIn || e.checkOut ? { checkIn: e.checkIn, checkOut: e.checkOut ?? e.checkIn } : parseStay(e.dates ?? e.message, e.received)
-
-const todayTallinn = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Tallinn' })
 
 const etDate = (d: string) =>
   new Date(`${d}T12:00:00Z`).toLocaleDateString('et-EE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
@@ -307,14 +302,13 @@ export default function Admin() {
   }
 
   const nights = from && to ? nightsBetween(from, to) : 0
-  const waiting = enquiries?.filter(e => !e.handled).length ?? 0
+  const waiting = enquiries?.filter(needsReply).length ?? 0
 
   /*
    * Dealt-with enquiries are kept but not shown. Nothing is deleted — the record of who wrote
    * in still matters months later — but the list should only hold what still needs answering.
    */
   const allEnquiries = enquiries ?? []
-  const handledCount = allEnquiries.filter(e => e.handled).length
   const setStay = async (id: string, checkIn: string, checkOut: string) => {
     const res = await fetch('/api/admin/enquiries', {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
@@ -324,9 +318,24 @@ export default function Admin() {
     loadEnquiries()
   }
   const today = todayTallinn()
+  const monthAgo = new Date(Date.now() - 30 * 86_400_000).toISOString()
 
-  const shownEnquiries = (showHandled ? allEnquiries : allEnquiries.filter(e => !e.handled))
-    .slice().sort((a, b) => b.received.localeCompare(a.received))
+  /*
+   * Red: the guest is waiting for us. Green: nothing to answer and the stay is still ahead.
+   * Answered conversations stay in view for a month; everything else folds away under "Older".
+   */
+  const isComing = (e: Enquiry) => !!bookingFor(e, data?.blocks ?? {}, today)
+  const inView = (e: Enquiry) => needsReply(e) || isComing(e) ||
+    (!e.handled && !!e.answered && (e.lastGuestAt ?? e.received) >= monthAgo && !(stayOf(e).checkOut && stayOf(e).checkOut! < today))
+  const handledCount = allEnquiries.filter(e => !inView(e)).length
+  const shownEnquiries = (showHandled ? allEnquiries : allEnquiries.filter(inView))
+    .slice().sort((a, b) => (b.lastGuestAt ?? b.received).localeCompare(a.lastGuestAt ?? a.received))
+
+  const openEnquiry = (id: string) => {
+    setOpenEnq(id)
+    if (!allEnquiries.find(e => e.id === id && inView(e))) setShowHandled(true)
+    setTimeout(() => document.getElementById(`enq-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50)
+  }
 
   const addManual = async (ev: FormEvent) => {
     ev.preventDefault()
@@ -358,12 +367,12 @@ export default function Admin() {
       <section className="adm-section">
         <h2 className="adm-h2">
           Enquiries
-          {waiting > 0 && <span className="adm-badge">{waiting} waiting</span>}
+          {waiting > 0 && <span className="adm-badge adm-badge--red">{waiting} need a reply</span>}
           {handledCount > 0 && (
             <button type="button"
               className={`adm-chip${showHandled ? ' is-on' : ''}`}
               onClick={() => setShowHandled(v => !v)}>
-              {showHandled ? 'Hide dealt with' : `Dealt with (${handledCount})`}
+              {showHandled ? 'Hide older' : `Older / dealt with (${handledCount})`}
             </button>
           )}
           <button type="button" className={`adm-chip${adding ? ' is-on' : ''}`} onClick={() => setAdding(v => !v)}>
@@ -406,20 +415,23 @@ export default function Admin() {
               const house = summaryField(e.message, HOUSE_LABELS)
               const guests = summaryField(e.message, GUEST_LABELS)
               const stay = stayOf(e)
-              // Green while the stay is still ahead or under way; white once the departure day has passed.
-              const coming = !!stay.checkOut && stay.checkOut >= today
+              const red = needsReply(e)
+              const booked = bookingFor(e, data?.blocks ?? {}, today)
+              const coming = !red && !!booked
               return (
-              <li className={`adm-enq${e.handled ? ' is-done' : ''}${coming ? ' is-coming' : ''}${open ? ' is-open' : ''}`} key={e.id}>
+              <li id={`enq-${e.id}`} className={`adm-enq${red ? ' is-red' : ''}${coming ? ' is-coming' : ''}${!red && !coming && e.handled ? ' is-done' : ''}${open ? ' is-open' : ''}`} key={e.id}>
                 <button type="button" className="adm-enq-row" aria-expanded={open}
                   onClick={() => setOpenEnq(open ? null : e.id)}>
-                  <span className="adm-enq-row-when">{whenShort(e.received)}</span>
+                  <span className="adm-enq-row-when">{whenShort(e.lastGuestAt ?? e.received)}</span>
                   <span className="adm-enq-row-who">
                     {e.name}
                     {e.manual && <span className="adm-enq-lang">E-MAIL/PHONE</span>}
+                    {e.source === 'mail' && <span className="adm-enq-lang">E-MAIL</span>}
+                    {red && <span className="adm-enq-lang adm-enq-warn">REPLY</span>}
                     {!e.mailed && <span className="adm-enq-lang adm-enq-warn">NOT IN INBOX</span>}
                   </span>
                   <span className="adm-enq-row-what">
-                    {[house, e.dates, guests && `${guests} pers`].filter(Boolean).join(' · ') || e.message.split('\n')[0].slice(0, 60)}
+                    {[house, e.dates ?? (stay.checkIn && `${stay.checkIn} → ${stay.checkOut}`), guests && `${guests} pers`].filter(Boolean).join(' · ') || (e.subject ?? e.message.split('\n')[0]).slice(0, 80)}
                   </span>
                   <span className="adm-enq-row-arrow" aria-hidden="true">{open ? '−' : '+'}</span>
                 </button>
@@ -433,6 +445,10 @@ export default function Admin() {
                   </span>
                   {e.email && <a className="adm-link" href={`mailto:${e.email}`}>{e.email}</a>}
                   {e.phone && <a className="adm-link" href={`tel:${e.phone.replace(/[^+\d]/g, '')}`}>{e.phone}</a>}
+                  {e.threadId && <a className="adm-link" href={gmailLink(e.threadId)} target="_blank" rel="noreferrer">Open in Gmail</a>}
+                  <span className={`adm-enq-state${red ? ' is-red' : ''}`}>
+                    {red ? 'Waiting for our reply' : booked ? `Booked — ${houseName(booked.house)} ${booked.block.from} → ${booked.block.to}` : e.answered ? 'Answered — waiting for the guest' : e.handled ? 'Dealt with' : ''}
+                  </span>
                   <span className="adm-enq-when">
                     {new Date(e.received).toLocaleString('et-EE', { timeZone: 'Europe/Tallinn' })}
                   </span>
@@ -469,7 +485,7 @@ export default function Admin() {
                       checked={!!e.handled}
                       onChange={ev => markEnquiry(e.id, ev.target.checked)}
                     />
-                    <span>Dealt with</span>
+                    <span>Dealt with / no reply needed</span>
                   </label>
                   <button className="adm-link" type="button" onClick={() => chargeFor(e)}>
                     Create payment link
@@ -487,6 +503,8 @@ export default function Admin() {
           </ul>
         )}
       </section>
+
+      <AdminCalendar blocks={data?.blocks ?? {}} enquiries={allEnquiries} payments={payments ?? []} onOpen={openEnquiry} />
 
       <AdminStats />
 

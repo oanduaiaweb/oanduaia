@@ -40,6 +40,15 @@ export type Enquiry = {
   manual?: boolean
   /** Ticked off in the admin once it has been dealt with. */
   handled?: boolean
+  /** Picked up from the info@ mailbox: someone wrote to us directly instead of using the form. */
+  source?: 'mail'
+  /** The Gmail conversation this request lives in, once the mailbox sync has seen it. */
+  threadId?: string
+  subject?: string
+  /** The last message in that conversation is ours — nothing to answer until the guest writes again. */
+  answered?: boolean
+  /** When the guest last wrote. */
+  lastGuestAt?: string
 }
 
 export type EnquiryStore = { version: 1; enquiries: Enquiry[] }
