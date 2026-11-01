@@ -42,8 +42,7 @@ const nextConfig: NextConfig = {
  * What the site genuinely needs:
  *   - googletagmanager.com  the GA4 script
  *   - *.google-analytics.com  where GA4 sends its measurements
- *   - tiles.maaamet.ee  the Maa- ja Ruumiamet base map. Leaflet itself is an npm
- *     dependency and is bundled, so only the tile IMAGES are external.
+ *   - www.google.com  the embedded Google map (an iframe) in the location section.
  *
  * 'unsafe-inline' is present for scripts and styles because Next.js inlines its hydration
  * payload and its critical CSS, and the JSON-LD blocks are inline script tags. Removing it
@@ -54,7 +53,8 @@ const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://tiles.maaamet.ee https://www.googletagmanager.com",
+  "img-src 'self' data: blob: https://www.googletagmanager.com",
+  "frame-src https://www.google.com https://maps.google.com",
   "font-src 'self' data:",
   "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com",
   "form-action 'self'",

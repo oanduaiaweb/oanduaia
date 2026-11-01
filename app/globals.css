@@ -5123,3 +5123,4 @@ body.gallery-page .nav-social { text-shadow: none; }
 @media (hover: hover) { .lastchance-card:hover .lastchance-video { transform: scale(1.04); } }
 .lastchance-video { opacity: 0; transition: opacity 0.6s ease, transform 0.9s var(--ease-expo); }
 .lastchance-video.is-playing { opacity: 1; }
+iframe.trails-map { display: block; width: 100%; border: 1px solid rgba(200,212,184,0.14); }
