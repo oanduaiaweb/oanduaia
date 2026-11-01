@@ -5124,3 +5124,13 @@ body.gallery-page .nav-social { text-shadow: none; }
 .lastchance-video { opacity: 0; transition: opacity 0.6s ease, transform 0.9s var(--ease-expo); }
 .lastchance-video.is-playing { opacity: 1; }
 iframe.trails-map { display: block; width: 100%; border: 1px solid rgba(200,212,184,0.14); }
+
+/* Reassurance under the booking buttons. Inherits the colour of whatever panel it sits on. */
+.trust-line { margin-top: 1rem; font-family: var(--font-sans); font-size: var(--fs-2xs); line-height: 1.6; color: inherit; }
+.trust-points, .trust-rating { display: flex; flex-wrap: wrap; gap: 0.2rem 0.9rem; margin: 0; }
+.trust-points span::before { content: '✓'; margin-right: 0.35rem; color: var(--moss); }
+.avail-panel .trust-points span::before { color: var(--mist); }
+.trust-rating { margin-top: 0.35rem; letter-spacing: var(--ls-wide); text-transform: uppercase; opacity: 0.85; }
+.form-submit .trust-line { color: var(--label-ink); }
+.avail-panel .trust-line { color: var(--linen); }
+.avail-panel .trust-points { opacity: 0.85; }

@@ -17,6 +17,7 @@ import {
   quote,
 } from '@/lib/pricing'
 import { HOUSE_IMAGES } from '@/lib/houses'
+import TrustLine from '@/components/TrustLine'
 
 const LOCALE: Record<Lang, string> = { et: 'et', en: 'en-GB', ru: 'ru', de: 'de-DE', es: 'es-ES', sv: 'sv-SE', fi: 'fi-FI', lv: 'lv-LV' }
 
@@ -662,6 +663,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
               <button type="button" className="btn-dark avail-cta" disabled={!q} onClick={submit}>
                 {t.cta[lang]}
               </button>
+              <TrustLine />
             </div>
           </>
         )}

@@ -5,6 +5,7 @@ import { track } from '@/lib/analytics'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useBookingDraft } from '@/contexts/BookingDraftContext'
 import { T } from '@/lib/translations'
+import TrustLine from '@/components/TrustLine'
 
 export default function Booking() {
   const { lang } = useLanguage()
@@ -134,6 +135,7 @@ export default function Booking() {
             <button type="submit" className="btn-dark" disabled={sending}>
               {sending ? t.sending[lang] : t.submit[lang]}
             </button>
+            <TrustLine />
           </div>
         </form>
       )}

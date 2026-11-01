@@ -872,6 +872,21 @@ export const T = {
     breakfastLine: { et: 'Hommikusöök', en: 'Breakfast', ru: 'Завтрак', de: 'Frühstück', es: 'Desayuno', sv: 'Frukost', fi: 'Aamiainen', lv: 'Brokastis' },
     petLine:  { et: 'Lemmikloom', en: 'Pet fee', ru: 'Плата за питомца', de: 'Haustiergebühr', es: 'Suplemento por mascota', sv: 'Husdjursavgift', fi: 'Lemmikkimaksu', lv: 'Mājdzīvnieka maksa' },
     total:    { et: 'Kokku', en: 'Total', ru: 'Итого', de: 'Gesamt', es: 'Total', sv: 'Totalt', fi: 'Yhteensä', lv: 'Kopā' },
+    /*
+     * Under the calendar's button and the form's (Mikk, 31 Oct: "make it sell more"). Most
+     * visitors drop off between seeing the price and starting the form; this says, at that
+     * exact moment, that asking costs nothing and binds them to nothing.
+     */
+    trust: {
+      et: 'Päring on tasuta ega kohusta · Vastame 24 tunni jooksul · Tasuta tühistamine kuni 7 päeva enne saabumist',
+      en: 'Asking is free and commits you to nothing · We reply within 24 hours · Free cancellation up to 7 days before arrival',
+      ru: 'Запрос бесплатный и ни к чему не обязывает · Отвечаем в течение 24 часов · Бесплатная отмена за 7 дней до заезда',
+      de: 'Die Anfrage ist kostenlos und unverbindlich · Antwort innerhalb von 24 Stunden · Kostenlose Stornierung bis 7 Tage vor Anreise',
+      es: 'La solicitud es gratuita y sin compromiso · Respondemos en 24 horas · Cancelación gratuita hasta 7 días antes de la llegada',
+      sv: 'Förfrågan är gratis och förpliktar inte · Vi svarar inom 24 timmar · Kostnadsfri avbokning fram till 7 dagar före ankomst',
+      fi: 'Tiedustelu on maksuton eikä sido mihinkään · Vastaamme 24 tunnin kuluessa · Maksuton peruutus 7 päivään asti ennen saapumista',
+      lv: 'Pieprasījums ir bez maksas un neuzliek saistības · Atbildam 24 stundu laikā · Bezmaksas atcelšana līdz 7 dienām pirms ierašanās',
+    },
     indicative: {
       et: 'Esialgne hind. Kinnitame vabad kuupäevad ja lõpliku hinna e-kirjaga.',
       en: 'Indicative price. We confirm the dates and the final price by e-mail.',
