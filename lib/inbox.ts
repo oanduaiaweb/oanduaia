@@ -8,8 +8,10 @@ export type MailThread = {
   guestName: string
   guestEmail: string
   firstAt: string
+  /** Last message from the guest; empty when the thread only holds our own mail to them. */
   lastGuestAt: string
-  lastFromUs: boolean
+  /** Last message from us; empty when we have not written in this thread. */
+  lastUsAt: string
   /** Started by the website form's notification — the request is already in the store. */
   viaForm: boolean
   text: string
@@ -18,24 +20,26 @@ export type MailThread = {
 const DAY = 86_400_000
 const near = (a: string, b: string, ms: number) => Math.abs(Date.parse(a) - Date.parse(b)) <= ms
 const same = (a?: string, b?: string) => !!a && !!b && a.trim().toLowerCase() === b.trim().toLowerCase()
+const latest = (xs: (string | undefined)[]) => xs.filter(Boolean).sort().pop()
 
 /**
- * Folds the mailbox into the enquiry list. Form requests get their conversation attached, so a
- * reply sent from Gmail turns them from red to answered; mail that never went through the form
- * becomes a request of its own. A guest writing again after we answered makes it red again.
+ * Folds the mailbox into the enquiry list, one row per guest: every conversation with the same
+ * address in the same season lands on the same request, whether it started on the form, by hand
+ * or straight in the mailbox. "Answered" means our message is the latest one with that guest in
+ * any of those conversations; a guest writing after that turns the request red again.
  */
 export function mergeMail(store: EnquiryStore, threads: MailThread[]): { added: number; updated: number } {
   let added = 0, updated = 0
-  for (const t of threads) {
-    let e = store.enquiries.find(x => x.threadId === t.id)
-    // A form request, or one typed in by hand, that this conversation belongs to.
+  for (const t of [...threads].sort((a, b) => a.firstAt.localeCompare(b.firstAt))) {
+    let e = store.enquiries.find(x => x.threadId === t.id || x.mail?.[t.id])
     if (!e) {
-      e = store.enquiries.find(x => !x.threadId && x.source !== 'mail' && same(x.email, t.guestEmail) &&
-        near(x.received, t.firstAt, (t.viaForm ? 2 : 30) * DAY))
-      if (e) e.threadId = t.id
+      e = store.enquiries
+        .filter(x => same(x.email, t.guestEmail) && near(x.received, t.firstAt, 90 * DAY))
+        .sort((a, b) => b.received.localeCompare(a.received))[0]
     }
     if (!e) {
-      store.enquiries.unshift({
+      if (!t.lastGuestAt) continue
+      e = {
         id: randomUUID(),
         received: t.firstAt,
         name: t.guestName.slice(0, 120) || t.guestEmail,
@@ -43,18 +47,22 @@ export function mergeMail(store: EnquiryStore, threads: MailThread[]): { added: 
         message: [t.subject, t.text].filter(Boolean).join('\n\n').slice(0, 4000),
         mailed: true,
         source: 'mail',
-        threadId: t.id,
         subject: t.subject.slice(0, 200),
-        answered: t.lastFromUs,
-        lastGuestAt: t.lastGuestAt,
-      })
+      }
+      store.enquiries.unshift(e)
       added++
-      continue
     }
-    const wroteAgain = !!e.lastGuestAt && t.lastGuestAt > e.lastGuestAt && !t.lastFromUs
-    if (e.answered !== t.lastFromUs || e.lastGuestAt !== t.lastGuestAt || (wroteAgain && e.handled)) {
-      e.answered = t.lastFromUs
-      e.lastGuestAt = t.lastGuestAt
+    if (e.name.includes('@') && t.guestName) e.name = t.guestName.slice(0, 120)
+    e.threadId ??= t.id
+    e.mail = { ...e.mail, [t.id]: { g: t.lastGuestAt || undefined, u: t.lastUsAt || undefined } }
+
+    const guestAt = latest([...Object.values(e.mail).map(m => m.g), e.source === 'mail' ? undefined : e.received])
+    const usAt = latest(Object.values(e.mail).map(m => m.u))
+    const answered = !!usAt && (!guestAt || usAt > guestAt)
+    const wroteAgain = !!e.lastGuestAt && !!guestAt && guestAt > e.lastGuestAt && !answered
+    if (e.answered !== answered || e.lastGuestAt !== guestAt || (wroteAgain && e.handled)) {
+      e.answered = answered
+      e.lastGuestAt = guestAt
       if (wroteAgain) e.handled = false
       updated++
     }

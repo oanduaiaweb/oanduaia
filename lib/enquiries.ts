@@ -49,6 +49,8 @@ export type Enquiry = {
   answered?: boolean
   /** When the guest last wrote. */
   lastGuestAt?: string
+  /** Every conversation with this guest: when they last wrote (g) and when we last did (u). */
+  mail?: Record<string, { g?: string; u?: string }>
 }
 
 export type EnquiryStore = { version: 1; enquiries: Enquiry[] }

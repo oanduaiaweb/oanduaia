@@ -25,8 +25,8 @@ export async function POST(req: Request) {
       id, guestEmail, firstAt,
       subject: str(t.subject, 200),
       guestName: str(t.guestName, 120),
-      lastGuestAt: when(t.lastGuestAt) || firstAt,
-      lastFromUs: !!t.lastFromUs,
+      lastGuestAt: when(t.lastGuestAt),
+      lastUsAt: when(t.lastUsAt),
       viaForm: !!t.viaForm,
       text: str(t.text, 4000),
     }]
