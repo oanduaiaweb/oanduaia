@@ -5309,3 +5309,6 @@ iframe.trails-map { display: block; width: 100%; border: 1px solid rgba(200,212,
 }
 .adm-cal-key.is-closed, .adm-cal-bars i.is-closed { background: #c9c4b6; color: #fff; }
 .adm-cal-stay.is-closed { border-left-color: #c9c4b6; background: #f3f1ec; }
+
+/* No full-width divider lines between the house bands or above "write a review". */
+.house-band, .house-band--reversed, .reviews-write { border-top: none; }
