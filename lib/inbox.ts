@@ -30,6 +30,8 @@ const latest = (xs: (string | undefined)[]) => xs.filter(Boolean).sort().pop()
  */
 export function mergeMail(store: EnquiryStore, threads: MailThread[]): { added: number; updated: number } {
   let added = 0, updated = 0
+  // What each request looked like before this batch: catching up on old threads must not reopen one.
+  const before = new Map<Enquiry, string | undefined>()
   for (const t of [...threads].sort((a, b) => a.firstAt.localeCompare(b.firstAt))) {
     let e = store.enquiries.find(x => x.threadId === t.id || x.mail?.[t.id])
     if (!e) {
@@ -52,20 +54,23 @@ export function mergeMail(store: EnquiryStore, threads: MailThread[]): { added: 
       store.enquiries.unshift(e)
       added++
     }
+    if (!before.has(e)) before.set(e, e.lastGuestAt)
     if (e.name.includes('@') && t.guestName) e.name = t.guestName.slice(0, 120)
     e.threadId ??= t.id
     e.mail = { ...e.mail, [t.id]: { g: t.lastGuestAt || undefined, u: t.lastUsAt || undefined } }
 
-    const guestAt = latest([...Object.values(e.mail).map(m => m.g), e.source === 'mail' ? undefined : e.received])
+    // A request typed in by hand carries the time it was typed, not the time the guest wrote.
+    const guestAt = latest(Object.values(e.mail).map(m => m.g)) ?? (e.source || e.manual ? undefined : e.received)
     const usAt = latest(Object.values(e.mail).map(m => m.u))
     const answered = !!usAt && (!guestAt || usAt > guestAt)
-    const wroteAgain = !!e.lastGuestAt && !!guestAt && guestAt > e.lastGuestAt && !answered
-    if (e.answered !== answered || e.lastGuestAt !== guestAt || (wroteAgain && e.handled)) {
+    if (e.answered !== answered || e.lastGuestAt !== guestAt) {
       e.answered = answered
       e.lastGuestAt = guestAt
-      if (wroteAgain) e.handled = false
       updated++
     }
+  }
+  for (const [e, prev] of before) {
+    if (e.handled && prev && e.lastGuestAt && e.lastGuestAt > prev && !e.answered) e.handled = false
   }
   if (store.enquiries.length > 500) store.enquiries.length = 500
   return { added, updated }
