@@ -119,7 +119,7 @@ export const LANDINGS: Landing[] = [
             lv: 'Lahemā nav lielu viesnīcu. Šeit ir muižas, nelielas saimniecības, viesu nami un ciemu mājas – kā arī RMK telšu vietas un meža mājiņas, kas ir bez maksas un nav jārezervē. Lielākās naktsmītnes ir muižās: Palmse, Sagadi un Vihula. Līdzās tām ciemos ir desmitiem nelielu vietu, ko izīrē veselas, nevis pa istabām.',
           },
           {
-            et: 'Vahe on praktiline. Terve maja rentides ei ole jagatud koridore, vastuvõtulauda ega naabreid seina taga; see-eest ei ole ka ööpäevaringset teenindust, ja söök lepitakse ette kokku, mitte ei tellita menüüst kell kümme õhtul.',
+            et: 'Vahe on praktiline. Terve maja rentides ei ole jagatud koridore, vastuvõtulauda ega naabreid seina taga; see-eest ei ole ka ööpäevaringset teenindust ning söök lepitakse ette kokku, mitte ei tellita menüüst kell kümme õhtul.',
             en: 'The difference is practical. Renting a whole house means no shared corridors, no reception desk and no neighbours through the wall; it also means no round-the-clock service, and that meals are arranged in advance rather than ordered from a menu at ten at night.',
             ru: 'Разница практическая. Снимая дом целиком, у вас нет общих коридоров, стойки регистрации и соседей за стеной; но и круглосуточного обслуживания нет, и еду нужно согласовать заранее, а не заказывать из меню в десять вечера.',
             de: 'Der Unterschied ist praktischer Natur. Ein ganzes Haus zu mieten bedeutet keine gemeinsamen Flure, keine Rezeption und keine Nachbarn hinter der Wand; es bedeutet aber auch keinen Rund-um-die-Uhr-Service, und dass Mahlzeiten vorab abgesprochen und nicht um zehn Uhr abends von der Karte bestellt werden.',
@@ -211,7 +211,7 @@ export const LANDINGS: Landing[] = [
         },
         p: [
           {
-            et: 'Suvel on kõik kolm maja avatud, väliköök on kasutuses ja tiigis saab ujuda. Sügis on radadel kõige ilusam ja kõige vaiksem. Talvel on avatud Saunamaja: saun köetakse, jäässe raiutakse auk, ja lumi teeb metsarajad omaette asjaks. Kevadel algab hooaeg 1. aprillil, kui Tiigimaja ja Metsamaja uuesti avanevad.',
+            et: 'Suvel on kõik kolm maja avatud, väliköök on kasutuses ja tiigis saab ujuda. Sügis on radadel kõige ilusam ja kõige vaiksem. Talvel on avatud Saunamaja: saun köetakse, jäässe raiutakse auk ning lumi teeb metsarajad omaette asjaks. Kevadel algab hooaeg 1. aprillil, kui Tiigimaja ja Metsamaja uuesti avanevad.',
             en: 'In summer all three houses are open, the outdoor kitchen is in use and you can swim in the pond. Autumn is when the trails are at their best and their quietest. In winter the Sauna House is open: the sauna is lit, a hole is cut in the ice, and snow makes the forest trails a different thing altogether. In spring the season starts on 1 April, when the Pond House and Forest House open again.',
             ru: 'Летом открыты все три дома, работает летняя кухня, в пруду можно плавать. Осенью тропы красивее и тише всего. Зимой открыт Банный дом: баню топят, во льду прорубают прорубь, а снег превращает лесные тропы в нечто совсем иное. Весенний сезон начинается 1 апреля, когда снова открываются Прудовой и Лесной дома.',
             de: 'Im Sommer sind alle drei Häuser geöffnet, die Außenküche ist in Betrieb und man kann im Teich schwimmen. Im Herbst sind die Wege am schönsten und am ruhigsten. Im Winter ist das Saunahaus geöffnet: die Sauna wird geheizt, ins Eis wird ein Loch geschnitten, und der Schnee macht aus den Waldwegen etwas ganz anderes. Der Frühling beginnt am 1. April, wenn Teichhaus und Waldhaus wieder öffnen.',
@@ -258,7 +258,7 @@ export const LANDINGS: Landing[] = [
           lv: 'Vai Lahemā nacionālajā parkā var palikt pa nakti?',
         },
         a: {
-          et: 'Jah. Lahemaa on asustatud rahvuspark — selle sees on külad, mõisad ja majutuskohad, ja ööbimine on täiesti tavaline. Oandu küla, kus Oanduaia asub, on rahvuspargi sees.',
+          et: 'Jah. Lahemaa on asustatud rahvuspark — selle sees on külad, mõisad ja majutuskohad ning ööbimine on täiesti tavaline. Oandu küla, kus Oanduaia asub, on rahvuspargi sees.',
           en: 'Yes. Lahemaa is an inhabited national park — there are villages, manors and places to stay inside it, and staying overnight is entirely normal. Oandu village, where Oanduaia is, is inside the park.',
           ru: 'Да. Лахемаа — обитаемый национальный парк: внутри него есть деревни, мызы и места для ночлега, и оставаться на ночь совершенно нормально. Деревня Оанду, где находится Oanduaia, расположена внутри парка.',
           de: 'Ja. Lahemaa ist ein bewohnter Nationalpark – es gibt Dörfer, Gutshöfe und Unterkünfte darin, und eine Übernachtung ist völlig normal. Das Dorf Oandu, in dem Oanduaia liegt, befindet sich im Park.',
@@ -379,7 +379,7 @@ export const LANDINGS: Landing[] = [
       lv: 'Ziemas pirts un āliņģis Lahemā',
     },
     lead: {
-      et: 'Talvel on Oanduaia kolmest majast avatud üks — Saunamaja. Saun köetakse puudega, tiigi jäässe kümne sammu kaugusel raiutakse auk, ja ülejäänud õu on kevadeni vaikne. Siin on kirjas, mida talvine peatus tegelikult tähendab, alates teest kohale kuni pika lauani.',
+      et: 'Talvel on Oanduaia kolmest majast avatud üks — Saunamaja. Saun köetakse puudega, tiigi jäässe kümne sammu kaugusel raiutakse auk ning ülejäänud õu on kevadeni vaikne. Siin on kirjas, mida talvine peatus tegelikult tähendab, alates teest kohale kuni pika lauani.',
       en: 'In winter, one of the three houses at Oanduaia stays open — the Sauna House. The sauna is heated with wood, a hole is cut in the ice of the pond ten steps away, and the rest of the property is quiet until spring. Here is what a winter stay actually involves, from the drive in to the long table.',
       ru: 'Зимой из трёх домов Oanduaia открыт один — Банный дом. Баню топят дровами, в десяти шагах во льду пруда прорубают прорубь, а остальная усадьба до весны стоит тихая. Здесь написано, что на самом деле означает зимний приезд — от дороги сюда до длинного стола.',
       de: 'Im Winter bleibt von den drei Häusern in Oanduaia eines geöffnet – das Saunahaus. Die Sauna wird mit Holz geheizt, zehn Schritte entfernt wird ein Loch ins Eis des Teichs geschnitten, und der Rest des Hofs ist bis zum Frühling still. Hier lesen Sie, was ein Winteraufenthalt tatsächlich bedeutet, von der Anfahrt bis zur langen Tafel.',
@@ -413,7 +413,7 @@ export const LANDINGS: Landing[] = [
         },
         p: [
           {
-            et: 'Tiigimaja ja Metsamaja on suletud 1. detsembrist 31. märtsini, ja avatud on ainult Saunamaja. Sisuliselt tähendab see, et koht on teie päralt: naabermajas ei ole teisi külalisi ega kosta üle tiigi võõraid hääli. Kahe ülejäänud maja uue hooaja esimene öö on 1. aprill.',
+            et: 'Tiigimaja ja Metsamaja on suletud 1. detsembrist 31. märtsini ja avatud on ainult Saunamaja. Sisuliselt tähendab see, et koht on teie päralt: naabermajas ei ole teisi külalisi ega kosta üle tiigi võõraid hääli. Kahe ülejäänud maja uue hooaja esimene öö on 1. aprill.',
             en: 'From 1 December to 31 March the Pond House and the Forest House are closed, and the Sauna House is the only one open. In practice that means you have the place to yourselves: no other guests in the next house, no strangers’ voices across the pond. The first night of the new season in the other two houses is 1 April.',
             ru: 'С 1 декабря по 31 марта Прудовой и Лесной дома закрыты, и открыт только Банный дом. На деле это значит, что усадьба в вашем распоряжении: в соседнем доме нет других гостей, через пруд не доносятся чужие голоса. Первая ночь нового сезона в двух других домах — 1 апреля.',
             de: 'Vom 1. Dezember bis 31. März sind Teichhaus und Waldhaus geschlossen, und nur das Saunahaus ist geöffnet. Praktisch heißt das: Der Ort gehört Ihnen. Keine anderen Gäste im Nachbarhaus, keine fremden Stimmen über den Teich. Die erste Nacht der neuen Saison in den beiden anderen Häusern ist der 1. April.',
@@ -447,7 +447,7 @@ export const LANDINGS: Landing[] = [
         },
         p: [
           {
-            et: 'Saun on Saunamajas ja sisaldub maja hinnas. See on puuküttega: nuppu ei vajutata, ahju pannakse puid, ja soojaks läheb saun omas tempos. Leili on täpselt nii palju, kui palju kerisele vett viskad.',
+            et: 'Saun on Saunamajas ja sisaldub maja hinnas. See on puuküttega: nuppu ei vajutata, ahju pannakse puid ja soojaks läheb saun omas tempos. Leili on täpselt nii palju, kui palju kerisele vett viskad.',
             en: 'The sauna is in the Sauna House and is included in its price. It is wood-fired: nobody presses a button, the stove is fed with logs, and it heats up in its own time. There is exactly as much steam as there is water thrown on the stones.',
             ru: 'Баня находится в Банном доме и входит в его стоимость. Она дровяная: кнопку никто не нажимает, печь топят поленьями, и прогревается баня в своём темпе. Пара ровно столько, сколько воды вы плеснёте на камни.',
             de: 'Die Sauna ist im Saunahaus und im Preis des Hauses enthalten. Sie wird mit Holz befeuert: Niemand drückt einen Knopf, der Ofen wird mit Scheiten gefüttert und heizt in seinem eigenen Tempo auf. Aufguss gibt es genau so viel, wie Sie Wasser auf die Steine gießen.',
@@ -515,7 +515,7 @@ export const LANDINGS: Landing[] = [
         },
         p: [
           {
-            et: 'Hommikusöögi teeb perenaine: munad, peekon, puder ja kohv, 20 € inimese kohta hommikul. Lõuna, õhtusöök ja pidulik pikk laud tellitakse ette. Talvel ja halva ilmaga kaetakse pikk laud toas, majas sees. Kui soovid jõulude või aastavahetuse ajal pidulikku sööki, küsi aegsasti, ja me ütleme, mis on võimalik.',
+            et: 'Hommikusöögi teeb perenaine: munad, peekon, puder ja kohv, 20 € inimese kohta hommikul. Lõuna, õhtusöök ja pidulik pikk laud tellitakse ette. Talvel ja halva ilmaga kaetakse pikk laud toas, majas sees. Kui soovid jõulude või aastavahetuse ajal pidulikku sööki, küsi aegsasti ja me ütleme, mis on võimalik.',
             en: 'Breakfast is cooked by the host: eggs, bacon, porridge and coffee, €20 per person per morning. Lunch, dinner and the festive long table are ordered in advance. In winter and in poor weather the long table is laid indoors, in the house. If you would like a festive meal over Christmas or New Year, ask early and we will tell you what is possible.',
             ru: 'Завтрак готовит хозяйка: яйца, бекон, каша и кофе, 20 € с человека за утро. Обед, ужин и праздничный длинный стол заказываются заранее. Зимой и в плохую погоду длинный стол накрывают в доме. Если хотите праздничный ужин на Рождество или Новый год, спросите заранее — и мы скажем, что возможно.',
             de: 'Das Frühstück kocht die Gastgeberin: Eier, Speck, Porridge und Kaffee, 20 € pro Person und Morgen. Mittagessen, Abendessen und die festliche lange Tafel werden vorbestellt. Im Winter und bei schlechtem Wetter wird die lange Tafel drinnen im Haus gedeckt. Wenn Sie über Weihnachten oder Silvester ein festliches Essen möchten, fragen Sie früh, und wir sagen Ihnen, was möglich ist.',
@@ -583,7 +583,7 @@ export const LANDINGS: Landing[] = [
         },
         p: [
           {
-            et: 'Oandu on Tallinnast umbes 90 km kaugusel, autoga veidi üle tunni: Narva suunas ja Viitna juures põhja poole Lahemaale. Ühistranspordiga on tülikas, enamik külalisi tuleb autoga. Talvel on Eesti autodel talverehvid tavapärased, ja rendifirmad annavad need autoga kaasa.',
+            et: 'Oandu on Tallinnast umbes 90 km kaugusel, autoga veidi üle tunni: Narva suunas ja Viitna juures põhja poole Lahemaale. Ühistranspordiga on tülikas, enamik külalisi tuleb autoga. Talvel on Eesti autodel talverehvid tavapärased ja rendifirmad annavad need autoga kaasa.',
             en: 'Oandu is about 90 km from Tallinn, a little over an hour by car: towards Narva, then north into Lahemaa at Viitna. Public transport is awkward, and most guests come by car. In winter, winter tyres are standard on Estonian cars, and rental companies provide them with the car.',
             ru: 'Оанду примерно в 90 км от Таллинна, чуть больше часа на машине: в сторону Нарвы и у Вийтна на север, в Лахемаа. Общественным транспортом добираться неудобно, большинство гостей приезжает на машине. Зимняя резина на эстонских машинах в сезон — норма, и прокатные компании выдают автомобиль с ней.',
             de: 'Oandu liegt etwa 90 km von Tallinn entfernt, gut eine Stunde mit dem Auto: Richtung Narva, dann bei Viitna nach Norden in den Nationalpark Lahemaa. Mit öffentlichen Verkehrsmitteln ist es umständlich, die meisten Gäste kommen mit dem Auto. Im Winter sind Winterreifen an estnischen Autos Standard, und Mietwagen sind damit ausgestattet.',
@@ -618,7 +618,7 @@ export const LANDINGS: Landing[] = [
           lv: 'Kur Igaunijā ziemā ir pirts ar āliņģi?',
         },
         a: {
-          et: 'Oanduaias, Oandu külas Lahemaa rahvuspargis, Tallinnast umbes 90 km. Saunamaja on avatud aasta läbi; saun on puuküttega ja sisaldub hinnas, ning talvel raiutakse kõrvalasuva tiigi jäässe auk.',
+          et: 'Oanduaias, Oandu külas Lahemaa rahvuspargis, Tallinnast umbes 90 km. Saunamaja on avatud aasta läbi; saun on puuküttega ja sisaldub hinnas ning talvel raiutakse kõrvalasuva tiigi jäässe auk.',
           en: 'At Oanduaia, in Oandu village inside Lahemaa National Park, about 90 km from Tallinn. The Sauna House is open all year; its sauna is wood-fired and included in the price, and in winter a hole is cut in the ice of the pond beside it.',
           ru: 'В Oanduaia, в деревне Оанду внутри национального парка Лахемаа, примерно в 90 км от Таллинна. Банный дом открыт круглый год; баня дровяная и входит в стоимость, а зимой во льду пруда рядом прорубают прорубь.',
           de: 'In Oanduaia, im Dorf Oandu mitten im Nationalpark Lahemaa, etwa 90 km von Tallinn. Das Saunahaus ist ganzjährig geöffnet; die Sauna wird mit Holz geheizt und ist im Preis enthalten, und im Winter wird ins Eis des Teichs daneben ein Loch geschnitten.',
@@ -684,7 +684,7 @@ export const LANDINGS: Landing[] = [
           lv: 'Vai Ziemassvētkus vai Jauno gadu var pavadīt Oanduaia mājās vai Jauno gadu?',
         },
         a: {
-          et: 'Jah, Saunamaja on avatud ka jõulude ja aastavahetuse ajal; magamiskohti on neljale. Pühade hind võib tavapärasest erineda, nii et kirjuta oma kuupäevadega aadressile info@oanduaia.ee, ja me saadame pakkumise — vastame 24 tunni jooksul.',
+          et: 'Jah, Saunamaja on avatud ka jõulude ja aastavahetuse ajal; magamiskohti on neljale. Pühade hind võib tavapärasest erineda, nii et kirjuta oma kuupäevadega aadressile info@oanduaia.ee ja me saadame pakkumise — vastame 24 tunni jooksul.',
           en: 'Yes, the Sauna House is open over Christmas and New Year; it sleeps four. Holiday rates can differ from the usual ones, so write to info@oanduaia.ee with your dates and we will send an offer — we reply within 24 hours.',
           ru: 'Да, Банный дом открыт и на Рождество, и на Новый год; спальных мест четыре. Цена в праздники может отличаться от обычной, поэтому напишите на info@oanduaia.ee с вашими датами, и мы пришлём предложение — отвечаем в течение 24 часов.',
           de: 'Ja, das Saunahaus ist über Weihnachten und Silvester geöffnet; es bietet vier Personen Platz. Die Feiertagspreise können von den üblichen abweichen, schreiben Sie uns daher mit Ihren Reisedaten an info@oanduaia.ee – wir schicken Ihnen ein Angebot – wir antworten innerhalb von 24 Stunden.',
@@ -750,7 +750,7 @@ export const LANDINGS: Landing[] = [
           lv: 'Vai pirts ir iekļauta cenā?',
         },
         a: {
-          et: 'Saunamajas jah — puuküttega saun on maja osa ja sisaldub selle hinnas. Tiik on kümne sammu kaugusel, ja talvel raiutakse sauna kõrvale jäässe auk.',
+          et: 'Saunamajas jah — puuküttega saun on maja osa ja sisaldub selle hinnas. Tiik on kümne sammu kaugusel ja talvel raiutakse sauna kõrvale jäässe auk.',
           en: 'In the Sauna House, yes — the wood-fired sauna is part of the house and included in its price. The pond is ten steps away, and in winter a hole is cut in the ice beside the sauna.',
           ru: 'В Банном доме — да: дровяная баня является частью дома и входит в его стоимость. Пруд в десяти шагах, а зимой рядом с баней во льду прорубают прорубь.',
           de: 'Im Saunahaus ja – die Holzsauna gehört zum Haus und ist im Preis enthalten. Der Teich ist zehn Schritte entfernt, und im Winter wird neben der Sauna ein Loch ins Eis geschnitten.',

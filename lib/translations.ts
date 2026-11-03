@@ -144,7 +144,7 @@ export const T = {
         lv: 'Brokastis, pusdienas, svētku garais galds vai mājīgākas zupas pusdienas – viss no svaigiem produktiem, visu gatavo pati saimniece.',
       },
       price: {
-        line:   { et: 'Hommikusöök 20 € inimese kohta hommikus', en: 'Breakfast €20 per person, per morning', ru: 'Завтрак 20 € с человека за утро', de: 'Frühstück 20 € pro Person und Morgen', es: 'Desayuno 20 € por persona y mañana', sv: 'Frukost 20 € per person och morgon', fi: 'Aamiainen 20 € hengeltä aamua kohden', lv: 'Brokastis 20 € personai par rītu' },
+        line:   { et: 'Hommikusöök 20 € inimese kohta hommikul', en: 'Breakfast €20 per person, per morning', ru: 'Завтрак 20 € с человека за утро', de: 'Frühstück 20 € pro Person und Morgen', es: 'Desayuno 20 € por persona y mañana', sv: 'Frukost 20 € per person och morgon', fi: 'Aamiainen 20 € hengeltä aamua kohden', lv: 'Brokastis 20 € personai par rītu' },
         detail: { et: 'Munad, peekon, puder, kohv', en: 'Eggs, bacon, porridge, coffee', ru: 'Яйца, бекон, каша, кофе', de: 'Eier, Speck, Porridge, Kaffee', es: 'Huevos, beicon, gachas, café', sv: 'Ägg, bacon, gröt, kaffe', fi: 'Munia, pekonia, puuroa, kahvia', lv: 'Olas, bekons, putra, kafija' },
         note:   { et: 'Lõuna- ja õhtusöögi valikute jaoks võta meiega ühendust.', en: 'Contact us for lunch and dinner options.', ru: 'Свяжитесь с нами, чтобы узнать варианты обеда и ужина.', de: 'Für Mittag- und Abendessen sprechen Sie uns an.', es: 'Escríbenos para conocer las opciones de almuerzo y cena.', sv: 'Kontakta oss för lunch- och middagsalternativ.', fi: 'Ota yhteyttä, niin kerromme lounas- ja illallisvaihtoehdoista.', lv: 'Sazinieties ar mums par pusdienu un vakariņu iespējām.' },
       },
@@ -558,8 +558,8 @@ export const T = {
   },
   stats: {
     l1: { et: 'Booking.com hinne', en: 'Booking.com rating', ru: 'Рейтинг Booking.com', de: 'Booking.com-Bewertung', es: 'Puntuación en Booking.com', sv: 'Betyg på Booking.com', fi: 'Booking.com-arvosana', lv: 'Booking.com vērtējums' },
-    l2: { et: 'privaatset maja', en: 'private houses', ru: 'отдельных дома', de: 'separate Häuser', es: 'casas privadas', sv: 'privata hus', fi: 'yksityistä taloa', lv: 'privātas mājas' },
-    l3: { et: 'km RMK matkateed siit', en: 'km of RMK hiking route from here', ru: 'км маршрута RMK отсюда', de: 'km RMK-Wanderweg ab hier', es: 'km de ruta de senderismo RMK desde aquí', sv: 'km RMK-vandringsled härifrån', fi: 'km RMK:n vaellusreittiä täältä', lv: 'km RMK pārgājienu maršruta no šejienes' },
+    l2: { et: 'eraldi maja', en: 'private houses', ru: 'отдельных дома', de: 'separate Häuser', es: 'casas privadas', sv: 'privata hus', fi: 'yksityistä taloa', lv: 'privātas mājas' },
+    l3: { et: 'km RMK matkatee algab siit', en: 'km of RMK hiking route from here', ru: 'км маршрута RMK отсюда', de: 'km RMK-Wanderweg ab hier', es: 'km de ruta de senderismo RMK desde aquí', sv: 'km RMK-vandringsled härifrån', fi: 'km RMK:n vaellusreittiä täältä', lv: 'km RMK pārgājienu maršruta no šejienes' },
     l4: { et: 'm² kaetud väliköök', en: 'm² covered outdoor kitchen', ru: 'м² крытой летней кухни', de: 'm² überdachte Außenküche', es: 'm² de cocina exterior cubierta', sv: 'm² täckt utomhuskök', fi: 'm² katettu ulkokeittiö', lv: 'm² jumta segta āra virtuve' },
   },
   reviews: {
@@ -841,7 +841,7 @@ export const T = {
       lv: 'Braucu ar mājdzīvnieku · 20 € par uzturēšanos',
     },
     breakfastAdd: {
-      et: 'Soovin hommikusööki · 20 € inimese kohta hommikus',
+      et: 'Soovin hommikusööki · 20 € inimese kohta hommikul',
       en: 'I would like breakfast · €20 per person, per morning',
       ru: 'Хочу завтрак · 20 € с человека за утро',
       de: 'Ich möchte Frühstück · 20 € pro Person und Morgen',
@@ -922,7 +922,7 @@ export const T = {
     h1:    { et: 'Kõik, mille pärast', en: 'Everything people', ru: 'Всё, ради чего', de: 'Alles, wofür man', es: 'Todo aquello por lo que', sv: 'Allt som folk', fi: 'Kaikki, minkä vuoksi', lv: 'Viss, kā dēļ' },
     h2em:  { et: 'siia tullakse.', en: 'come here for.', ru: 'сюда едут.', de: 'herkommt.', es: 'la gente viene aquí.', sv: 'kommer hit för.', fi: 'tänne tullaan.', lv: 'šeit brauc.' },
     sub: {
-      et: 'Metsa ja mere vahel – koht, kuhu tulla kahekesi, olgu see esimene reis või kahekümnes.',
+      et: 'Metsa ja mere vahel – koht, kuhu tulla kahekesi, perega või sõpradega – olgu see esimene kord või kahekümnes.',
       en: 'Between the forest and the sea — a place to come as two, whether it is the first trip or the twentieth.',
       ru: 'Между лесом и морем — место, куда приезжают вдвоём, будь это первая поездка или двадцатая.',
       de: 'Zwischen Wald und Meer — ein Ort für zwei, ob es die erste Reise ist oder die zwanzigste.',
@@ -936,7 +936,7 @@ export const T = {
         icon: 'house',
         t: { et: 'Terve maja endale', en: 'The whole house to yourself', ru: 'Весь дом только вам', de: 'Das ganze Haus für sich', es: 'La casa entera para ti', sv: 'Hela huset för dig själv', fi: 'Koko talo omaan käyttöön', lv: 'Visa māja tikai jums' },
         d: {
-          et: 'Iga maja renditakse tervikuna. Ei jagatud koridore ega naabreid seina taga.',
+          et: 'Iga maja renditakse tervikuna. Jagatud koridore ega naabreid seina taga ei ole.',
           en: 'Each house is rented whole. No shared corridors, no neighbours through the wall.',
           ru: 'Каждый дом сдаётся целиком. Ни общих коридоров, ни соседей за стеной.',
           de: 'Jedes Haus wird als Ganzes vermietet. Keine gemeinsamen Flure, keine Nachbarn hinter der Wand.',
@@ -950,7 +950,7 @@ export const T = {
         icon: 'flame',
         t: { et: 'Puuküttega saun', en: 'A wood-fired sauna', ru: 'Дровяная баня', de: 'Eine Holzsauna', es: 'Una sauna de leña', sv: 'En vedeldad bastu', fi: 'Puulämmitteinen sauna', lv: 'Malkas pirts' },
         d: {
-          et: 'Köetud puudega, mitte lülitiga. Tiik on kümne sammu kaugusel, talvel on jääs auk.',
+          et: 'Köetakse puudega, mitte lülitiga. Tiik on kümne sammu kaugusel, talvel on jääs auk.',
           en: 'Heated with wood, not a switch. The pond is ten steps away, and in winter there is a hole in the ice.',
           ru: 'Топится дровами, а не включается кнопкой. Пруд в десяти шагах, зимой во льду прорубь.',
           de: 'Mit Holz geheizt, nicht mit einem Schalter. Der Teich ist zehn Schritte entfernt, und im Winter gibt es ein Eisloch.',
@@ -1088,7 +1088,7 @@ export const T = {
   /* Shared chrome for the topic landing pages. */
   landing: {
     cta:     { et: 'Vaata saadavust', en: 'Check availability', ru: 'Проверить наличие', de: 'Verfügbarkeit prüfen', es: 'Ver disponibilidad', sv: 'Se lediga datum', fi: 'Katso saatavuus', lv: 'Skatīt pieejamību' },
-    qaLabel: { et: 'Korduvad küsimused', en: 'Common questions', ru: 'Частые вопросы', de: 'Häufige Fragen', es: 'Preguntas frecuentes', sv: 'Vanliga frågor', fi: 'Usein kysyttyä', lv: 'Biežāk uzdotie jautājumi' },
+    qaLabel: { et: 'Korduma kippuvad küsimused', en: 'Common questions', ru: 'Частые вопросы', de: 'Häufige Fragen', es: 'Preguntas frecuentes', sv: 'Vanliga frågor', fi: 'Usein kysyttyä', lv: 'Biežāk uzdotie jautājumi' },
   },
   booking: {
     label:   { et: 'Reserveerimine', en: 'Reservations', ru: 'Бронирование', de: 'Reservierung', es: 'Reservas', sv: 'Bokning', fi: 'Varaukset', lv: 'Rezervācijas' },
@@ -1140,7 +1140,7 @@ export const T = {
       lv: 'Bezmaksas autostāvvieta · mājās nav WiFi, mobilais pārklājums ir labs',
     },
     pets:    {
-      et: 'Kui majas on samal ajal ka teisi külalisi, palume koera hoida rihma otsas. Lemmiklooma eest vastutab tema omanik.',
+      et: 'Kui kohapeal on samal ajal ka teisi külalisi, palume koera hoida rihma otsas. Lemmiklooma eest vastutab tema omanik.',
       en: 'If other guests are on the property at the same time, please keep your dog on a leash. Pets remain the responsibility of their owner.',
       ru: 'Если на территории одновременно находятся другие гости, просим держать собаку на поводке. За питомца отвечает его владелец.',
       de: 'Wenn gleichzeitig andere Gäste auf dem Grundstück sind, halten Sie Ihren Hund bitte an der Leine. Für Haustiere haften ihre Halter.',

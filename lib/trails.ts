@@ -86,7 +86,7 @@ export const TRAILS: Trail[] = [
         lv: 'Maršruts sākas pie RMK Oandu apmeklētāju centra un ved 370 kilometrus cauri Igaunijai no ziemeļiem uz dienvidiem: no Lahemā nacionālā parka cauri Kõrvemaa ainavu aizsardzības apvidum un Soomaa nacionālajam parkam – vienai no lielākajām purvu ainavām Eiropā –, tālāk caur Pērnavas apriņķa mežiem līdz dienvidrietumu piekrastes zvejnieku ciemiem un Rīgas jūras līča smilšu pludmalēm, līdz pat Iklai pie Latvijas robežas.',
       },
       {
-        et: 'Vähesed läbivad seda ühe korraga. Enamik käib etappide kaupa, ja esimene etapp – Oandu–Võsu, 9,5 km – algab siitsamast. Oanduaia on esimese päeva loomulik alguspunkt: maja on külastuskeskusest jalutuskäigu kaugusel, saun on köetav ja hommikusöök tuleb enne väljaminekut.',
+        et: 'Vähesed läbivad seda ühe korraga. Enamik käib etappide kaupa ning esimene etapp – Oandu–Võsu, 9,5 km – algab siitsamast. Oanduaia on esimese päeva loomulik alguspunkt: maja on külastuskeskusest jalutuskäigu kaugusel, saun on köetav ja hommikusöök tuleb enne väljaminekut.',
         en: 'Few walk it in one go. Most take it in sections, and the first section — Oandu–Võsu, 9.5 km — starts here. Oanduaia is the natural place to begin day one: the houses are a walk from the visitor centre, the sauna can be lit for the evening you come back, and breakfast is there before you set out.',
         ru: 'Мало кто проходит его целиком за один раз. Большинство идёт по этапам, и первый этап — Оанду–Высу, 9,5 км — начинается прямо отсюда. Oanduaia — естественная точка старта первого дня: дома в нескольких минутах ходьбы от центра посетителей, баню можно натопить к возвращению, а завтрак будет до выхода.',
         de: 'Nur wenige gehen sie am Stück. Die meisten nehmen sie in Etappen, und die erste Etappe – Oandu–Võsu, 9,5 km – beginnt hier. Oanduaia ist der natürliche Ausgangspunkt für den ersten Tag: die Häuser liegen einen Spaziergang vom Besucherzentrum entfernt, die Sauna kann für den Abend Ihrer Rückkehr geheizt werden, und das Frühstück steht bereit, bevor Sie aufbrechen.',
@@ -225,7 +225,7 @@ export const TRAILS: Trail[] = [
     },
     body: [
       {
-        et: 'See on Oandu–Aegviidu–Ikla matkatee esimene lõik ja ainus, mis algab otse siit. Rada kulgeb läbi põlismetsa mööda muinasaegset Seljaku teed, Koljaku–Oandu pangast allpool, ja läbib mitmesuguseid pinnavorme ja metsakooslusi.',
+        et: 'See on Oandu–Aegviidu–Ikla matkatee esimene lõik ja ainus, mis algab otse siit. Rada kulgeb läbi põlismetsa mööda muinasaegset Seljaku teed, Koljaku–Oandu pangast allpool ning läbib mitmesuguseid pinnavorme ja metsakooslusi.',
         en: 'This is the first section of the Oandu–Aegviidu–Ikla route, and the only one that starts directly from here. It runs through primeval forest along the prehistoric Seljaku road, beneath the Koljaku–Oandu escarpment, crossing a range of landforms and forest communities.',
         ru: 'Это первый отрезок маршрута Оанду–Аэгвийду–Икла и единственный, начинающийся прямо отсюда. Тропа идёт через древний лес по доисторической дороге Сельяку, под уступом Кольяку–Оанду, пересекая разные формы рельефа и лесные сообщества.',
         de: 'Dies ist die erste Etappe der Route Oandu–Aegviidu–Ikla und die einzige, die direkt von hier startet. Sie führt durch Urwald entlang des vorgeschichtlichen Seljaku-Weges, unterhalb der Terrasse von Koljaku–Oandu, und quert dabei eine ganze Reihe von Landschaftsformen und Waldgesellschaften.',
@@ -278,7 +278,7 @@ export const TRAILS: Trail[] = [
     start: { et: 'Oandu, RMK külastuskeskuse juurest', en: 'Oandu, from the RMK visitor centre', ru: 'Оанду, от центра посетителей RMK', de: 'Oandu, ab dem RMK-Besucherzentrum', es: 'Oandu, desde el centro de visitantes del RMK', sv: 'Oandu, från RMK:s besökscenter', fi: 'Oandu, RMK:n luontokeskukselta', lv: 'Oandu, no RMK apmeklētāju centra' },
     body: [
       {
-        et: 'Kilomeeter, mis viib koprapaisude ja vaatluspunktideni. Lühim rada Oandus ja ainus, mille jaoks ei pea päeva plaanima – see mahub hommikusöögi ja lõuna vahele, ja lastega on see enamasti esimene rada, mida käiakse.',
+        et: 'Kilomeeter, mis viib koprapaisude ja vaatluspunktideni. Lühim rada Oandus ja ainus, mille jaoks ei pea päeva plaanima – see mahub hommikusöögi ja lõuna vahele ning lastega on see enamasti esimene rada, mida käiakse.',
         en: 'A kilometre out to beaver dams and the observation points above them. The shortest trail at Oandu and the only one you need not plan a day around — it fits between breakfast and lunch, and with children it is usually the first one anybody walks.',
         ru: 'Километр до бобровых плотин и смотровых точек над ними. Самая короткая тропа в Оанду и единственная, ради которой не нужно планировать день — она укладывается между завтраком и обедом, а с детьми обычно становится первой.',
         de: 'Einen Kilometer hinaus zu den Biberdämmen und den Aussichtspunkten darüber. Der kürzeste Pfad in Oandu und der einzige, für den man keinen ganzen Tag einplanen muss – er passt zwischen Frühstück und Mittagessen, und mit Kindern ist er meist der erste, den man geht.',
@@ -288,7 +288,7 @@ export const TRAILS: Trail[] = [
         lv: 'Kilometrs līdz bebru dambjiem un skatu vietām virs tiem. Īsākā Oandu taka un vienīgā, kuras dēļ nav jāplāno visa diena – tā ietilpst starp brokastīm un pusdienām, un ar bērniem tā parasti ir pirmā, ko noiet.',
       },
       {
-        et: 'Koprad on öised. Paisud, näritud puutüved ja üleujutatud mets on aga kogu aeg näha, ja just neid rada näitabki.',
+        et: 'Koprad on öised. Paisud, näritud puutüved ja üleujutatud mets on aga kogu aeg näha ning just neid rada näitabki.',
         en: 'Beavers are nocturnal. The dams, the gnawed trunks and the flooded forest behind them are there at any hour, and those are what the trail is for.',
         ru: 'Бобры ведут ночной образ жизни. Но плотины, обгрызенные стволы и затопленный за ними лес видны в любое время — ради них тропа и проложена.',
         de: 'Biber sind nachtaktiv. Die Dämme, die angenagten Stämme und der überflutete Wald dahinter sind zu jeder Stunde da, und um sie geht es auf diesem Pfad.',
