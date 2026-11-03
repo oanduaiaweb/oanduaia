@@ -29,7 +29,16 @@ export default function Reviews() {
       <h2 className="reviews-heading reveal">
         {t.h1[lang]} <em>{t.h2em[lang]}</em>
       </h2>
-      <p className="reviews-sub reveal reveal-delay-1">{t.sub[lang]}</p>
+      <p className="reviews-sub reveal reveal-delay-1">
+        {t.sub[lang].split(/(\{ig\}|\{fb\})/).map((part, i) =>
+          part === '{ig}' || part === '{fb}' ? (
+            <a key={i} href={part === '{ig}' ? SOCIAL.instagram : SOCIAL.facebook} target="_blank" rel="noopener noreferrer"
+              onClick={() => track('social_click', { lang, to: part === '{ig}' ? 'instagram' : 'facebook' })}>
+              {part === '{ig}' ? 'Instagram' : 'Facebook'}
+            </a>
+          ) : part,
+        )}
+      </p>
 
       <div className="reviews-grid reveal reveal-delay-2">
         {REVIEW_SOURCES.map(src => (

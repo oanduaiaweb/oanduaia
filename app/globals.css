@@ -5312,3 +5312,6 @@ iframe.trails-map { display: block; width: 100%; border: 1px solid rgba(200,212,
 
 /* No full-width divider lines between the house bands or above "write a review". */
 .house-band, .house-band--reversed, .reviews-write { border-top: none; }
+
+.reviews-sub a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.reviews-sub a:hover { opacity: 0.75; }
