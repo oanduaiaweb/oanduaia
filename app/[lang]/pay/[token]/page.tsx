@@ -35,6 +35,7 @@ export default async function PayPage({
               name: payment.name,
               reference: payment.reference,
               amount: formatEur(payment.amount),
+              cents: payment.amount,
               status: payment.status,
               method: payment.method ?? 'card',
             }

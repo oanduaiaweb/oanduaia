@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { T, type Lang } from '@/lib/translations'
+import PurchaseEvent from '@/components/PurchaseEvent'
 
-type View = { name: string; reference: string; amount: string; status: string; method?: string }
+type View = { name: string; reference: string; amount: string; cents: number; status: string; method?: string }
 
 export default function PayClient({
   lang, token, payment,
@@ -38,6 +39,7 @@ export default function PayClient({
         <div className="pay-card">
           <p className="pay-eyebrow">{t.eyebrow[lang]}</p>
           <h1 className="pay-h1">{t.paidH[lang]}</h1>
+          <PurchaseEvent id={token} euros={payment.cents / 100} kind="booking" />
           <p className="pay-note">{t.paidBody[lang]}</p>
           <dl className="pay-rows">
             <div><dt>{t.what[lang]}</dt><dd>{payment.reference}</dd></div>

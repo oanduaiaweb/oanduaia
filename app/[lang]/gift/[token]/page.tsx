@@ -4,6 +4,7 @@ import { LOCALES } from '@/lib/i18n'
 import type { Lang } from '@/lib/translations'
 import { G } from '@/lib/gift'
 import PrintButton from './PrintButton'
+import PurchaseEvent from '@/components/PurchaseEvent'
 
 /** One buyer's voucher: never indexed, rendered fresh so a just-confirmed payment shows. */
 export const dynamic = 'force-dynamic'
@@ -24,7 +25,7 @@ export default async function VoucherPage({ params }: { params: Promise<{ lang: 
     return <main className="voucher-page"><p className="voucher-wait">{G.error[lang]}</p></main>
   }
   if (p.status !== 'paid' || !p.voucher.validUntil) {
-    return <main className="voucher-page"><p className="voucher-wait">{G.pending[lang]}</p></main>
+    return <main className="voucher-page"><PurchaseEvent id={p.id} euros={p.amount / 100} kind="gift" /><p className="voucher-wait">{G.pending[lang]}</p></main>
   }
 
   return (
@@ -43,6 +44,7 @@ export default async function VoucherPage({ params }: { params: Promise<{ lang: 
         <p className="voucher-how">{G.howTo[lang]}</p>
         <p className="voucher-site">www.oanduaia.ee · Oandu, Lahemaa</p>
       </article>
+      <PurchaseEvent id={p.id} euros={p.amount / 100} kind="gift" />
       <PrintButton label={G.print[lang]} />
     </main>
   )
