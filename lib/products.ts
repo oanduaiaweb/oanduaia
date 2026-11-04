@@ -7,8 +7,8 @@ type L = Record<Lang, string>
  * "we not gonna publish it now") — the pages are noindex and linked from nowhere until he says.
  *
  * Every claim here comes from Mikk: fully handmade, an animal hide on the seat as an option,
- * 1 490 € with sheepskin +190 € and a special fur +290 €. The wood species, the maker and the
- * lead time are NOT stated anywhere until he gives them.
+ * 1 490 € with sheepskin +190 € and a special fur +290 €; oak and ash, made by the peremees.
+ * No lead time is stated until he gives one, and no "come and try it" (Mikk: no need).
  */
 export type ProductOption = { id: string; price: number; name: L }
 export type Product = {
@@ -62,19 +62,19 @@ export const PRODUCTS: Product[] = [
         lv: 'Roku balsti, kājas un šūpuļi veidoti ar roku, tāpēc krēsls šūpojas maigi un stāv stabili. Pēc vēlēšanās uz sēdekļa tiek likta dzīvnieka āda – aitādа vai īpaša kažokāda.',
       },
       {
-        et: 'Tool valmib tellimuse peale. Kirjuta meile – räägime läbi puidu, naha ja valmimise aja. Tooli saab tulla ka Oanduaiasse proovima.',
-        en: 'Each chair is made to order. Write to us and we will talk through the wood, the hide and when it can be ready. You are welcome to come and try one at Oanduaia.',
-        ru: 'Кресло изготавливается на заказ. Напишите нам – обсудим дерево, шкуру и сроки. Кресло можно приехать и опробовать в Oanduaia.',
-        de: 'Jeder Stuhl wird auf Bestellung gefertigt. Schreiben Sie uns – wir besprechen Holz, Fell und Fertigstellung. Gern können Sie ihn in Oanduaia ausprobieren.',
-        es: 'Cada mecedora se hace por encargo. Escríbanos y hablaremos de la madera, la piel y el plazo. Puede venir a probarla a Oanduaia.',
-        sv: 'Varje stol tillverkas på beställning. Skriv till oss så pratar vi om träet, skinnet och när den kan vara klar. Du är välkommen att prova den på Oanduaia.',
-        fi: 'Jokainen tuoli tehdään tilauksesta. Kirjoita meille, niin sovitaan puusta, taljasta ja valmistumisajasta. Tuolia voi tulla kokeilemaan Oanduaiaan.',
-        lv: 'Katrs krēsls tiek izgatavots pēc pasūtījuma. Rakstiet mums – pārrunāsim koku, ādu un izgatavošanas laiku. Krēslu var atbraukt izmēģināt uz Oanduaia.',
+        et: 'Iga tooli teeb käsitsi Oanduaia peremees. Tool valmib tellimuse peale – kirjuta meile ja räägime läbi puidu, naha ja valmimise aja.',
+        en: 'Every chair is made by hand by the master of the house at Oanduaia, to order. Write to us and we will talk through the wood, the hide and when it can be ready.',
+        ru: 'Каждое кресло делает вручную хозяин Oanduaia, на заказ. Напишите нам – обсудим дерево, шкуру и сроки.',
+        de: 'Jeden Stuhl fertigt der Hausherr von Oanduaia von Hand, auf Bestellung. Schreiben Sie uns – wir besprechen Holz, Fell und Fertigstellung.',
+        es: 'Cada mecedora la hace a mano, por encargo, el dueño de casa de Oanduaia. Escríbanos y hablaremos de la madera, la piel y el plazo.',
+        sv: 'Varje stol görs för hand av husbonden på Oanduaia, på beställning. Skriv till oss så pratar vi om träet, skinnet och när den kan vara klar.',
+        fi: 'Jokaisen tuolin tekee käsin Oanduaian isäntä, tilauksesta. Kirjoita meille, niin sovitaan puusta, taljasta ja valmistumisajasta.',
+        lv: 'Katru krēslu ar rokām pēc pasūtījuma darina Oanduaia saimnieks. Rakstiet mums – pārrunāsim koku, ādu un izgatavošanas laiku.',
       },
     ],
     facts: [
       { et: 'Täielikult käsitöö', en: 'Entirely handmade', ru: 'Полностью ручная работа', de: 'Vollständig handgefertigt', es: 'Íntegramente a mano', sv: 'Helt handgjord', fi: 'Kokonaan käsityötä', lv: 'Pilnībā roku darbs' },
-      { et: 'Täispuit, naturaalse servaga selg', en: 'Solid wood, live-edge back', ru: 'Массив, спинка с природным краем', de: 'Massivholz, Lehne mit Naturkante', es: 'Madera maciza, respaldo con borde natural', sv: 'Massivt trä, rygg med naturkant', fi: 'Täyspuuta, luonnonreunainen selkänoja', lv: 'Masīvkoks, atzveltne ar dabisko malu' },
+      { et: 'Tamm ja saar, naturaalse servaga selg', en: 'Solid oak and ash, live-edge back', ru: 'Массив дуба и ясеня, спинка с природным краем', de: 'Massive Eiche und Esche, Lehne mit Naturkante', es: 'Roble y fresno macizos, respaldo con borde natural', sv: 'Massiv ek och ask, rygg med naturkant', fi: 'Täyttä tammea ja saarnia, luonnonreunainen selkänoja', lv: 'Masīvs ozols un osis, atzveltne ar dabisko malu' },
       { et: 'Valmib tellimuse peale', en: 'Made to order', ru: 'Изготовление на заказ', de: 'Auf Bestellung gefertigt', es: 'Por encargo', sv: 'Tillverkas på beställning', fi: 'Tehdään tilauksesta', lv: 'Izgatavo pēc pasūtījuma' },
       { et: 'Kättesaamine Oanduaias tasuta, transport Eestis kokkuleppel', en: 'Free pick-up at Oanduaia, delivery in Estonia by arrangement', ru: 'Самовывоз из Oanduaia бесплатно, доставка по Эстонии по договорённости', de: 'Abholung in Oanduaia kostenlos, Lieferung in Estland nach Absprache', es: 'Recogida gratuita en Oanduaia, envío en Estonia a convenir', sv: 'Gratis upphämtning på Oanduaia, leverans i Estland enligt överenskommelse', fi: 'Nouto Oanduaiasta maksutta, toimitus Viroon sopimuksen mukaan', lv: 'Saņemšana Oanduaia bez maksas, piegāde Igaunijā pēc vienošanās' },
     ],
