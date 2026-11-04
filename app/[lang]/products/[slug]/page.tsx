@@ -3,12 +3,11 @@ import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ProductClient from '@/components/ProductClient'
-import { LOCALES, isLocale } from '@/lib/i18n'
-import { PRODUCTS, productBySlug } from '@/lib/products'
+import { isLocale } from '@/lib/i18n'
+import { productBySlug } from '@/lib/products'
+import { liveProducts } from '@/lib/productStore'
 
-export function generateStaticParams() {
-  return LOCALES.flatMap(lang => PRODUCTS.map(p => ({ lang, slug: p.slug })))
-}
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }): Promise<Metadata> {
   const { lang, slug } = await params
@@ -24,12 +23,14 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function ProductPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const { lang, slug } = await params
-  if (!isLocale(lang) || !productBySlug(slug)) notFound()
+  if (!isLocale(lang)) notFound()
+  const product = (await liveProducts()).find(p => p.slug === slug && !p.hidden)
+  if (!product) notFound()
   return (
     <>
       <Nav />
       <main id="main">
-        <ProductClient slug={slug} />
+        <ProductClient product={product} />
       </main>
       <Footer />
     </>

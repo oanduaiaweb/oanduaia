@@ -5403,3 +5403,9 @@ body .avail-panel .btn-dark.avail-cta { font-family: var(--font-cormorant), Geor
 .adm-products { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.9rem; }
 .adm-product { display: flex; gap: 1rem; align-items: center; }
 .adm-product-img { position: relative; width: 72px; height: 96px; flex: none; border-radius: 4px; overflow: hidden; }
+.adm-product { align-items: flex-start; }
+.adm-product.is-hidden .adm-product-img { opacity: 0.4; }
+.adm-product-fields { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: flex-end; margin: 0.6rem 0; }
+.adm-product-fields label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.8rem; }
+.adm-product-fields .adm-input { width: 6.5rem; }
+.adm-product-fields .adm-product-check { flex-direction: row; align-items: center; gap: 0.4rem; }

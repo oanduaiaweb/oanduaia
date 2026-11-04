@@ -3,12 +3,12 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import { LOCALES, isLocale } from '@/lib/i18n'
-import { PRODUCTS, PT, eur } from '@/lib/products'
+import { isLocale } from '@/lib/i18n'
+import { PT, eur } from '@/lib/products'
+import { liveProducts } from '@/lib/productStore'
 
-export function generateStaticParams() {
-  return LOCALES.map(lang => ({ lang }))
-}
+// Prices and visibility are edited in /admin, so every request reads them fresh.
+export const dynamic = 'force-dynamic'
 
 // Not launched: kept out of search until Mikk says go (also absent from the sitemap and the nav).
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function ProductsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
   if (!isLocale(lang)) notFound()
+  const products = (await liveProducts()).filter(p => !p.hidden)
   return (
     <>
       <Nav />
@@ -30,7 +31,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ lang:
           <p className="product-tagline">{PT.lead[lang]}</p>
         </header>
         <ul className="products-grid">
-          {PRODUCTS.map(p => (
+          {products.map(p => (
             <li key={p.slug}>
               <a className="products-card" href={`/${lang}/products/${p.slug}`}>
                 <span className="products-card-img">

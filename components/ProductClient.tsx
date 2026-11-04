@@ -5,12 +5,11 @@ import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { track } from '@/lib/analytics'
 import Lightbox from '@/components/Lightbox'
-import { PT, eur, productBySlug } from '@/lib/products'
+import { PT, eur, type Product } from '@/lib/products'
 
 /** One product: photos that open big, the hide choice with a running total, and an order enquiry. */
-export default function ProductClient({ slug }: { slug: string }) {
+export default function ProductClient({ product: p }: { product: Product }) {
   const { lang } = useLanguage()
-  const p = productBySlug(slug)!
   const [open, setOpen] = useState<number | null>(null)
   const [opt, setOpt] = useState(p.options[0].id)
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', company: '' })
