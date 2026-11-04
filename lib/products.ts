@@ -155,8 +155,8 @@ export const PRODUCTS: Product[] = [
     ],
   },
   {
-    // Mikk, 3 Nov 2026: the Oanduaia logo (house with crossed ridge poles) burned into a branch slice
-    // with the bark left on. Photo is a MOCKUP, so it starts hidden. 12 € is Claude's proposal.
+    // Mikk, 3 Nov 2026: the Oanduaia logo C (spruce + sauna in a ring) burned into a branch slice
+    // with a live edge and only a thin line of bark. Photo is a MOCKUP, so it starts hidden. 12 € is Claude's proposal.
     slug: 'magnet',
     price: 12,
     hidden: true,
@@ -194,7 +194,7 @@ export const PRODUCTS: Product[] = [
       { id: 'std', price: 0, name: { et: 'Magnet', en: 'Magnet', ru: 'Магнит', de: 'Magnet', es: 'Imán', sv: 'Magnet', fi: 'Magneetti', lv: 'Magnēts' } },
     ],
     photos: [
-      { src: '/tooted/magnet/1.jpg', alt: { et: 'Oanduaia magnet: oksaketas koorega, maja-märk peale põletatud', en: 'Oanduaia magnet: a branch slice with bark, the house mark burned in', ru: 'Магнит Oanduaia: срез ветки с корой и выжженным домиком', de: 'Oanduaia-Magnet: Astscheibe mit Rinde und eingebranntem Haus-Zeichen', es: 'Imán de Oanduaia: rodaja de rama con corteza y la casa grabada', sv: 'Oanduaia-magnet: grenskiva med bark och inbränt husmärke', fi: 'Oanduaia-magneetti: kaarnallinen oksakiekko, talomerkki poltettuna', lv: 'Oanduaia magnēts: zara ripa ar mizu un iededzinātu mājas zīmi' } },
+      { src: '/tooted/magnet/1.jpg', alt: { et: 'Oanduaia magnet: oksaketas koorega, kuuse ja sauna märk peale põletatud', en: 'Oanduaia magnet: a branch slice with bark, the spruce-and-sauna mark burned in', ru: 'Магнит Oanduaia: срез ветки с корой и выжженной елью и сауной', de: 'Oanduaia-Magnet: Astscheibe mit Rinde und eingebranntem Fichte-und-Sauna-Zeichen', es: 'Imán de Oanduaia: rodaja de rama con corteza y el abeto y la sauna grabados', sv: 'Oanduaia-magnet: grenskiva med bark och inbränt gran- och bastumärke', fi: 'Oanduaia-magneetti: kaarnallinen oksakiekko, kuusi- ja saunamerkki poltettuna', lv: 'Oanduaia magnēts: zara ripa ar mizu un iededzinātu egles un pirts zīmi' } },
     ],
   },
 ]
