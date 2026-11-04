@@ -21,6 +21,8 @@ export type Product = {
   options: ProductOption[]
   /** Heading over the option buttons; shown only when there is a real choice. */
   optionLabel?: L
+  /** Starts hidden until Mikk ticks "Show on the site" in /admin. */
+  hidden?: boolean
   photos: { src: string; alt: L }[]
 }
 
@@ -150,6 +152,49 @@ export const PRODUCTS: Product[] = [
       { src: '/tooted/vorkkiik/4.jpg', alt: { et: 'Lähivaade: ümarpuust pulgad nööri peal', en: 'Close view: round rungs threaded on the rope', ru: 'Крупный план: круглые перекладины на верёвке', de: 'Nahaufnahme: Rundholzsprossen auf dem Seil', es: 'Detalle: travesaños redondos en la cuerda', sv: 'Närbild: runda pinnar uppträdda på repet', fi: 'Lähikuva: pyöreät puolat köydessä', lv: 'Tuvplāns: apaļi šķērskociņi uz virves' } },
       { src: '/tooted/vorkkiik/5.jpg', alt: { et: 'Võrkkiik kasutuses metsa all', en: 'The hammock in use under the forest', ru: 'Гамак под лесным пологом', de: 'Die Hängematte im Gebrauch unter den Bäumen', es: 'La hamaca en uso bajo los árboles', sv: 'Hängmattan i bruk under träden', fi: 'Riippumatto käytössä metsän alla', lv: 'Šūpuļtīkls lietošanā meža ēnā' } },
       { src: '/tooted/vorkkiik/6.jpg', alt: { et: 'Võrkkiik Oanduaia majade ees', en: 'The hammock in front of the Oanduaia houses', ru: 'Гамак перед домами Oanduaia', de: 'Die Hängematte vor den Häusern von Oanduaia', es: 'La hamaca frente a las casas de Oanduaia', sv: 'Hängmattan framför husen i Oanduaia', fi: 'Riippumatto Oanduaian talojen edessä', lv: 'Šūpuļtīkls pie Oanduaia mājām' } },
+    ],
+  },
+  {
+    // Mikk, 3 Nov 2026: the Oanduaia logo (house with crossed ridge poles) burned into a branch slice
+    // with the bark left on. Photo is a MOCKUP, so it starts hidden. 12 € is Claude's proposal.
+    slug: 'magnet',
+    price: 12,
+    hidden: true,
+    name: {
+      et: 'Oanduaia magnet', en: 'Oanduaia magnet', ru: 'Магнит Oanduaia', de: 'Oanduaia-Magnet',
+      es: 'Imán de Oanduaia', sv: 'Oanduaia-magnet', fi: 'Oanduaia-magneetti', lv: 'Oanduaia magnēts',
+    },
+    tagline: {
+      et: 'Oksaketas koos koorega, Oanduaia märk peale põletatud – külmkapi uksele.',
+      en: 'A slice of a branch with its bark left on and the Oanduaia mark burned in – for the fridge door.',
+      ru: 'Срез ветки с корой и выжженным знаком Oanduaia – на дверцу холодильника.',
+      de: 'Eine Astscheibe mit Rinde und eingebranntem Oanduaia-Zeichen – für die Kühlschranktür.',
+      es: 'Una rodaja de rama con su corteza y la marca de Oanduaia grabada a fuego, para la nevera.',
+      sv: 'En skiva av en gren med barken kvar och Oanduaias märke inbränt – till kylskåpsdörren.',
+      fi: 'Oksasta sahattu kiekko kaarnoineen, Oanduaian merkki poltettuna – jääkaapin oveen.',
+      lv: 'Zara ripa ar mizu un iededzinātu Oanduaia zīmi – ledusskapja durvīm.',
+    },
+    body: [
+      {
+        et: 'Iga magnet on lõigatud oksast käsitsi, nii et serv ja aastarõngad on igal ühel isesugused. Magneti teeb Oanduaia peremees.',
+        en: 'Each magnet is cut by hand from a branch, so the edge and the growth rings are different on every one. Made by the master of the house at Oanduaia.',
+        ru: 'Каждый магнит вырезан из ветки вручную, поэтому край и годичные кольца у всех разные. Делает хозяин Oanduaia.',
+        de: 'Jeder Magnet wird von Hand aus einem Ast geschnitten, darum sind Rand und Jahresringe bei jedem anders. Gefertigt vom Hausherrn von Oanduaia.',
+        es: 'Cada imán se corta a mano de una rama, así que el borde y los anillos son distintos en cada uno. Lo hace el dueño de casa de Oanduaia.',
+        sv: 'Varje magnet sågas för hand ur en gren, så kanten och årsringarna är olika på varje. Gjord av husbonden på Oanduaia.',
+        fi: 'Jokainen magneetti sahataan käsin oksasta, joten reuna ja vuosirenkaat ovat jokaisessa erilaiset. Tekijä on Oanduaian isäntä.',
+        lv: 'Katrs magnēts ar rokām izzāģēts no zara, tāpēc mala un gadskārtas katram ir citādas. Darina Oanduaia saimnieks.',
+      },
+    ],
+    facts: [
+      { et: 'Käsitöö', en: 'Handmade', ru: 'Ручная работа', de: 'Handgefertigt', es: 'Hecho a mano', sv: 'Handgjord', fi: 'Käsityötä', lv: 'Roku darbs' },
+      { et: 'Oksaketas koorega, põletatud märk', en: 'Branch slice with bark, burned mark', ru: 'Срез ветки с корой, выжженный знак', de: 'Astscheibe mit Rinde, eingebranntes Zeichen', es: 'Rodaja de rama con corteza, marca a fuego', sv: 'Grenskiva med bark, inbränt märke', fi: 'Oksakiekko kaarnoineen, poltettu merkki', lv: 'Zara ripa ar mizu, iededzināta zīme' },
+    ],
+    options: [
+      { id: 'std', price: 0, name: { et: 'Magnet', en: 'Magnet', ru: 'Магнит', de: 'Magnet', es: 'Imán', sv: 'Magnet', fi: 'Magneetti', lv: 'Magnēts' } },
+    ],
+    photos: [
+      { src: '/tooted/magnet/1.jpg', alt: { et: 'Oanduaia magnet: oksaketas koorega, maja-märk peale põletatud', en: 'Oanduaia magnet: a branch slice with bark, the house mark burned in', ru: 'Магнит Oanduaia: срез ветки с корой и выжженным домиком', de: 'Oanduaia-Magnet: Astscheibe mit Rinde und eingebranntem Haus-Zeichen', es: 'Imán de Oanduaia: rodaja de rama con corteza y la casa grabada', sv: 'Oanduaia-magnet: grenskiva med bark och inbränt husmärke', fi: 'Oanduaia-magneetti: kaarnallinen oksakiekko, talomerkki poltettuna', lv: 'Oanduaia magnēts: zara ripa ar mizu un iededzinātu mājas zīmi' } },
     ],
   },
 ]

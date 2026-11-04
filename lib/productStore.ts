@@ -44,7 +44,7 @@ export function applySettings(s: ProductSettings): LiveProduct[] {
       ...p,
       price: set.price ?? p.price,
       options: p.options.map(o => ({ ...o, price: set.options?.[o.id] ?? o.price })),
-      hidden: !!set.hidden,
+      hidden: set.hidden ?? !!p.hidden,
     }
   })
 }
