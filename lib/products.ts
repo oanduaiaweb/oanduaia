@@ -156,9 +156,9 @@ export const PRODUCTS: Product[] = [
   },
   {
     // Mikk, 3 Nov 2026: the Oanduaia logo C (spruce + sauna in a ring) burned into a branch slice
-    // with a live edge and only a thin line of bark. Photo is a MOCKUP (AI wood + real logo). Shown on /products at Mikk's word. 12 € is Claude's proposal.
+    // with a live edge and only a thin line of bark. Photo is a MOCKUP (AI wood + real logo). Shown on /products at Mikk's word. 10 € set by Mikk.
     slug: 'magnet',
-    price: 12,
+    price: 10,
     name: {
       et: 'Oanduaia magnet', en: 'Oanduaia magnet', ru: 'Магнит Oanduaia', de: 'Oanduaia-Magnet',
       es: 'Imán de Oanduaia', sv: 'Oanduaia-magnet', fi: 'Oanduaia-magneetti', lv: 'Oanduaia magnēts',
