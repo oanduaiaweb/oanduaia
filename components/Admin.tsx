@@ -271,6 +271,18 @@ export default function Admin() {
     loadEnquiries()
   }
 
+  const holdFromCalendar = async (h: string, f: string, t: string, g: string, n: string): Promise<string | null> => {
+    const res = await fetch('/api/admin/blocks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ house: h, from: f, to: t, guest: g, note: n }),
+    })
+    const body = await res.json().catch(() => ({}))
+    if (!res.ok) return body.error ?? 'Could not save.'
+    await load()
+    return null
+  }
+
   const remove = async (id: string, label: string) => {
     if (!confirm(`Release ${label}?`)) return
     setBusy(true)
@@ -505,7 +517,8 @@ export default function Admin() {
         )}
       </section>
 
-      <AdminCalendar blocks={data?.blocks ?? {}} enquiries={allEnquiries} payments={payments ?? []} onOpen={openEnquiry} />
+      <AdminCalendar blocks={data?.blocks ?? {}} enquiries={allEnquiries} payments={payments ?? []} onOpen={openEnquiry}
+        onHold={holdFromCalendar} onRelease={remove} />
 
       <AdminStats />
 

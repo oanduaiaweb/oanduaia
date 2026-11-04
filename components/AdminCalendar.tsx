@@ -15,10 +15,13 @@ type Props = {
   enquiries: Enquiry[]
   payments: Payment[]
   onOpen: (id: string) => void
+  /** Holds nights in our own calendar; resolves to an error message, or null when it worked. */
+  onHold: (house: string, from: string, to: string, guest: string, note: string) => Promise<string | null>
+  onRelease: (id: string, label: string) => void
 }
 
 /** One stay in one house: held by us (with a name), or a range the Booking.com feed has taken. */
-type Stay = { house: string; from: string; to: string; guest?: string; note?: string; channel: boolean; closed?: boolean }
+type Stay = { id?: string; house: string; from: string; to: string; guest?: string; note?: string; channel: boolean; closed?: boolean }
 
 const SHORT: Record<string, string> = { saunamaja: 'S', tiigimaja: 'T', metsamaja: 'M' }
 const houseName = (slug: string) => T.feature.houses.find(h => h.slug === slug)?.name.et ?? slug
@@ -43,11 +46,15 @@ function rangesOf(nights: string[]): { from: string; to: string }[] {
  * The month at a glance: which house is taken on which night, whose arrival falls on which day,
  * and — one click on a day — everything we know about the people involved.
  */
-export default function AdminCalendar({ blocks, enquiries, payments, onOpen }: Props) {
+export default function AdminCalendar({ blocks, enquiries, payments, onOpen, onHold, onRelease }: Props) {
   const today = todayTallinn()
   const [month, setMonth] = useState(today.slice(0, 7))
   const [picked, setPicked] = useState<string | null>(today)
   const [feedNights, setFeedNights] = useState<Record<string, string[]>>({})
+  // The close/book form under a day: one house, or 'all' for every house free that night.
+  const [form, setForm] = useState<{ house: string; nights: string; guest: string; note: string } | null>(null)
+  const [formBusy, setFormBusy] = useState(false)
+  const [formError, setFormError] = useState('')
 
   useEffect(() => {
     fetch('/api/availability', { cache: 'no-store' })
@@ -63,7 +70,7 @@ export default function AdminCalendar({ blocks, enquiries, payments, onOpen }: P
     const out: Stay[] = []
     for (const house of HOUSE_SLUGS) {
       const own = blocks[house] ?? []
-      for (const b of own) out.push({ house, from: b.from, to: b.to, guest: b.guest, note: b.note, channel: false })
+      for (const b of own) out.push({ id: b.id, house, from: b.from, to: b.to, guest: b.guest, note: b.note, channel: false })
       const held = new Set(own.flatMap(b => Array.from({ length: nightsBetween(b.from, b.to) }, (_, i) => addDays(b.from, i))))
       const rest = (feedNights[house] ?? []).filter(n => !held.has(n))
       for (const r of rangesOf(rest.filter(n => !isClosed(house, n)))) out.push({ house, ...r, channel: true })
@@ -100,6 +107,48 @@ export default function AdminCalendar({ blocks, enquiries, payments, onOpen }: P
     const enq = s.guest ? enquiries.find(e => sameGuest(s.guest, e.name)) : undefined
     return { pay, enq, email: enq?.email || pay?.email, phone: enq?.phone }
   }
+
+  const freeOn = (h: string, d: string) => !nightOf(h, d)
+
+  const openForm = (house: string) => { setForm({ house, nights: '1', guest: '', note: '' }); setFormError('') }
+
+  const saveForm = async () => {
+    if (!form || !picked) return
+    const nights = Number(form.nights)
+    if (!Number.isInteger(nights) || nights < 1 || nights > 60) { setFormError('Nights must be 1–60.'); return }
+    const to = addDays(picked, nights)
+    const houses = form.house === 'all' ? HOUSE_SLUGS.filter(h => freeOn(h, picked)) : [form.house]
+    setFormBusy(true); setFormError('')
+    const errors: string[] = []
+    for (const h of houses) {
+      const err = await onHold(h, picked, to, form.guest.trim(), form.note.trim())
+      if (err) errors.push(`${houseName(h)}: ${err}`)
+    }
+    setFormBusy(false)
+    if (errors.length) setFormError(errors.join(' · '))
+    else setForm(null)
+  }
+
+  const holdForm = (house: string) => form?.house === house && picked && (
+    <div className="adm-cal-form">
+      <label>Nights
+        <input className="adm-input" inputMode="numeric" value={form.nights}
+          onChange={e => setForm({ ...form, nights: e.target.value.replace(/\D/g, '') })} />
+      </label>
+      <label>Name (optional)
+        <input className="adm-input" value={form.guest} onChange={e => setForm({ ...form, guest: e.target.value })} />
+      </label>
+      <label>Note (optional)
+        <input className="adm-input" value={form.note} onChange={e => setForm({ ...form, note: e.target.value })} />
+      </label>
+      <span className="adm-muted">
+        {dmy(picked)} → {Number(form.nights) > 0 ? dmy(addDays(picked, Number(form.nights))) : '…'}
+      </span>
+      <button type="button" className="adm-btn" disabled={formBusy} onClick={saveForm}>{formBusy ? 'Saving…' : 'Close these nights'}</button>
+      <button type="button" className="adm-link" onClick={() => setForm(null)}>Cancel</button>
+      {formError && <p className="adm-error">{formError}</p>}
+    </div>
+  )
 
   const dayStays = picked ? stays.filter(s => s.from <= picked && picked <= s.to) : []
   const dayRequests = picked ? requests.filter(({ s }) => s.checkIn! <= picked && picked < s.checkOut!) : []
@@ -153,12 +202,24 @@ export default function AdminCalendar({ blocks, enquiries, payments, onOpen }: P
           <h3 className="adm-stat-h3">
             {new Date(`${picked}T12:00:00Z`).toLocaleDateString('et-EE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}
           </h3>
+          {picked >= today && HOUSE_SLUGS.filter(h => freeOn(h, picked)).length > 1 && form?.house !== 'all' && (
+            <button type="button" className="adm-chip adm-cal-all" onClick={() => openForm('all')}>
+              Close all free houses from this date
+            </button>
+          )}
+          {holdForm('all')}
           {HOUSE_SLUGS.map(h => {
             const here = dayStays.filter(s => s.house === h)
+            const canHold = picked >= today && freeOn(h, picked)
             return (
               <div className="adm-cal-house" key={h}>
                 <b>{houseName(h)}</b>
-                {here.length === 0 ? <span className="adm-muted">free</span> : here.map(s => {
+                {here.length === 0 && <span className="adm-muted">free</span>}
+                {canHold && form?.house !== h && (
+                  <button type="button" className="adm-link" onClick={() => openForm(h)}>Close / book from this date</button>
+                )}
+                {holdForm(h)}
+                {here.map(s => {
                   const c = s.channel ? null : contactFor(s)
                   const what = s.from === picked ? 'arrives' : s.to === picked ? 'leaves' : 'staying'
                   return (
@@ -168,6 +229,12 @@ export default function AdminCalendar({ blocks, enquiries, payments, onOpen }: P
                         <em> · {what} · {dmy(s.from)} → {dmy(s.to)} · {nightsBetween(s.from, s.to)} n</em>
                       </span>
                       {s.note && <span className="adm-muted">{s.note}</span>}
+                      {s.id && (
+                        <button type="button" className="adm-link adm-link--danger"
+                          onClick={() => onRelease(s.id!, `${houseName(s.house)} ${dmy(s.from)} → ${dmy(s.to)}`)}>
+                          Release these nights
+                        </button>
+                      )}
                       {s.channel && <span className="adm-muted">Name and contact are in the Booking.com extranet.</span>}
                       {c && (
                         <span className="adm-cal-contact">
