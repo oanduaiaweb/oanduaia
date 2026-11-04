@@ -19,6 +19,8 @@ export type Product = {
   body: L[]
   facts: L[]
   options: ProductOption[]
+  /** Heading over the option buttons; shown only when there is a real choice. */
+  optionLabel?: L
   photos: { src: string; alt: L }[]
 }
 
@@ -78,6 +80,7 @@ export const PRODUCTS: Product[] = [
       { et: 'Valmib tellimuse peale', en: 'Made to order', ru: 'Изготовление на заказ', de: 'Auf Bestellung gefertigt', es: 'Por encargo', sv: 'Tillverkas på beställning', fi: 'Tehdään tilauksesta', lv: 'Izgatavo pēc pasūtījuma' },
       { et: 'Kättesaamine Oanduaias tasuta, transport Eestis kokkuleppel', en: 'Free pick-up at Oanduaia, delivery in Estonia by arrangement', ru: 'Самовывоз из Oanduaia бесплатно, доставка по Эстонии по договорённости', de: 'Abholung in Oanduaia kostenlos, Lieferung in Estland nach Absprache', es: 'Recogida gratuita en Oanduaia, envío en Estonia a convenir', sv: 'Gratis upphämtning på Oanduaia, leverans i Estland enligt överenskommelse', fi: 'Nouto Oanduaiasta maksutta, toimitus Viroon sopimuksen mukaan', lv: 'Saņemšana Oanduaia bez maksas, piegāde Igaunijā pēc vienošanās' },
     ],
+    optionLabel: { et: 'Nahk istmele', en: 'Hide on the seat', ru: 'Шкура на сиденье', de: 'Fell auf dem Sitz', es: 'Piel en el asiento', sv: 'Skinn på sitsen', fi: 'Talja istuimelle', lv: 'Āda uz sēdekļa' },
     options: [
       { id: 'none', price: 0, name: { et: 'Ilma nahata', en: 'No hide', ru: 'Без шкуры', de: 'Ohne Fell', es: 'Sin piel', sv: 'Utan skinn', fi: 'Ilman taljaa', lv: 'Bez ādas' } },
       { id: 'sheepskin', price: 190, name: { et: 'Lambanahk', en: 'Sheepskin', ru: 'Овчина', de: 'Schaffell', es: 'Piel de oveja', sv: 'Fårskinn', fi: 'Lampaantalja', lv: 'Aitāda' } },
@@ -89,6 +92,63 @@ export const PRODUCTS: Product[] = [
       { src: '/tooted/kiiktool/3.jpg', alt: { et: 'Kiiktool eestvaates, naturaalse servaga selg', en: 'The rocking chair from the front, live-edge back', ru: 'Кресло-качалка спереди, спинка с природным краем', de: 'Der Schaukelstuhl von vorn, Lehne mit Naturkante', es: 'La mecedora de frente, respaldo con borde natural', sv: 'Gungstolen framifrån, rygg med naturkant', fi: 'Keinutuoli edestä, luonnonreunainen selkänoja', lv: 'Šūpuļkrēsls no priekšpuses, atzveltne ar dabisko malu' } },
       { src: '/tooted/kiiktool/4.jpg', alt: { et: 'Kiiktooli istme ja selja lõhe lähivaade', en: 'Close view of the seat and the split in the back', ru: 'Сиденье и трещина в спинке крупным планом', de: 'Nahaufnahme von Sitz und Riss in der Lehne', es: 'Vista cercana del asiento y la grieta del respaldo', sv: 'Närbild av sitsen och sprickan i ryggen', fi: 'Lähikuva istuimesta ja selkänojan halkeamasta', lv: 'Sēdekļa un atzveltnes plaisas tuvplāns' } },
       { src: '/tooted/kiiktool/5.jpg', alt: { et: 'Kiiktool tagantvaates, seljatugi ja käetoed', en: 'The rocking chair from behind, back support and arms', ru: 'Кресло-качалка сзади, опора спинки и подлокотники', de: 'Der Schaukelstuhl von hinten, Rückenstütze und Armlehnen', es: 'La mecedora por detrás, soporte del respaldo y brazos', sv: 'Gungstolen bakifrån, ryggstöd och armstöd', fi: 'Keinutuoli takaa, selkätuki ja käsinojat', lv: 'Šūpuļkrēsls no aizmugures, atzveltnes balsts un roku balsti' } },
+    ],
+  },
+  {
+    // Mikk, 3 Nov 2026: Toomas's photos from May. Price 690 € is Claude's proposal — confirm before launch.
+    // Maker, wood and what comes with it (ropes, tree straps) are not stated until Mikk gives them.
+    slug: 'vorkkiik',
+    price: 690,
+    name: {
+      et: 'Puidust võrkkiik', en: 'Log hammock', ru: 'Гамак из брёвнышек', de: 'Hängematte aus Rundhölzern',
+      es: 'Hamaca de troncos', sv: 'Hängmatta av rundvirke', fi: 'Puinen riippumatto', lv: 'Koka šūpuļtīkls',
+    },
+    tagline: {
+      et: 'Käsitsi tehtud võrkkiik ümarpuust – kahe puu vahele, metsa alla.',
+      en: 'A hammock made by hand from small round logs – for between two trees, under the forest.',
+      ru: 'Гамак ручной работы из круглых брёвнышек – между двумя деревьями, под лесным пологом.',
+      de: 'Eine handgemachte Hängematte aus Rundhölzern – zwischen zwei Bäume, unter das Blätterdach.',
+      es: 'Una hamaca hecha a mano con pequeños troncos redondos, para colgar entre dos árboles.',
+      sv: 'En handgjord hängmatta av runda småstockar – mellan två träd, under skogens tak.',
+      fi: 'Käsin tehty riippumatto pyöreistä puista – kahden puun väliin, metsän katveeseen.',
+      lv: 'Ar rokām darināts šūpuļtīkls no apaļkoka – starp diviem kokiem, meža ēnā.',
+    },
+    body: [
+      {
+        et: 'Kümned ümarpuust pulgad on lõigatud, puuritud ja nööri peale lükitud ükshaaval. Lamades vajub kiik hälli kujuliseks ja hoiab sind keskel.',
+        en: 'Dozens of round wooden rungs are cut, drilled and threaded onto the rope one by one. When you lie down, the hammock settles into a cradle and holds you in the middle.',
+        ru: 'Десятки круглых перекладин вырезаны, просверлены и нанизаны на верёвку одна за другой. Когда ложишься, гамак принимает форму колыбели и держит в середине.',
+        de: 'Dutzende runde Holzsprossen werden einzeln zugeschnitten, gebohrt und auf das Seil gefädelt. Legt man sich hinein, formt sich die Hängematte zur Wiege und hält einen in der Mitte.',
+        es: 'Decenas de travesaños redondos se cortan, se taladran y se ensartan en la cuerda uno a uno. Al tumbarse, la hamaca forma una cuna y le sostiene en el centro.',
+        sv: 'Dussintals runda pinnar sågas, borras och träs upp på repet en och en. När du lägger dig formar sig hängmattan till en vagga och håller dig i mitten.',
+        fi: 'Kymmenet pyöreät puolat sahataan, porataan ja pujotetaan köyteen yksi kerrallaan. Kun käyt makuulle, riippumatto asettuu kehdon muotoon ja pitää sinut keskellä.',
+        lv: 'Desmitiem apaļu koka šķērskociņu tiek nozāģēti, izurbti un uzvērti uz virves pa vienam. Apguļoties šūpuļtīkls ieņem šūpuļa formu un tur jūs vidū.',
+      },
+      {
+        et: 'Oanduaias ripuvad need kiiged puude all. Iga kiik valmib tellimuse peale – kirjuta meile ja räägime läbi suuruse ja valmimise aja.',
+        en: 'At Oanduaia these hammocks hang under the trees. Each one is made to order – write to us and we will talk through the size and when it can be ready.',
+        ru: 'В Oanduaia такие гамаки висят под деревьями. Каждый делается на заказ – напишите нам, обсудим размер и сроки.',
+        de: 'In Oanduaia hängen diese Hängematten unter den Bäumen. Jede wird auf Bestellung gefertigt – schreiben Sie uns, dann besprechen wir Größe und Fertigstellung.',
+        es: 'En Oanduaia estas hamacas cuelgan bajo los árboles. Cada una se hace por encargo: escríbanos y hablaremos del tamaño y del plazo.',
+        sv: 'På Oanduaia hänger de här hängmattorna under träden. Var och en görs på beställning – skriv till oss så pratar vi om storlek och när den kan vara klar.',
+        fi: 'Oanduaiassa nämä riippumatot roikkuvat puiden alla. Jokainen tehdään tilauksesta – kirjoita meille, niin sovitaan koosta ja valmistumisajasta.',
+        lv: 'Oanduaia šie šūpuļtīkli karājas zem kokiem. Katru darina pēc pasūtījuma – rakstiet mums, un pārrunāsim izmēru un izgatavošanas laiku.',
+      },
+    ],
+    facts: [
+      { et: 'Käsitöö', en: 'Handmade', ru: 'Ручная работа', de: 'Handgefertigt', es: 'Hecha a mano', sv: 'Handgjord', fi: 'Käsityötä', lv: 'Roku darbs' },
+      { et: 'Valmib tellimuse peale', en: 'Made to order', ru: 'Изготовление на заказ', de: 'Auf Bestellung gefertigt', es: 'Por encargo', sv: 'Tillverkas på beställning', fi: 'Tehdään tilauksesta', lv: 'Izgatavo pēc pasūtījuma' },
+      { et: 'Kättesaamine Oanduaias tasuta, transport Eestis kokkuleppel', en: 'Free pick-up at Oanduaia, delivery in Estonia by arrangement', ru: 'Самовывоз из Oanduaia бесплатно, доставка по Эстонии по договорённости', de: 'Abholung in Oanduaia kostenlos, Lieferung in Estland nach Absprache', es: 'Recogida gratuita en Oanduaia, envío en Estonia a convenir', sv: 'Gratis upphämtning på Oanduaia, leverans i Estland enligt överenskommelse', fi: 'Nouto Oanduaiasta maksutta, toimitus Viroon sopimuksen mukaan', lv: 'Saņemšana Oanduaia bez maksas, piegāde Igaunijā pēc vienošanās' },
+    ],
+    options: [
+      { id: 'std', price: 0, name: { et: 'Võrkkiik', en: 'Hammock', ru: 'Гамак', de: 'Hängematte', es: 'Hamaca', sv: 'Hängmatta', fi: 'Riippumatto', lv: 'Šūpuļtīkls' } },
+    ],
+    photos: [
+      { src: '/tooted/vorkkiik/1.jpg', alt: { et: 'Kaks puidust võrkkiike Oanduaia hoovis', en: 'Two log hammocks in the Oanduaia yard', ru: 'Два деревянных гамака во дворе Oanduaia', de: 'Zwei Rundholz-Hängematten im Hof von Oanduaia', es: 'Dos hamacas de troncos en el patio de Oanduaia', sv: 'Två hängmattor av rundvirke på gården i Oanduaia', fi: 'Kaksi puista riippumattoa Oanduaian pihalla', lv: 'Divi koka šūpuļtīkli Oanduaia pagalmā' } },
+      { src: '/tooted/vorkkiik/2.jpg', alt: { et: 'Võrkkiiged puude vahel, ühes tekk', en: 'The hammocks between the trees, a blanket in one', ru: 'Гамаки между деревьями, в одном плед', de: 'Die Hängematten zwischen den Bäumen, in einer eine Decke', es: 'Las hamacas entre los árboles, una con manta', sv: 'Hängmattorna mellan träden, en filt i den ena', fi: 'Riippumatot puiden välissä, toisessa huopa', lv: 'Šūpuļtīkli starp kokiem, vienā sega' } },
+      { src: '/tooted/vorkkiik/3.jpg', alt: { et: 'Lähivaade: ümarpuust pulgad nööri peal', en: 'Close view: round rungs threaded on the rope', ru: 'Крупный план: круглые перекладины на верёвке', de: 'Nahaufnahme: Rundholzsprossen auf dem Seil', es: 'Detalle: travesaños redondos en la cuerda', sv: 'Närbild: runda pinnar uppträdda på repet', fi: 'Lähikuva: pyöreät puolat köydessä', lv: 'Tuvplāns: apaļi šķērskociņi uz virves' } },
+      { src: '/tooted/vorkkiik/4.jpg', alt: { et: 'Võrkkiik kasutuses metsa all', en: 'The hammock in use under the forest', ru: 'Гамак под лесным пологом', de: 'Die Hängematte im Gebrauch unter den Bäumen', es: 'La hamaca en uso bajo los árboles', sv: 'Hängmattan i bruk under träden', fi: 'Riippumatto käytössä metsän alla', lv: 'Šūpuļtīkls lietošanā meža ēnā' } },
+      { src: '/tooted/vorkkiik/5.jpg', alt: { et: 'Võrkkiik Oanduaia majade ees', en: 'The hammock in front of the Oanduaia houses', ru: 'Гамак перед домами Oanduaia', de: 'Die Hängematte vor den Häusern von Oanduaia', es: 'La hamaca frente a las casas de Oanduaia', sv: 'Hängmattan framför husen i Oanduaia', fi: 'Riippumatto Oanduaian talojen edessä', lv: 'Šūpuļtīkls pie Oanduaia mājām' } },
     ],
   },
 ]

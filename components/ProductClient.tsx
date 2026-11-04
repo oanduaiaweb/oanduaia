@@ -26,7 +26,8 @@ export default function ProductClient({ slug }: { slug: string }) {
   const submit = async (e: FormEvent) => {
     e.preventDefault()
     setState('busy')
-    const line = `${p.name[lang]} · ${PT.hide[lang]}: ${option.name[lang]} · ${PT.total[lang]} ${eur(total)}`
+    const line = [p.name[lang], p.options.length > 1 ? `${(p.optionLabel ?? PT.hide)[lang]}: ${option.name[lang]}` : '', `${PT.total[lang]} ${eur(total)}`]
+      .filter(Boolean).join(' · ')
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -70,15 +71,17 @@ export default function ProductClient({ slug }: { slug: string }) {
         {p.body.map((b, i) => <p className="product-text" key={i}>{b[lang]}</p>)}
         <ul className="product-facts">{p.facts.map((f, i) => <li key={i}>{f[lang]}</li>)}</ul>
 
-        <fieldset className="product-options">
-          <legend className="form-label">{PT.hide[lang]}</legend>
-          {p.options.map(o => (
-            <button key={o.id} type="button" className={`gift-amount${opt === o.id ? ' is-on' : ''}`}
-              aria-pressed={opt === o.id} onClick={() => setOpt(o.id)}>
-              {o.name[lang]}{o.price ? ` +${eur(o.price)}` : ''}
-            </button>
-          ))}
-        </fieldset>
+        {p.options.length > 1 && (
+          <fieldset className="product-options">
+            <legend className="form-label">{(p.optionLabel ?? PT.hide)[lang]}</legend>
+            {p.options.map(o => (
+              <button key={o.id} type="button" className={`gift-amount${opt === o.id ? ' is-on' : ''}`}
+                aria-pressed={opt === o.id} onClick={() => setOpt(o.id)}>
+                {o.name[lang]}{o.price ? ` +${eur(o.price)}` : ''}
+              </button>
+            ))}
+          </fieldset>
+        )}
         <p className="product-total">{PT.total[lang]} <b>{eur(total)}</b></p>
 
         {state === 'sent' ? (
