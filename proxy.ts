@@ -18,7 +18,11 @@ export default function proxy(request: NextRequest) {
   })
   const url = request.nextUrl.clone()
   url.pathname = `/${locale}${pathname === '/' ? '' : pathname}`
-  return NextResponse.redirect(url)
+  // Permanent, so Google indexes /{lang} rather than "/" (which it had picked as /en's canonical
+  // while this was a 307). no-store stops browsers caching it: the target still depends on the visitor.
+  const res = NextResponse.redirect(url, 308)
+  res.headers.set('Cache-Control', 'private, no-store')
+  return res
 }
 
 export const config = {
