@@ -52,7 +52,7 @@ export default function ProductClient({ slug }: { slug: string }) {
 
   return (
     <section className="product">
-      <div className="product-photos">
+      <div className="product-photos" style={{ gridTemplateColumns: `repeat(${Math.max(1, Math.min(photos.length - 1, 5))}, 1fr)` }}>
         {photos.map((ph, i) => (
           <button key={ph.src} type="button" className={`product-photo${i === 0 ? ' is-main' : ''}`}
             onClick={() => setOpen(i)} aria-label={ph.alt}>
