@@ -439,7 +439,8 @@ export function jsonLd(lang: Lang) {
       // Occupancy figures are the ones stated in the site copy, nothing inferred.
       occupancy: { '@type': 'QuantitativeValue', value: [4, 2, 4][i], unitText: 'guests' },
       numberOfBedrooms: [undefined, undefined, 2][i],
-      amenityFeature: amenities[lang].map(n => ({
+      // The sauna (amenities[0]) belongs to the Sauna House only.
+      amenityFeature: amenities[lang].filter((_, k) => i === 0 || k !== 0).map(n => ({
         '@type': 'LocationFeatureSpecification', name: n, value: true,
       })),
     })),
