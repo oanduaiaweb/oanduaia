@@ -96,7 +96,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     // Mikk, 3 Nov 2026: Toomas's photos from May. Price 690 € is Claude's proposal — confirm before launch.
-    // Maker, wood and what comes with it (ropes, tree straps) are not stated until Mikk gives them.
+    // Made by the peremees (Mikk: all products are). Wood and what comes with it are not stated until Mikk gives them.
     slug: 'vorkkiik',
     price: 690,
     name: {
@@ -125,14 +125,14 @@ export const PRODUCTS: Product[] = [
         lv: 'Desmitiem apaļu koka šķērskociņu tiek nozāģēti, izurbti un uzvērti uz virves pa vienam. Apguļoties šūpuļtīkls ieņem šūpuļa formu un tur jūs vidū.',
       },
       {
-        et: 'Oanduaias ripuvad need kiiged puude all. Iga kiik valmib tellimuse peale – kirjuta meile ja räägime läbi suuruse ja valmimise aja.',
-        en: 'At Oanduaia these hammocks hang under the trees. Each one is made to order – write to us and we will talk through the size and when it can be ready.',
-        ru: 'В Oanduaia такие гамаки висят под деревьями. Каждый делается на заказ – напишите нам, обсудим размер и сроки.',
-        de: 'In Oanduaia hängen diese Hängematten unter den Bäumen. Jede wird auf Bestellung gefertigt – schreiben Sie uns, dann besprechen wir Größe und Fertigstellung.',
-        es: 'En Oanduaia estas hamacas cuelgan bajo los árboles. Cada una se hace por encargo: escríbanos y hablaremos del tamaño y del plazo.',
-        sv: 'På Oanduaia hänger de här hängmattorna under träden. Var och en görs på beställning – skriv till oss så pratar vi om storlek och när den kan vara klar.',
-        fi: 'Oanduaiassa nämä riippumatot roikkuvat puiden alla. Jokainen tehdään tilauksesta – kirjoita meille, niin sovitaan koosta ja valmistumisajasta.',
-        lv: 'Oanduaia šie šūpuļtīkli karājas zem kokiem. Katru darina pēc pasūtījuma – rakstiet mums, un pārrunāsim izmēru un izgatavošanas laiku.',
+        et: 'Iga kiige teeb käsitsi Oanduaia peremees, tellimuse peale – kirjuta meile ja räägime läbi suuruse ja valmimise aja.',
+        en: 'Every hammock is made by hand by the master of the house at Oanduaia, to order – write to us and we will talk through the size and when it can be ready.',
+        ru: 'Каждый гамак делает вручную хозяин Oanduaia, на заказ – напишите нам, обсудим размер и сроки.',
+        de: 'Jede Hängematte fertigt der Hausherr von Oanduaia von Hand, auf Bestellung – schreiben Sie uns, dann besprechen wir Größe und Fertigstellung.',
+        es: 'Cada hamaca la hace a mano, por encargo, el dueño de casa de Oanduaia: escríbanos y hablaremos del tamaño y del plazo.',
+        sv: 'Varje hängmatta görs för hand av husbonden på Oanduaia, på beställning – skriv till oss så pratar vi om storlek och när den kan vara klar.',
+        fi: 'Jokaisen riippumaton tekee käsin Oanduaian isäntä, tilauksesta – kirjoita meille, niin sovitaan koosta ja valmistumisajasta.',
+        lv: 'Katru šūpuļtīklu ar rokām pēc pasūtījuma darina Oanduaia saimnieks – rakstiet mums, un pārrunāsim izmēru un izgatavošanas laiku.',
       },
     ],
     facts: [
@@ -160,14 +160,14 @@ export const PT: Record<string, L> = {
   label: { et: 'Käsitöö', en: 'Handmade', ru: 'Ручная работа', de: 'Handarbeit', es: 'Hecho a mano', sv: 'Hantverk', fi: 'Käsityö', lv: 'Roku darbs' },
   title: { et: 'Oanduaia käsitöö', en: 'Made at Oanduaia', ru: 'Сделано в Oanduaia', de: 'Aus Oanduaia', es: 'Hecho en Oanduaia', sv: 'Gjort på Oanduaia', fi: 'Tehty Oanduaiassa', lv: 'Darināts Oanduaia' },
   lead: {
-    et: 'Asjad, mis on tehtud täielikult käsitsi. Iga ese on ainueksemplar.',
-    en: 'Things made entirely by hand. Every piece is one of a kind.',
-    ru: 'Вещи, полностью сделанные вручную. Каждая – в единственном экземпляре.',
-    de: 'Dinge, vollständig von Hand gemacht. Jedes Stück ist ein Unikat.',
-    es: 'Objetos hechos íntegramente a mano. Cada pieza es única.',
-    sv: 'Saker gjorda helt för hand. Varje föremål är unikt.',
-    fi: 'Kokonaan käsin tehtyjä esineitä. Jokainen on ainoa laatuaan.',
-    lv: 'Lietas, kas pilnībā darinātas ar rokām. Katrs priekšmets ir vienīgais.',
+    et: 'Kõik tooted teeb käsitsi Oanduaia peremees. Iga ese on ainueksemplar.',
+    en: 'Everything here is made by hand by the master of the house at Oanduaia. Every piece is one of a kind.',
+    ru: 'Все изделия делает вручную хозяин Oanduaia. Каждое – в единственном экземпляре.',
+    de: 'Alles hier fertigt der Hausherr von Oanduaia von Hand. Jedes Stück ist ein Unikat.',
+    es: 'Todo lo hace a mano el dueño de casa de Oanduaia. Cada pieza es única.',
+    sv: 'Allt här görs för hand av husbonden på Oanduaia. Varje föremål är unikt.',
+    fi: 'Kaiken täällä tekee käsin Oanduaian isäntä. Jokainen on ainoa laatuaan.',
+    lv: 'Visu šeit ar rokām darina Oanduaia saimnieks. Katrs priekšmets ir vienīgais.',
   },
   from: { et: 'alates', en: 'from', ru: 'от', de: 'ab', es: 'desde', sv: 'från', fi: 'alkaen', lv: 'no' },
   view: { et: 'Vaata lähemalt', en: 'Take a closer look', ru: 'Подробнее', de: 'Genauer ansehen', es: 'Ver de cerca', sv: 'Titta närmare', fi: 'Katso tarkemmin', lv: 'Apskatīt tuvāk' },
