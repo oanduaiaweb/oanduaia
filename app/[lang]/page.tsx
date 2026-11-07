@@ -1,6 +1,5 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import LastChance from '@/components/LastChance'
 import Intro from '@/components/Intro'
 import Services from '@/components/Services'
 import Feature from '@/components/Feature'
@@ -39,11 +38,6 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <Nav />
       <main id="main">
         <Hero />
-        {/*
-          Before the houses, for the two months before the Pond House and the Forest House
-          close for winter (Mikk, 29 Oct: promote them first). Takes itself down after.
-        */}
-        <LastChance />
         <Feature />
         {/*
           The calendar and enquiry form straight after the three houses (Mikk, 24 Oct): the

@@ -9,7 +9,6 @@ import { HOUSE_IMAGES } from '@/lib/houses'
 import { HOUSE_GALLERIES, HOUSE_VIDEOS } from '@/lib/housePhotos'
 import HouseVideo from '@/components/HouseVideo'
 import Lightbox from '@/components/Lightbox'
-import { LastChanceNotice } from '@/components/LastChance'
 
 /**
  * One house, on its own page. The three houses are what is actually sold, and until now
@@ -61,7 +60,6 @@ export default function House({ slug }: { slug: string }) {
         </div>
       </header>
 
-      <LastChanceNotice slug={slug} />
 
       <div className="house-body">
         <div className="house-main">
