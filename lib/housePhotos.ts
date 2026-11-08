@@ -522,19 +522,6 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
-      src: '/galerii/metsamaja/sissepaas.jpeg',
-      alt: {
-        et: 'Metsamaja sissepääs: puitterrass pingiga, palksein ja silt METSAMAJA',
-        en: 'The Forest House entrance — a timber deck with a bench, log wall and the METSAMAJA sign',
-        ru: 'Вход в Лесной дом — деревянная терраса со скамьёй, бревенчатая стена и вывеска METSAMAJA',
-        de: 'Der Eingang des Waldhauses – Holzterrasse mit Bank, Blockwand und das Schild METSAMAJA',
-        es: 'La entrada de la Casa del Bosque: una terraza de madera con un banco, la pared de troncos y el cartel METSAMAJA',
-        sv: 'Skogshusets entré — ett trädäck med en bänk, timmervägg och skylten METSAMAJA',
-        fi: 'Metsätalon sisäänkäynti — puuterassi ja penkki, hirsiseinä ja METSAMAJA-kyltti',
-        lv: 'Meža mājas ieeja — koka terase ar solu, baļķu siena un uzraksts METSAMAJA',
-      },
-    },
-    {
       src: '/galerii/metsamaja/elutuba-lai.jpeg',
       alt: {
         et: 'Avar elutuba: türkiissinised tugitoolid, diivan lambanahkadega, rippkiik ja suured aknad',
