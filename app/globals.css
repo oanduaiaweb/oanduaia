@@ -4187,10 +4187,11 @@ body.gallery-page .nav-social { text-shadow: none; }
   gap: 0.45rem;
   padding: 0.55rem 1rem;
   border: 1px solid rgba(58,74,53,0.28);
-  border-radius: 999px;
+  border-radius: 4px;
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
   letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
   color: var(--moss);
   text-decoration: none;
   white-space: nowrap;
