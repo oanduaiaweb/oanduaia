@@ -743,19 +743,6 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
-      src: '/galerii/metsamaja/uks-oanduaia.jpeg',
-      alt: {
-        et: 'Puidust välisuks klaasriba ja OANDUAIA sildiga, ukse kohal hobuseraud',
-        en: 'The wooden front door with a glass strip and the OANDUAIA sign, a horseshoe above it',
-        ru: 'Деревянная входная дверь со стеклянной вставкой и вывеской OANDUAIA, над ней подкова',
-        de: 'Die hölzerne Haustür mit Glasstreifen und dem Schild OANDUAIA, darüber ein Hufeisen',
-        es: 'La puerta de madera con una franja de cristal y el letrero OANDUAIA, con una herradura encima',
-        sv: 'Ytterdörren i trä med glasspringa och skylten OANDUAIA, en hästsko ovanför',
-        fi: 'Puinen ulko-ovi lasikaistaleella ja OANDUAIA-kyltillä, yläpuolella hevosenkenkä',
-        lv: 'Koka ārdurvis ar stikla joslu un uzrakstu OANDUAIA, virs tām pakavs',
-      },
-    },
-    {
       src: '/galerii/metsamaja/elutuba-ulevaade.jpeg',
       alt: {
         et: 'Elutuba ülevalt: sinised tugitoolid, lambanahad põrandal, diivan ja söögilaud akende all',
