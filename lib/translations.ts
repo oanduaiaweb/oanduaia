@@ -649,7 +649,7 @@ export const T = {
     },
     forSaunamaja: { et: 'kuni neljale', en: 'for up to four', ru: 'до четырёх гостей', de: 'für bis zu vier', es: 'hasta cuatro personas', sv: 'för upp till fyra', fi: 'enintään neljälle', lv: 'līdz četriem' },
     readMore: { et: 'Loe lähemalt', en: 'Read more', ru: 'Подробнее', de: 'Mehr lesen', es: 'Leer más', sv: 'Läs mer', fi: 'Lue lisää', lv: 'Lasīt vairāk' },
-    open: { et: '1. dets – 31. märts', en: '1 Dec – 31 Mar', ru: '1 дек – 31 мар', de: '1. Dez – 31. März', es: '1 dic – 31 mar', sv: '1 dec – 31 mars', fi: '1.12. – 31.3.', lv: '1. dec – 31. marts' },
+    open: { et: '1. dets – 31. märts', en: '1 Dec – 31 Mar', ru: '1 дек – 31 мар', de: '1. Dez – 31. März', es: '1 dic – 31 mar', sv: '1 dec – 31 mars', fi: '1. joulukuuta – 31. maaliskuuta', lv: '1. dec – 31. marts' },
   },
   housePage: {
     eyebrow:  { et: 'Majutus', en: 'Accommodation', ru: 'Размещение', de: 'Unterkunft', es: 'Alojamiento', sv: 'Boende', fi: 'Majoitus', lv: 'Naktsmītne' },
