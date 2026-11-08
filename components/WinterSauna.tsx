@@ -11,9 +11,8 @@ import { track } from '@/lib/analytics'
 import { winterSaunaOn } from '@/lib/winterSauna'
 
 /**
- * The homepage's winter band for the Sauna House, straight under the hero, in the same
- * layout as the old "before winter" band. Static page, so the season is checked again in
- * the browser and that answer wins.
+ * The homepage's winter band for the Sauna House, straight under the hero. Static page,
+ * so the season is checked again in the browser and that answer wins.
  */
 export default function WinterSauna() {
   const { lang } = useLanguage()
@@ -28,59 +27,39 @@ export default function WinterSauna() {
   const from = Math.min(...house.prices.map(p => p.eur))
 
   return (
-    <section className="lastchance" aria-labelledby="wintersauna-h">
-      <div className="lastchance-head">
-        <p className="section-label lastchance-label">{t.label[lang]}</p>
-        <h2 className="lastchance-h" id="wintersauna-h">
-          {t.h1[lang]}<br /><em>{t.h2[lang]}</em>
+    <section className="wcool" aria-labelledby="wintersauna-h">
+      <div className="wcool-photo">
+        <Image src="/galerii/saunamaja/jaaauk-talvel.webp" alt="" fill sizes="(max-width: 900px) 100vw, 55vw" quality={78} style={{ objectFit: 'cover', objectPosition: '50% 65%' }} />
+      </div>
+      <div className="wcool-snow" aria-hidden="true" />
+      <div className="wcool-inner">
+        <p className="wcool-label"><span className="wcool-date">{t.label[lang]}</span><span className="wcool-dot">·</span><span className="wcool-date">{t.open[lang]}</span></p>
+        <h2 className="wcool-h" id="wintersauna-h">
+          {t.h1[lang]}<em>{t.h2[lang]}</em>
         </h2>
-        <p className="lastchance-text">{t.text[lang]}</p>
-      </div>
-
-      <div className="lastchance-cards">
-        <Link
-          href={`/${lang}/majad/saunamaja`}
-          className="lastchance-card"
-          onClick={() => track('wintersauna_house', { lang })}
-        >
-          <div className="lastchance-photo">
-            <Image src="/galerii/saunamaja/jaaauk-talvel.webp" alt="" fill sizes="(max-width: 700px) 92vw, 40vw" quality={72} style={{ objectFit: 'cover' }} />
-          </div>
-          <div className="lastchance-card-body">
-            <span className="lastchance-name">{house.name[lang]}</span>
-            <span className="lastchance-meta">
-              {t.forSaunamaja[lang]} · {T.lastChance.from[lang].replace('{p}', String(from))}
-            </span>
-          </div>
-        </Link>
-        {landing && (
-          <Link
-            href={`/${lang}/${landing.slug[lang]}`}
-            className="lastchance-card"
-            onClick={() => track('wintersauna_landing', { lang })}
+        <p className="wcool-text">{t.text[lang]}</p>
+        <div className="wcool-actions">
+          <a
+            href="#broneeri"
+            className="btn-primary wcool-cta"
+            onClick={e => {
+              e.preventDefault()
+              track('booking_cta', { location: 'wintersauna', lang })
+              scrollToId('broneeri')
+            }}
           >
-            <div className="lastchance-photo">
-              <Image src="/galerii/064.jpeg" alt="" fill sizes="(max-width: 700px) 92vw, 40vw" quality={72} style={{ objectFit: 'cover' }} />
-            </div>
-            <div className="lastchance-card-body">
-              <span className="lastchance-name">{T.footer.landingWinter[lang]}</span>
-              <span className="lastchance-meta">{t.readMore[lang]}</span>
-            </div>
+            {T.lastChance.cta[lang]}
+          </a>
+          <Link href={`/${lang}/majad/saunamaja`} className="wcool-link" onClick={() => track('wintersauna_house', { lang })}>
+            {house.name[lang]} · {T.lastChance.from[lang].replace('{p}', String(from))} →
           </Link>
-        )}
+          {landing && (
+            <Link href={`/${lang}/${landing.slug[lang]}`} className="wcool-link wcool-link--quiet" onClick={() => track('wintersauna_landing', { lang })}>
+              {T.footer.landingWinter[lang]} →
+            </Link>
+          )}
+        </div>
       </div>
-
-      <a
-        href="#broneeri"
-        className="btn-primary lastchance-cta"
-        onClick={e => {
-          e.preventDefault()
-          track('booking_cta', { location: 'wintersauna', lang })
-          scrollToId('broneeri')
-        }}
-      >
-        {T.lastChance.cta[lang]}
-      </a>
     </section>
   )
 }
