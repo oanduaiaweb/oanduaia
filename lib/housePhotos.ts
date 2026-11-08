@@ -782,19 +782,6 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
       },
     },
     {
-      src: '/galerii/metsamaja/elutuba-diivan-kamin.jpeg',
-      alt: {
-        et: 'Pikk diivan akende all ja laud kanarbikuga, taga köögiriiul ja põlev kamin',
-        en: 'The long sofa under the windows and a table with heather, the kitchen shelf and the lit fireplace behind',
-        ru: 'Длинный диван у окон и столик с вереском, позади кухонная полка и горящий камин',
-        de: 'Das lange Sofa unter den Fenstern und ein Tisch mit Heidekraut, dahinter das Küchenregal und der brennende Kamin',
-        es: 'El largo sofá bajo las ventanas y una mesa con brezo, detrás el estante de la cocina y la chimenea encendida',
-        sv: 'Den långa soffan under fönstren och ett bord med ljung, bakom kökshyllan och den tända brasan',
-        fi: 'Pitkä sohva ikkunoiden alla ja pöytä kanervineen, takana keittiöhylly ja palava takka',
-        lv: 'Garais dīvāns pie logiem un galds ar viršiem, aiz tā virtuves plaukts un degošs kamīns',
-      },
-    },
-    {
       src: '/galerii/metsamaja/elutuba-kanarbik.jpeg',
       alt: {
         et: 'Kanarbik savipotis diivanilaual, taamal köögiriiul ja kaminatuli',
