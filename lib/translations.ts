@@ -633,6 +633,23 @@ export const T = {
       lv: 'Pēdējās naktis pirms ziemas: māja ir atvērta līdz 30. novembrim un slēgta no 1. decembra līdz 31. martam.',
     },
   },
+  winterSauna: {
+    label: { et: 'Talv Oanduaias', en: 'Winter at Oanduaia', ru: 'Зима в Оандуайа', de: 'Winter in Oanduaia', es: 'Invierno en Oanduaia', sv: 'Vinter på Oanduaia', fi: 'Talvi Oanduaiassa', lv: 'Ziema Oanduaiā' },
+    h1: { et: 'Saun köetud,', en: 'The sauna lit,', ru: 'Баня натоплена,', de: 'Die Sauna geheizt,', es: 'La sauna encendida,', sv: 'Bastun eldad,', fi: 'Sauna lämmitetty,', lv: 'Pirts izkurināta,' },
+    h2: { et: 'jääauk lahti.', en: 'the ice hole open.', ru: 'прорубь готова.', de: 'das Eisloch offen.', es: 'el agujero en el hielo abierto.', sv: 'isvaken öppen.', fi: 'avanto auki.', lv: 'āliņģis atvērts.' },
+    text: {
+      et: 'Saunamaja on avatud kogu talve. Puuküttega saun, kamin ja tiik kümne sammu kaugusel – jääauk raiutakse valmis. Lahemaa metsad on lumes vaiksed ja rajad tühjad.',
+      en: 'The Sauna House stays open all winter. A wood-fired sauna, an open fire and the pond ten steps away, with a hole cut in the ice. Lahemaa\u2019s forests are quiet under the snow and the trails are empty.',
+      ru: 'Банный дом открыт всю зиму. Дровяная баня, камин и пруд в десяти шагах – прорубь уже вырублена. Леса Лахемаа под снегом тихи, а тропы пусты.',
+      de: 'Das Saunahaus ist den ganzen Winter geöffnet. Eine Holzsauna, ein Kaminfeuer und der Teich zehn Schritte entfernt – das Eisloch ist geschlagen. Die Wälder von Lahemaa sind still unter dem Schnee, die Wege leer.',
+      es: 'La Casa de la Sauna abre todo el invierno. Sauna de leña, chimenea y el estanque a diez pasos, con un agujero abierto en el hielo. Los bosques de Lahemaa están en silencio bajo la nieve y los senderos, vacíos.',
+      sv: 'Bastuhuset är öppet hela vintern. Vedeldad bastu, brasa och dammen tio steg bort – isvaken är upphuggen. Lahemaas skogar är tysta under snön och lederna tomma.',
+      fi: 'Saunatalo on auki koko talven. Puulämmitteinen sauna, takka ja lampi kymmenen askeleen päässä – avanto on valmiina. Lahemaan metsät ovat lumen alla hiljaisia ja polut tyhjiä.',
+      lv: 'Pirts māja ir atvērta visu ziemu. Malkas pirts, kamīns un dīķis desmit soļu attālumā – āliņģis jau izcirsts. Lahemā meži zem sniega ir klusi, un takas tukšas.',
+    },
+    forSaunamaja: { et: 'kuni neljale', en: 'for up to four', ru: 'до четырёх гостей', de: 'für bis zu vier', es: 'hasta cuatro personas', sv: 'för upp till fyra', fi: 'enintään neljälle', lv: 'līdz četriem' },
+    readMore: { et: 'Loe lähemalt', en: 'Read more', ru: 'Подробнее', de: 'Mehr lesen', es: 'Leer más', sv: 'Läs mer', fi: 'Lue lisää', lv: 'Lasīt vairāk' },
+  },
   housePage: {
     eyebrow:  { et: 'Majutus', en: 'Accommodation', ru: 'Размещение', de: 'Unterkunft', es: 'Alojamiento', sv: 'Boende', fi: 'Majoitus', lv: 'Naktsmītne' },
     facts:    { et: 'Majas on', en: 'In the house', ru: 'В доме', de: 'Im Haus', es: 'En la casa', sv: 'I huset', fi: 'Talossa', lv: 'Mājā' },

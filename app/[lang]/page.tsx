@@ -1,4 +1,5 @@
 import Nav from '@/components/Nav'
+import WinterSauna from '@/components/WinterSauna'
 import Hero from '@/components/Hero'
 import Intro from '@/components/Intro'
 import Services from '@/components/Services'
@@ -38,6 +39,8 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <Nav />
       <main id="main">
         <Hero />
+        {/* Sauna House winter band, 1 Dec – 31 Mar (Mikk, 7 Nov). Shows itself in season. */}
+        <WinterSauna />
         <Feature />
         {/*
           The calendar and enquiry form straight after the three houses (Mikk, 24 Oct): the
