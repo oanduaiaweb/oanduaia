@@ -73,6 +73,7 @@ export type Stats = {
   enquiries: number
   dateChecks: number
   bookClicks: number
+  whatsapp: number
   channels: Pair[]
   countries: Pair[]
   pages: Pair[]
@@ -98,12 +99,13 @@ export async function readStats(days: number): Promise<Stats> {
     dimensionFilter: { filter: { fieldName: 'eventName', stringFilter: { value: name } } },
   })
 
-  const [live, totals, enquiries, dateChecks, bookClicks, channels, countries, pages, daily, search] = await Promise.all([
+  const [live, totals, enquiries, dateChecks, bookClicks, whatsapp, channels, countries, pages, daily, search] = await Promise.all([
     ga('runRealtimeReport', { metrics: [{ name: 'activeUsers' }] }).catch(() => ({} as GaReport)),
     ga('runReport', { dateRanges, metrics: [{ name: 'activeUsers' }, { name: 'sessions' }, { name: 'screenPageViews' }] }),
     event('enquiry_sent'),
     event('dates_requested'),
     event('booking_cta'),
+    event('whatsapp_click'),
     top('sessionDefaultChannelGroup', 'sessions', 8),
     top('country', 'activeUsers', 10),
     top('pagePath', 'screenPageViews', 10),
@@ -123,6 +125,7 @@ export async function readStats(days: number): Promise<Stats> {
     enquiries: total(enquiries),
     dateChecks: total(dateChecks),
     bookClicks: total(bookClicks),
+    whatsapp: total(whatsapp),
     channels: pairs(channels),
     countries: pairs(countries),
     pages: pairs(pages),

@@ -77,6 +77,7 @@ export default function AdminStats() {
               <div className="adm-stat-tile"><b>{fmt(s.pageViews)}</b><span>pages viewed</span></div>
               <div className="adm-stat-tile"><b>{fmt(s.dateChecks)}</b><span>calendar checks</span></div>
               <div className="adm-stat-tile"><b>{fmt(s.bookClicks)}</b><span>&ldquo;Book&rdquo; clicks</span></div>
+              <div className="adm-stat-tile"><b>{fmt(s.whatsapp ?? 0)}</b><span>WhatsApp clicks</span></div>
               <div className="adm-stat-tile is-key"><b>{fmt(s.enquiries)}</b><span>enquiries sent</span></div>
             </div>
 
