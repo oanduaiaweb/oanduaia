@@ -4884,8 +4884,27 @@ body.gallery-page .nav-social { text-shadow: none; }
   }
 }
 .food-wrap .section-label { color: rgba(226,234,214,0.72); }
-.food-wrap .services-grid { background: transparent; gap: 2px; }
-.food-wrap .service-card { box-shadow: 0 24px 50px -24px rgba(10,14,7,0.6); }
+.food-wrap .services-grid { background: transparent; gap: 1.6rem; }
+/* Dark frosted glass instead of cream, the whole card (photo included) feathered at every edge. */
+.food-wrap .service-card {
+  background: rgba(26,32,19,0.62);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+          backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%), linear-gradient(to bottom, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%), linear-gradient(to bottom, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+          mask-composite: intersect;
+}
+@media (hover: hover) { .food-wrap .service-card:hover { background: rgba(32,40,24,0.72); } }
+.food-wrap .service-title { color: var(--linen); }
+.food-wrap .service-title em { color: var(--mist); }
+.food-wrap .service-desc,
+.food-wrap .service-price-detail,
+.food-wrap .service-price-note { color: rgba(240,235,224,0.78); }
+.food-wrap .service-price { border-top-color: rgba(240,235,224,0.18); }
+.food-wrap .service-price-line { color: var(--linen); }
+.food-wrap .service-arrow { color: var(--mist); }
+@media (hover: hover) { .food-wrap .service-card:hover .service-arrow { color: var(--linen); } }
 /* The ribbon fades out top and bottom too, rather than sitting on the photograph as a cut-out strip. */
 .food-wrap .food-band {
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
@@ -5566,4 +5585,8 @@ body .avail-panel .btn-dark.avail-cta { font-family: var(--font-cormorant), Geor
 }
 @media (prefers-reduced-motion: reduce) {
   .wcool-snow, .wcool-snow::before { animation: none; }
+}
+@media (max-width: 700px) {
+  .food-wrap .service-card { padding: 0 0 2.8rem; }
+  .food-wrap .service-card > :not(.service-image) { margin-left: 1.6rem; margin-right: 1.6rem; }
 }
