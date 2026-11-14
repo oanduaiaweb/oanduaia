@@ -81,11 +81,18 @@ export default function AdminStats() {
               <div className="adm-stat-tile is-key"><b>{fmt(s.enquiries)}</b><span>enquiries sent</span></div>
             </div>
 
-            <div className="adm-stat-daily" aria-label="Visitors per day">
-              {s.daily.map(d => (
-                <span key={d.label} style={{ height: `${Math.max(3, (d.value / peak) * 100)}%` }}
-                  title={`${d.label.slice(6, 8)}.${d.label.slice(4, 6)} — ${d.value}`} />
-              ))}
+            <div className={`adm-stat-daily${s.daily.length > 40 ? ' is-dense' : ''}`} aria-label="Visitors per day">
+              {s.daily.map((d, i) => {
+                const date = `${Number(d.label.slice(6, 8))}.${Number(d.label.slice(4, 6))}`
+                const dated = s.daily.length <= 40 || i % 7 === 0 || i === s.daily.length - 1
+                return (
+                  <div key={d.label} className="adm-stat-day" title={`${date} — ${d.value} visitors`}>
+                    <b>{d.value}</b>
+                    <span className="adm-stat-day-bar"><i style={{ height: `${Math.max(3, (d.value / peak) * 100)}%` }} /></span>
+                    <small>{dated ? date : ''}</small>
+                  </div>
+                )
+              })}
             </div>
 
             <div className="adm-stat-grid">
