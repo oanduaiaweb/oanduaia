@@ -8,7 +8,8 @@
     "start": "next start",
     "check:i18n": "node scripts/check-i18n.mjs",
     "check:locale": "node --no-warnings --experimental-strip-types scripts/test-locale.mjs",
-    "bookings": "node scripts/bookings.mjs"
+    "bookings": "node scripts/bookings.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.0",
