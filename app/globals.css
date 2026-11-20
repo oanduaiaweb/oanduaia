@@ -219,6 +219,7 @@ nav.nav-menu-open .nav-mark { display: none; }
   text-shadow: 0 1px 12px rgba(0,0,0,0.8);
   border: 1px solid transparent;
   padding: 0.38rem 0.85rem;
+  white-space: nowrap;
 }
 nav.nav-scrolled .nav-links a { text-shadow: none; opacity: 0.72; }
 @media (hover: hover) { .nav-links a:hover { opacity: 1 !important; } }
@@ -413,7 +414,7 @@ nav.nav-scrolled .nav-lang-trigger { text-shadow: none; }
 }
 @media (hover: hover) { .nav-overlay-socials a:hover { opacity: 1; } }
 
-/* Burger button — hidden on desktop, shown ≤768px */
+/* Burger button — hidden on desktop, shown ≤1160px */
 .nav-burger {
   display: none;
   flex-direction: column;
@@ -4335,10 +4336,24 @@ body.gallery-page .nav-social { text-shadow: none; }
   footer { grid-template-columns: 1fr 1fr; padding-bottom: 3rem; gap: 3rem; }
 }
 
+/*
+ * The full row needs about 1460px in German (the longest labels), and below that "Book now"
+ * used to break onto two lines. So it gives way in steps, measured per language on 17 Nov:
+ * tighter spacing ≤1500px, social icons dropped ≤1320px, burger ≤1160px.
+ */
+@media (max-width: 1500px) {
+  .nav-right { margin-right: 0; gap: 1.4rem; }
+  .nav-links { gap: 0.4rem; }
+  .nav-links a, .nav-gallery-btn { padding: 0.38rem 0.55rem; }
+}
+@media (max-width: 1320px) {
+  .nav-socials { display: none; }
+}
+
 /* ══════════════════════════════
-   BURGER MENU  ≤ 768px
+   BURGER MENU  ≤ 1160px
 ══════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 1160px) {
   .nav-links { display: none; }
   .nav-gallery-btn { display: none; }
   .nav-lang { display: none; }

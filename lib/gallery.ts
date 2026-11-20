@@ -300,6 +300,7 @@ const GALLERY_SKIP = new Set([
   '/galerii/lilled.jpeg',              // saunamaja-ja-peamaja, the same petunias
   '/images/metsamaja.jpg',             // metsamaja-paikeses, the Forest House in sun
   '/galerii/tiigimaja/magamistuba.jpeg', // tiigimaja/magamistuba-sugisel, same bed, newer
+  '/galerii/072.jpeg',                 // Mikk, 17 Nov: remove (dark Forest House bedroom)
 ])
 
 /**

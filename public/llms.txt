@@ -125,7 +125,7 @@ Every page exists in all eight languages. Swap the /et for /en, /ru, /de, /es, /
 - https://www.oanduaia.ee/et/majad/saunamaja — the Sauna House, with 19 photographs
 - https://www.oanduaia.ee/et/majad/tiigimaja — the Pond House, with 14 photographs
 - https://www.oanduaia.ee/et/majad/metsamaja — the Forest House, with 17 photographs
-- https://www.oanduaia.ee/et/gallery — 109 photographs of the property, described in all
+- https://www.oanduaia.ee/et/gallery — every photograph of the property, described in all
   eight languages
 - https://www.oanduaia.ee/et/rajad/oandu-aegviidu-ikla (and /oandu-loodusmetsarada,
   /oandu-vosu, /koprarada, /oandu-parimusrada, /altja) — one page per hiking trail
