@@ -5605,3 +5605,23 @@ body .avail-panel .btn-dark.avail-cta { font-family: var(--font-cormorant), Geor
   .food-wrap .service-card { padding: 0 0 2.8rem; }
   .food-wrap .service-card > :not(.service-image) { margin-left: 1.6rem; margin-right: 1.6rem; }
 }
+
+/* Admin: customers */
+.adm-cust-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; margin: 0.6rem 0 1.4rem; }
+.adm-cust { border: 1px solid rgba(90,110,80,0.2); border-left: 3px solid var(--moss); padding: 0.55rem 0.8rem; }
+.adm-cust.is-hidden { opacity: 0.5; }
+.adm-cust-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+.adm-cust-name { font: inherit; font-weight: 600; color: var(--bark); background: none; border: none; padding: 0; cursor: pointer; text-align: left; }
+.adm-cust-contact { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-left: auto; }
+.adm-cust-contact .adm-link { text-transform: none; letter-spacing: 0; font-size: var(--fs-xs); }
+.adm-cust-missing { font-size: var(--fs-2xs); color: #8a3a2a; text-transform: uppercase; letter-spacing: var(--ls-wide); }
+.adm-cust-meta { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; margin-top: 0.3rem; padding-left: 1.6rem; font-size: var(--fs-xs); color: var(--fern); }
+.adm-cust-note { font-style: italic; }
+.adm-cust-edit, .adm-cust-add { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem; margin-top: 0.7rem; }
+.adm-cust-add { margin-bottom: 1rem; align-items: end; }
+.adm-cust-label { font-size: var(--fs-2xs); color: var(--fern); display: grid; gap: 0.2rem; }
+.adm-cust-wide { grid-column: 1 / -1; }
+.adm-cust-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.adm-xmas { border-top: 1px solid rgba(90,110,80,0.16); padding-top: 1rem; }
+.adm-xmas-letter { white-space: pre-wrap; font-family: var(--font-sans); font-size: var(--fs-sm); color: var(--bark); background: var(--cream); border: 1px solid rgba(90,110,80,0.2); padding: 0.9rem 1rem; margin: 0.6rem 0 1rem; max-width: 62ch; }
+@media (max-width: 600px) { .adm-cust-contact { margin-left: 0; width: 100%; } .adm-cust-meta { padding-left: 0; } }

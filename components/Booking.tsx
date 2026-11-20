@@ -32,8 +32,10 @@ export default function Booking() {
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const submit = async (e: FormEvent) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    // The form is noValidate for its own styling, so the browser's check is asked for here.
+    if (!e.currentTarget.checkValidity()) { e.currentTarget.reportValidity(); return }
     setSending(true)
     setError(false)
     try {
@@ -108,7 +110,7 @@ export default function Booking() {
           <div className="form-field">
             <label className="form-label" htmlFor="telefon">{t.lPhone[lang]}</label>
             <input className="form-input" id="telefon" name="telefon" type="tel" autoComplete="tel"
-              placeholder={t.pPhone[lang]} value={form.telefon} onChange={handle} />
+              placeholder={t.pPhone[lang]} value={form.telefon} onChange={handle} required />
           </div>
           <div className="form-field">
             <label className="form-label" htmlFor="kuupaevad">{t.lKuup[lang]}</label>

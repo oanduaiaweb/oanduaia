@@ -1227,7 +1227,7 @@ export const T = {
     lEmail:  { et: 'E-post', en: 'E-mail', ru: 'Эл. почта', de: 'E-Mail', es: 'Correo electrónico', sv: 'E-post', fi: 'Sähköposti', lv: 'E-pasts' },
     pEmail:  { et: 'sinu@email.ee', en: 'your@email.com', ru: 'ваш@email.ru', de: 'ihre@email.de', es: 'tu@email.com', sv: 'din@email.se', fi: 'sinun@email.fi', lv: 'jusu@email.lv' },
     lPhone:  { et: 'Telefon / WhatsApp', en: 'Phone / WhatsApp', ru: 'Телефон / WhatsApp', de: 'Telefon / WhatsApp', es: 'Teléfono / WhatsApp', sv: 'Telefon / WhatsApp', fi: 'Puhelin / WhatsApp', lv: 'Tālrunis / WhatsApp' },
-    pPhone:  { et: 'Soovi korral', en: 'Optional', ru: 'По желанию', de: 'Freiwillig', es: 'Opcional', sv: 'Valfritt', fi: 'Vapaaehtoinen', lv: 'Pēc vēlēšanās' },
+    pPhone:  { et: 'Et saaksime teiega ühendust', en: 'So we can reach you', ru: 'Чтобы мы могли связаться', de: 'Damit wir Sie erreichen', es: 'Para poder contactarle', sv: 'Så att vi kan nå dig', fi: 'Jotta tavoitamme sinut', lv: 'Lai varam sazināties' },
     lKuup:   { et: 'Kuupäevad', en: 'Dates', ru: 'Даты', de: 'Zeitraum', es: 'Fechas', sv: 'Datum', fi: 'Päivämäärät', lv: 'Datumi' },
     pKuup:   { et: 'Saabun – lahkun', en: 'Arrival – departure', ru: 'Заезд – выезд', de: 'Anreise – Abreise', es: 'Llegada – salida', sv: 'Ankomst – avresa', fi: 'Saapuminen – lähtö', lv: 'Ierašanās – izbraukšana' },
     lSonum:  { et: 'Sõnum', en: 'Message', ru: 'Сообщение', de: 'Nachricht', es: 'Mensaje', sv: 'Meddelande', fi: 'Viesti', lv: 'Ziņojums' },

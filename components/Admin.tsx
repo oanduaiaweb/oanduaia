@@ -14,6 +14,7 @@ import {
 import AdminStats from '@/components/AdminStats'
 import AdminCalendar from '@/components/AdminCalendar'
 import AdminProducts from '@/components/AdminProducts'
+import AdminCustomers from '@/components/AdminCustomers'
 import { bookingFor, gmailLink, needsReply, stayOf, todayTallinn } from '@/lib/enquiryStatus'
 
 type Payload = {
@@ -519,6 +520,8 @@ export default function Admin() {
 
       <AdminCalendar blocks={data?.blocks ?? {}} enquiries={allEnquiries} payments={payments ?? []} onOpen={openEnquiry}
         onHold={holdFromCalendar} onRelease={remove} />
+
+      <AdminCustomers />
 
       <AdminStats />
 
