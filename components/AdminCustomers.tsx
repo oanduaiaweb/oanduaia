@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { Customer } from '@/lib/customers'
 import { CHRISTMAS_LANGS, christmasLetter } from '@/lib/christmasEmail'
+import { waNudge, waNumber } from '@/lib/whatsapp'
 
 type Filter = 'all' | 'guests' | 'enquiries' | 'nophone' | 'hidden'
 
@@ -18,12 +19,6 @@ const day = (iso?: string) =>
   iso ? new Date(`${iso}T12:00:00`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : ''
 
 const todayIso = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Tallinn' })
-
-const whatsapp = (phone: string) => {
-  let d = phone.replace(/\D/g, '')
-  if (d.length && !phone.trim().startsWith('+') && !d.startsWith('372') && d.length <= 8) d = `372${d}`
-  return `https://wa.me/${d}`
-}
 
 const canMail = (c: Customer) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email)
 
@@ -173,7 +168,10 @@ export default function AdminCustomers() {
                     <span className="adm-cust-contact">
                       {c.email && <a className="adm-link" href={`mailto:${c.email}`}>{c.email}</a>}
                       {c.phone
-                        ? <a className="adm-link" href={whatsapp(c.phone)} target="_blank" rel="noreferrer">{c.phone}</a>
+                        ? <>
+                            <a className="adm-link" href={`https://wa.me/${waNumber(c.phone)}`} target="_blank" rel="noreferrer">{c.phone}</a>
+                            <a className="adm-link adm-wa" href={waNudge(c.phone, c.name, c.lang)} target="_blank" rel="noreferrer">WhatsApp: check spam</a>
+                          </>
                         : <span className="adm-cust-missing">no phone</span>}
                     </span>
                   </div>

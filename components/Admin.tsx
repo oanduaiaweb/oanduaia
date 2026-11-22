@@ -15,6 +15,7 @@ import AdminStats from '@/components/AdminStats'
 import AdminCalendar from '@/components/AdminCalendar'
 import AdminProducts from '@/components/AdminProducts'
 import AdminCustomers from '@/components/AdminCustomers'
+import { waNudge } from '@/lib/whatsapp'
 import { bookingFor, gmailLink, needsReply, stayOf, todayTallinn } from '@/lib/enquiryStatus'
 
 type Payload = {
@@ -459,6 +460,7 @@ export default function Admin() {
                   </span>
                   {e.email && <a className="adm-link" href={`mailto:${e.email}`}>{e.email}</a>}
                   {e.phone && <a className="adm-link" href={`tel:${e.phone.replace(/[^+\d]/g, '')}`}>{e.phone}</a>}
+                  {e.phone && <a className="adm-link adm-wa" href={waNudge(e.phone, e.name, e.lang)} target="_blank" rel="noreferrer">WhatsApp: check spam</a>}
                   {e.threadId && <a className="adm-link" href={gmailLink(e.threadId)} target="_blank" rel="noreferrer">Open in Gmail</a>}
                   <span className={`adm-enq-state${red ? ' is-red' : ''}`}>
                     {red ? 'Waiting for our reply' : booked ? `Booked — ${houseName(booked.house)} ${booked.block.from} → ${booked.block.to}` : e.answered ? 'Answered — waiting for the guest' : e.handled ? 'Dealt with' : ''}

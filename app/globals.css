@@ -5625,3 +5625,4 @@ body .avail-panel .btn-dark.avail-cta { font-family: var(--font-cormorant), Geor
 .adm-xmas { border-top: 1px solid rgba(90,110,80,0.16); padding-top: 1rem; }
 .adm-xmas-letter { white-space: pre-wrap; font-family: var(--font-sans); font-size: var(--fs-sm); color: var(--bark); background: var(--cream); border: 1px solid rgba(90,110,80,0.2); padding: 0.9rem 1rem; margin: 0.6rem 0 1rem; max-width: 62ch; }
 @media (max-width: 600px) { .adm-cust-contact { margin-left: 0; width: 100%; } .adm-cust-meta { padding-left: 0; } }
+.adm-wa { color: #1f7a4d; }

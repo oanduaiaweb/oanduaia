@@ -9,6 +9,7 @@ import type { Enquiry } from '@/lib/enquiries'
 import type { Payment } from '@/lib/payments'
 import { isClosed } from '@/lib/season'
 import { needsReply, sameGuest, stayOf, todayTallinn } from '@/lib/enquiryStatus'
+import { waNudge } from '@/lib/whatsapp'
 
 type Props = {
   blocks: Record<string, Block[]>
@@ -240,6 +241,7 @@ export default function AdminCalendar({ blocks, enquiries, payments, onOpen, onH
                         <span className="adm-cal-contact">
                           {c.email && <a className="adm-link" href={`mailto:${c.email}`}>{c.email}</a>}
                           {c.phone && <a className="adm-link" href={`tel:${c.phone.replace(/[^+\d]/g, '')}`}>{c.phone}</a>}
+                          {c.phone && <a className="adm-link adm-wa" href={waNudge(c.phone, c.enq?.name ?? c.pay?.name, c.enq?.lang ?? c.pay?.lang)} target="_blank" rel="noreferrer">WhatsApp: check spam</a>}
                           {c.pay && <span className={`adm-cal-pay${c.pay.status === 'paid' ? ' is-paid' : ''}`}>
                             {c.pay.amount / 100} € {c.pay.status === 'paid' ? 'paid' : c.pay.method === 'cash' ? 'cash on arrival' : 'not paid yet'}
                           </span>}
