@@ -8,7 +8,7 @@
 
 type Copy = { subject: string; hello: (n: string) => string; stayed: string; wrote: string; body: string; bye: string }
 
-const SIGN = `Toomas
+const SIGN = (lang: string) => `${lang === 'et' ? 'Toomas ja Aigi' : 'Toomas & Aigi'}
 Oanduaia
 +372 520 2044 · www.oanduaia.ee`
 
@@ -93,7 +93,8 @@ export const CHRISTMAS_LANGS = Object.keys(COPY)
 const firstName = (name: string) => (name.includes('@') ? '' : name.trim().split(/\s+/)[0] ?? '')
 
 export function christmasLetter(name: string, lang: string | undefined, stayed: boolean): { subject: string; text: string } {
-  const c = COPY[lang ?? ''] ?? COPY.en
-  const text = [c.hello(firstName(name)), '', `${stayed ? c.stayed : c.wrote} ${c.body}`, '', c.bye, SIGN].join('\n')
+  const l = lang && COPY[lang] ? lang : 'en'
+  const c = COPY[l]
+  const text = [c.hello(firstName(name)), '', `${stayed ? c.stayed : c.wrote} ${c.body}`, '', c.bye, SIGN(l)].join('\n')
   return { subject: c.subject, text }
 }
