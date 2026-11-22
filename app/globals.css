@@ -4470,7 +4470,9 @@ body.gallery-page .nav-social { text-shadow: none; }
   .stats-section { grid-template-columns: 1fr 1fr; }
   .stat-item { padding: 2.5rem 1.5rem; }
 
-  .booking-form { grid-template-columns: 1fr; }
+  .booking-form { grid-template-columns: minmax(0, 1fr); }
+  /* Russian "Отправить запрос на бронирование" is wider than a phone; let it wrap instead of widening the form. */
+  .booking-form .btn-dark { white-space: normal; }
   .form-field {
     padding: 1.4rem 0;
     border-right: none !important;
