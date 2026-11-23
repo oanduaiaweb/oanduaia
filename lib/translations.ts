@@ -929,14 +929,14 @@ export const T = {
       lv: 'Šī ir galīgā cena. Pēc samaksas māja ir jūsu, un apstiprinājums pienāks e-pastā.',
     },
     payFree: {
-      et: 'Täismakse kohe. Tasuta tühistamine kuni {d}.',
+      et: 'Täismakse kohe. Tasuta tühistamise tähtaeg: {d}.',
       en: 'Full payment now. Free cancellation until {d}.',
       ru: 'Полная оплата сейчас. Бесплатная отмена до {d}.',
       de: 'Volle Zahlung jetzt. Kostenlose Stornierung bis {d}.',
       es: 'Pago completo ahora. Cancelación gratuita hasta el {d}.',
       sv: 'Hela beloppet betalas nu. Kostnadsfri avbokning till och med {d}.',
       fi: 'Koko summa maksetaan nyt. Maksuton peruutus {d} asti.',
-      lv: 'Pilna samaksa tagad. Bezmaksas atcelšana līdz {d}.',
+      lv: 'Pilna samaksa tagad. Bezmaksas atcelšanas termiņš: {d}.',
     },
     payNoRefund: {
       et: 'Täismakse kohe. Vähem kui 7 päeva enne saabumist tehtud broneeringut ei tagastata.',

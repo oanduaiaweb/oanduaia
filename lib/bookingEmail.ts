@@ -36,7 +36,7 @@ const L: Record<Lang, Copy> = {
   et: {
     subject: (h, d) => `Broneering kinnitatud – ${h}, ${d}`,
     breakfast: (p, m) => `${p} inimest × ${m} hommikut`,
-    cancelFree: d => `Tühistamine on tasuta kuni ${d}. Hiljem makset ei tagastata.`,
+    cancelFree: d => `Tasuta tühistamise tähtaeg: ${d}. Hiljem makset ei tagastata.`,
     cancelNone: 'Broneering on tehtud vähem kui 7 päeva enne saabumist, seega makset ei tagastata.',
     body: f => `Tere, ${f.first}!
 
@@ -218,7 +218,7 @@ Oanduaia`,
   lv: {
     subject: (h, d) => `Rezervācija apstiprināta – ${h}, ${d}`,
     breakfast: (p, m) => `${p} pers. × ${m} rīti`,
-    cancelFree: d => `Atcelšana ir bez maksas līdz ${d}. Pēc tam maksājums netiek atmaksāts.`,
+    cancelFree: d => `Bezmaksas atcelšanas termiņš: ${d}. Pēc tam maksājums netiek atmaksāts.`,
     cancelNone: 'Rezervācija veikta mazāk nekā 7 dienas pirms ierašanās, tāpēc maksājums netiek atmaksāts.',
     body: f => `Labdien, ${f.first}!
 
