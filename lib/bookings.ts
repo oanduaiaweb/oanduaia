@@ -83,6 +83,15 @@ export async function writeBookings(store: BookingStore): Promise<void> {
     addRandomSuffix: false,
     cacheControlMaxAge: 0,
   })
+  await forget('bookings')
+}
+
+/**
+ * Expire the cached copy (lib/storeCache.ts) after a write. Imported lazily: this file also
+ * reaches the browser through lib/availability, and next/cache is server-only.
+ */
+export async function forget(tag: string) {
+  try { (await import('next/cache')).revalidateTag(tag, { expire: 0 }) } catch {}
 }
 
 /** Every night held for a house, expanded from its blocks. Same night model as the feeds. */

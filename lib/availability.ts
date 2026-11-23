@@ -1,5 +1,5 @@
 import { addDays, readFeed, MAX_IMPORT_NIGHTS, type DateStr } from './ical'
-import { readBookings, blockedNightsFor } from './bookings'
+import { readBookings, blockedNightsFor, type BookingStore } from './bookings'
 import { closedNights } from './season'
 
 /**
@@ -127,14 +127,14 @@ async function readFeeds(
   }
 }
 
-export async function getAvailability(): Promise<Availability> {
+export async function getAvailability(readStore: () => Promise<BookingStore> = readBookings): Promise<Availability> {
   const from = today()
   const to = addDays(from, HORIZON_MONTHS * 31)
 
   // If our own store cannot be read we know nothing, whatever the feeds say.
   let store
   try {
-    store = await readBookings()
+    store = await readStore()
   } catch {
     return {
       from,

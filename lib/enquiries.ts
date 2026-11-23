@@ -1,4 +1,5 @@
 import { put, get, BlobNotFoundError } from '@vercel/blob'
+import { forget } from './bookings'
 
 /**
  * Every enquiry the website has ever taken, kept on our own side.
@@ -79,6 +80,7 @@ export async function writeEnquiries(store: EnquiryStore): Promise<void> {
     addRandomSuffix: false,
     cacheControlMaxAge: 0,
   })
+  await forget('enquiries')
 }
 
 /**

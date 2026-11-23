@@ -1,4 +1,5 @@
-import { readBookings, holds } from '@/lib/bookings'
+import { holds } from '@/lib/bookings'
+import { readBookingsCached } from '@/lib/storeCache'
 import { HOUSE_SLUGS, HORIZON_MONTHS, type HouseSlug } from '@/lib/availability'
 import { closedRuns } from '@/lib/season'
 import { addDays } from '@/lib/ical'
@@ -43,7 +44,7 @@ export async function GET(
     return new Response('Not found', { status: 404 })
   }
 
-  const store = await readBookings()
+  const store = await readBookingsCached()
   // A lapsed online checkout hold is not a booking; publishing it would close a free night.
   const blocks = (store.blocks[slug as HouseSlug] ?? []).filter(b => holds(b))
 

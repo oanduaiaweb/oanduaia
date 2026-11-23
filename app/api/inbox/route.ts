@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { timingSafeEqual } from 'node:crypto'
 import { readEnquiries, writeEnquiries } from '@/lib/enquiries'
+import { readEnquiriesCached } from '@/lib/storeCache'
 import { mergeMail, type MailThread } from '@/lib/inbox'
 
 export const dynamic = 'force-dynamic'
@@ -32,6 +33,10 @@ export async function POST(req: Request) {
     }]
   })
   if (!threads.length) return NextResponse.json({ ok: true, added: 0, updated: 0 })
+
+  // The poll runs every few minutes and usually brings nothing new; only then pay for a blob read.
+  const probe = mergeMail(structuredClone(await readEnquiriesCached()), threads)
+  if (!probe.added && !probe.updated) return NextResponse.json({ ok: true, added: 0, updated: 0 })
 
   const store = await readEnquiries()
   const result = mergeMail(store, threads)
