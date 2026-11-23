@@ -38,7 +38,7 @@ type Copy = {
 const COPY: Record<string, Copy> = {
   et: {
     subject: v => `Teie broneering: ${v.reference}`,
-    body: v => `Tere ${v.guest},
+    body: v => `Tere, ${v.guest}!
 
 Aitäh! Kinnitame teie broneeringu:
 
@@ -49,7 +49,7 @@ Kokku: ${v.amount} €
 Makselink:
 ${v.url}
 
-Palun tasuge ${v.due}. Makse toimub Stripe'i turvalisel lehel — kaart, Apple Pay ja Google Pay kõik töötavad ning kaardiandmed ei jõua kunagi meie serverisse.
+Palun tasuge hiljemalt ${v.due}. Makse toimub Stripe'i turvalisel lehel, maksta saab kaardi, Apple Pay või Google Payga. Teie kaardiandmed meie serverisse ei jõua.
 
 Kuupäevad on teile broneeritud. Kui makse selleks ajaks ei laeku, vabastame kuupäevad.
 
