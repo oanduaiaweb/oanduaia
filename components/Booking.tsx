@@ -50,7 +50,13 @@ export default function Booking() {
           ...(draft && form.kuupaevad === draft.dates ? { checkIn: draft.checkIn, checkOut: draft.checkOut } : {}),
           dates: form.kuupaevad,
           message: [summary, form.sonum].filter(Boolean).join('\n'),
-          subject: t.eSubj[lang],
+          /*
+           * House and dates in the subject, so pressing Reply in Gmail already gives the guest a
+           * specific subject. A bare "Re: Enquiry" from a young domain is what spam filters dislike.
+           */
+          subject: draft?.house && form.kuupaevad === draft.dates
+            ? `${t.eSubj[lang].replace(/ – Oanduaia$/, '')}: ${draft.house}, ${draft.dates.replace(/\s*\([^)]*\)$/, '')} – Oanduaia`
+            : t.eSubj[lang],
           // So the admin list shows which language to answer in, without guessing from the text.
           lang,
           company: form.company,
