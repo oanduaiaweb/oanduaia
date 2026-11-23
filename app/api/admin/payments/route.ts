@@ -4,7 +4,7 @@ import { SESSION_COOKIE, verifySession } from '@/lib/adminAuth'
 import { addPayment, eurosToCents, readPayments, updatePayment } from '@/lib/payments'
 import { stripeConfigured, stripeLive } from '@/lib/stripe'
 import { LOCALES } from '@/lib/i18n'
-import { Resend } from 'resend'
+import { getResend } from '@/lib/mailer'
 import { randomUUID } from 'node:crypto'
 import { dueDate, linkLetter } from '@/lib/paymentEmail'
 import { hasMeals } from '@/lib/pricing'
@@ -13,13 +13,6 @@ import { type HouseSlug } from '@/lib/availability'
 
 const SITE = 'https://www.oanduaia.ee'
 
-// Per request, never at module scope: module-scope construction runs during the build's
-// page-data collection and throws wherever the key is not set.
-function getResend() {
-  const key = process.env.RESEND_API_KEY
-  if (!key) throw new Error('RESEND_API_KEY is not configured')
-  return new Resend(key)
-}
 
 export const dynamic = 'force-dynamic'
 

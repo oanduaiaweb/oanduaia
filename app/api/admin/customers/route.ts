@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import { Resend } from 'resend'
+import { getResend } from '@/lib/mailer'
 import { SESSION_COOKIE, verifySession } from '@/lib/adminAuth'
 import { readEnquiries } from '@/lib/enquiries'
 import { readPayments } from '@/lib/payments'
@@ -11,11 +11,7 @@ import { christmasLetter } from '@/lib/christmasEmail'
 
 export const dynamic = 'force-dynamic'
 
-function getResend() {
-  const key = process.env.RESEND_API_KEY
-  if (!key) throw new Error('RESEND_API_KEY is not configured')
-  return new Resend(key)
-}
+
 
 async function authed(): Promise<boolean> {
   return verifySession((await cookies()).get(SESSION_COOKIE)?.value)
@@ -107,6 +103,8 @@ export async function POST(req: Request) {
           replyTo: 'info@oanduaia.ee',
           subject: letter.subject,
           text: letter.text,
+          // One greeting to many past guests looks like bulk mail; Gmail and Yahoo expect a way out.
+          headers: { 'List-Unsubscribe': '<mailto:info@oanduaia.ee?subject=unsubscribe>' },
         })
         store.people[c.key] = { ...store.people[c.key], christmasSentAt: today }
         sent.push(c.name)

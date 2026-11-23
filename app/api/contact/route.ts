@@ -1,16 +1,9 @@
 import { NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
-import { Resend } from 'resend'
+import { getResend } from '@/lib/mailer'
 import { recordEnquiry } from '@/lib/enquiries'
 import { receiptLetter } from '@/lib/enquiryEmail'
 
-// Instantiated per request, not at module scope — module-scope construction runs
-// during the build's page-data collection and fails wherever the key isn't set.
-function getResend() {
-  const key = process.env.RESEND_API_KEY
-  if (!key) throw new Error('RESEND_API_KEY is not configured')
-  return new Resend(key)
-}
 
 /**
  * An enquiry from the website.

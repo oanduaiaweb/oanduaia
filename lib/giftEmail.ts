@@ -1,4 +1,4 @@
-import { Resend } from 'resend'
+import { getResend } from '@/lib/mailer'
 import { G } from '@/lib/gift'
 import { SITE } from '@/lib/i18n'
 import type { Payment } from '@/lib/payments'
@@ -36,7 +36,7 @@ export async function sendGiftVoucher(p: Payment): Promise<void> {
     'Oanduaia',
     '+372 520 2044 · www.oanduaia.ee',
   ].filter((l): l is string => l !== null)
-  const resend = new Resend(key)
+  const resend = getResend()
   await resend.emails.send({
     from: 'Oanduaia <info@oanduaia.ee>',
     to: p.email,
