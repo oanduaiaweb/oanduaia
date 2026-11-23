@@ -971,6 +971,18 @@ export const T = {
       fi: 'Nämä yöt varattiin juuri. Valitse toiset päivät.',
       lv: 'Šīs naktis tikko tika rezervētas. Lūdzu, izvēlieties citus datumus.',
     },
+    errEmail: {
+      et: 'Palun kontrollige e-posti aadressi – sellest puudub midagi (näiteks punkt: nimi@gmail.com).',
+      en: 'Please check your e-mail address – something is missing (for example the dot: name@gmail.com).',
+      ru: 'Проверьте адрес эл. почты – чего-то не хватает (например, точки: name@gmail.com).',
+      de: 'Bitte prüfen Sie Ihre E-Mail-Adresse – es fehlt etwas (zum Beispiel der Punkt: name@gmail.com).',
+      es: 'Revise su correo electrónico: falta algo (por ejemplo, el punto: nombre@gmail.com).',
+      sv: 'Kontrollera din e-postadress – något saknas (till exempel punkten: namn@gmail.com).',
+      fi: 'Tarkista sähköpostiosoite – siitä puuttuu jotain (esimerkiksi piste: nimi@gmail.com).',
+      lv: 'Lūdzu, pārbaudiet e-pasta adresi – kaut kas trūkst (piemēram, punkts: vards@gmail.com).',
+    },
+    errPhone: { et: 'Palun lisage telefoninumber.', en: 'Please add your phone number.', ru: 'Пожалуйста, укажите номер телефона.', de: 'Bitte geben Sie Ihre Telefonnummer an.', es: 'Indique su número de teléfono.', sv: 'Ange ditt telefonnummer.', fi: 'Lisää puhelinnumerosi.', lv: 'Lūdzu, norādiet tālruņa numuru.' },
+    errName: { et: 'Palun lisage oma nimi.', en: 'Please add your name.', ru: 'Пожалуйста, укажите имя.', de: 'Bitte geben Sie Ihren Namen an.', es: 'Indique su nombre.', sv: 'Ange ditt namn.', fi: 'Lisää nimesi.', lv: 'Lūdzu, norādiet savu vārdu.' },
     errContact: { et: 'Palun täitke nimi, e-post ja telefon.', en: 'Please fill in your name, e-mail and phone.', ru: 'Пожалуйста, укажите имя, e-mail и телефон.', de: 'Bitte Name, E-Mail und Telefon ausfüllen.', es: 'Indique su nombre, correo electrónico y teléfono.', sv: 'Fyll i namn, e-post och telefon.', fi: 'Täytä nimi, sähköposti ja puhelin.', lv: 'Lūdzu, norādiet vārdu, e-pastu un tālruni.' },
     errFailed: {
       et: 'Midagi läks valesti. Proovige uuesti või kirjutage meile WhatsAppis +372 520 2044.',

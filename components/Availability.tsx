@@ -141,7 +141,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
   const [payEmail, setPayEmail] = useState('')
   const [payPhone, setPayPhone] = useState('')
   const [paying, setPaying] = useState(false)
-  const [payError, setPayError] = useState<null | 'taken' | 'contact' | 'failed'>(null)
+  const [payError, setPayError] = useState<null | 'taken' | 'contact' | 'name' | 'email' | 'phone' | 'failed'>(null)
 
   // The grid depends on today's date, so it is built after mount rather than on the server —
   // otherwise the first paint can disagree with the client and React throws out the markup.
@@ -285,10 +285,9 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
 
   const pay = async () => {
     if (!canPay || !checkIn || !checkOut) return
-    if (!payName.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payEmail.trim()) || payPhone.replace(/\D/g, '').length < 5) {
-      setPayError('contact')
-      return
-    }
+    if (!payName.trim()) { setPayError('name'); return }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payEmail.trim())) { setPayError('email'); return }
+    if (payPhone.replace(/\D/g, '').length < 5) { setPayError('phone'); return }
     setPaying(true)
     setPayError(null)
     track('begin_checkout', { lang, house: slug, nights: q!.nights, value: q!.total, currency: 'EUR' })
@@ -741,14 +740,14 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
               {canPay && payOpen && (
                 <div className="avail-pay">
                   <label className="avail-label" htmlFor="pay-name">{b.lNimi[lang]}</label>
-                  <input id="pay-name" className="avail-input" autoComplete="name" value={payName}
-                    onChange={e => setPayName(e.target.value)} />
+                  <input id="pay-name" className={`avail-input${payError === 'name' ? ' is-invalid' : ''}`} aria-invalid={payError === 'name'} autoComplete="name" value={payName}
+                    onChange={e => { setPayName(e.target.value); setPayError(null) }} />
                   <label className="avail-label" htmlFor="pay-email">{b.lEmail[lang]}</label>
-                  <input id="pay-email" className="avail-input" type="email" autoComplete="email" inputMode="email"
-                    value={payEmail} onChange={e => setPayEmail(e.target.value)} />
+                  <input id="pay-email" className={`avail-input${payError === 'email' ? ' is-invalid' : ''}`} aria-invalid={payError === 'email'} type="email" autoComplete="email" inputMode="email"
+                    value={payEmail} onChange={e => { setPayEmail(e.target.value); setPayError(null) }} />
                   <label className="avail-label" htmlFor="pay-phone">{b.lPhone[lang]}</label>
-                  <input id="pay-phone" className="avail-input" type="tel" autoComplete="tel" inputMode="tel"
-                    value={payPhone} onChange={e => setPayPhone(e.target.value)} />
+                  <input id="pay-phone" className={`avail-input${payError === 'phone' ? ' is-invalid' : ''}`} aria-invalid={payError === 'phone'} type="tel" autoComplete="tel" inputMode="tel"
+                    value={payPhone} onChange={e => { setPayPhone(e.target.value); setPayError(null) }} />
                   <p className="avail-note">
                     {cancelUntil && cancelUntil >= todayTallinn()
                       ? t.payFree[lang].replace('{d}', formatDate(cancelUntil, lang))
@@ -760,7 +759,7 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
                   <p className="avail-note avail-note--small">{t.payVia[lang]}</p>
                   {payError && (
                     <p className="avail-status avail-status--warn" role="alert">
-                      {payError === 'taken' ? t.errTaken[lang] : payError === 'contact' ? t.errContact[lang] : t.errFailed[lang]}
+                      {payError === 'taken' ? t.errTaken[lang] : payError === 'name' ? t.errName[lang] : payError === 'email' ? t.errEmail[lang] : payError === 'phone' ? t.errPhone[lang] : payError === 'contact' ? t.errContact[lang] : t.errFailed[lang]}
                     </p>
                   )}
                 </div>
