@@ -1,4 +1,4 @@
-import { readBookings } from '@/lib/bookings'
+import { readBookings, holds } from '@/lib/bookings'
 import { HOUSE_SLUGS, HORIZON_MONTHS, type HouseSlug } from '@/lib/availability'
 import { closedRuns } from '@/lib/season'
 import { addDays } from '@/lib/ical'
@@ -44,7 +44,8 @@ export async function GET(
   }
 
   const store = await readBookings()
-  const blocks = store.blocks[slug as HouseSlug] ?? []
+  // A lapsed online checkout hold is not a booking; publishing it would close a free night.
+  const blocks = (store.blocks[slug as HouseSlug] ?? []).filter(b => holds(b))
 
   // The winter closure goes out too, as whole runs rather than a hundred single nights,
   // so a channel importing this feed shuts the same season we do.

@@ -71,6 +71,7 @@ async function readFeeds(
   to: DateStr,
   own: DateStr[],
   live: boolean,
+  fresh = false,
 ): Promise<HouseAvailability> {
   const urls = (process.env[FEED_ENV[slug]] ?? '')
     .split(',')
@@ -93,7 +94,7 @@ async function readFeeds(
       try {
         const res = await fetch(url, {
           signal: AbortSignal.timeout(10_000),
-          next: { revalidate: REVALIDATE_SECONDS },
+          ...(fresh ? { cache: 'no-store' as const } : { next: { revalidate: REVALIDATE_SECONDS } }),
         })
         if (!res.ok) throw new Error(`${res.status}`)
         const body = await res.text()
@@ -154,4 +155,28 @@ export async function getAvailability(): Promise<Availability> {
     ),
   )
   return { from, to, houses }
+}
+
+/**
+ * One house, read NOW: our store, the closed season and every channel feed fetched past the
+ * half-hour cache. Used at the two moments a stale answer costs money — just before an online
+ * booking is sent to Stripe, and just after it is paid. `channel` is the feed nights alone, so
+ * a clash with Booking.com can be told apart from our own hold for the same stay.
+ */
+export async function liveNights(
+  slug: HouseSlug, from: DateStr, to: DateStr, ignoreBlockId?: string,
+): Promise<{ ok: boolean; trusted: boolean; taken: DateStr[]; channel: DateStr[] }> {
+  const store = await readBookings()
+  const ownStore = ignoreBlockId
+    ? { ...store, blocks: { ...store.blocks, [slug]: (store.blocks[slug] ?? []).filter(b => b.id !== ignoreBlockId) } }
+    : store
+  const own = blockedNightsFor(ownStore, slug)
+  const all = await readFeeds(slug, from, to, own, !!store.live[slug], true)
+  const mine = new Set([...closedNights(slug, from, to), ...own.filter(n => n >= from && n < to)])
+  return {
+    ok: all.status === 'ok',
+    trusted: all.trusted,
+    taken: all.blocked,
+    channel: all.blocked.filter(n => !mine.has(n)),
+  }
 }

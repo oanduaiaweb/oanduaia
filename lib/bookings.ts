@@ -23,7 +23,16 @@ export type Block = {
   guest?: string
   note?: string
   created: string
+  /**
+   * Set while an online booking is at the payment step. Past this moment the hold no longer
+   * counts anywhere — not on the site, not in the iCal feed — so an abandoned checkout frees
+   * its nights on its own, without waiting for a cron. Removed once the payment lands.
+   */
+  holdUntil?: string
 }
+
+/** A block that still holds its nights: anything without a lapsed payment hold. */
+export const holds = (b: Block, now = Date.now()) => !b.holdUntil || Date.parse(b.holdUntil) > now
 
 export type BookingStore = {
   version: 1
@@ -80,6 +89,7 @@ export async function writeBookings(store: BookingStore): Promise<void> {
 export function blockedNightsFor(store: BookingStore, slug: HouseSlug): DateStr[] {
   const nights = new Set<DateStr>()
   for (const b of store.blocks[slug] ?? []) {
+    if (!holds(b)) continue
     const span = Math.min(nightsBetween(b.from, b.to), 800)
     for (let i = 0; i < span; i++) {
       const d = new Date(`${b.from}T00:00:00Z`)
@@ -106,5 +116,5 @@ export function validateBlock(house: string, from: string, to: string): string |
 
 /** Does this range touch anything already held for the house? */
 export function overlaps(store: BookingStore, slug: HouseSlug, from: DateStr, to: DateStr): boolean {
-  return (store.blocks[slug] ?? []).some(b => from < b.to && b.from < to)
+  return (store.blocks[slug] ?? []).some(b => holds(b) && from < b.to && b.from < to)
 }

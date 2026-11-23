@@ -4,6 +4,7 @@ import { updatePayment } from '@/lib/payments'
 import { giftValidUntil } from '@/lib/gift'
 import { sendGiftVoucher } from '@/lib/giftEmail'
 import { getStripe } from '@/lib/stripe'
+import { confirmOnlineBooking } from '@/lib/confirmBooking'
 
 export const dynamic = 'force-dynamic'
 
@@ -57,6 +58,13 @@ export async function POST(req: Request) {
           await updatePayment(updated.id, p => { if (p.voucher) p.voucher.sentAt = new Date().toISOString() })
         } catch (err) {
           console.error('[stripe webhook] voucher e-mail failed:', err)
+        }
+      }
+      if (updated?.source === 'online' && !updated.confirmedAt) {
+        try {
+          await confirmOnlineBooking(updated.id)
+        } catch (err) {
+          console.error('[stripe webhook] online booking confirmation failed:', err)
         }
       }
     }

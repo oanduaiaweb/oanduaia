@@ -5628,3 +5628,46 @@ body .avail-panel .btn-dark.avail-cta { font-family: var(--font-cormorant), Geor
 .adm-xmas-letter { white-space: pre-wrap; font-family: var(--font-sans); font-size: var(--fs-sm); color: var(--bark); background: var(--cream); border: 1px solid rgba(90,110,80,0.2); padding: 0.9rem 1rem; margin: 0.6rem 0 1rem; max-width: 62ch; }
 @media (max-width: 600px) { .adm-cust-contact { margin-left: 0; width: 100%; } .adm-cust-meta { padding-left: 0; } }
 .adm-wa { color: #1f7a4d; }
+
+/* Book and pay on the site (22 Nov 2026). Same dark-panel vocabulary as the selects above. */
+.avail-pay { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 1.2rem; }
+.avail-pay .avail-label { margin-top: 0.5rem; }
+.avail-input {
+  font-family: var(--font-sans);
+  font-size: 16px; /* under 16px iOS zooms the page on focus */
+  font-weight: 300;
+  color: var(--panel-ink);
+  background-color: rgba(9,13,6,0.3);
+  border: 1px solid rgba(200,212,184,0.2);
+  border-radius: 5px;
+  padding: 0.6rem 0.9rem;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.34);
+  width: 100%;
+  box-sizing: border-box;
+}
+.avail-input:focus { outline: none; border-color: rgba(200,212,184,0.55); }
+.avail-pay .avail-cta { margin-top: 0.8rem; }
+.avail-note--small { margin-top: 0.4rem; }
+.avail-cta-alt {
+  display: block;
+  margin-top: 1rem;
+  background: none;
+  border: 0;
+  padding: 0.3rem 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--ls-wide);
+  color: var(--panel-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.85;
+  cursor: pointer;
+}
+.avail-cta-alt:disabled { opacity: 0.35; cursor: default; }
+.avail-late { margin-top: 1.2rem; }
+.avail-late-h { font-family: var(--font-cormorant), Georgia, serif; font-size: var(--fs-md); color: var(--panel-ink); margin: 0; }
+.avail-late-links { font-family: var(--font-sans); font-size: var(--fs-sm); color: var(--panel-ink); margin-top: 0.5rem; }
+.avail-late-links a { color: inherit; text-underline-offset: 3px; }
+.avail-late + .avail-cta, .avail-late + .avail-cta-alt { margin-top: 1.4rem; }
+body .avail-panel .btn-dark.avail-cta { white-space: normal; line-height: 1.4; }
+@media (max-width: 480px) { body .avail-panel .btn-dark.avail-cta { padding-left: 1.2rem; padding-right: 1.2rem; } }

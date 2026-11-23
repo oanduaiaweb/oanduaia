@@ -80,6 +80,21 @@ export type Payment = {
    */
   meals?: Meals
 
+  /**
+   * Booked and paid by the guest on the website, with nobody in between. The record and its
+   * block are created together, the block carries a short `holdUntil`, and the webhook turns it
+   * into a real booking and sends the confirmation (`confirmedAt`, once).
+   */
+  source?: 'online'
+  phone?: string
+  guests?: number
+  pet?: boolean
+  /** Mirrors the block's hold, so the pay page can refuse a checkout whose nights were let go. */
+  holdUntil?: string
+  confirmedAt?: string
+  /** Set when the paid stay collided with something on a channel — Mikk decides what happens. */
+  clash?: string
+
   /** Set when this record is a gift voucher bought on /gift rather than a stay. */
   voucher?: {
     code: string

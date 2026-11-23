@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { findPayment, updatePayment } from '@/lib/payments'
 import { getStripe } from '@/lib/stripe'
-import { SITE } from '@/lib/i18n'
+import { createCheckout, SESSION_MINUTES, HOLD_MINUTES } from '@/lib/checkout'
+import { readBookings, writeBookings } from '@/lib/bookings'
 
 export const dynamic = 'force-dynamic'
 
@@ -28,32 +29,32 @@ export async function POST(_req: Request, ctx: { params: Promise<{ token: string
   const stripe = getStripe()
   if (!stripe) return NextResponse.json({ error: 'not_configured' }, { status: 503 })
 
-  const base = `${SITE}/${payment.lang}/pay/${payment.id}`
+  /*
+   * An online booking holds its nights for a few minutes only. Past that they may already be
+   * someone else's, so the page must not take money for them; within it, a guest who came back
+   * from Stripe without paying gets a fresh session and the hold is stretched to cover it.
+   */
+  let expiresAt: number | undefined
+  if (payment.source === 'online') {
+    if (payment.status === 'expired' || !payment.holdUntil || Date.parse(payment.holdUntil) <= Date.now()) {
+      return NextResponse.json({ error: 'hold_lapsed' }, { status: 409 })
+    }
+    const now = Date.now()
+    expiresAt = Math.floor(now / 1000) + SESSION_MINUTES * 60
+    const holdUntil = new Date(now + HOLD_MINUTES * 60_000).toISOString()
+    const bookings = await readBookings()
+    for (const list of Object.values(bookings.blocks)) {
+      const b = list.find(x => x.id === payment.blockId)
+      if (b) b.holdUntil = holdUntil
+    }
+    await writeBookings(bookings)
+    await updatePayment(payment.id, p => { p.holdUntil = holdUntil })
+  } else if (payment.status === 'expired') {
+    return NextResponse.json({ error: 'expired' }, { status: 409 })
+  }
+
   try {
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      customer_email: payment.email,
-      // The amount comes from OUR record, never from the request body. A price posted by the
-      // browser is a price the browser can change.
-      line_items: [{
-        quantity: 1,
-        price_data: {
-          currency: payment.currency,
-          unit_amount: payment.amount,
-          product_data: {
-            name: payment.voucher ? 'Oanduaia – kinkekaart / gift voucher' : 'Oanduaia',
-            description: payment.reference.slice(0, 500),
-          },
-        },
-      }],
-      // A voucher lands on the voucher itself, ready to print; a stay on its own pay page.
-      success_url: payment.voucher ? `${SITE}/${payment.lang}/gift/${payment.id}?paid=1` : `${base}?paid=1`,
-      cancel_url: base,
-      locale: payment.lang === 'et' ? 'et' : payment.lang === 'ru' ? 'ru' : payment.lang === 'de' ? 'de' : payment.lang === 'es' ? 'es' : payment.lang === 'sv' ? 'sv' : payment.lang === 'fi' ? 'fi' : payment.lang === 'lv' ? 'lv' : 'en',
-      metadata: { token: payment.id, name: payment.name },
-    })
-    await updatePayment(payment.id, p => { p.sessionId = session.id })
-    return NextResponse.json({ url: session.url })
+    return NextResponse.json({ url: await createCheckout(stripe, payment, expiresAt) })
   } catch (err) {
     console.error('[pay] could not create a checkout session:', err)
     return NextResponse.json({ error: 'stripe_failed' }, { status: 502 })

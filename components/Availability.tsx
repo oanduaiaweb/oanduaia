@@ -18,6 +18,8 @@ import {
 } from '@/lib/pricing'
 import { HOUSE_IMAGES } from '@/lib/houses'
 import TrustLine from '@/components/TrustLine'
+import { MIN_NOTICE_DAYS, MAX_ONLINE_NIGHTS, freeCancelUntil, todayTallinn } from '@/lib/instantBooking'
+import { SOCIAL } from '@/lib/social'
 
 const LOCALE: Record<Lang, string> = { et: 'et', en: 'en-GB', ru: 'ru', de: 'de-DE', es: 'es-ES', sv: 'sv-SE', fi: 'fi-FI', lv: 'lv-LV' }
 
@@ -129,6 +131,17 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
    */
   const [warn, setWarn] = useState<null | { kind: 'crosses' | 'taken' | 'released'; date?: DateStr }>(null)
   const [cursor, setCursor] = useState<{ y: number; m: number } | null>(null)
+
+  /*
+   * Book and pay on the site. The small form opens only after the guest says they want to pay,
+   * so a visitor who is still browsing dates is not faced with name and phone fields.
+   */
+  const [payOpen, setPayOpen] = useState(false)
+  const [payName, setPayName] = useState('')
+  const [payEmail, setPayEmail] = useState('')
+  const [payPhone, setPayPhone] = useState('')
+  const [paying, setPaying] = useState(false)
+  const [payError, setPayError] = useState<null | 'taken' | 'contact' | 'failed'>(null)
 
   // The grid depends on today's date, so it is built after mount rather than on the server —
   // otherwise the first paint can disagree with the client and React throws out the markup.
@@ -257,6 +270,51 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
   const rate = nightlyRate(slug, guests)
 
   const rangeEnd = checkOut ?? (checkIn && hovered && hovered > checkIn && canCheckOutOn(hovered) ? hovered : null)
+
+  // Online booking needs a complete calendar, enough notice for Aigi, and a stay of normal length.
+  const minArrival = useMemo(() => {
+    const d = new Date(`${todayTallinn()}T00:00:00Z`)
+    d.setUTCDate(d.getUTCDate() + MIN_NOTICE_DAYS)
+    return d.toISOString().slice(0, 10)
+  }, [])
+  const tooSoon = !!q && !!checkIn && checkIn < minArrival
+  const canPay = !!q && known && trusted && !tooSoon && q.nights <= MAX_ONLINE_NIGHTS
+  const cancelUntil = checkIn ? freeCancelUntil(checkIn) : null
+
+  useEffect(() => { setPayOpen(false); setPayError(null) }, [slug, checkIn, checkOut])
+
+  const pay = async () => {
+    if (!canPay || !checkIn || !checkOut) return
+    if (!payName.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payEmail.trim()) || payPhone.replace(/\D/g, '').length < 5) {
+      setPayError('contact')
+      return
+    }
+    setPaying(true)
+    setPayError(null)
+    track('begin_checkout', { lang, house: slug, nights: q!.nights, value: q!.total, currency: 'EUR' })
+    try {
+      const res = await fetch('/api/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          house: slug, checkIn, checkOut, guests, pet,
+          breakfastDates: chosen, breakfastPeople: eaters,
+          name: payName, email: payEmail, phone: payPhone, lang,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (res.ok && data.url) { window.location.href = data.url; return }
+      if (data.error === 'taken') {
+        setPayError('taken')
+        // Show the night that was just sold: re-read the calendar.
+        fetch('/api/availability', { cache: 'no-store' }).then(r => (r.ok ? r.json() : null)).then(f => f && setFeed(f)).catch(() => {})
+      } else if (data.error === 'contact') setPayError('contact')
+      else setPayError('failed')
+    } catch {
+      setPayError('failed')
+    }
+    setPaying(false)
+  }
 
   const submit = () => {
     if (!checkIn || !checkOut || !q) return
@@ -656,12 +714,65 @@ export default function Availability({ initialHouse }: { initialHouse?: HouseSlu
                     <dt>{t.total[lang]}</dt>
                     <dd>{`${q.total} €`}</dd>
                   </div>
-                  <p className="avail-quote-note">{t.indicative[lang]}</p>
+                  <p className="avail-quote-note">{canPay ? t.final[lang] : t.indicative[lang]}</p>
                 </dl>
               )}
 
-              <button type="button" className="btn-dark avail-cta" disabled={!q} onClick={submit}>
-                {t.cta[lang]}
+              {tooSoon && (
+                <div className="avail-late">
+                  <p className="avail-late-h">{t.lateH[lang]}</p>
+                  <p className="avail-note">{t.lateBody[lang]}</p>
+                  <p className="avail-late-links">
+                    <a href={SOCIAL.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    {' · '}
+                    <a href="tel:+3725202044">+372 520 2044</a>
+                    {' · '}
+                    <a href="mailto:info@oanduaia.ee">info@oanduaia.ee</a>
+                  </p>
+                </div>
+              )}
+
+              {canPay && !payOpen && (
+                <button type="button" className="btn-dark avail-cta" onClick={() => setPayOpen(true)}>
+                  {t.payCta[lang].replace('{n}', String(q!.total))}
+                </button>
+              )}
+
+              {canPay && payOpen && (
+                <div className="avail-pay">
+                  <label className="avail-label" htmlFor="pay-name">{b.lNimi[lang]}</label>
+                  <input id="pay-name" className="avail-input" autoComplete="name" value={payName}
+                    onChange={e => setPayName(e.target.value)} />
+                  <label className="avail-label" htmlFor="pay-email">{b.lEmail[lang]}</label>
+                  <input id="pay-email" className="avail-input" type="email" autoComplete="email" inputMode="email"
+                    value={payEmail} onChange={e => setPayEmail(e.target.value)} />
+                  <label className="avail-label" htmlFor="pay-phone">{b.lPhone[lang]}</label>
+                  <input id="pay-phone" className="avail-input" type="tel" autoComplete="tel" inputMode="tel"
+                    value={payPhone} onChange={e => setPayPhone(e.target.value)} />
+                  <p className="avail-note">
+                    {cancelUntil && cancelUntil >= todayTallinn()
+                      ? t.payFree[lang].replace('{d}', formatDate(cancelUntil, lang))
+                      : t.payNoRefund[lang]}
+                  </p>
+                  <button type="button" className="btn-dark avail-cta" onClick={pay} disabled={paying}>
+                    {paying ? t.paying[lang] : t.payGo[lang]}
+                  </button>
+                  <p className="avail-note avail-note--small">{t.payVia[lang]}</p>
+                  {payError && (
+                    <p className="avail-status avail-status--warn" role="alert">
+                      {payError === 'taken' ? t.errTaken[lang] : payError === 'contact' ? t.errContact[lang] : t.errFailed[lang]}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              <button
+                type="button"
+                className={canPay ? 'avail-cta-alt' : 'btn-dark avail-cta'}
+                disabled={!q}
+                onClick={submit}
+              >
+                {canPay ? t.askFirst[lang] : t.cta[lang]}
               </button>
               <TrustLine />
             </div>
