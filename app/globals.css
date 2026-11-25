@@ -5672,3 +5672,12 @@ body .avail-panel .btn-dark.avail-cta { font-family: var(--font-cormorant), Geor
 body .avail-panel .btn-dark.avail-cta { white-space: normal; line-height: 1.4; }
 @media (max-width: 480px) { body .avail-panel .btn-dark.avail-cta { padding-left: 1.2rem; padding-right: 1.2rem; } }
 .avail-input.is-invalid { border-color: #d9a066; box-shadow: inset 0 1px 3px rgba(0,0,0,0.34), 0 0 0 1px #d9a066; }
+
+/* Terms & privacy page */
+.terms { max-width: 46rem; margin: 0 auto; padding: 8rem clamp(1rem, 5vw, 2rem) 5rem; color: var(--moss); }
+.terms-title { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.1; margin: 0 0 1.2rem; }
+.terms-lead { line-height: 1.7; margin-bottom: 2.5rem; font-size: 1.05rem; }
+.terms-h { font-size: 1.35rem; font-weight: 400; margin: 2.2rem 0 0.8rem; }
+.terms-list { margin: 0; padding-left: 1.2rem; line-height: 1.7; }
+.terms-list li { margin-bottom: 0.6rem; overflow-wrap: anywhere; }
+.terms-updated { margin-top: 3rem; font-size: 0.85rem; opacity: 0.7; }

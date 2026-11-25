@@ -16,7 +16,7 @@ export const T = {
     line1:  { et: 'Kaugel',            en: 'Far',              ru: 'Вдали', de: 'Fern', es: 'Lejos', sv: 'Långt', fi: 'Kaukana', lv: 'Tālu' },
     line2:  { et: 'kõigest.',          en: 'from it all.',        ru: 'от всего.', de: 'von allem.', es: 'de todo.', sv: 'från allt.', fi: 'kaikesta.', lv: 'no visa.' },
     line3:  { et: 'Puhka päriselt.',   en: 'Rest for real.',   ru: 'По\u2011настоящему.', de: 'Wirklich ausruhen.', es: 'Descansa de verdad.', sv: 'Vila på riktigt.', fi: 'Lepää kunnolla.', lv: 'Atpūtieties pa īstam.' },
-    eyebrow:{ et: 'Lahemaa rahvuspark · Oandu · Eesti', en: 'Lahemaa National Park · Oandu · Est', ru: 'Нац. парк Лахемаа · Оанду · Est', de: 'Nationalpark Lahemaa · Oandu · Est', es: 'Parque Nacional de Lahemaa · Oandu · Est', sv: 'Lahemaa nationalpark · Oandu · Est', fi: 'Lahemaan kansallispuisto · Oandu · Est', lv: 'Lahemā nacionālais parks · Oandu · Est' },
+    eyebrow:{ et: 'Lahemaa rahvuspark · Oandu · Eesti', en: 'Lahemaa National Park · Oandu · Estonia', ru: 'Нац. парк Лахемаа · Оанду · Эстония', de: 'Nationalpark Lahemaa · Oandu · Estland', es: 'Parque Nacional de Lahemaa · Oandu · Estonia', sv: 'Lahemaa nationalpark · Oandu · Estland', fi: 'Lahemaan kansallispuisto · Oandu · Viro', lv: 'Lahemā nacionālais parks · Oandu · Igaunija' },
     /*
      * The strapline now says plainly what this is — forest cabins, a private wood-fired
      * sauna, Lahemaa, Estonia — instead of only where it is.
@@ -1301,14 +1301,14 @@ export const T = {
         lv: 'Jūs rakstāt tieši saimniekiem – guļvieta bērnam, vēla ierašanās, suns, dzimšanas diena.',
       },
       {
-        et: 'Makse sularahas kohapeal või kaardiga – saadame makselingi.',
-        en: 'Payment in cash on arrival or by card — we send a payment link.',
-        ru: 'Оплата наличными на месте или картой — пришлём ссылку на оплату.',
-        de: 'Zahlung bar bei der Anreise oder per Karte – wir senden einen Zahlungslink.',
-        es: 'Pago en efectivo a la llegada o con tarjeta: te enviamos un enlace de pago.',
-        sv: 'Betalning kontant vid ankomst eller med kort – vi skickar en betalningslänk.',
-        fi: 'Maksu käteisellä paikan päällä tai kortilla – lähetämme maksulinkin.',
-        lv: 'Maksājums skaidrā naudā uz vietas vai ar karti – nosūtīsim maksājuma saiti.',
+        et: 'Maksa kaardiga kohe broneerides – või, kui eelistad, sularahas kohale jõudes (lepi see lihtsalt enne meiega kokku).',
+        en: 'Pay by card when you book – or, if you prefer, in cash when you arrive (just agree it with us first).',
+        ru: 'Оплатите картой при бронировании – или, если вам удобнее, наличными по приезде (просто договоритесь с нами заранее).',
+        de: 'Zahlen Sie bei der Buchung mit Karte – oder, wenn Ihnen das lieber ist, bar bei der Anreise (sprechen Sie es nur vorher mit uns ab).',
+        es: 'Paga con tarjeta al reservar o, si lo prefieres, en efectivo al llegar (solo acuérdalo antes con nosotros).',
+        sv: 'Betala med kort när du bokar – eller, om du hellre vill, kontant när du kommer (kom bara överens med oss först).',
+        fi: 'Maksa kortilla varatessasi – tai halutessasi käteisellä saapuessasi (sovi siitä vain etukäteen kanssamme).',
+        lv: 'Maksājiet ar karti, rezervējot, vai, ja vēlaties, skaidrā naudā, ierodoties (vienkārši vienojieties ar mums iepriekš).',
       },
     ],
     lNimi:   { et: 'Nimi', en: 'Name', ru: 'Имя', de: 'Name', es: 'Nombre', sv: 'Namn', fi: 'Nimi', lv: 'Vārds' },

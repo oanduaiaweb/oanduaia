@@ -7,6 +7,7 @@ import SocialRow from '@/components/SocialRow'
 import { SOCIAL, EMAIL } from '@/lib/social'
 import { LANDINGS } from '@/lib/landing'
 import { G } from '@/lib/gift'
+import { COMPANY, TERMS_LINK } from '@/lib/terms'
 
 export default function Footer() {
   const { lang } = useLanguage()
@@ -67,6 +68,9 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <p className="footer-copy">{t.copy[lang]}</p>
+        <p className="footer-copy">
+          {COMPANY.name} · {COMPANY.code} · <a className="footer-loc-link" href={`/${lang}/terms`}>{TERMS_LINK[lang]}</a>
+        </p>
         <p className="footer-copy">
           <a className="footer-loc-link" href={SOCIAL.maps}
             target="_blank" rel="noopener noreferrer">{t.loc[lang]}</a>
