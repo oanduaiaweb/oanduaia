@@ -416,6 +416,13 @@ export function jsonLd(lang: Lang) {
     // to 300 € (Saunamaja 3–4). Nothing inferred beyond the numbers on the page.
     priceRange: '€100–€300',
     currenciesAccepted: 'EUR',
+    paymentAccepted: 'Credit card, Debit card, Apple Pay, Google Pay, Cash',
+    /* Book and pay online since 22 Nov 2026: tells search and assistants where the booking happens. */
+    potentialAction: {
+      '@type': 'ReserveAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${SITE}/${lang}#broneeri`, actionPlatform: ['https://schema.org/DesktopWebPlatform', 'https://schema.org/MobileWebPlatform'] },
+      result: { '@type': 'LodgingReservation', name: 'Oanduaia booking' },
+    },
     checkinTime: '14:00',
     checkoutTime: '12:00',
     // Published on the booking section: pets welcome, 20 € fee. Do not assert

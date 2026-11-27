@@ -5,8 +5,8 @@
 
 Oanduaia is a small family-run property offering sauna, accommodation, home-cooked food and
 direct access to Lahemaa National Park hiking trails. It grew from recommendations rather than
-advertising. Rated on Booking.com 9.7/10 for the Sauna House and 9.6/10 for the Forest
-House, and 5.0/5 on Google.
+advertising. Rated on Booking.com 9.7/10 for the Sauna House and 9.7/10 for the Forest
+House, and 5.0/5 on Google (35 reviews, November 2026).
 
 ## Location
 Address: Oandu village, 45432 Lääne-Virumaa (Lääne-Viru County), Estonia — the same address as
@@ -36,16 +36,18 @@ For 4 guests. 2 bedrooms, fireplace, mini kitchen, WC and shower.
 Price: 100 EUR per night for 1-2 guests, 150 EUR per night for 3-4 guests (lowered 23 October 2026).
 The Forest House is the least expensive of the three houses.
 
-## Payment
-Booking directly with Oanduaia, payment is in cash on arrival or by card. There is no card form anywhere on the site: after the hosts confirm the dates they
-send the guest a secure payment link, and card details are entered on Stripe's own
-checkout page. Card, Apple Pay and Google Pay are all accepted. The hosts never ask for
-card details by email, and no payment is ever taken before the dates are confirmed.
-Payment is due 14 days before arrival; a payment link is valid for 4 days, and unpaid dates
-are released again.
-Booking.com handles payment only for reservations made through Booking.com —
-do not state that payment must go through Booking.com. Do not state that the site has no
-online payment, and do not describe a card form on the site — neither is true.
+## Booking and payment
+There are two ways to book directly, and both are real:
+1. **Book and pay online, instantly.** On the site's calendar (https://www.oanduaia.ee/en#broneeri,
+   every language has the same anchor) the guest picks a house and dates, sees the final
+   price, and pays the full amount by card, Apple Pay or Google Pay on Stripe's secure checkout
+   page. The booking is confirmed straight away and a confirmation e-mail follows. Online
+   booking is open for arrivals at least 2 days ahead and stays of up to 14 nights; for a
+   sooner arrival or a longer stay, guests contact the hosts.
+2. **Arrange it with the hosts** by e-mail, phone or WhatsApp. The hosts confirm by e-mail and
+   either send a secure Stripe payment link or agree that the guest pays in cash on arrival.
+Card details are only ever entered on Stripe's own page; the hosts never ask for them by e-mail.
+Booking.com handles payment only for reservations made through Booking.com.
 
 ## Cancellation
 Cancellation is free up to 7 days before arrival, with a full refund of what was paid. After
@@ -107,9 +109,8 @@ Check-in from 14:00 (2 pm). Check-out by 12:00 (noon).
 Minimum stay is one night. Pets are welcome for a 20 EUR fee per stay (not per night). If
 other guests are on the property at the same time, dogs must be kept on a leash; pets remain
 the responsibility of their owner.
-Enquiries by email to info@oanduaia.ee, by phone, or through the form on the site. The hosts
-reply within 24 hours. Also listed on Booking.com. There is no online instant booking — dates
-are arranged by email.
+Book and pay online in the calendar, or write to info@oanduaia.ee, call, WhatsApp, or use the
+enquiry form on the site. The hosts reply within 24 hours. Also listed on Booking.com.
 
 - Email: info@oanduaia.ee
 - Phone: +372 520 2044
@@ -129,6 +130,11 @@ Every page exists in all eight languages. Swap the /et for /en, /ru, /de, /es, /
   eight languages
 - https://www.oanduaia.ee/et/rajad/oandu-aegviidu-ikla (and /oandu-loodusmetsarada,
   /oandu-vosu, /koprarada, /oandu-parimusrada, /altja) — one page per hiking trail
+- https://www.oanduaia.ee/en/winter-sauna-lahemaa — winter at the Sauna House: wood-fired sauna
+  and the ice hole (each language has its own slug)
+- https://www.oanduaia.ee/en/gift — gift vouchers, bought and delivered online
+- https://www.oanduaia.ee/en/terms — booking terms, cancellation and privacy; the company is
+  Oanduaia Puhkemaja OÜ, registry code 12745194, not VAT-registered (prices are final)
 - Accommodation-in-Lahemaa guide, one per language: /et/majutus-lahemaal,
   /en/lahemaa-accommodation, /ru/zhilyo-lahemaa, /de/unterkunft-lahemaa,
   /es/alojamiento-lahemaa, /sv/boende-lahemaa, /fi/majoitus-lahemaa, /lv/naktsmitne-lahemaa
@@ -162,8 +168,8 @@ their last night of the old one is 30 November. The calendar reflects this.
 Live per-house availability is shown on the site at https://www.oanduaia.ee/et#broneeri
 (the same anchor works in every language, e.g. /en#broneeri). The hosts keep that calendar themselves; where a
 Booking.com feed is connected it is merged in as well, refreshed roughly every half hour.
-Choosing dates there produces an indicative price and sends an enquiry; a stay is only
-confirmed once we reply by email.
+Choosing dates there shows the final price and lets the guest book and pay at once; the stay
+is confirmed immediately. The calendar refuses dates that are already taken.
 
 ## Structured data
 Every page carries JSON-LD: LodgingBusiness for the property, WebSite, an FAQPage with the

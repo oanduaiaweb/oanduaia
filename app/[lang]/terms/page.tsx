@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title,
     description,
     alternates: alternates(lang, '/terms'),
-    openGraph: { type: 'website', siteName: 'Oanduaia', locale: META[lang].ogLocale, title, description, url: `${SITE}/${lang}/terms` },
+    openGraph: { type: 'website', siteName: 'Oanduaia', locale: META[lang].ogLocale, title, description, url: `${SITE}/${lang}/terms`, images: [{ url: '/images/og.jpg', width: 1200, height: 630, alt: 'Oanduaia' }] },
   }
 }
 
