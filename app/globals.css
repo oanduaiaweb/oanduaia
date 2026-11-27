@@ -5765,8 +5765,24 @@ body .avail-panel-scrim {
   body .sticky-wa svg { width: 1.25rem; height: 1.25rem; }
   /* The hero line under the headline sat straight on the photograph and was hard to read. */
   body .hero-desc { text-shadow: 0 1px 2px rgba(10,14,7,0.85), 0 0 18px rgba(10,14,7,0.75); }
-  body .hero-content::before {
-    content: ''; position: absolute; inset: -2rem -1.5rem -2rem -1.5rem; z-index: -1; pointer-events: none;
-    background: radial-gradient(ellipse at 30% 60%, rgba(14,19,10,0.55) 0%, rgba(14,19,10,0.25) 55%, transparent 80%);
+  /* Only behind the line itself: spread over the whole hero it darkened the foot too and drew a seam. */
+  body .hero-desc { position: relative; }
+  body .hero-desc::before {
+    content: ''; position: absolute; inset: -1.2rem -1.6rem; z-index: -1; pointer-events: none;
+    background: radial-gradient(ellipse at 40% 50%, rgba(14,19,10,0.5) 0%, rgba(14,19,10,0.22) 60%, transparent 85%);
   }
+}
+
+/*
+ * Phones: the hero met the houses section on a hard straight line (Mikk, 26 Nov). The phone
+ * scrim (.hero-bg-overlay) is near-black at its foot and sits ABOVE the fade to --bark, so the
+ * photograph ended darker than the section below it. Fading the scrim out over its last fifth
+ * hands the edge back to the --bark fade, and a taller fade makes the join as soft as on desktop.
+ */
+@media (max-width: 900px) {
+  body .hero-bg-overlay {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+  }
+  body .hero-bg::after { height: 38%; }
 }
