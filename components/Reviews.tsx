@@ -6,6 +6,7 @@ import { T } from '@/lib/translations'
 import {
   REVIEW_SOURCES,
   REVIEW_QUOTES,
+  reviewDate,
   translatedNote,
   WRITE_REVIEW_URL,
   formatScore,
@@ -94,7 +95,7 @@ export default function Reviews() {
             <figcaption className="quote-by">
               <span className="quote-author">{q.author}</span>
               <span className="quote-meta">
-                {q.when[lang]}
+                {reviewDate(q.date, lang)}
                 {translatedNote(q.originalLang, lang) &&
                   ` · ${translatedNote(q.originalLang, lang)}`}
               </span>
