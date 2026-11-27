@@ -5786,3 +5786,6 @@ body .avail-panel-scrim {
   }
   body .hero-bg::after { height: 38%; }
 }
+
+/* "WHERE WE ARE" above the map: #839373 on --bark is 3.3:1, under the 4.5:1 minimum (Lighthouse, 26 Nov). */
+body .trails-map-block .section-label { opacity: 1; color: #b4c1a3; }

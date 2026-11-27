@@ -14,11 +14,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLocale(lang)) return {}
   const t = TERMS[lang]
   const title = `${t.title} – Oanduaia`
+  // The first two sentences: the whole lead ran to ~200 characters, past what search shows.
+  const description = t.lead.split(/(?<=[.!?])\s+/).slice(0, 2).join(' ')
   return {
     title,
-    description: t.lead,
+    description,
     alternates: alternates(lang, '/terms'),
-    openGraph: { type: 'website', siteName: 'Oanduaia', locale: META[lang].ogLocale, title, description: t.lead, url: `${SITE}/${lang}/terms` },
+    openGraph: { type: 'website', siteName: 'Oanduaia', locale: META[lang].ogLocale, title, description, url: `${SITE}/${lang}/terms` },
   }
 }
 
