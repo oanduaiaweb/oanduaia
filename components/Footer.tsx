@@ -9,12 +9,18 @@ import { LANDINGS } from '@/lib/landing'
 import { G } from '@/lib/gift'
 import { COMPANY, TERMS_LINK } from '@/lib/terms'
 
+/* The two guide pages added 26 Nov 2026. Short footer labels, separate from the page titles. */
+const ROMANTIC = { et: 'Romantiline puhkus', en: 'Romantic weekend', ru: 'Романтический отдых', de: 'Romantisches Wochenende', es: 'Escapada romántica', sv: 'Romantisk helg', fi: 'Romanttinen loma', lv: 'Romantiska atpūta' } as const
+const DOG = { et: 'Koeraga puhkus', en: 'Holiday with a dog', ru: 'Отдых с собакой', de: 'Urlaub mit Hund', es: 'Vacaciones con perro', sv: 'Semester med hund', fi: 'Loma koiran kanssa', lv: 'Atpūta ar suni' } as const
+
 export default function Footer() {
   const { lang } = useLanguage()
   const t = T.footer
   // Per-locale slug: the landing page is /en/lahemaa-accommodation but /et/majutus-lahemaal.
   const landing = LANDINGS[0]
   const winter = LANDINGS.find(l => l.id === 'winter-sauna') ?? LANDINGS[0]
+  const romantic = LANDINGS.find(l => l.id === 'romantic-weekend')
+  const dog = LANDINGS.find(l => l.id === 'dog-friendly')
   return (
     <footer>
       <div>
@@ -39,6 +45,8 @@ export default function Footer() {
           <li><a href={`/${lang}#broneeri`}>{t.broneeri[lang]}</a></li>
           <li><a href={`/${lang}/${landing.slug[lang]}`}>{t.landing[lang]}</a></li>
           <li><a href={`/${lang}/${winter.slug[lang]}`}>{t.landingWinter[lang]}</a></li>
+          {romantic && <li><a href={`/${lang}/${romantic.slug[lang]}`}>{ROMANTIC[lang]}</a></li>}
+          {dog && <li><a href={`/${lang}/${dog.slug[lang]}`}>{DOG[lang]}</a></li>}
           <li><a href={`/${lang}/gallery`}>{t.galerii[lang]}</a></li>
           <li><a href={`/${lang}/gift`}>{G.name[lang]}</a></li>
         </ul>

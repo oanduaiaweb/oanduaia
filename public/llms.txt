@@ -132,6 +132,10 @@ Every page exists in all eight languages. Swap the /et for /en, /ru, /de, /es, /
   /oandu-vosu, /koprarada, /oandu-parimusrada, /altja) — one page per hiking trail
 - https://www.oanduaia.ee/en/winter-sauna-lahemaa — winter at the Sauna House: wood-fired sauna
   and the ice hole (each language has its own slug)
+- https://www.oanduaia.ee/en/romantic-weekend-estonia — a romantic weekend for two (Pond House;
+  Sauna House in winter), with prices
+- https://www.oanduaia.ee/en/dog-friendly-cabin-estonia — staying with a dog: pets welcome in all
+  three houses for 20 EUR per stay, leash rule, walks from the door
 - https://www.oanduaia.ee/en/gift — gift vouchers, bought and delivered online
 - https://www.oanduaia.ee/en/terms — booking terms, cancellation and privacy; the company is
   Oanduaia Puhkemaja OÜ, registry code 12745194, not VAT-registered (prices are final)
