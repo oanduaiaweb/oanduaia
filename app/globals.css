@@ -5681,3 +5681,69 @@ body .avail-panel .btn-dark.avail-cta { white-space: normal; line-height: 1.4; }
 .terms-list { margin: 0; padding-left: 1.2rem; line-height: 1.7; }
 .terms-list li { margin-bottom: 0.6rem; overflow-wrap: anywhere; }
 .terms-updated { margin-top: 3rem; font-size: 0.85rem; opacity: 0.7; }
+
+/*
+ * One button colour across the site, taken from the floating "Book now" (.sticky-book):
+ * dark bark-to-moss with a light edge, so it reads on the cream grounds and the dark ones alike.
+ * Every button except the booking ones is also a step smaller (Mikk, 26 Nov 2026).
+ */
+body .btn-primary,
+body .btn-dark,
+body .btn-ghost,
+body .feature-cta,
+body .landing-cta,
+body .trail-stay-cta,
+body .house-jump-btn,
+body .feature-house-link,
+body .feature-gallery-link,
+body .house-band-links .feature-house-link,
+body .house-band-links .feature-gallery-link,
+body .btn-dark.avail-cta,
+body .reviews-write-btn,
+body .trail-link,
+body .trail-link--solid,
+body .wcool-cta {
+  color: var(--linen);
+  background: linear-gradient(160deg, var(--bark-deep) 0%, var(--moss) 100%);
+  border: 1px solid rgba(240, 235, 224, 0.42);
+}
+@media (hover: hover) {
+  body .btn-primary:hover,
+  body .btn-dark:hover,
+  body .btn-ghost:hover,
+  body .feature-cta:hover,
+  body .landing-cta:hover,
+  body .trail-stay-cta:hover,
+  body .house-jump-btn:hover,
+  body .feature-house-link:hover,
+  body .feature-gallery-link:hover,
+  body .btn-dark.avail-cta:hover,
+  body .reviews-write-btn:hover,
+  body .trail-link:hover,
+  body .wcool-cta:hover {
+    color: var(--linen);
+    background: linear-gradient(160deg, var(--moss) 0%, var(--fern) 100%);
+    border-color: rgba(240, 235, 224, 0.6);
+  }
+}
+body .house-jump-btn,
+body .feature-house-link,
+body .feature-gallery-link,
+body .house-band-links .feature-house-link,
+body .house-band-links .feature-gallery-link,
+body .reviews-write-btn,
+body .trail-link,
+body .trail-link--solid,
+body .trail-stay-cta,
+body .gift-teaser-cta,
+body .lastchance-cta,
+body .wcool-cta,
+body .voucher-print {
+  padding: 0.95rem 2.05rem;
+  font-size: calc(var(--fs-xs) * 0.92);
+}
+/* Disabled on the dark calendar panel, the dark button needs more than 0.3 to be seen at all. */
+body .btn-dark.avail-cta:disabled { opacity: 0.55; cursor: default; transform: none; }
+/* The trail page links carried their own moss ink, which vanished on the dark fill. */
+body .trail-links .trail-link { color: var(--linen); border-color: rgba(240, 235, 224, 0.42); }
+body .trail-links .trail-link-meta { color: var(--linen); opacity: 0.75; }
