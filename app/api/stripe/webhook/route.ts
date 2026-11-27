@@ -4,7 +4,7 @@ import { updatePayment } from '@/lib/payments'
 import { giftValidUntil } from '@/lib/gift'
 import { sendGiftVoucher } from '@/lib/giftEmail'
 import { getStripe } from '@/lib/stripe'
-import { confirmOnlineBooking } from '@/lib/confirmBooking'
+import { confirmPaidBooking } from '@/lib/confirmBooking'
 
 export const dynamic = 'force-dynamic'
 
@@ -60,11 +60,12 @@ export async function POST(req: Request) {
           console.error('[stripe webhook] voucher e-mail failed:', err)
         }
       }
-      if (updated?.source === 'online' && !updated.confirmedAt) {
+      // Every paid stay, online or by link, gets its confirmation and its permanent block.
+      if (updated && !updated.voucher && updated.house && updated.checkIn && updated.checkOut && !updated.confirmedAt) {
         try {
-          await confirmOnlineBooking(updated.id)
+          await confirmPaidBooking(updated.id)
         } catch (err) {
-          console.error('[stripe webhook] online booking confirmation failed:', err)
+          console.error('[stripe webhook] booking confirmation failed:', err)
         }
       }
     }

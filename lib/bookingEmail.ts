@@ -22,6 +22,8 @@ type Facts = {
   breakfast: string
   amount: string
   cancel: string
+  /** What was agreed, for a stay paid by link: the reference written when the link was made. */
+  details?: string
 }
 
 type Copy = {
@@ -45,8 +47,7 @@ Aitäh! Teie broneering on tasutud ja kinnitatud.
 Maja: ${f.house}
 Saabumine: ${f.checkIn}, alates kell 14.00
 Lahkumine: ${f.checkOut}, hiljemalt kell 12.00
-Külalisi: ${f.guests}${f.pet ? '\nLemmikloom: jah' : ''}${f.breakfast ? `\nHommikusöök: ${f.breakfast}` : ''}
-Tasutud: ${f.amount}
+${[f.guests ? `Külalisi: ${f.guests}` : '', f.pet ? 'Lemmikloom: jah' : '', f.breakfast ? `Hommikusöök: ${f.breakfast}` : '', f.details ? `Broneering: ${f.details}` : '', `Tasutud: ${f.amount}`].filter(Boolean).join('\n')}
 
 Aadress: Oandu küla, 45432 Lääne-Virumaa.
 ${f.cancel}
@@ -71,8 +72,7 @@ Thank you – your booking is paid and confirmed.
 House: ${f.house}
 Arrival: ${f.checkIn}, from 14:00
 Departure: ${f.checkOut}, by 12:00
-Guests: ${f.guests}${f.pet ? '\nPet: yes' : ''}${f.breakfast ? `\nBreakfast: ${f.breakfast}` : ''}
-Paid: ${f.amount}
+${[f.guests ? `Guests: ${f.guests}` : '', f.pet ? 'Pet: yes' : '', f.breakfast ? `Breakfast: ${f.breakfast}` : '', f.details ? `Booking: ${f.details}` : '', `Paid: ${f.amount}`].filter(Boolean).join('\n')}
 
 Address: Oandu village, 45432 Lääne-Virumaa, Estonia.
 ${f.cancel}
@@ -97,8 +97,7 @@ Oanduaia`,
 Дом: ${f.house}
 Заезд: ${f.checkIn}, с 14:00
 Выезд: ${f.checkOut}, до 12:00
-Гостей: ${f.guests}${f.pet ? '\nПитомец: да' : ''}${f.breakfast ? `\nЗавтрак: ${f.breakfast}` : ''}
-Оплачено: ${f.amount}
+${[f.guests ? `Гостей: ${f.guests}` : '', f.pet ? 'Питомец: да' : '', f.breakfast ? `Завтрак: ${f.breakfast}` : '', f.details ? `Бронирование: ${f.details}` : '', `Оплачено: ${f.amount}`].filter(Boolean).join('\n')}
 
 Адрес: деревня Оанду, 45432 Ляэне-Вирумаа, Эстония.
 ${f.cancel}
@@ -123,8 +122,7 @@ vielen Dank – Ihre Buchung ist bezahlt und bestätigt.
 Haus: ${f.house}
 Anreise: ${f.checkIn}, ab 14:00 Uhr
 Abreise: ${f.checkOut}, bis 12:00 Uhr
-Gäste: ${f.guests}${f.pet ? '\nHaustier: ja' : ''}${f.breakfast ? `\nFrühstück: ${f.breakfast}` : ''}
-Bezahlt: ${f.amount}
+${[f.guests ? `Gäste: ${f.guests}` : '', f.pet ? 'Haustier: ja' : '', f.breakfast ? `Frühstück: ${f.breakfast}` : '', f.details ? `Buchung: ${f.details}` : '', `Bezahlt: ${f.amount}`].filter(Boolean).join('\n')}
 
 Adresse: Dorf Oandu, 45432 Lääne-Virumaa, Estland.
 ${f.cancel}
@@ -149,8 +147,7 @@ Gracias: su reserva está pagada y confirmada.
 Casa: ${f.house}
 Llegada: ${f.checkIn}, a partir de las 14:00
 Salida: ${f.checkOut}, antes de las 12:00
-Huéspedes: ${f.guests}${f.pet ? '\nMascota: sí' : ''}${f.breakfast ? `\nDesayuno: ${f.breakfast}` : ''}
-Pagado: ${f.amount}
+${[f.guests ? `Huéspedes: ${f.guests}` : '', f.pet ? 'Mascota: sí' : '', f.breakfast ? `Desayuno: ${f.breakfast}` : '', f.details ? `Reserva: ${f.details}` : '', `Pagado: ${f.amount}`].filter(Boolean).join('\n')}
 
 Dirección: Pueblo de Oandu, 45432 Lääne-Virumaa, Estonia.
 ${f.cancel}
@@ -175,8 +172,7 @@ tack – din bokning är betald och bekräftad.
 Hus: ${f.house}
 Ankomst: ${f.checkIn}, från kl. 14.00
 Avresa: ${f.checkOut}, senast kl. 12.00
-Gäster: ${f.guests}${f.pet ? '\nHusdjur: ja' : ''}${f.breakfast ? `\nFrukost: ${f.breakfast}` : ''}
-Betalt: ${f.amount}
+${[f.guests ? `Gäster: ${f.guests}` : '', f.pet ? 'Husdjur: ja' : '', f.breakfast ? `Frukost: ${f.breakfast}` : '', f.details ? `Bokning: ${f.details}` : '', `Betalt: ${f.amount}`].filter(Boolean).join('\n')}
 
 Adress: Byn Oandu, 45432 Lääne-Virumaa, Estland.
 ${f.cancel}
@@ -201,8 +197,7 @@ kiitos – varauksesi on maksettu ja vahvistettu.
 Talo: ${f.house}
 Saapuminen: ${f.checkIn}, klo 14.00 alkaen
 Lähtö: ${f.checkOut}, viimeistään klo 12.00
-Vieraita: ${f.guests}${f.pet ? '\nLemmikki: kyllä' : ''}${f.breakfast ? `\nAamiainen: ${f.breakfast}` : ''}
-Maksettu: ${f.amount}
+${[f.guests ? `Vieraita: ${f.guests}` : '', f.pet ? 'Lemmikki: kyllä' : '', f.breakfast ? `Aamiainen: ${f.breakfast}` : '', f.details ? `Varaus: ${f.details}` : '', `Maksettu: ${f.amount}`].filter(Boolean).join('\n')}
 
 Osoite: Oandun kylä, 45432 Länsi-Virumaa, Viro.
 ${f.cancel}
@@ -227,8 +222,7 @@ Paldies – jūsu rezervācija ir apmaksāta un apstiprināta.
 Māja: ${f.house}
 Ierašanās: ${f.checkIn}, no plkst. 14.00
 Izbraukšana: ${f.checkOut}, līdz plkst. 12.00
-Viesi: ${f.guests}${f.pet ? '\nMājdzīvnieks: jā' : ''}${f.breakfast ? `\nBrokastis: ${f.breakfast}` : ''}
-Samaksāts: ${f.amount}
+${[f.guests ? `Viesi: ${f.guests}` : '', f.pet ? 'Mājdzīvnieks: jā' : '', f.breakfast ? `Brokastis: ${f.breakfast}` : '', f.details ? `Rezervācija: ${f.details}` : '', `Samaksāts: ${f.amount}`].filter(Boolean).join('\n')}
 
 Adrese: Oandu ciems, 45432 Lääne-Virumaa, Igaunija.
 ${f.cancel}
@@ -268,6 +262,7 @@ export function confirmationLetter(p: Payment, today: string): { subject: string
       pet: !!p.pet,
       breakfast: mornings && people ? c.breakfast(people, mornings) : '',
       amount: `${formatEur(p.amount)} €`,
+      details: p.source === 'online' ? undefined : p.reference,
       cancel: freeUntil >= today ? c.cancelFree(formatDate(freeUntil, lang)) : c.cancelNone,
     }),
   }
@@ -284,7 +279,9 @@ export function hostNotice(p: Payment): { subject: string; text: string } {
       p.clash
         ? `TÄHELEPANU: samad ööd on kinni ka Booking.com kalendris (${p.clash}). Mõlemad broneeringud on alles – otsusta, kumb ümber paigutada või kellele raha tagastada (Stripe).\n`
         : '',
-      'Külaline broneeris ja maksis veebilehel. Kinnitus on talle saadetud.',
+      p.source === 'online'
+        ? 'Külaline broneeris ja maksis veebilehel. Kinnitus on talle saadetud.'
+        : 'Külaline maksis makselingi kaudu. Kinnitus on talle saadetud.',
       '',
       `Maja: ${houseName}`,
       `Kuupäevad: ${dates}`,

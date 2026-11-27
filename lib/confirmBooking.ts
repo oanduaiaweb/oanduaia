@@ -7,7 +7,9 @@ import { todayTallinn } from './instantBooking'
 import { formatDate } from './pricing'
 
 /**
- * An online booking has been paid: make it a real booking and tell everyone.
+ * A stay has been paid — booked in the calendar, or through a link Mikk sent: make it a real
+ * booking and tell everyone. Before 26 Nov 2026 only calendar bookings got this; a guest who paid
+ * a link heard nothing back and had to write and ask (Christian Pfeil).
  *
  * 1. The hold becomes a plain block (no `holdUntil`), so it never lapses and the iCal feed keeps
  *    publishing it to Booking.com. If the hold had somehow gone, the block is written again.
@@ -17,9 +19,10 @@ import { formatDate } from './pricing'
  * 3. The guest's confirmation goes out, then the note to info@. `confirmedAt` is written only
  *    after the guest mail, so a retried webhook can still send it if the first attempt failed.
  */
-export async function confirmOnlineBooking(id: string): Promise<void> {
+export async function confirmPaidBooking(id: string): Promise<void> {
   const p = await findPayment(id)
-  if (!p || p.status !== 'paid' || p.confirmedAt || !p.house || !p.checkIn || !p.checkOut) return
+  if (!p || p.status !== 'paid' || p.confirmedAt || p.voucher || !p.house || !p.checkIn || !p.checkOut) return
+  const paidNote = p.source === 'online' ? 'Paid online' : 'Paid (payment link)'
   const slug = p.house as HouseSlug
 
   const clashes: string[] = []
@@ -30,14 +33,14 @@ export async function confirmOnlineBooking(id: string): Promise<void> {
   if (overlaps(others, slug, p.checkIn, p.checkOut)) clashes.push('meie oma kalender (/admin)')
   if (mine) {
     delete mine.holdUntil
-    mine.note = 'Paid online'
+    mine.note = paidNote
   } else {
     const block: Block = {
       id: p.blockId ?? crypto.randomUUID(),
       from: p.checkIn,
       to: p.checkOut,
       guest: p.name.slice(0, 80),
-      note: 'Paid online',
+      note: paidNote,
       created: new Date().toISOString(),
     }
     bookings.blocks[slug] = [...list, block]
