@@ -5747,3 +5747,26 @@ body .btn-dark.avail-cta:disabled { opacity: 0.55; cursor: default; transform: n
 /* The trail page links carried their own moss ink, which vanished on the dark fill. */
 body .trail-links .trail-link { color: var(--linen); border-color: rgba(240, 235, 224, 0.42); }
 body .trail-links .trail-link-meta { color: var(--linen); opacity: 0.75; }
+
+/*
+ * The calendar read blue-grey: the house photographs behind it are mostly sky and water,
+ * and the scrim let that through at the top. Desaturated and warmed, under a slightly
+ * heavier green scrim, it stays a photograph but takes the site's forest green (Mikk, 26 Nov).
+ */
+body .avail-panel-photo img { filter: saturate(0.5) sepia(0.3) contrast(1.02); }
+body .avail-panel-scrim {
+  background: linear-gradient(168deg, rgba(40,50,29,0.84) 0%, rgba(30,38,21,0.89) 45%, rgba(21,27,14,0.93) 100%);
+}
+
+/* Phones: the floating pair a step smaller, so it covers less of the page (Mikk, 26 Nov). */
+@media (max-width: 600px) {
+  body .sticky-book { padding: 0.75rem 1.15rem; font-size: calc(var(--fs-2xs) * 0.95); right: 0.85rem; bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px)); }
+  body .sticky-wa { width: 2.6rem; height: 2.6rem; right: 0.85rem; bottom: calc(0.85rem + 3.1rem + env(safe-area-inset-bottom, 0px)); }
+  body .sticky-wa svg { width: 1.25rem; height: 1.25rem; }
+  /* The hero line under the headline sat straight on the photograph and was hard to read. */
+  body .hero-desc { text-shadow: 0 1px 2px rgba(10,14,7,0.85), 0 0 18px rgba(10,14,7,0.75); }
+  body .hero-content::before {
+    content: ''; position: absolute; inset: -2rem -1.5rem -2rem -1.5rem; z-index: -1; pointer-events: none;
+    background: radial-gradient(ellipse at 30% 60%, rgba(14,19,10,0.55) 0%, rgba(14,19,10,0.25) 55%, transparent 80%);
+  }
+}

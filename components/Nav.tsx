@@ -31,10 +31,17 @@ const LANGS: { code: Lang; flag: string; label: string }[] = [
 const links = [
   { key: 'majutus',    id: 'majad' },
   { key: 'arvustused', id: 'arvustused' },
+  { key: 'broneeri',   id: 'broneeri' },
   { key: 'meist',      id: 'lugu' },
   { key: 'teenused',   id: 'toit' },
-  { key: 'broneeri',   id: 'broneeri' },
+  { key: 'matkad',     id: 'loodus' },
 ] as const
+
+/**
+ * Sections that are not in the menu but end the one above them, so its name stops being
+ * boxed: the questions at the bottom are not "Nature" (it stayed lit, Mikk, 26 Nov).
+ */
+const STOPS = ['kkk']
 
 /** Scrolls to the section without changing the URL. See lib/scrollToId. */
 function smoothScroll(id: string, then?: () => void) {
@@ -89,11 +96,11 @@ export default function Nav() {
        */
       let current: string | null = null
       let best = -Infinity
-      for (const l of links) {
-        const el = document.getElementById(l.id)
+      for (const id of [...links.map(l => l.id), ...STOPS]) {
+        const el = document.getElementById(id)
         if (!el) continue
         const top = el.getBoundingClientRect().top + window.scrollY
-        if (top <= line && top > best) { best = top; current = l.id }
+        if (top <= line && top > best) { best = top; current = id }
       }
       setActiveId(current)
     }

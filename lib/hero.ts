@@ -167,7 +167,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       en: 'The Sauna House across the water, forest mirrored in the pond',
       ru: 'Банный дом за прудом, лес отражается в пруду',
       de: 'Das Saunahaus jenseits des Teichs, der Wald spiegelt sich im Teich',
-      es: 'La casa de la sauna al otro lado del agua, con el bosque reflejado en el estanque',
+      es: 'La Casa de la Sauna al otro lado del agua, con el bosque reflejado en el estanque',
       sv: 'Bastuhuset på andra sidan vattnet, med skogen speglad i dammen',
       fi: 'Saunatalo veden takana, metsä heijastuu lampeen',
       lv: 'Pirts māja ūdens otrā krastā, mežs atspoguļojas dīķī',

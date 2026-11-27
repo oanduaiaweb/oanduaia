@@ -47,7 +47,9 @@ export default function StickyBook() {
     // Two independent reasons to stay hidden, tracked apart and combined on every change.
     let pastHero = !cta
     let overBooking = false
-    const apply = () => setShown(pastHero && !overBooking)
+    // Phones only: buttons passing through the bottom of the screen, where the floating pair sits.
+    const overButtons = new Set<Element>()
+    const apply = () => setShown(pastHero && !overBooking && overButtons.size === 0)
 
     const cleanups: Array<() => void> = []
 
@@ -69,13 +71,36 @@ export default function StickyBook() {
       cleanups.push(() => window.removeEventListener('scroll', onScroll))
     }
 
-    if (booking) {
-      const o = new IntersectionObserver(([e]) => {
-        overBooking = e.isIntersecting
+    /*
+     * Hidden over the calendar AND the enquiry form below it: both are the thing the button
+     * points to, and on a phone it sat on top of the form's own fields (Mikk, 26 Nov).
+     */
+    const zones = [booking, document.getElementById('vorm')].filter(Boolean) as Element[]
+    if (zones.length) {
+      const inside = new Set<Element>()
+      const o = new IntersectionObserver(entries => {
+        for (const e of entries) e.isIntersecting ? inside.add(e.target) : inside.delete(e.target)
+        overBooking = inside.size > 0
         apply()
       })
-      o.observe(booking)
+      zones.forEach(z => o.observe(z))
       cleanups.push(() => o.disconnect())
+    }
+
+    /*
+     * On a phone the pair covered "See the house" and "View photos" as they scrolled past.
+     * They step aside while any row of house buttons is in the bottom fifth of the screen.
+     */
+    if (window.matchMedia('(max-width: 700px)').matches) {
+      const rows = document.querySelectorAll('.house-band-links, .house-jump, .feature-cta')
+      if (rows.length) {
+        const o = new IntersectionObserver(entries => {
+          for (const e of entries) e.isIntersecting ? overButtons.add(e.target) : overButtons.delete(e.target)
+          apply()
+        }, { rootMargin: '-80% 0px 0px 0px' })
+        rows.forEach(r => o.observe(r))
+        cleanups.push(() => o.disconnect())
+      }
     }
 
     return () => cleanups.forEach(fn => fn())

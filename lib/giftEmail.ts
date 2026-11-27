@@ -18,7 +18,7 @@ export async function sendGiftVoucher(p: Payment): Promise<void> {
   const t = (k: string) => G[k][lang]
   const euros = `${p.amount / 100} €`
   const lines = [
-    `${t('hello')}, ${p.name.split(' ')[0]}!`,
+    `${lang === 'es' ? '¡' : ''}${t('hello')}, ${p.name.split(' ')[0]}!`,
     '',
     t('mailThanks'),
     '',

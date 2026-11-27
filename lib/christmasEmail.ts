@@ -42,7 +42,7 @@ const COPY: Record<string, Copy> = {
     hello: n => (n ? `Здравствуйте, ${n}!` : 'Здравствуйте!'),
     stayed: 'Спасибо, что были нашим гостем в этом году.',
     wrote: 'Спасибо, что связались с нами в этом году.',
-    body: 'В лесу Лахемаа сейчас тихо, сауна тёплая, и мы вспоминаем всех, кто к нам приезжал. Желаем вам спокойного Рождества и счастливого Нового года!',
+    body: 'В лесу Лахемаа сейчас тихо, баня натоплена, и мы вспоминаем всех, кто к нам приезжал. Желаем вам спокойного Рождества и счастливого Нового года!',
     bye: 'Будем рады видеть вас снова.\n\nС тёплыми пожеланиями,',
   },
   fi: {
@@ -59,7 +59,7 @@ const COPY: Record<string, Copy> = {
     stayed: 'Paldies, ka šogad bijāt mūsu viesis.',
     wrote: 'Paldies, ka šogad sazinājāties ar mums.',
     body: 'Lahemā mežā tagad ir kluss, pirts ir silta, un mēs domājam par visiem, kas pie mums ir ciemojušies. Novēlam mierīgus Ziemassvētkus un laimīgu Jauno gadu!',
-    bye: 'Vienmēr gaidīsim jūs atpakaļ.\n\nAr siltiem novēlējumiem',
+    bye: 'Vienmēr gaidīsim jūs atpakaļ.\n\nAr siltiem sveicieniem',
   },
   sv: {
     subject: 'God jul från Oanduaia',
@@ -72,10 +72,10 @@ const COPY: Record<string, Copy> = {
   es: {
     subject: 'Feliz Navidad desde Oanduaia',
     hello: n => (n ? `Hola, ${n}:` : 'Hola:'),
-    stayed: 'Gracias por haber sido nuestro huésped este año.',
-    wrote: 'Gracias por ponerse en contacto con nosotros este año.',
-    body: 'En el bosque de Lahemaa reina ahora la calma, la sauna está caliente y pensamos en todos los que han llegado hasta nosotros. ¡Le deseamos una Navidad tranquila y un feliz Año Nuevo!',
-    bye: 'Siempre será bienvenido de nuevo.\n\nUn cordial saludo,',
+    stayed: 'Gracias por alojarte con nosotros este año.',
+    wrote: 'Gracias por ponerte en contacto con nosotros este año.',
+    body: 'En el bosque de Lahemaa reina ahora la calma, la sauna está caliente y pensamos en todos los que han llegado hasta nosotros. ¡Te deseamos una Navidad tranquila y un feliz Año Nuevo!',
+    bye: 'Aquí siempre tendrás las puertas abiertas.\n\nUn cordial saludo,',
   },
   fr: {
     subject: 'Joyeux Noël de la part d’Oanduaia',

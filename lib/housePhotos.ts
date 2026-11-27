@@ -34,13 +34,13 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
     {
       src: '/galerii/saunamaja/jaaauk-talvel.webp',
       alt: {
-        et: 'Jääauk tiigis saunamaja ees pakasepäeval, käsipuu vette',
-        en: 'An ice hole cut in the pond before the Sauna House on a frozen day, a handrail leading in',
+        et: 'Jääauk tiigis Saunamaja ees pakasepäeval, käsipuu vette',
+        en: 'An ice hole cut in the pond before the Sauna House on a day of hard frost, a handrail leading in',
         ru: 'Прорубь в пруду перед Банным домом в мороз, поручень к воде',
         de: 'Ein Eisloch im Teich vor dem Saunahaus an einem Frosttag, ein Handlauf führt hinein',
         es: 'Un agujero abierto en el hielo del estanque frente a la Casa de la Sauna en un día helado, con un pasamanos que baja al agua',
         sv: 'En isvak upphuggen i dammen framför Bastuhuset en frostig dag, en ledstång leder ner i vattnet',
-        fi: 'Avanto lammessa saunatalon edessä pakkaspäivänä, kaide johtaa veteen',
+        fi: 'Avanto lammessa Saunatalon edessä pakkaspäivänä, kaide johtaa veteen',
         lv: 'Āliņģis dīķī pie Pirts mājas aukstā ziemas dienā, ūdenī ved margas',
       },
     },
@@ -296,7 +296,7 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
     {
       src: '/galerii/tiigimaja/terrass-paikeses.jpeg',
       alt: {
-        et: 'Lai terrass roogkatusega tiigimaja ees sügispäikeses, taga kõrged kased ja kuused',
+        et: 'Lai terrass roogkatusega Tiigimaja ees sügispäikeses, taga kõrged kased ja kuused',
         en: 'The wide deck in front of the thatched Pond House in autumn sun, tall birches and spruces behind',
         ru: 'Широкая терраса перед Прудовым домом с камышовой крышей под осенним солнцем, позади высокие берёзы и ели',
         de: 'Die breite Terrasse vor dem reetgedeckten Teichhaus in der Herbstsonne, dahinter hohe Birken und Fichten',
@@ -789,7 +789,7 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
         ru: 'Вереск в глиняном горшке на журнальном столике, дальше кухонная полка и огонь в камине',
         de: 'Heidekraut im Tontopf auf dem Couchtisch, dahinter das Küchenregal und das Kaminfeuer',
         es: 'Brezo en una maceta de barro sobre la mesa baja, al fondo el estante de la cocina y el fuego',
-        sv: 'Ljung i en lerkruka på soffbordet, bortom kökshyllan och brasan',
+        sv: 'Ljung i en lerkruka på soffbordet, med kökshyllan och brasan i bakgrunden',
         fi: 'Kanervaa savipurkissa sohvapöydällä, taempana keittiöhylly ja takkatuli',
         lv: 'Virši māla podā uz kafijas galdiņa, tālāk virtuves plaukts un kamīna uguns',
       },
@@ -836,7 +836,7 @@ export const HOUSE_GALLERIES: Partial<Record<HouseSlug, HousePhoto[]>> = {
     {
       src: '/galerii/metsamaja/kamin-tuli.jpeg',
       alt: {
-        et: 'Kaminatuli lähedalt, klaasi taga lõkendavad halud ja puuriidas kõrval',
+        et: 'Kaminatuli lähedalt, klaasi taga lõkendavad halud ja puud riidas kõrval',
         en: 'The fire close up, logs blazing behind the glass and firewood stacked beside it',
         ru: 'Огонь в камине крупным планом, поленья пылают за стеклом, рядом дрова',
         de: 'Das Kaminfeuer aus der Nähe, Scheite lodern hinter dem Glas, daneben Brennholz',

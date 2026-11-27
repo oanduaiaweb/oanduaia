@@ -43,29 +43,20 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
         <WinterSauna />
         <Feature />
         {/*
-          The calendar and enquiry form straight after the three houses (Mikk, 24 Oct): the
-          moment someone has picked a house is the moment to show its free dates, not after
-          the story, the food and the trails.
+          Order agreed with Mikk, 26 Nov 2026: the quick facts and the reviews straight after
+          the three houses, so a guest sees 35 five-star reviews BEFORE the calendar asks them
+          to commit; then the calendar and the form; the story, food and nature after that.
+          If a section moves here, move it in the links list in components/Nav.tsx too.
         */}
+        <Stats />
+        <Reviews />
         <Availability />
         <Booking />
-        {/*
-          Reviews follow the houses and the calendar, not near the bottom. Someone who has just
-          read what the three houses are is deciding whether to believe us; that is the moment
-          other people's word is worth most. Lower down it was decoration.
-        */}
-        <Reviews />
         <GiftTeaser />
-        {/*
-          The story sits between the houses and the reasons, not above them. Someone landing
-          here wants to see what they can rent before they are told what the place is like;
-          the story then lands as the answer to "why here", which is exactly what Why picks up.
-        */}
         <Intro />
         <Why />
         <Services />
         <Trails />
-        <Stats />
         <Faq />
       </main>
       <Footer />

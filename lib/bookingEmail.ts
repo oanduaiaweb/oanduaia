@@ -37,7 +37,7 @@ type Copy = {
 const L: Record<Lang, Copy> = {
   et: {
     subject: (h, d) => `Broneering kinnitatud – ${h}, ${d}`,
-    breakfast: (p, m) => `${p} inimest × ${m} hommikut`,
+    breakfast: (p, m) => `${p} ${p === 1 ? 'inimene' : 'inimest'} × ${m} ${m === 1 ? 'hommik' : 'hommikut'}`,
     cancelFree: d => `Tasuta tühistamise tähtaeg: ${d}. Hiljem makset ei tagastata.`,
     cancelNone: 'Broneering on tehtud vähem kui 7 päeva enne saabumist, seega makset ei tagastata.',
     body: f => `Tere, ${f.first}!
@@ -142,7 +142,7 @@ Oanduaia`,
     cancelNone: 'Esta reserva se hizo con menos de 7 días de antelación, por lo que el pago no es reembolsable.',
     body: f => `Hola, ${f.first}:
 
-Gracias: su reserva está pagada y confirmada.
+Gracias: tu reserva está pagada y confirmada.
 
 Casa: ${f.house}
 Llegada: ${f.checkIn}, a partir de las 14:00
@@ -152,9 +152,9 @@ ${[f.guests ? `Huéspedes: ${f.guests}` : '', f.pet ? 'Mascota: sí' : '', f.bre
 Dirección: Pueblo de Oandu, 45432 Lääne-Virumaa, Estonia.
 ${f.cancel}
 
-Añada info@oanduaia.ee a sus contactos para que nuestros mensajes le lleguen. Para cualquier cosa, responda a este correo o llame / escriba por WhatsApp al +372 520 2044.
+Añade info@oanduaia.ee a tus contactos para que nuestros mensajes te lleguen. Para cualquier cosa, responde a este correo o llama / escribe por WhatsApp al +372 520 2044.
 
-¿A qué hora piensa llegar?
+¿A qué hora piensas llegar?
 
 Un cordial saludo,
 Toomas & Aigi
@@ -212,7 +212,7 @@ Oanduaia`,
   },
   lv: {
     subject: (h, d) => `Rezervācija apstiprināta – ${h}, ${d}`,
-    breakfast: (p, m) => `${p} pers. × ${m} rīti`,
+    breakfast: (p, m) => `${p} pers. × ${m} ${m % 10 === 1 && m % 100 !== 11 ? 'rīts' : 'rīti'}`,
     cancelFree: d => `Bezmaksas atcelšanas termiņš: ${d}. Pēc tam maksājums netiek atmaksāts.`,
     cancelNone: 'Rezervācija veikta mazāk nekā 7 dienas pirms ierašanās, tāpēc maksājums netiek atmaksāts.',
     body: f => `Labdien, ${f.first}!

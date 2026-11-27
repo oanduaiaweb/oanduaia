@@ -60,6 +60,8 @@ function nights(n: number, lang: Lang) {
       mod10 === 1 && mod100 !== 11 ? t.nightOne.ru
       : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? t.nightFew.ru
       : t.nightMany.ru
+  } else if (lang === 'lv') {
+    word = n % 10 === 1 && n % 100 !== 11 ? t.nightOne.lv : t.nightFew.lv
   } else {
     word = n === 1 ? t.nightOne[lang] : t.nightFew[lang]
   }

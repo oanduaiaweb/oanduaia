@@ -36,7 +36,7 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Broneerimine ja maksmine', p: [
         'Veebis: vali kalendris maja ja kuupäevad ning maksa kogu summa kaardiga. Broneering on kohe kinnitatud ja saadame kinnituse e-postiga. Kaardimakseid töötleb Stripe – sinu kaardiandmeid me ei näe.',
         'Kirja teel: kirjuta, helista või saada WhatsAppi sõnum. Kinnitame e-postiga ning saadame kas kaardimakse lingi või lepime kokku, et maksad sularahas kohale jõudes.',
-        'Veebis saab broneerida kuni 2 päeva enne saabumist. Varasemaks saabumiseks helista või kirjuta WhatsAppis.',
+        'Veebis saab broneerida kuni 2 päeva enne saabumist. Kui saabud lähema 2 päeva jooksul, helista või kirjuta WhatsAppis.',
         'Kehtib broneerimise hetkel kalendris näidatud hind.',
       ] },
       { h: 'Tühistamine', p: [
@@ -49,9 +49,9 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Puhkuse ajal', p: [
         'Saabumine alates kell 14.00, lahkumine kella 12.00-ks, kui pole kokku lepitud teisiti.',
         'Igas majas võib ööbida maja lehel märgitud arv külalisi.',
-        'Lemmikloomad on kokkuleppel teretulnud; lemmikloomatasu on 20 € viibimise kohta.',
+        'Lemmikloomad on kokkuleppel teretulnud; lemmikloomatasu on 20 € broneeringu kohta.',
         'Saun ja kaminad on puuküttega – palun kasuta neid nii, nagu saabumisel näitame. Lapsed peavad tiigi ja sauna juures olema täiskasvanu järelevalve all. Ujumine, ka talisuplus, on omal vastutusel.',
-        'Palun anna teada, kui midagi läheb katki. Külaliste põhjustatud kahju võidakse hüvitada lasta.',
+        'Palun anna teada, kui midagi läheb katki. Külaliste tekitatud kahju palume hüvitada.',
       ] },
       { h: 'Kinkekaardid', p: [
         'Kinkekaart kehtib 12 kuud ostmisest kõigis kolmes majas, vabade kuupäevade olemasolul. Broneerimisel ütle kinkekaardi kood.',
@@ -82,7 +82,7 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Booking and payment', p: [
         'Online: choose the house and dates in the calendar and pay the full amount by card. The booking is confirmed straight away and we send a confirmation by e-mail. Card payments are handled by Stripe – we never see your card details.',
         'By message: write, call or WhatsApp us. We confirm by e-mail and either send a card payment link or agree that you pay in cash when you arrive.',
-        'Online booking is possible up to 2 days before arrival. For a sooner arrival, call or WhatsApp us.',
+        'Online booking is possible up to 2 days before arrival. If you are arriving within 2 days, call or WhatsApp us.',
         'The price is the one shown in the calendar when you book.',
       ] },
       { h: 'Cancellation', p: [
@@ -95,7 +95,7 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'During your stay', p: [
         'Arrival from 14:00, departure by 12:00, unless agreed otherwise.',
         'Each house sleeps the number of guests shown on its page.',
-        'Pets are welcome by arrangement; the pet fee is 20 € per stay.',
+        'Pets are welcome by arrangement; the pet fee is €20 per stay.',
         'The sauna and fireplaces are wood-fired – please use them as we show you on arrival. Children must be supervised by an adult near the pond and the sauna. Swimming, including winter swimming, is at your own risk.',
         'Please tell us if anything gets broken. Damage caused by guests may be charged.',
       ] },
@@ -118,7 +118,7 @@ export const TERMS: Record<Lang, Terms> = {
   },
   ru: {
     title: 'Условия и конфиденциальность',
-    lead: 'Коротко: бронируйте онлайн и платите картой или договоритесь с нами об оплате наличными. Отмена бесплатна до 7 дней до заезда. Ваши данные мы используем только для организации вашего отдыха.',
+    lead: 'Коротко: бронируйте онлайн и платите картой или договоритесь с нами об оплате наличными. Отмена бесплатна не позднее чем за 7 дней до заезда. Ваши данные мы используем только для организации вашего отдыха.',
     updated: 'Обновлено 25 ноября 2026 г.',
     sections: [
       { h: 'Кто мы', p: [
@@ -128,11 +128,11 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Бронирование и оплата', p: [
         'Онлайн: выберите дом и даты в календаре и оплатите полную сумму картой. Бронирование подтверждается сразу, мы присылаем подтверждение по электронной почте. Платежи картой обрабатывает Stripe – данных вашей карты мы не видим.',
         'Сообщением: напишите, позвоните или отправьте сообщение в WhatsApp. Мы подтвердим по электронной почте и либо пришлём ссылку на оплату картой, либо договоримся, что вы оплатите наличными по приезде.',
-        'Онлайн можно забронировать не позднее чем за 2 дня до заезда. Для более раннего заезда позвоните или напишите в WhatsApp.',
+        'Онлайн можно забронировать не позднее чем за 2 дня до заезда. Если заезд раньше, позвоните или напишите в WhatsApp.',
         'Действует цена, указанная в календаре в момент бронирования.',
       ] },
       { h: 'Отмена', p: [
-        'Бесплатная отмена до 7 дней до заезда – мы вернём всю сумму.',
+        'Бесплатная отмена не позднее чем за 7 дней до заезда – мы вернём всю сумму.',
         'При более поздней отмене или неприезде деньги не возвращаются.',
         'Чтобы отменить, напишите на info@oanduaia.ee.',
         'Если отменить бронирование придётся нам, например потому что дом нельзя использовать, мы вернём всё, что вы заплатили.',
@@ -173,8 +173,8 @@ export const TERMS: Record<Lang, Terms> = {
       ] },
       { h: 'Buchung und Zahlung', p: [
         'Online: Wählen Sie Haus und Termine im Kalender und zahlen Sie den vollen Betrag mit Karte. Die Buchung ist sofort bestätigt, und wir senden Ihnen eine Bestätigung per E-Mail. Kartenzahlungen wickelt Stripe ab – Ihre Kartendaten sehen wir nie.',
-        'Per Nachricht: Schreiben, rufen Sie an oder schicken Sie eine WhatsApp. Wir bestätigen per E-Mail und senden entweder einen Kartenzahlungslink oder vereinbaren, dass Sie bei der Anreise bar bezahlen.',
-        'Online buchen können Sie bis 2 Tage vor der Anreise. Für eine frühere Anreise rufen Sie uns an oder schreiben Sie per WhatsApp.',
+        'Per Nachricht: Schreiben Sie uns, rufen Sie an oder schicken Sie eine WhatsApp. Wir bestätigen per E-Mail und senden entweder einen Kartenzahlungslink oder vereinbaren, dass Sie bei der Anreise bar bezahlen.',
+        'Online buchen können Sie bis 2 Tage vor der Anreise. Für eine kurzfristigere Anreise rufen Sie uns an oder schreiben Sie per WhatsApp.',
         'Es gilt der Preis, der bei der Buchung im Kalender angezeigt wird.',
       ] },
       { h: 'Stornierung', p: [
@@ -220,7 +220,7 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Reserva y pago', p: [
         'En línea: elige la casa y las fechas en el calendario y paga el importe total con tarjeta. La reserva queda confirmada al momento y te enviamos la confirmación por correo electrónico. Los pagos con tarjeta los gestiona Stripe: nunca vemos los datos de tu tarjeta.',
         'Por mensaje: escríbenos, llámanos o envíanos un WhatsApp. Confirmamos por correo y te enviamos un enlace de pago con tarjeta o acordamos que pagues en efectivo al llegar.',
-        'En línea se puede reservar hasta 2 días antes de la llegada. Para llegar antes, llámanos o escríbenos por WhatsApp.',
+        'En línea se puede reservar hasta 2 días antes de la llegada. Si llegas antes de ese plazo, llámanos o escríbenos por WhatsApp.',
         'Se aplica el precio que muestra el calendario en el momento de la reserva.',
       ] },
       { h: 'Cancelación', p: [
@@ -266,7 +266,7 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Bokning och betalning', p: [
         'På nätet: välj hus och datum i kalendern och betala hela beloppet med kort. Bokningen bekräftas direkt och vi skickar en bekräftelse per e-post. Kortbetalningar hanteras av Stripe – vi ser aldrig dina kortuppgifter.',
         'Via meddelande: skriv, ring eller skicka ett WhatsApp. Vi bekräftar per e-post och skickar antingen en betalningslänk för kort eller kommer överens om att du betalar kontant när du kommer.',
-        'På nätet kan du boka fram till 2 dagar före ankomst. För tidigare ankomst, ring eller skriv på WhatsApp.',
+        'På nätet kan du boka fram till 2 dagar före ankomst. Vill du komma med kortare varsel, ring eller skriv på WhatsApp.',
         'Priset är det som visas i kalendern när du bokar.',
       ] },
       { h: 'Avbokning', p: [
@@ -274,7 +274,7 @@ export const TERMS: Record<Lang, Terms> = {
         'Om du avbokar senare eller inte kommer återbetalas beloppet inte.',
         'Avboka genom att skriva till info@oanduaia.ee.',
         'Om vi själva måste avboka, till exempel för att huset inte kan användas, betalar vi tillbaka allt du har betalat.',
-        'Den 14-dagars ångerrätten för köp på nätet gäller inte boende som bokats för bestämda datum (EU-direktiv 2011/83/EU, artikel 16).',
+        'Ångerrätten på 14 dagar för köp på nätet gäller inte boende som bokats för bestämda datum (EU-direktiv 2011/83/EU, artikel 16).',
       ] },
       { h: 'Under vistelsen', p: [
         'Ankomst från 14.00, avresa senast 12.00, om inget annat avtalats.',
@@ -302,7 +302,7 @@ export const TERMS: Record<Lang, Terms> = {
   },
   fi: {
     title: 'Ehdot ja tietosuoja',
-    lead: 'Lyhyesti: varaa verkossa ja maksa kortilla tai sovi kanssamme käteismaksusta. Peruutus on maksuton 7 päivään ennen saapumista asti. Käytämme tietojasi vain lomasi järjestämiseen.',
+    lead: 'Lyhyesti: varaa verkossa ja maksa kortilla tai sovi kanssamme käteismaksusta. Peruutus on maksuton viimeistään 7 päivää ennen saapumista. Käytämme tietojasi vain lomasi järjestämiseen.',
     updated: 'Päivitetty 25.11.2026.',
     sections: [
       { h: 'Keitä olemme', p: [
@@ -312,11 +312,11 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Varaus ja maksu', p: [
         'Verkossa: valitse kalenterista talo ja päivät ja maksa koko summa kortilla. Varaus vahvistuu heti, ja lähetämme vahvistuksen sähköpostilla. Korttimaksut käsittelee Stripe – emme koskaan näe korttitietojasi.',
         'Viestillä: kirjoita, soita tai lähetä WhatsApp-viesti. Vahvistamme sähköpostilla ja lähetämme joko korttimaksulinkin tai sovimme, että maksat käteisellä saapuessasi.',
-        'Verkossa voi varata viimeistään 2 päivää ennen saapumista. Aiempaa saapumista varten soita tai kirjoita WhatsAppissa.',
+        'Verkossa voi varata viimeistään 2 päivää ennen saapumista. Jos saavut tätä pikemmin, soita tai kirjoita WhatsAppissa.',
         'Hinta on se, joka kalenterissa näkyy varaushetkellä.',
       ] },
       { h: 'Peruutus', p: [
-        'Maksuton peruutus 7 päivään ennen saapumista asti – palautamme koko summan.',
+        'Maksuton peruutus viimeistään 7 päivää ennen saapumista – palautamme koko summan.',
         'Jos perut myöhemmin tai et saavu, summaa ei palauteta.',
         'Peruuta kirjoittamalla osoitteeseen info@oanduaia.ee.',
         'Jos joudumme itse perumaan, esimerkiksi koska taloa ei voi käyttää, palautamme kaiken maksamasi.',
@@ -325,7 +325,7 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Lomasi aikana', p: [
         'Saapuminen klo 14.00 alkaen, lähtö klo 12.00 mennessä, ellei toisin sovita.',
         'Kuhunkin taloon mahtuu sen sivulla mainittu määrä vieraita.',
-        'Lemmikit ovat tervetulleita sopimuksen mukaan; lemmikkimaksu on 20 € oleskelulta.',
+        'Lemmikit ovat tervetulleita sopimuksen mukaan; lemmikkimaksu on 20 € oleskelua kohden.',
         'Sauna ja takat lämmitetään puilla – käytä niitä niin kuin saapuessasi näytämme. Lasten on oltava aikuisen valvonnassa lammen ja saunan luona. Uiminen, myös avantouinti, omalla vastuulla.',
         'Kerro meille, jos jokin menee rikki. Vieraiden aiheuttamista vahingoista voidaan laskuttaa.',
       ] },
@@ -358,14 +358,14 @@ export const TERMS: Record<Lang, Terms> = {
       { h: 'Rezervēšana un samaksa', p: [
         'Tiešsaistē: kalendārā izvēlieties māju un datumus un samaksājiet visu summu ar karti. Rezervācija tiek apstiprināta uzreiz, un mēs nosūtām apstiprinājumu e-pastā. Kartes maksājumus apstrādā Stripe – jūsu kartes datus mēs neredzam.',
         'Ar ziņu: rakstiet, zvaniet vai sūtiet WhatsApp ziņu. Mēs apstiprinām e-pastā un vai nu nosūtām kartes maksājuma saiti, vai vienojamies, ka samaksāsiet skaidrā naudā, ierodoties.',
-        'Tiešsaistē var rezervēt ne vēlāk kā 2 dienas pirms ierašanās. Ātrākai ierašanās zvaniet vai rakstiet WhatsApp.',
+        'Tiešsaistē var rezervēt ne vēlāk kā 2 dienas pirms ierašanās. Ātrākai ierašanai zvaniet vai rakstiet WhatsApp.',
         'Spēkā ir cena, kas kalendārā redzama rezervēšanas brīdī.',
       ] },
       { h: 'Atcelšana', p: [
         'Bezmaksas atcelšana līdz 7 dienām pirms ierašanās – atmaksājam visu summu.',
         'Ja atceļat vēlāk vai neierodaties, summa netiek atmaksāta.',
         'Lai atceltu, rakstiet uz info@oanduaia.ee.',
-        'Ja rezervācija jāatceļ mums, piemēram, jo māju nevar izmantot, atmaksājam visu, ko esat samaksājis.',
+        'Ja rezervācija jāatceļ mums, piemēram, jo māju nevar izmantot, atmaksājam visu, ko esat samaksājuši.',
         '14 dienu atteikuma tiesības tiešsaistes pirkumiem neattiecas uz izmitināšanu, kas rezervēta konkrētiem datumiem (ES Direktīva 2011/83/ES, 16. pants).',
       ] },
       { h: 'Uzturēšanās laikā', p: [
@@ -380,7 +380,7 @@ export const TERMS: Record<Lang, Terms> = {
       ] },
       { h: 'Jūsu personas dati', p: [
         'Pārzinis ir Oanduaia Puhkemaja OÜ (dati augstāk).',
-        'Mēs vācam vārdu, e-pastu, tālruni, datumus, viesu skaitu, jūsu ziņas un to, vai esat samaksājis.',
+        'Mēs vācam vārdu, e-pastu, tālruni, datumus, viesu skaitu, jūsu ziņas un to, vai esat samaksājuši.',
         'Mēs tos izmantojam, lai jums atbildētu, izpildītu rezervāciju un kārtotu likumā prasīto grāmatvedību. Juridiskais pamats: rezervācijas līgums un mūsu juridiskie pienākumi (VDAR 6. panta 1. punkta b un c apakšpunkts).',
         'Mūsu uzdevumā un tikai šiem nolūkiem tos apstrādā: Stripe (kartes maksājumi), Vercel (vietne un rezervāciju dati), Resend (mūsu e-pastu sūtīšana) un Google (mūsu pastkaste un anonīma apmeklējumu statistika). Booking.com uzzina tikai to, kuri datumi ir aizņemti, – nekad ne vārdus.',
         'Rezervāciju un maksājumu datus glabājam 7 gadus, kā prasa Igaunijas grāmatvedības likums; citas ziņas – tik ilgi, cik vajadzīgs, lai uz tām atbildētu.',
