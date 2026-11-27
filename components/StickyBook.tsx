@@ -75,7 +75,12 @@ export default function StickyBook() {
      * Hidden over the calendar AND the enquiry form below it: both are the thing the button
      * points to, and on a phone it sat on top of the form's own fields (Mikk, 26 Nov).
      */
-    const zones = [booking, document.getElementById('vorm')].filter(Boolean) as Element[]
+    /*
+     * …and over the footer: scrolled to the bottom, the pair sat on the company line, the
+     * terms link and the contacts. The footer has its own WhatsApp and booking links, so they
+     * simply step aside there (Mikk, 26 Nov).
+     */
+    const zones = [booking, document.getElementById('vorm'), document.querySelector('footer')].filter(Boolean) as Element[]
     if (zones.length) {
       const inside = new Set<Element>()
       const o = new IntersectionObserver(entries => {
