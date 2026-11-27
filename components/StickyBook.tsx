@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { track } from '@/lib/analytics'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { T } from '@/lib/translations'
@@ -39,6 +40,7 @@ const WA_LABEL: Record<Lang, string> = {
 export default function StickyBook() {
   const { lang } = useLanguage()
   const [shown, setShown] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const cta = document.querySelector('.hero-cta')
@@ -109,7 +111,12 @@ export default function StickyBook() {
     }
 
     return () => cleanups.forEach(fn => fn())
-  }, [])
+    /*
+     * Per page, not once. This component lives in the layout and survives client-side
+     * navigation, so after a language switch it was still watching the OLD page's hero button
+     * — detached, never intersecting — and showed a second "Book now" at the top (Mikk, 26 Nov).
+     */
+  }, [pathname])
 
   return (
     <>
