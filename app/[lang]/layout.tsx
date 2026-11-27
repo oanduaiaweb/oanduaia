@@ -96,10 +96,20 @@ export default async function LocaleLayout({
           * good in the first second. Nothing on the page reads gtag, so it can wait for
           * idle; the pageview still fires.
           */}
+        {/*
+          No cookies, no banner (Mikk, 26 Nov 2026: he does not want a consent banner).
+          Consent Mode with everything denied: GA4 sets no cookies and sends anonymous,
+          cookieless pings, so visits are still counted (modelled) without asking anyone.
+          If a banner is ever added, it grants analytics_storage here.
+        */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-B58Z9QKYLS" strategy="lazyOnload" />
         <Script id="ga" strategy="lazyOnload">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            analytics_storage: 'denied', ad_storage: 'denied',
+            ad_user_data: 'denied', ad_personalization: 'denied'
+          });
           gtag('js', new Date());
           gtag('config', 'G-B58Z9QKYLS');
         `}</Script>

@@ -27,7 +27,7 @@ export const TERMS: Record<Lang, Terms> = {
   et: {
     title: 'Tingimused ja privaatsus',
     lead: 'Lühidalt: broneeri veebis ja maksa kaardiga või lepi meiega kokku sularahamakse. Tühistamine on tasuta kuni 7 päeva enne saabumist. Sinu andmeid kasutame ainult sinu puhkuse korraldamiseks.',
-    updated: 'Viimati uuendatud 25. novembril 2026.',
+    updated: 'Viimati uuendatud 26. novembril 2026.',
     sections: [
       { h: 'Kes me oleme', p: [
         id('registrikood', 'Eesti'),
@@ -66,14 +66,14 @@ export const TERMS: Record<Lang, Terms> = {
         'Sul on õigus oma andmeid näha, parandada või kustutada ning nende kasutamisele vastu vaielda – kirjuta info@oanduaia.ee. Kaebuse saad esitada ka Andmekaitse Inspektsioonile (aki.ee).',
       ] },
       { h: 'Küpsised', p: [
-        'Kasutame Google Analyticsit, et lugeda külastusi ja näha, millised lehed külalisi aitavad. See salvestab sinu brauserisse küpsiseid. Andmeid me ei müü ega näita nende põhjal reklaami. Küpsised saad brauseri seadetes blokeerida – leht töötab samamoodi.',
+        'Kasutame Google Analyticsit külastuste anonüümseks loendamiseks, kuid küpsiseid see sinu brauserisse ei salvesta ega jälgi sind teistel lehtedel. Me ei kasuta reklaamiküpsiseid ega müü andmeid.',
       ] },
     ],
   },
   en: {
     title: 'Terms & privacy',
     lead: 'The short version: book online and pay by card, or agree with us to pay in cash. Cancellation is free up to 7 days before arrival. We use your details only to look after your stay.',
-    updated: 'Last updated 25 November 2026.',
+    updated: 'Last updated 26 November 2026.',
     sections: [
       { h: 'Who we are', p: [
         id('registry code', 'Estonia'),
@@ -112,14 +112,14 @@ export const TERMS: Record<Lang, Terms> = {
         'You have the right to see, correct or delete your data and to object to its use – write to info@oanduaia.ee. You can also complain to the Estonian Data Protection Inspectorate (aki.ee).',
       ] },
       { h: 'Cookies', p: [
-        'We use Google Analytics to count visits and see which pages help guests. It stores cookies in your browser. We do not sell the data or show ads based on it. You can block cookies in your browser settings – the site works the same.',
+        'We use Google Analytics to count visits anonymously, but it stores no cookies in your browser and does not follow you to other sites. We use no advertising cookies and sell no data.',
       ] },
     ],
   },
   ru: {
     title: 'Условия и конфиденциальность',
     lead: 'Коротко: бронируйте онлайн и платите картой или договоритесь с нами об оплате наличными. Отмена бесплатна не позднее чем за 7 дней до заезда. Ваши данные мы используем только для организации вашего отдыха.',
-    updated: 'Обновлено 25 ноября 2026 г.',
+    updated: 'Обновлено 26 ноября 2026 г.',
     sections: [
       { h: 'Кто мы', p: [
         id('регистрационный код', 'Эстония'),
@@ -158,14 +158,14 @@ export const TERMS: Record<Lang, Terms> = {
         'Вы вправе ознакомиться со своими данными, исправить или удалить их и возразить против их использования – напишите на info@oanduaia.ee. Также можно подать жалобу в Инспекцию по защите данных Эстонии (aki.ee).',
       ] },
       { h: 'Файлы cookie', p: [
-        'Мы используем Google Analytics, чтобы считать посещения и видеть, какие страницы помогают гостям. Он сохраняет в вашем браузере файлы cookie. Мы не продаём данные и не показываем рекламу на их основе. Вы можете заблокировать cookie в настройках браузера – сайт будет работать так же.',
+        'Мы используем Google Analytics для анонимного подсчёта посещений, но он не сохраняет файлы cookie в вашем браузере и не отслеживает вас на других сайтах. Мы не используем рекламные cookie и не продаём данные.',
       ] },
     ],
   },
   de: {
     title: 'Bedingungen & Datenschutz',
     lead: 'Kurz gesagt: Online buchen und mit Karte bezahlen oder mit uns Barzahlung vereinbaren. Stornierung bis 7 Tage vor Anreise kostenlos. Ihre Daten verwenden wir nur, um Ihren Aufenthalt zu organisieren.',
-    updated: 'Zuletzt aktualisiert am 25. November 2026.',
+    updated: 'Zuletzt aktualisiert am 26. November 2026.',
     sections: [
       { h: 'Wer wir sind', p: [
         id('Registernummer', 'Estland'),
@@ -204,14 +204,14 @@ export const TERMS: Record<Lang, Terms> = {
         'Sie haben das Recht, Ihre Daten einzusehen, berichtigen oder löschen zu lassen und ihrer Verwendung zu widersprechen – schreiben Sie an info@oanduaia.ee. Sie können sich auch bei der estnischen Datenschutzaufsicht beschweren (aki.ee).',
       ] },
       { h: 'Cookies', p: [
-        'Wir nutzen Google Analytics, um Besuche zu zählen und zu sehen, welche Seiten Gästen helfen. Dabei werden Cookies in Ihrem Browser gespeichert. Wir verkaufen die Daten nicht und zeigen keine Werbung auf ihrer Grundlage. Sie können Cookies in Ihren Browsereinstellungen blockieren – die Website funktioniert genauso.',
+        'Wir nutzen Google Analytics, um Besuche anonym zu zählen; dabei werden keine Cookies in Ihrem Browser gespeichert und Sie werden auf anderen Websites nicht verfolgt. Wir verwenden keine Werbe-Cookies und verkaufen keine Daten.',
       ] },
     ],
   },
   es: {
     title: 'Condiciones y privacidad',
     lead: 'En resumen: reserva en línea y paga con tarjeta, o acuerda con nosotros pagar en efectivo. La cancelación es gratuita hasta 7 días antes de la llegada. Usamos tus datos solo para organizar tu estancia.',
-    updated: 'Última actualización: 25 de noviembre de 2026.',
+    updated: 'Última actualización: 26 de noviembre de 2026.',
     sections: [
       { h: 'Quiénes somos', p: [
         id('código de registro', 'Estonia'),
@@ -250,14 +250,14 @@ export const TERMS: Record<Lang, Terms> = {
         'Tienes derecho a ver, corregir o suprimir tus datos y a oponerte a su uso: escribe a info@oanduaia.ee. También puedes reclamar ante la Inspección de Protección de Datos de Estonia (aki.ee).',
       ] },
       { h: 'Cookies', p: [
-        'Usamos Google Analytics para contar las visitas y ver qué páginas ayudan a los huéspedes. Guarda cookies en tu navegador. No vendemos los datos ni mostramos publicidad basada en ellos. Puedes bloquear las cookies en la configuración del navegador y la web funciona igual.',
+        'Usamos Google Analytics para contar las visitas de forma anónima, pero no guarda cookies en tu navegador ni te sigue en otras webs. No usamos cookies publicitarias ni vendemos datos.',
       ] },
     ],
   },
   sv: {
     title: 'Villkor och integritet',
     lead: 'Kort sagt: boka på nätet och betala med kort, eller kom överens med oss om kontant betalning. Avbokning är gratis fram till 7 dagar före ankomst. Vi använder dina uppgifter bara för att ordna din vistelse.',
-    updated: 'Senast uppdaterad 25 november 2026.',
+    updated: 'Senast uppdaterad 26 november 2026.',
     sections: [
       { h: 'Vilka vi är', p: [
         id('registreringsnummer', 'Estland'),
@@ -296,14 +296,14 @@ export const TERMS: Record<Lang, Terms> = {
         'Du har rätt att se, rätta eller radera dina uppgifter och att invända mot hur de används – skriv till info@oanduaia.ee. Du kan också klaga hos den estniska dataskyddsmyndigheten (aki.ee).',
       ] },
       { h: 'Cookies', p: [
-        'Vi använder Google Analytics för att räkna besök och se vilka sidor som hjälper gästerna. Det sparar cookies i din webbläsare. Vi säljer inte uppgifterna och visar ingen reklam baserad på dem. Du kan blockera cookies i webbläsarens inställningar – webbplatsen fungerar likadant.',
+        'Vi använder Google Analytics för att räkna besök anonymt, men det sparar inga cookies i din webbläsare och följer dig inte till andra webbplatser. Vi använder inga reklamcookies och säljer inga uppgifter.',
       ] },
     ],
   },
   fi: {
     title: 'Ehdot ja tietosuoja',
     lead: 'Lyhyesti: varaa verkossa ja maksa kortilla tai sovi kanssamme käteismaksusta. Peruutus on maksuton viimeistään 7 päivää ennen saapumista. Käytämme tietojasi vain lomasi järjestämiseen.',
-    updated: 'Päivitetty 25.11.2026.',
+    updated: 'Päivitetty 26.11.2026.',
     sections: [
       { h: 'Keitä olemme', p: [
         id('rekisterikoodi', 'Viro'),
@@ -342,14 +342,14 @@ export const TERMS: Record<Lang, Terms> = {
         'Sinulla on oikeus nähdä, korjata tai poistaa tietosi ja vastustaa niiden käyttöä – kirjoita osoitteeseen info@oanduaia.ee. Voit myös tehdä valituksen Viron tietosuojavirastolle (aki.ee).',
       ] },
       { h: 'Evästeet', p: [
-        'Käytämme Google Analyticsia laskeaksemme käynnit ja nähdäksemme, mitkä sivut auttavat vieraita. Se tallentaa evästeitä selaimeesi. Emme myy tietoja emmekä näytä niiden perusteella mainoksia. Voit estää evästeet selaimen asetuksista – sivusto toimii samoin.',
+        'Käytämme Google Analyticsia käyntien anonyymiin laskemiseen, mutta se ei tallenna evästeitä selaimeesi eikä seuraa sinua muilla sivustoilla. Emme käytä mainosevästeitä emmekä myy tietoja.',
       ] },
     ],
   },
   lv: {
     title: 'Noteikumi un privātums',
     lead: 'Īsumā: rezervējiet tiešsaistē un maksājiet ar karti vai vienojieties ar mums par samaksu skaidrā naudā. Atcelšana ir bezmaksas līdz 7 dienām pirms ierašanās. Jūsu datus izmantojam tikai jūsu uzturēšanās organizēšanai.',
-    updated: 'Atjaunināts 2026. gada 25. novembrī.',
+    updated: 'Atjaunināts 2026. gada 26. novembrī.',
     sections: [
       { h: 'Kas mēs esam', p: [
         id('reģistrācijas kods', 'Igaunija'),
@@ -388,7 +388,7 @@ export const TERMS: Record<Lang, Terms> = {
         'Jums ir tiesības redzēt, labot vai dzēst savus datus un iebilst pret to izmantošanu – rakstiet uz info@oanduaia.ee. Varat arī iesniegt sūdzību Igaunijas Datu aizsardzības inspekcijā (aki.ee).',
       ] },
       { h: 'Sīkdatnes', p: [
-        'Mēs izmantojam Google Analytics, lai skaitītu apmeklējumus un redzētu, kuras lapas palīdz viesiem. Tas saglabā sīkdatnes jūsu pārlūkā. Mēs datus nepārdodam un nerādām uz tiem balstītas reklāmas. Sīkdatnes varat bloķēt pārlūka iestatījumos – vietne darbosies tāpat.',
+        'Mēs izmantojam Google Analytics, lai anonīmi skaitītu apmeklējumus, taču tas nesaglabā sīkdatnes jūsu pārlūkā un neseko jums citās vietnēs. Mēs neizmantojam reklāmas sīkdatnes un nepārdodam datus.',
       ] },
     ],
   },
